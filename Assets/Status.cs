@@ -12,6 +12,10 @@ public class Status : MonoBehaviour
     public float MaxHp;
     //現在のHP
     public float NowHp;
+    //スタミナ
+    public float MaxStamina;
+    //スタミナ
+    public float NowStamina;
     //移動速度
     public float MoveSpeed;
     //攻撃速度

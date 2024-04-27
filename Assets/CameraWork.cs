@@ -16,6 +16,10 @@ public class CameraWork : MonoBehaviour
     //カメラの始点 
     private Vector3 startCamPos;
 
+
+    public BattleManager BaManager;
+
+
     void Start()
     {
         mainCam = this.gameObject.GetComponent<CinemachineVirtualCamera>();//メインカメラを取得
@@ -23,36 +27,39 @@ public class CameraWork : MonoBehaviour
 
     void Update()
     {
-        //ホイールを取得
-        var scroll = Input.mouseScrollDelta.y * Time.deltaTime * ZoomSpeed;
-
-        float AfterZoom = mainCam.m_Lens.OrthographicSize - scroll;
-        //ズーム最大値と最小値設定
-        if (AfterZoom < 10 && AfterZoom > 4)
+        if(BaManager.currentMode != BattleManager.Mode.MoveDecisionAfter)
         {
-            mainCam.m_Lens.OrthographicSize -= scroll;
-        }
+            //ホイールを取得
+            var scroll = Input.mouseScrollDelta.y * Time.unscaledDeltaTime * ZoomSpeed;
 
-        //マウスカーソルとカメラの始点を取得
-        if (Input.GetMouseButtonDown(1))
-        {
-            startMousePos = Input.mousePosition;
-            startCamPos = mainCam.transform.position;
-        }
+            float AfterZoom = mainCam.m_Lens.OrthographicSize - scroll;
+            //ズーム最大値と最小値設定
+            if (AfterZoom < 10 && AfterZoom > 4)
+            {
+                mainCam.m_Lens.OrthographicSize -= scroll;
+            }
 
-        //マウスカーソルのドラッグ位置によってカメラを移動
-        if (Input.GetMouseButton(1))
-        {
-            //(移動開始座標 - マウスの現在座標) / 解像度 で正規化
-            float x = (startMousePos.x - Input.mousePosition.x) / Screen.width;
-            float y = (startMousePos.y - Input.mousePosition.y) / Screen.height;
+            //マウスカーソルとカメラの始点を取得
+            if (Input.GetMouseButtonDown(1))
+            {
+                startMousePos = Input.mousePosition;
+                startCamPos = mainCam.transform.position;
+            }
 
-            x = x * MoveSpeed;
-            y = y * MoveSpeed;
+            //マウスカーソルのドラッグ位置によってカメラを移動
+            if (Input.GetMouseButton(1))
+            {
+                //(移動開始座標 - マウスの現在座標) / 解像度 で正規化
+                float x = (startMousePos.x - Input.mousePosition.x) / Screen.width;
+                float y = (startMousePos.y - Input.mousePosition.y) / Screen.height;
 
-            Vector3 velocity = new Vector3(x, y, 0) + startCamPos;
-            mainCam.transform.position = velocity;
-            
+                x = x * MoveSpeed;
+                y = y * MoveSpeed;
+
+                Vector3 velocity = new Vector3(x, y, 0) + startCamPos;
+                mainCam.transform.position = velocity;
+
+            }
         }
     }
 }
