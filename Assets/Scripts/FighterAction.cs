@@ -20,9 +20,9 @@ public class FighterAction : MonoBehaviour
     private FighterStatus MyStatus;
 
     //アニメーションのアクション管理
-    public int StandAction = 0;
-    public int RunAction = 1;
-    public int AttackAction = 2;
+    private int StandAction = 0;
+    private int RunAction = 1;
+    private int AttackAction = 2;
 
     // Start is called before the first frame update
     void Start()
@@ -61,7 +61,7 @@ public class FighterAction : MonoBehaviour
         if (NowTargetPlace != Vector3.zero)
         {
             anim.SetInteger("Action", RunAction);
-
+            
             float moveSpeed;
 
             //スタミナ減少
@@ -77,7 +77,8 @@ public class FighterAction : MonoBehaviour
 
             //移動
             var v = NowTargetPlace - transform.position;
-            transform.position += v.normalized * moveSpeed * Time.deltaTime;
+            transform.position += v.normalized * (moveSpeed / 10) * Time.deltaTime;
+            anim.SetFloat("RunSpeed", moveSpeed / 10); //アニメーションスピード設定
 
             //右を向く
             if (v.x >= 0)

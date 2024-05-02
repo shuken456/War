@@ -1,0 +1,87 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2276f2be805fd8e43adb8a7c7b3bb3c4, type: 3}
+  m_Name: PlayerFighterDB
+  m_EditorClassIdentifier: 
+  PlayerFighterDBList:
+  - Name: "\u6B69\u51751"
+    type: 1
+    Level: 1
+    Hp: 10
+    Stamina: 10
+    AtkPower: 2
+    MoveSpeed: 10
+    AtkSpeed: 10
+    EXP: 0
+    UnitNum: 0
+    Position: {x: 0, y: 0, z: 0}
+    UnitLeader: 0
+  - Name: "\u6B69\u51752"
+    type: 1
+    Level: 1
+    Hp: 10
+    Stamina: 10
+    AtkPower: 2
+    MoveSpeed: 10
+    AtkSpeed: 10
+    EXP: 0
+    UnitNum: 1
+    Position: {x: 0, y: 0, z: 0}
+    UnitLeader: 1
+  - Name: "\u6B69\u51753"
+    type: 1
+    Level: 2
+    Hp: 10
+    Stamina: 10
+    AtkPower: 2
+    MoveSpeed: 10
+    AtkSpeed: 10
+    EXP: 0
+    UnitNum: 1
+    Position: {x: 0, y: 0.5, z: 0}
+    UnitLeader: 0
+  - Name: "\u5F13\u51751"
+    type: 2
+    Level: 3
+    Hp: 10
+    Stamina: 10
+    AtkPower: 2
+    MoveSpeed: 10
+    AtkSpeed: 10
+    EXP: 0
+    UnitNum: 1
+    Position: {x: 0, y: -0.5, z: 0}
+    UnitLeader: 0
+  - Name: "\u5F13\u51752"
+    type: 2
+    Level: 3
+    Hp: 10
+    Stamina: 10
+    AtkPower: 2
+    MoveSpeed: 10
+    AtkSpeed: 10
+    EXP: 0
+    UnitNum: 2
+    Position: {x: 0, y: 0.5, z: 0}
+    UnitLeader: 1
+  - Name: "\u6B69\u51754"
+    type: 1
+    Level: 3
+    Hp: 10
+    Stamina: 10
+    AtkPower: 2
+    MoveSpeed: 10
+    AtkSpeed: 10
+    EXP: 0
+    UnitNum: 2
+    Position: {x: 0, y: -0.5, z: 0}
+    UnitLeader: 0

@@ -103,7 +103,7 @@ public class City : MonoBehaviour
                 if (slider.value >= ControlTime && colliderEnemy.Length == 0)
                 {
                     currentStatus = CityStatus.Player;
-                    rangeRenderer.color = new Color(1, 0, 0, 0.5f); //”–‚¢Ô
+                    rangeRenderer.color = Color.red - new Color(0, 0, 0, 0.5f); //”–‚¢Ô
                 }
             }
         }
@@ -126,13 +126,13 @@ public class City : MonoBehaviour
                 //ƒQ[ƒW‘‰Á
                 currentStatus = CityStatus.EnemyBecoming;
                 slider.value += (Time.deltaTime * Mathf.Abs(FighterCount));
-                sliderImage.color = Color.cyan;
+                sliderImage.color = Color.magenta;
 
                 //ƒQ[ƒWMax‚©‚Â”ÍˆÍ“à‚É“G‚ª‚¢‚È‚¢ê‡A§ˆ³
                 if (slider.value >= ControlTime && colliderPlayer.Length == 0)
                 {
                     currentStatus = CityStatus.Enemy;
-                    rangeRenderer.color = new Color(0, 1, 1, 0.5f);//”–‚¢Â
+                    rangeRenderer.color = Color.magenta - new Color(0, 0, 0, 0.5f);//”–‚¢‡
                 }
             }
         }

@@ -8,7 +8,7 @@ public class FighterStatus : MonoBehaviour
 
     //名前
     public string FighterName;
-    //HP
+    //レベル
     public int Level;
     //HP
     public float MaxHp;
@@ -16,12 +16,16 @@ public class FighterStatus : MonoBehaviour
     public float NowHp;
     //スタミナ
     public float MaxStamina;
-    //スタミナ
+    //現在のスタミナ
     public float NowStamina;
-    //移動速度
-    public float MoveSpeed;
-    //攻撃速度
-    public float AtkSpeed;
     //攻撃力
-    public float AtkPower;
+    public int AtkPower;
+    //移動速度
+    public int MoveSpeed;
+    //攻撃速度
+    public int AtkSpeed;
+    //所属部隊ナンバー(0は無所属)
+    public int UnitNum;
+    //部隊長フラグ
+    public bool UnitLeader;
 }
