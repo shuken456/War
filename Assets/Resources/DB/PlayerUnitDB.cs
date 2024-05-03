@@ -17,4 +17,6 @@ public class PlayerUnit
     public string Name;
     //部隊カラー
     public Color UnitColor;
+    //部隊方針(1攻撃重視、2耐久重視、3移動重視)
+    public int Strategy;
 }
