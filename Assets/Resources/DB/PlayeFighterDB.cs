@@ -14,7 +14,7 @@ public class PlayerFighter
     //名前
     public string Name;
     //兵士の種類(1歩兵、2弓兵、3盾兵、4騎兵)
-    public int type;
+    public int Type;
     //レベル
     public int Level;
     //HP

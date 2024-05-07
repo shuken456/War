@@ -89,7 +89,7 @@ public class City : MonoBehaviour
                 if (slider.value <= 0)
                 {
                     currentStatus = CityStatus.Default;
-                    rangeRenderer.color = new Color(0, 0, 0, 0.5f);
+                    rangeRenderer.color = new Color(1, 1, 1, 0.5f);
                 }
             }
             else if (currentStatus == CityStatus.Default || currentStatus == CityStatus.PlayerBecoming)
@@ -118,7 +118,7 @@ public class City : MonoBehaviour
                 if (slider.value <= 0)
                 {
                     currentStatus = CityStatus.Default;
-                    rangeRenderer.color = new Color(0, 0, 0, 0.5f);
+                    rangeRenderer.color = new Color(1, 1, 1, 0.5f);
                 }
             }
             else if (currentStatus == CityStatus.Default || currentStatus == CityStatus.EnemyBecoming)

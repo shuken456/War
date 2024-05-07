@@ -77,14 +77,14 @@ public class ActionUI : MonoBehaviour
         //左クリックで兵士選択、解除
         if (Input.GetMouseButton(0))
         {
-            var col = Physics2D.OverlapPoint(CursorPosition, LayerMask.GetMask("PlayerFighter"));
+            var col = Physics2D.OverlapPoint(CursorPosition, LayerMask.GetMask("PlayerFighter", "SelectFighter"));
             if (col != null && !BaManager.SelectFighter.Contains(col.gameObject) && !OneClickNoSelectFighter.Contains(col.gameObject))
             {
                 BaManager.SelectFighter.Add(col.gameObject);
                 OneClickSelectFighter.Add(col.gameObject);
 
                 //選択中の見た目を変更
-                col.gameObject.GetComponent<SpriteRenderer>().material = BaManager.SelectMaterial;
+                col.gameObject.layer = LayerMask.NameToLayer("SelectFighter");
             }
 
             if (col != null && BaManager.SelectFighter.Contains(col.gameObject) && !OneClickSelectFighter.Contains(col.gameObject))
@@ -93,7 +93,7 @@ public class ActionUI : MonoBehaviour
                 OneClickNoSelectFighter.Add(col.gameObject);
 
                 //選択中の見た目を変更
-                col.gameObject.GetComponent<SpriteRenderer>().material = BaManager.NoSelectMaterial;
+                col.gameObject.layer = LayerMask.NameToLayer("PlayerFighter");
             }
             ChangeButton();
         }
@@ -170,7 +170,7 @@ public class ActionUI : MonoBehaviour
         //それぞれの変数と画面状態を元に戻す
         foreach (GameObject Fighter in BaManager.SelectFighter)
         {
-            Fighter.GetComponent<SpriteRenderer>().material = BaManager.NoSelectMaterial;
+            Fighter.layer = LayerMask.NameToLayer("PlayerFighter");
         }
         BaManager.SelectFighter.Clear();
         BaManager.SelectFighterLine.Clear();

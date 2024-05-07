@@ -15,13 +15,13 @@ TagManager:
   - UI
   - PlayerFighter
   - EnemyFighter
-  - 
+  - SelectFighter
   - Map
   - Obstacle
   - 
   - PlayerUnit
   - 
-  - 
+  - ChaseFighter
   - 
   - 
   - 

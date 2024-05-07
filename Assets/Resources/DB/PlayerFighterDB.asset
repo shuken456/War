@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerFighterDBList:
   - Name: "\u6B69\u51751"
-    type: 1
+    Type: 1
     Level: 1
     Hp: 10
     Stamina: 10
@@ -26,7 +26,7 @@ MonoBehaviour:
     Position: {x: 0, y: 0, z: 0}
     UnitLeader: 0
   - Name: "\u6B69\u51752"
-    type: 1
+    Type: 1
     Level: 1
     Hp: 10
     Stamina: 10
@@ -38,7 +38,7 @@ MonoBehaviour:
     Position: {x: 0, y: 0, z: 0}
     UnitLeader: 1
   - Name: "\u6B69\u51753"
-    type: 1
+    Type: 1
     Level: 2
     Hp: 10
     Stamina: 10
@@ -47,10 +47,10 @@ MonoBehaviour:
     AtkSpeed: 10
     EXP: 0
     UnitNum: 1
-    Position: {x: 0, y: 0.5, z: 0}
+    Position: {x: 0, y: 1.2, z: 0}
     UnitLeader: 0
   - Name: "\u5F13\u51751"
-    type: 2
+    Type: 2
     Level: 3
     Hp: 10
     Stamina: 10
@@ -59,10 +59,10 @@ MonoBehaviour:
     AtkSpeed: 10
     EXP: 0
     UnitNum: 1
-    Position: {x: 0, y: -0.5, z: 0}
+    Position: {x: 0, y: -1.2, z: 0}
     UnitLeader: 0
   - Name: "\u5F13\u51752"
-    type: 2
+    Type: 2
     Level: 3
     Hp: 10
     Stamina: 10
@@ -74,7 +74,7 @@ MonoBehaviour:
     Position: {x: 0, y: 0.5, z: 0}
     UnitLeader: 1
   - Name: "\u6B69\u51754"
-    type: 1
+    Type: 1
     Level: 3
     Hp: 10
     Stamina: 10

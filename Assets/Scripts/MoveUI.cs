@@ -176,7 +176,7 @@ public class MoveUI : MonoBehaviour
                         ChaseButton.interactable = true;
 
                         //移動対象兵士の見た目を変更
-                        ChaseTarget.GetComponent<SpriteRenderer>().material = BaManager.SelectMaterial2;
+                        ChaseTarget.layer = LayerMask.NameToLayer("ChaseFighter");
                     }
                     else
                     {
@@ -265,7 +265,7 @@ public class MoveUI : MonoBehaviour
             }
 
             //選択状態解除
-            Fighter.GetComponent<SpriteRenderer>().material = BaManager.NoSelectMaterial;
+            Fighter.layer = LayerMask.NameToLayer("PlayerFighter");
         }
 
         //移動ルート指定後、終了
@@ -293,8 +293,8 @@ public class MoveUI : MonoBehaviour
             FighterA.targetFighter = ChaseTarget.transform;
 
             //選択状態解除
-            Fighter.GetComponent<SpriteRenderer>().material = BaManager.NoSelectMaterial;
-            ChaseTarget.GetComponent<SpriteRenderer>().material = BaManager.NoSelectMaterial;
+            Fighter.layer = LayerMask.NameToLayer("PlayerFighter");
+            ChaseTarget.layer = LayerMask.NameToLayer(ChaseTarget.tag);
         }
 
         //移動ルート指定後、終了

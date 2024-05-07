@@ -14,14 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerUnitDBList:
   - Num: 1
-    Name: "\u3046\u3093\u3053\u3063\u3053\u968A"
+    Name: "\u8D64\u968A"
     UnitColor: {r: 1, g: 0, b: 0, a: 1}
     Strategy: 1
   - Num: 2
-    Name: "\u3046\u3093\u3053\u968A"
-    UnitColor: {r: 1, g: 1, b: 1, a: 1}
+    Name: "\u30D4\u30F3\u30AF\u968A"
+    UnitColor: {r: 1, g: 0.5803922, b: 0.6392157, a: 1}
     Strategy: 2
   - Num: 2
-    Name: "\u3046\u3093\u3053\u308D\u3059\u968A"
+    Name: "\u6E05\u6F54\u968A"
     UnitColor: {r: 0, g: 0.24652743, b: 1, a: 1}
     Strategy: 3
+  - Num: 4
+    Name: "\u7B2C4\u90E8\u968A"
+    UnitColor: {r: 1, g: 1, b: 1, a: 1}
+    Strategy: 1

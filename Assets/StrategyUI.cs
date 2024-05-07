@@ -1,35 +1,43 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public class StrategyUI : MonoBehaviour
 {
-    public FormationListManager FoManager;
+    public UnitEditManager EditManager;
+
+    //DB保存　開発環境用
+    private void OnDisable()
+    {
+        EditorUtility.SetDirty(Resources.Load<PlayerUnitDB>("DB/PlayerUnitDB"));
+        AssetDatabase.SaveAssets();
+    }
 
     //攻撃重視ボタン
     public void StrategyAtk()
     {
-        FoManager.PlayerUnitDataBaseAllList[FoManager.SelectUnitNum - 1].Strategy = 1;
-        FoManager.DisplayUnitUI();
-        FoManager.SelectUI.SetActive(true);
+        EditManager.PlayerUnitDataBaseAllList[EditManager.SelectUnitNum - 1].Strategy = 1;
+        EditManager.DisplayUnitUI();
+        EditManager.SelectUI.SetActive(true);
         this.gameObject.SetActive(false);
     }
 
     //耐久重視ボタン
     public void StrategyHp()
     {
-        FoManager.PlayerUnitDataBaseAllList[FoManager.SelectUnitNum - 1].Strategy = 2;
-        FoManager.DisplayUnitUI();
-        FoManager.SelectUI.SetActive(true);
+        EditManager.PlayerUnitDataBaseAllList[EditManager.SelectUnitNum - 1].Strategy = 2;
+        EditManager.DisplayUnitUI();
+        EditManager.SelectUI.SetActive(true);
         this.gameObject.SetActive(false);
     }
 
     //移動重視ボタン
     public void StrategyMove()
     {
-        FoManager.PlayerUnitDataBaseAllList[FoManager.SelectUnitNum - 1].Strategy = 3;
-        FoManager.DisplayUnitUI();
-        FoManager.SelectUI.SetActive(true);
+        EditManager.PlayerUnitDataBaseAllList[EditManager.SelectUnitNum - 1].Strategy = 3;
+        EditManager.DisplayUnitUI();
+        EditManager.SelectUI.SetActive(true);
         this.gameObject.SetActive(false);
     }
 }

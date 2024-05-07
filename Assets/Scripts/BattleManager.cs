@@ -20,14 +20,8 @@ public class BattleManager : MonoBehaviour
     //各UI
     public GameObject ActionUI;
     public GameObject MoveUI;
-
     public Button InstructionButton;
     public Text Instruction;
-
-    //選択中兵士のアウトラインマテリアル
-    public Material SelectMaterial;
-    public Material SelectMaterial2;
-    public Material NoSelectMaterial;
 
     //選択中の兵士
     public List<GameObject> SelectFighter = new List<GameObject>();
@@ -81,7 +75,7 @@ public class BattleManager : MonoBehaviour
                 SelectFighter.Add(col.gameObject);
 
                 //選択中の見た目を変更
-                col.gameObject.GetComponent<SpriteRenderer>().material = SelectMaterial;
+                col.gameObject.layer = LayerMask.NameToLayer("SelectFighter");
             }
         }
 
