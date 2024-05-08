@@ -776,7 +776,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 20, y: -0.00023548171}
-  m_SizeDelta: {x: -50, y: 0}
+  m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &191413898
 MonoBehaviour:
@@ -792,17 +792,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Padding:
     m_Left: 0
-    m_Right: 0
+    m_Right: 30
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 0
-  m_Spacing: 0
+  m_Spacing: 2
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 1
   m_ChildControlHeight: 0
   m_ChildScaleWidth: 0
-  m_ChildScaleHeight: 0
+  m_ChildScaleHeight: 1
   m_ReverseArrangement: 0
 --- !u!114 &191413899
 MonoBehaviour:
@@ -908,6 +908,7 @@ GameObject:
   - component: {fileID: 243987956}
   - component: {fileID: 243987958}
   - component: {fileID: 243987957}
+  - component: {fileID: 243987959}
   m_Layer: 5
   m_Name: FighterStatusInfo
   m_TagString: Untagged
@@ -975,6 +976,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 243987955}
   m_CullTransparentMesh: 1
+--- !u!114 &243987959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 243987955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d09d366c91582845aa968aefc8734e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &271183311
 GameObject:
   m_ObjectHideFlags: 0
@@ -1538,6 +1551,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94e6471fb7d98b444a5b3db1852f3765, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  eventSystem: {fileID: 669347101}
   PlayerUnitDataBaseAllList: []
   PlayerUnitDataBaseSelectList: []
   PlayerFighterDataBaseAllList: []
@@ -1555,15 +1569,13 @@ MonoBehaviour:
   - {fileID: 1930116172}
   - {fileID: 1172025699}
   UnitObjectBack: {fileID: 1907411092}
-  FighterStatusInfoText: {fileID: 1540843906}
-  FighterStatusInfoImage: {fileID: 1266705280}
-  SelectUnitNum: 1
+  FighterStatusInfo: {fileID: 243987959}
   InfantryPrefab: {fileID: 8173002973714255833, guid: dd4ad52ea4e83d64e8bb3befeef39c2c, type: 3}
   ArcherPrefab: {fileID: 8441970963311356601, guid: f1862997a5733274798a6c5140da9ec4, type: 3}
   CanvasWorldSpace: {fileID: 315350689}
   ChaseFighterNameText: {fileID: 6674020620715769159, guid: 517b2aeccb1c93f48ae66c6860697583, type: 3}
-  ReserveFighterButton: {fileID: 8464067415465317173, guid: 362c92ef462ed0542bafd9ae204d02ec, type: 3}
   ReserveFighterView: {fileID: 191413896}
+  ReserveFighterButton: {fileID: 8464067415465317173, guid: 362c92ef462ed0542bafd9ae204d02ec, type: 3}
 --- !u!4 &464570494
 Transform:
   m_ObjectHideFlags: 0
@@ -3432,7 +3444,7 @@ RectTransform:
   m_GameObject: {fileID: 985433538}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.065, y: 1, z: 1}
+  m_LocalScale: {x: 1.065, y: 0.91437495, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 191413897}

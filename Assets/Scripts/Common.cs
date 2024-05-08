@@ -4,6 +4,10 @@ using UnityEngine;
 
 public static class Common
 {
+
+    //ユニット一覧→ユニット編成　で選択中されたユニットナンバー
+    public static int SelectUnitNum = 1;
+
     public static string FighterType(int type)
     {
         switch (type)
@@ -34,5 +38,37 @@ public static class Common
             default:
                 return string.Empty;
         }
+    }
+
+    public static void FighterStatusCopy(FighterStatus fsTo, FighterStatus fsFrom)
+    {
+        fsTo.Type = fsFrom.Type;
+        fsTo.FighterName = fsFrom.FighterName;
+        fsTo.Level = fsFrom.Level;
+        fsTo.MaxHp = fsFrom.MaxHp;
+        fsTo.NowHp = fsFrom.NowHp;
+        fsTo.MaxStamina = fsFrom.MaxStamina;
+        fsTo.NowStamina = fsFrom.NowStamina;
+        fsTo.AtkPower = fsFrom.AtkPower;
+        fsTo.AtkSpeed = fsFrom.AtkSpeed;
+        fsTo.MoveSpeed = fsFrom.MoveSpeed;
+        fsTo.UnitNum = fsFrom.UnitNum;
+        fsTo.UnitLeader = fsFrom.UnitLeader;
+    }
+
+    public static void GetFighterStatusFromDB(FighterStatus fs, PlayerFighter pf)
+    {
+        fs.Type = pf.Type;
+        fs.FighterName = pf.Name;
+        fs.Level = pf.Level;
+        fs.MaxHp = pf.Hp;
+        fs.NowHp = pf.Hp;
+        fs.MaxStamina = pf.Stamina;
+        fs.NowStamina = pf.Stamina;
+        fs.AtkPower = pf.AtkPower;
+        fs.AtkSpeed = pf.AtkSpeed;
+        fs.MoveSpeed = pf.MoveSpeed;
+        fs.UnitNum = pf.UnitNum;
+        fs.UnitLeader = pf.UnitLeader;
     }
 }

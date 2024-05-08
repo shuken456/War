@@ -27,31 +27,31 @@ MonoBehaviour:
     UnitLeader: 0
   - Name: "\u6B69\u51752"
     Type: 1
-    Level: 1
-    Hp: 10
-    Stamina: 10
-    AtkPower: 2
-    MoveSpeed: 10
-    AtkSpeed: 10
+    Level: 2
+    Hp: 20
+    Stamina: 20
+    AtkPower: 4
+    MoveSpeed: 20
+    AtkSpeed: 20
     EXP: 0
     UnitNum: 1
     Position: {x: 0, y: 0, z: 0}
     UnitLeader: 1
   - Name: "\u6B69\u51753"
     Type: 1
-    Level: 2
-    Hp: 10
-    Stamina: 10
-    AtkPower: 2
-    MoveSpeed: 10
-    AtkSpeed: 10
+    Level: 3
+    Hp: 30
+    Stamina: 30
+    AtkPower: 6
+    MoveSpeed: 30
+    AtkSpeed: 30
     EXP: 0
     UnitNum: 1
     Position: {x: 0, y: 1.2, z: 0}
     UnitLeader: 0
   - Name: "\u5F13\u51751"
     Type: 2
-    Level: 3
+    Level: 1
     Hp: 10
     Stamina: 10
     AtkPower: 2
@@ -63,25 +63,73 @@ MonoBehaviour:
     UnitLeader: 0
   - Name: "\u5F13\u51752"
     Type: 2
-    Level: 3
-    Hp: 10
-    Stamina: 10
-    AtkPower: 2
-    MoveSpeed: 10
-    AtkSpeed: 10
+    Level: 2
+    Hp: 20
+    Stamina: 20
+    AtkPower: 4
+    MoveSpeed: 20
+    AtkSpeed: 20
     EXP: 0
     UnitNum: 2
     Position: {x: 0, y: 0.5, z: 0}
-    UnitLeader: 1
+    UnitLeader: 0
   - Name: "\u6B69\u51754"
     Type: 1
-    Level: 3
-    Hp: 10
-    Stamina: 10
-    AtkPower: 2
-    MoveSpeed: 10
-    AtkSpeed: 10
+    Level: 4
+    Hp: 40
+    Stamina: 40
+    AtkPower: 8
+    MoveSpeed: 40
+    AtkSpeed: 40
     EXP: 0
     UnitNum: 2
+    Position: {x: 0, y: -0.5, z: 0}
+    UnitLeader: 1
+  - Name: "\u6B69\u51755"
+    Type: 1
+    Level: 5
+    Hp: 15
+    Stamina: 5
+    AtkPower: 8
+    MoveSpeed: 15
+    AtkSpeed: 15
+    EXP: 0
+    UnitNum: 0
+    Position: {x: 0, y: -0.5, z: 0}
+    UnitLeader: 0
+  - Name: "\u5F13\u30DE\u30F3"
+    Type: 2
+    Level: 22
+    Hp: 22
+    Stamina: 22
+    AtkPower: 1
+    MoveSpeed: 22
+    AtkSpeed: 22
+    EXP: 0
+    UnitNum: 0
+    Position: {x: 0, y: -0.5, z: 0}
+    UnitLeader: 0
+  - Name: "\u5F13\u30DE\u30F32"
+    Type: 2
+    Level: 33
+    Hp: 22
+    Stamina: 22
+    AtkPower: 1
+    MoveSpeed: 22
+    AtkSpeed: 22
+    EXP: 0
+    UnitNum: 0
+    Position: {x: 0, y: -0.5, z: 0}
+    UnitLeader: 0
+  - Name: "\u5F13\u30DE\u30F33"
+    Type: 2
+    Level: 55
+    Hp: 22
+    Stamina: 22
+    AtkPower: 1
+    MoveSpeed: 22
+    AtkSpeed: 22
+    EXP: 0
+    UnitNum: 0
     Position: {x: 0, y: -0.5, z: 0}
     UnitLeader: 0
