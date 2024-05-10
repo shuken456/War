@@ -22,8 +22,8 @@ MonoBehaviour:
     MoveSpeed: 10
     AtkSpeed: 10
     EXP: 0
-    UnitNum: 0
-    Position: {x: 0, y: 0, z: 0}
+    UnitNum: 2
+    Position: {x: -0.19949532, y: 0.63434345, z: 0}
     UnitLeader: 0
   - Name: "\u6B69\u51752"
     Type: 1
@@ -34,8 +34,8 @@ MonoBehaviour:
     MoveSpeed: 20
     AtkSpeed: 20
     EXP: 0
-    UnitNum: 1
-    Position: {x: 0, y: 0, z: 0}
+    UnitNum: 2
+    Position: {x: 1.6590905, y: -0.3252526, z: 0}
     UnitLeader: 1
   - Name: "\u6B69\u51753"
     Type: 1
@@ -46,8 +46,8 @@ MonoBehaviour:
     MoveSpeed: 30
     AtkSpeed: 30
     EXP: 0
-    UnitNum: 1
-    Position: {x: 0, y: 1.2, z: 0}
+    UnitNum: 2
+    Position: {x: -1.8156571, y: -0.4262628, z: 0}
     UnitLeader: 0
   - Name: "\u5F13\u51751"
     Type: 2
@@ -58,8 +58,8 @@ MonoBehaviour:
     MoveSpeed: 10
     AtkSpeed: 10
     EXP: 0
-    UnitNum: 1
-    Position: {x: 0, y: -1.2, z: 0}
+    UnitNum: 0
+    Position: {x: 2.063131, y: 0.03838402, z: 0}
     UnitLeader: 0
   - Name: "\u5F13\u51752"
     Type: 2
@@ -71,7 +71,7 @@ MonoBehaviour:
     AtkSpeed: 20
     EXP: 0
     UnitNum: 2
-    Position: {x: 0, y: 0.5, z: 0}
+    Position: {x: 1.064779, y: 1.4858801, z: 0}
     UnitLeader: 0
   - Name: "\u6B69\u51754"
     Type: 1
@@ -83,8 +83,8 @@ MonoBehaviour:
     AtkSpeed: 40
     EXP: 0
     UnitNum: 2
-    Position: {x: 0, y: -0.5, z: 0}
-    UnitLeader: 1
+    Position: {x: -0.06818199, y: -1.0323231, z: 0}
+    UnitLeader: 0
   - Name: "\u6B69\u51755"
     Type: 1
     Level: 5
@@ -94,8 +94,8 @@ MonoBehaviour:
     MoveSpeed: 15
     AtkSpeed: 15
     EXP: 0
-    UnitNum: 0
-    Position: {x: 0, y: -0.5, z: 0}
+    UnitNum: 2
+    Position: {x: -1.4087391, y: 1.055757, z: 0}
     UnitLeader: 0
   - Name: "\u5F13\u30DE\u30F3"
     Type: 2

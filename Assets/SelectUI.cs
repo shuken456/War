@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class SelectUI : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class SelectUI : MonoBehaviour
     public void ChangeFormation()
     {
         //ユニット編集シーンへ
+        Common.SelectUnitNum = EditManager.SelectUnitNum;
+        SceneManager.LoadScene("UnitFormationScene");
     }
 
     //方針変更ボタン

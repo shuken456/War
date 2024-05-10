@@ -27,16 +27,9 @@ public class BattleManager : MonoBehaviour
     public List<GameObject> SelectFighter = new List<GameObject>();
     public List<LineRenderer> SelectFighterLine = new List<LineRenderer>();
 
-    private PlayerFighterDB PlayerFighterDataBase;
-
     // Start is called before the first frame update
     void Start()
     {
-        PlayerFighterDataBase = Resources.Load<PlayerFighterDB>("DB/PlayerFighterDB");
-        var a = PlayerFighterDataBase.PlayerFighterDBList.FindAll(n => n.UnitNum == 1); //ラムダ式　=>は矢印、右が本命　これで検索いけてる
-        //a[0].Name = "うんこ"; //これで書き変わってる
-
-        Instruction.text = a[0].Name;
         InstructionButton.gameObject.SetActive(true);
     }
 

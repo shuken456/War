@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
 using UnityEngine.EventSystems;
+using UnityEditor;
 
 public class UnitFormationManager : MonoBehaviour
 {
@@ -18,6 +19,10 @@ public class UnitFormationManager : MonoBehaviour
     //ユニット詳細UI（画面下）
     public GameObject SelectUnitInfoUI;
     public GameObject[] UnitMemberInfoUI;
+
+    public GameObject SaveUI;
+    public GameObject EndUI;
+    public GameObject WarningUI;
 
     //ユニット表示オブジェクト
     public GameObject UnitObjectBack;
@@ -47,7 +52,7 @@ public class UnitFormationManager : MonoBehaviour
     public GameObject ReserveFighterButton;
     
     //クリックされた控え兵士ボタン
-    private GameObject SelectFighterButton;
+    public GameObject SelectFighterButton;
 
     //ダブルクリック判定用　カウント変数
     private int ClickCount = 0;
@@ -148,7 +153,7 @@ public class UnitFormationManager : MonoBehaviour
         Vector3 CursorPosition = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y, 0f);
 
         //左クリックでユニットの選択か追加、ドラッグで移動、ダブルクリックで部隊長変更
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
         {
             var col = Physics2D.OverlapPoint(CursorPosition, LayerMask.GetMask("PlayerFighter", "SelectFighter"));
             if (col != null)
@@ -241,7 +246,7 @@ public class UnitFormationManager : MonoBehaviour
                 UnitMemberInfoWrite(FighterCount - 1, SelectStatus.FighterName, SelectStatus.Type, SelectStatus.Level);
             }
         }
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject())
         {
             if (SelectFighter != null)
             {
@@ -260,7 +265,7 @@ public class UnitFormationManager : MonoBehaviour
         }
 
         //右クリックで兵士削除　
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1) && !EventSystem.current.IsPointerOverGameObject())
         {
             var col = Physics2D.OverlapPoint(CursorPosition, LayerMask.GetMask("PlayerFighter", "SelectFighter"));
             if (col != null)
@@ -270,6 +275,7 @@ public class UnitFormationManager : MonoBehaviour
         }
     }
 
+    //兵士削除　Destroy判定にタイムラグがあるのでコルーチンにしてなんとかする
     IEnumerator DestroyFighter(Collider2D col)
     {
         string DestroyName = col.gameObject.GetComponent<FighterStatus>().FighterName;
@@ -285,6 +291,7 @@ public class UnitFormationManager : MonoBehaviour
         int FighterCount = Fighters.Length;
         SelectUnitInfoUI.transform.Find("Text (MemberCount)").GetComponent<Text>().text = FighterCount.ToString() + "人";
 
+        //部隊長が削除されたら別の兵士に自動で割り当てる
         int NoLeaderCount = 0;
         if (LeaderDestroy)
         {
@@ -402,6 +409,11 @@ public class UnitFormationManager : MonoBehaviour
             default:
                 break;
         }
+
+        if(SelectStatus.UnitNum != 0 && SelectStatus.UnitNum != Common.SelectUnitNum)
+        {
+            WarningUI.SetActive(true);
+        }
     }
 
     //画面下　ユニットメンバーUI描画
@@ -436,5 +448,54 @@ public class UnitFormationManager : MonoBehaviour
         NameText.transform.SetParent(CanvasWorldSpace.transform, false);
         NameText.targetFighter = target;
         NameText.offset = new Vector3(0, 0.5f, 0);
+    }
+
+    public void EndButtonClick()
+    {
+        EndUI.SetActive(true);
+    }
+
+    //保存
+    public void SaveButtonClick()
+    {
+        GameObject[] Fighters = GameObject.FindGameObjectsWithTag("PlayerFighter");
+        List<string> NameList = new List<string>();
+
+        foreach (GameObject Fighter in Fighters)
+        {
+            FighterStatus fs = Fighter.GetComponent<FighterStatus>();
+            List<PlayerFighter> pfl = PlayerFighterDataBaseAllList.FindAll(n => n.Name == fs.FighterName);
+
+            //変更する前の情報を保持しておく
+            int originNum = pfl[0].UnitNum;
+            bool originLeader = pfl[0].UnitLeader;
+
+            //データ変更
+            pfl[0].Position = Fighter.transform.localPosition;
+            pfl[0].UnitNum = Common.SelectUnitNum;
+            pfl[0].UnitLeader = fs.UnitLeader;
+
+            NameList.Add(fs.FighterName);
+
+            //他の部隊の部隊長を編成していた場合、元の部隊の部隊長を自動的に編成する
+            if (originNum != 0 && originNum != Common.SelectUnitNum && originLeader && PlayerFighterDataBaseAllList.FindAll(n => n.UnitNum == originNum).Count > 0)
+            {
+                PlayerFighterDataBaseAllList.FindAll(n => n.UnitNum == originNum)[0].UnitLeader = true;
+            }
+        }
+
+        //削除された兵士は部隊ナンバーを0とする
+        List<PlayerFighter> pfl2 = PlayerFighterDataBaseAllList.FindAll(n => n.UnitNum == Common.SelectUnitNum);
+        foreach (PlayerFighter pf in pfl2)
+        {
+            if(!NameList.Contains(pf.Name))
+            {
+                PlayerFighterDataBaseAllList.Find(n => n.Name == pf.Name).UnitNum = 0;
+            }
+        }
+
+        EditorUtility.SetDirty(Resources.Load<PlayerFighterDB>("DB/PlayerFighterDB"));
+        AssetDatabase.SaveAssets();
+        SaveUI.SetActive(true);
     }
 }
