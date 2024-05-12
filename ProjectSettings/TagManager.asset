@@ -6,6 +6,8 @@ TagManager:
   tags:
   - PlayerFighter
   - EnemyFighter
+  - PlayerBase
+  - EnemyBase
   layers:
   - Default
   - TransparentFX
@@ -15,18 +17,18 @@ TagManager:
   - UI
   - PlayerFighter
   - EnemyFighter
-  - SelectFighter
+  - 
   - Map
   - Obstacle
   - 
   - PlayerUnit
   - 
-  - ChaseFighter
   - 
+  - Base
+  - PlayerBase
+  - EnemyBase
   - 
-  - 
-  - 
-  - 
+  - Marker
   - 
   - 
   - 

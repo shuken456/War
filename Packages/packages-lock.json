@@ -267,7 +267,7 @@
     },
     "com.unityfx.outline": {
       "version": "0.8.5",
-      "depth": 0,
+      "depth": 1,
       "source": "registry",
       "dependencies": {},
       "url": "https://registry.npmjs.org"

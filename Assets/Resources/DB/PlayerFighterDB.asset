@@ -63,7 +63,7 @@ MonoBehaviour:
     UnitLeader: 0
   - Name: "\u5F13\u51752"
     Type: 2
-    Level: 2
+    Level: 25
     Hp: 20
     Stamina: 20
     AtkPower: 4
