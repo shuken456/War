@@ -28,6 +28,7 @@ public class SortieDecitionUI : MonoBehaviour
 
     //出撃用オブジェクト
     public GameObject SortieObject;
+    public GameObject SortieRange;
 
     //出撃場所決定フラグ
     private bool SortieDecition = false;
@@ -57,6 +58,13 @@ public class SortieDecitionUI : MonoBehaviour
             Fighter.transform.parent = SortieObject.transform;
             Fighter.transform.localPosition = pf.Position;
         }
+
+        SortieRange.SetActive(true);
+    }
+
+    private void OnDisable()
+    {
+        SortieRange.SetActive(false);
     }
 
     // Update is called once per frame
@@ -112,6 +120,7 @@ public class SortieDecitionUI : MonoBehaviour
             Fighter.transform.parent = null;
 
             Common.GetFighterStatusFromDB(Fighter.GetComponent<FighterStatus>(), pf);
+            Common.FighterBuff(Fighter.GetComponent<FighterStatus>(), BaManager.PlayerUnitDataBaseAllList[Common.SelectUnitNum - 1].Strategy, false);
             CreateGauge(Fighter);
         }
 

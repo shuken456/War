@@ -74,9 +74,6 @@ public class MoveUI : MonoBehaviour
             ChaseTarget.gameObject.transform.Find("SelectImage").GetComponent<SpriteRenderer>().color = Color.clear;
         }
 
-        //アクションUIが開かれるため、移動線を一括削除する
-        BaManager.ActionUI.GetComponent<ActionUI>().DeleteMoveRoute();
-
         //それぞれの変数と画面状態を元に戻す
         MoveUIAfter.SetActive(false);
         MovePositions.Clear();
@@ -273,6 +270,7 @@ public class MoveUI : MonoBehaviour
             //入れる前のクリア
             FighterA.targetPlace.Clear();
             FighterA.targetFighter = null;
+            FighterA.targetFighterSave = null;
 
             foreach (Vector3 pos in MovePositions)
             {

@@ -57,6 +57,9 @@ public class UnitFormationManager : MonoBehaviour
     //ダブルクリック判定用　カウント変数
     private int ClickCount = 0;
 
+    //部隊方針保持
+    private int UnitStrategy = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -112,7 +115,8 @@ public class UnitFormationManager : MonoBehaviour
         //部隊人数
         SelectUnitInfoUI.transform.Find("Text (MemberCount)").GetComponent<Text>().text = PlayerFighterDataBaseSelectList.Count.ToString() + "人";
         //部隊方針
-        SelectUnitInfoUI.transform.Find("Text (Strategy)").GetComponent<Text>().text = Common.FighterStrategy(PlayerUnitDataBaseSelectList[0].Strategy);
+        UnitStrategy = PlayerUnitDataBaseSelectList[0].Strategy;
+        SelectUnitInfoUI.transform.Find("Text (Strategy)").GetComponent<Text>().text = Common.FighterStrategy(UnitStrategy);
        
 
         //所属している兵士を画面に表示する
@@ -169,13 +173,17 @@ public class UnitFormationManager : MonoBehaviour
                 {
                     SelectFighterButton.GetComponent<Button>().interactable = true;
                 }
-                
                 SelectFighter = col.gameObject;
                 StatusShowFighter = col.gameObject;
-                StatusShowFighterName = StatusShowFighter.GetComponent<FighterStatus>().FighterName;
+
+                FighterStatus fs = StatusShowFighter.GetComponent<FighterStatus>();
+                StatusShowFighterName = fs.FighterName;
 
                 //見た目を変更
                 StatusShowFighter.gameObject.transform.Find("SelectImage").GetComponent<SpriteRenderer>().color = Color.yellow;
+
+                //バフ設定
+                Common.FighterBuff(fs, UnitStrategy, false);
 
                 //ステータスUI表示
                 FighterStatusInfo.TextWrite(StatusShowFighter.GetComponent<FighterStatus>());
@@ -285,6 +293,9 @@ public class UnitFormationManager : MonoBehaviour
 
         yield return new WaitForSecondsRealtime(0.1f);
 
+        //選択中の兵士を削除した場合、ステータスUIを空白で表示する
+        FighterStatusInfo.Clear(DestroyName);
+
         GameObject[] Fighters = GameObject.FindGameObjectsWithTag("PlayerFighter");
 
         //画面左下ユニットUI記載変更
@@ -391,6 +402,9 @@ public class UnitFormationManager : MonoBehaviour
         SelectFighterButton = eventSystem.currentSelectedGameObject;
         SelectFighterButton.GetComponent<Button>().interactable = false;
         FighterStatus SelectStatus = SelectFighterButton.GetComponent<FighterStatus>();
+
+        //バフ設定 ※控え兵士が別の部隊のリーダーであってもそのバフを表示させるとややこしいため　true
+        Common.FighterBuff(SelectStatus, UnitStrategy, true);
 
         //ステータスUI表示
         FighterStatusInfo.TextWrite(SelectStatus);

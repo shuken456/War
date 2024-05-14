@@ -12,6 +12,7 @@ public class FighterAction : MonoBehaviour
 
     //設定された目標兵士
     public Transform targetFighter = null;
+    public Transform targetFighterSave = null;
 
     //現在の目標地点
     private Vector3 NowTargetPlace = new Vector3();
@@ -52,6 +53,12 @@ public class FighterAction : MonoBehaviour
         {
             NowTargetPlace = targetFighter.position;
         }
+        //ターゲットの距離がある程度離れたら、再度追わせる
+        else if (targetFighterSave && (Mathf.Abs(transform.position.x - targetFighterSave.position.x) > 1.5f || Mathf.Abs(transform.position.y - targetFighterSave.position.y) > 1.5f))
+        {
+            targetFighter = targetFighterSave;
+            targetFighterSave = null;
+        }
         else
         {
             NowTargetPlace = Vector3.zero;
@@ -68,7 +75,7 @@ public class FighterAction : MonoBehaviour
             if (MyStatus.NowStamina > 0)
             {
                 MyStatus.NowStamina -= Time.deltaTime;
-                moveSpeed = MyStatus.MoveSpeed;
+                moveSpeed = MyStatus.MoveSpeed + MyStatus.MoveSpeedBuff;
             }
             else
             {
@@ -115,9 +122,19 @@ public class FighterAction : MonoBehaviour
     {
         //障害物or味方兵士に触れた場合、ある程度目的地に近ければ着いたことにする　※つっかえ防止
         if ((collision.gameObject.layer == LayerMask.NameToLayer("Obstacle") || collision.gameObject.layer == LayerMask.NameToLayer("PlayerFighter")) && 
-            targetPlace.Count > 0 && Mathf.Abs(transform.position.x - NowTargetPlace.x) < 1.5f && Mathf.Abs(transform.position.y - NowTargetPlace.y) < 1.5f)
+            targetPlace.Count > 0 && Mathf.Abs(transform.position.x - targetPlace[0].x) < 1.5f && Mathf.Abs(transform.position.y - targetPlace[0].y) < 1.5f)
         {
             targetPlace.RemoveAt(0);
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        //味方ターゲットに接触した場合、押し続けないように一度削除
+        if (collision.gameObject.transform == targetFighter && collision.gameObject.layer == LayerMask.NameToLayer("PlayerFighter"))
+        {
+            targetFighterSave = targetFighter;
+            targetFighter = null;
         }
     }
 }

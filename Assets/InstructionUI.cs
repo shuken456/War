@@ -6,6 +6,9 @@ public class InstructionUI : MonoBehaviour
 {
     public BattleManager BaManager;
 
+    //クリック長押し時間カウント用
+    private float ClickTime = 0;
+
     // Update is called once per frame
     void Update()
     {
@@ -35,6 +38,30 @@ public class InstructionUI : MonoBehaviour
             Time.timeScale = 0;
             BaManager.ActionUI.SetActive(true);
             this.gameObject.SetActive(false);
+        }
+
+        //右クリックが長押しでない場合、兵士のステータスを表示
+        if (Input.GetMouseButton(1))
+        {
+            ClickTime += Time.unscaledDeltaTime;
+        }
+        if (Input.GetMouseButtonUp(1))
+        {
+            if (ClickTime < 0.2)
+            {
+                Vector3 CursorPosition = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y, 0f);
+
+                var col = Physics2D.OverlapPoint(CursorPosition, LayerMask.GetMask("PlayerFighter", "EnemyFighter"));
+                if(col != null)
+                {
+                    Time.timeScale = 0;
+                    BaManager.FighterStatusInfoUI.SetActive(true);
+                    BaManager.FighterStatusInfoUI.GetComponent<FighterStatusInfo>().TextWrite(col.GetComponent<FighterStatus>());
+                    BaManager.FighterStatusInfoUI.GetComponent<FighterStatusInfo>().ImageWrite(col.GetComponent<SpriteRenderer>().sprite, col.GetComponent<SpriteRenderer>().color);
+                    ClickTime = 0;
+                }
+            }
+            ClickTime = 0;
         }
     }
 

@@ -30,4 +30,11 @@ public class FighterStatus : MonoBehaviour
     public int UnitNum;
     //部隊長フラグ
     public bool UnitLeader;
+
+    //HPバフ
+    public float MaxHpBuff;
+    //攻撃力バフ
+    public int AtkPowerBuff;
+    //移動速度バフ
+    public int MoveSpeedBuff;
 }

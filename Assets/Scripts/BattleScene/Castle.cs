@@ -47,9 +47,9 @@ public class Castle : MonoBehaviour
                 {
                     FighterStatus fighterStatus = Fighter.gameObject.GetComponent<FighterStatus>();
 
-                    if (fighterStatus.NowHp < fighterStatus.MaxHp)
+                    if (fighterStatus.NowHp < (fighterStatus.MaxHp + fighterStatus.MaxHpBuff))
                     {
-                        fighterStatus.NowHp += Mathf.Round(fighterStatus.MaxHp / 10);
+                        fighterStatus.NowHp += Mathf.Round((fighterStatus.MaxHp + fighterStatus.MaxHpBuff) / 10);
                     }
                 }
             }
@@ -61,9 +61,9 @@ public class Castle : MonoBehaviour
                 {
                     FighterStatus fighterStatus = Fighter.gameObject.GetComponent<FighterStatus>();
 
-                    if (fighterStatus.NowHp < fighterStatus.MaxHp)
+                    if (fighterStatus.NowHp < (fighterStatus.MaxHp + fighterStatus.MaxHpBuff))
                     {
-                        fighterStatus.NowHp += Mathf.Round(fighterStatus.MaxHp / 10);
+                        fighterStatus.NowHp += Mathf.Round((fighterStatus.MaxHp + fighterStatus.MaxHpBuff) / 10);
                     }
                 }
             }

@@ -28,7 +28,7 @@ public class HpGauge : MonoBehaviour
         {
             Transform targetTransform = targetFighter.GetComponent<Transform>();
             FighterStatus targetStatus = targetFighter.GetComponent<FighterStatus>();
-            HpSlider.value = (float)targetStatus.NowHp / (float)targetStatus.MaxHp;
+            HpSlider.value = (float)targetStatus.NowHp / (float)targetStatus.MaxHp + targetStatus.MaxHpBuff;
             rectTransform.position = targetTransform.position + offset;
         }
         else

@@ -11,8 +11,8 @@ public class BattleManager : MonoBehaviour
     public GameObject ActionUI;
     public GameObject MoveUI;
     public GameObject SortieUI;
-    public Button InstructionButton;
-    public GameObject SelectFighterInfoUI;
+    public GameObject InstructionButton;
+    public GameObject FighterStatusInfoUI;
 
     //選択中の兵士
     public List<GameObject> SelectFighter = new List<GameObject>();
@@ -26,7 +26,7 @@ public class BattleManager : MonoBehaviour
     void Start()
     {
         Common.BattleMode = true;
-        InstructionButton.gameObject.SetActive(true);
+        InstructionButton.SetActive(true);
 
         //DBデータ取得
         PlayerUnitDataBaseAllList = Resources.Load<PlayerUnitDB>("DB/PlayerUnitDB").PlayerUnitDBList.OrderBy((n) => n.Num).ToList(); //ユニット番号順に並び替え

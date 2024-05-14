@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static class Common
 {
-    //ユニット一覧→ユニット編成　で選択中されたユニットナンバー
+    //ユニット一覧　で選択中されたユニットナンバー
     public static int SelectUnitNum = 0;
 
     //ユニット一覧を出撃モードで開くか否か
@@ -77,5 +77,42 @@ public static class Common
         fs.MoveSpeed = pf.MoveSpeed;
         fs.UnitNum = pf.UnitNum;
         fs.UnitLeader = pf.UnitLeader;
+    }
+
+    //バフ設定
+    public static void FighterBuff(FighterStatus fs, int UnitStrategy, bool LeaderIgnore)
+    {
+        if(LeaderIgnore)
+        {
+            if (UnitStrategy == 1)
+            {
+                fs.AtkPowerBuff = (int)Mathf.Round(fs.AtkPower * 0.3f);
+            }
+            if (UnitStrategy == 2)
+            {
+                fs.MaxHpBuff = Mathf.Round(fs.MaxHp * 0.3f);
+                fs.NowHp += fs.MaxHpBuff;
+            }
+            if (UnitStrategy == 3)
+            {
+                fs.MoveSpeedBuff = (int)Mathf.Round(fs.MoveSpeed * 0.3f);
+            }
+        }
+        else
+        {
+            if (fs.UnitLeader || UnitStrategy == 1)
+            {
+                fs.AtkPowerBuff = (int)Mathf.Round(fs.AtkPower * 0.3f);
+            }
+            if (fs.UnitLeader || UnitStrategy == 2)
+            {
+                fs.MaxHpBuff = Mathf.Round(fs.MaxHp * 0.3f);
+                fs.NowHp += fs.MaxHpBuff;
+            }
+            if (fs.UnitLeader || UnitStrategy == 3)
+            {
+                fs.MoveSpeedBuff = (int)Mathf.Round(fs.MoveSpeed * 0.3f);
+            }
+        }
     }
 }

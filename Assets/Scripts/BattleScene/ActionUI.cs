@@ -24,6 +24,9 @@ public class ActionUI : MonoBehaviour
     private List<GameObject> OneClickSelectFighter = new List<GameObject>();
     private List<GameObject> OneClickNoSelectFighter = new List<GameObject>();
 
+    //クリック長押し時間カウント用
+    private float ClickTime = 0;
+
     // Start is called before the first frame update
     private void OnEnable()
     {
@@ -34,8 +37,22 @@ public class ActionUI : MonoBehaviour
 
         foreach (GameObject Fighter in tagObjects)
         {
+            if (Fighter.transform.Find("Line(Clone)") || Fighter.transform.Find("MovePoint(Clone)"))
+            {
+                continue;
+            }
+
             var targetList = Fighter.GetComponent<FighterAction>().targetPlace;
-            var targetFighter = Fighter.GetComponent<FighterAction>().targetFighter;
+            Transform targetFighter;
+
+            if (Fighter.GetComponent<FighterAction>().targetFighter)
+            {
+                targetFighter = Fighter.GetComponent<FighterAction>().targetFighter;
+            }
+            else
+            {
+                targetFighter = Fighter.GetComponent<FighterAction>().targetFighterSave;
+            }
 
             if (targetList.Count > 0 || targetFighter)
             {
@@ -108,6 +125,29 @@ public class ActionUI : MonoBehaviour
             OneClickSelectFighter.Clear();
             OneClickNoSelectFighter.Clear();
         }
+
+        //右クリックが長押しでない場合、兵士のステータスを表示
+        if (Input.GetMouseButton(1))
+        {
+            ClickTime += Time.unscaledDeltaTime;
+        }
+        if (Input.GetMouseButtonUp(1))
+        {
+            if (ClickTime < 0.2)
+            {
+                Vector3 CursorPosition = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y, 0f);
+
+                var col = Physics2D.OverlapPoint(CursorPosition, LayerMask.GetMask("PlayerFighter", "EnemyFighter"));
+                if (col != null)
+                {
+                    BaManager.FighterStatusInfoUI.SetActive(true);
+                    BaManager.FighterStatusInfoUI.GetComponent<FighterStatusInfo>().TextWrite(col.GetComponent<FighterStatus>());
+                    BaManager.FighterStatusInfoUI.GetComponent<FighterStatusInfo>().ImageWrite(col.GetComponent<SpriteRenderer>().sprite, col.GetComponent<SpriteRenderer>().color);
+                    ClickTime = 0;
+                }
+            }
+            ClickTime = 0;
+        }
     }
 
     //移動モードへ
@@ -127,6 +167,7 @@ public class ActionUI : MonoBehaviour
             //クリア
             FighterA.targetPlace.Clear();
             FighterA.targetFighter = null;
+            FighterA.targetFighterSave = null;
         }
 
         DeleteMoveRoute();
@@ -189,6 +230,7 @@ public class ActionUI : MonoBehaviour
     public void Sortie()
     {
         //バトルシーンを非アクティブ化して保持したままユニット一覧を呼び出す
+        DeleteMoveRoute();
         foreach (var root in gameObject.scene.GetRootGameObjects())
         {
             root.SetActive(false);
