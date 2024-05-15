@@ -22,10 +22,27 @@ public class BattleManager : MonoBehaviour
     public List<PlayerUnit> PlayerUnitDataBaseAllList;
     public List<PlayerFighter> PlayerFighterDataBaseAllList;
 
+    //各ステージの敵
+    public GameObject[] StageEnemy;
+
+    //HP,スタミナゲージ
+    public GameObject HpGaugePrefab;
+    public GameObject StaminaGaugePrefab;
+
+    //ゲージ表示用キャンバス
+    public GameObject CanvasWorldSpace;
+
     // Start is called before the first frame update
     void Start()
     {
         Common.BattleMode = true;
+        
+        foreach(Transform Enemy in StageEnemy[Common.SelectStageNum - 1].transform)
+        {
+            var obj = Instantiate(Enemy.gameObject);
+            CreateGauge(obj);
+        }
+
         InstructionButton.SetActive(true);
 
         //DBデータ取得
@@ -41,5 +58,16 @@ public class BattleManager : MonoBehaviour
             ActionUI.SetActive(false);
             SortieUI.SetActive(true);
         }
+    }
+
+    public void CreateGauge(GameObject targetObject)
+    {
+        var Hpgauge = Instantiate(HpGaugePrefab, new Vector3(0, 0, 0), Quaternion.identity);
+        Hpgauge.transform.SetParent(CanvasWorldSpace.transform, false);
+        Hpgauge.GetComponent<HpGauge>().targetFighter = targetObject;
+
+        var Staminagauge = Instantiate(StaminaGaugePrefab, new Vector3(0, 0, 0), Quaternion.identity);
+        Staminagauge.transform.SetParent(CanvasWorldSpace.transform, false);
+        Staminagauge.GetComponent<StaminaGauge>().targetFighter = targetObject;
     }
 }

@@ -31,17 +31,13 @@ public class ActionUI : MonoBehaviour
     private void OnEnable()
     {
         ChangeButton();
+        DeleteMoveRoute();
 
         //全味方兵士の移動ルートを表示
         GameObject[] tagObjects = GameObject.FindGameObjectsWithTag("PlayerFighter");
 
         foreach (GameObject Fighter in tagObjects)
         {
-            if (Fighter.transform.Find("Line(Clone)") || Fighter.transform.Find("MovePoint(Clone)"))
-            {
-                continue;
-            }
-
             var targetList = Fighter.GetComponent<FighterAction>().targetPlace;
             Transform targetFighter;
 
@@ -57,7 +53,6 @@ public class ActionUI : MonoBehaviour
             if (targetList.Count > 0 || targetFighter)
             {
                 LineRenderer moveline = Instantiate(MoveLine, Fighter.transform.position, Quaternion.identity).GetComponent<LineRenderer>();
-                moveline.gameObject.transform.parent = Fighter.transform;
                 moveline.positionCount = 1;
                 moveline.SetPosition(0, Fighter.transform.position);
 
@@ -79,7 +74,6 @@ public class ActionUI : MonoBehaviour
                 {
                     //最終移動地点表示
                     GameObject movepoint = Instantiate(MovePoint, moveline.GetPosition(moveline.positionCount - 1), Quaternion.identity);
-                    movepoint.transform.parent = Fighter.transform;
                     moveline.material.color = Color.cyan;
                 }
             }
@@ -170,7 +164,6 @@ public class ActionUI : MonoBehaviour
             FighterA.targetFighterSave = null;
         }
 
-        DeleteMoveRoute();
         OnEnable();
     }
 
@@ -192,19 +185,11 @@ public class ActionUI : MonoBehaviour
     public void DeleteMoveRoute()
     {
         //全味方兵士の移動ルートを削除
-        GameObject[] tagObjects = GameObject.FindGameObjectsWithTag("PlayerFighter");
+        GameObject[] tagObjects = GameObject.FindGameObjectsWithTag("MoveObject");
 
-        foreach (GameObject Fighter in tagObjects)
+        foreach (GameObject MoveObject in tagObjects)
         {
-            if (Fighter.transform.Find("Line(Clone)"))
-            {
-                Destroy(Fighter.transform.Find("Line(Clone)").gameObject);
-
-                if (Fighter.transform.Find("MovePoint(Clone)"))
-                {
-                    Destroy(Fighter.transform.Find("MovePoint(Clone)").gameObject);
-                }
-            }
+            Destroy(MoveObject);
         }
     }
 

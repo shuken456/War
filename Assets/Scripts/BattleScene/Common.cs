@@ -13,6 +13,9 @@ public static class Common
     //戦中か否か
     public static bool BattleMode = true;
 
+    //選択中されたステージナンバー
+    public static int SelectStageNum = 1;
+
     //兵種
     public static string FighterType(int type)
     {

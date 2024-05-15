@@ -74,7 +74,6 @@ public class MoveUI : MonoBehaviour
             ChaseTarget.gameObject.transform.Find("SelectImage").GetComponent<SpriteRenderer>().color = Color.clear;
         }
 
-        //‚»‚ê‚¼‚ê‚Ì•Ï”‚Æ‰æ–Êó‘Ô‚ğŒ³‚É–ß‚·
         MoveUIAfter.SetActive(false);
         MovePositions.Clear();
         BaManager.SelectFighterLine.Clear();

@@ -28,11 +28,11 @@ MonoBehaviour:
   - Name: "\u6B69\u51752"
     Type: 1
     Level: 2
-    Hp: 20
-    Stamina: 20
+    Hp: 11
+    Stamina: 11
     AtkPower: 4
-    MoveSpeed: 20
-    AtkSpeed: 20
+    MoveSpeed: 11
+    AtkSpeed: 11
     EXP: 0
     UnitNum: 2
     Position: {x: 1.6590905, y: -0.3252526, z: 0}
@@ -40,11 +40,11 @@ MonoBehaviour:
   - Name: "\u6B69\u51753"
     Type: 1
     Level: 3
-    Hp: 30
-    Stamina: 30
+    Hp: 13
+    Stamina: 13
     AtkPower: 6
-    MoveSpeed: 30
-    AtkSpeed: 30
+    MoveSpeed: 13
+    AtkSpeed: 13
     EXP: 0
     UnitNum: 2
     Position: {x: -1.8156571, y: -0.4262628, z: 0}
@@ -64,11 +64,11 @@ MonoBehaviour:
   - Name: "\u5F13\u51752"
     Type: 2
     Level: 25
-    Hp: 20
-    Stamina: 20
+    Hp: 15
+    Stamina: 15
     AtkPower: 4
-    MoveSpeed: 20
-    AtkSpeed: 20
+    MoveSpeed: 15
+    AtkSpeed: 15
     EXP: 0
     UnitNum: 2
     Position: {x: 1.064779, y: 1.4858801, z: 0}
@@ -76,11 +76,11 @@ MonoBehaviour:
   - Name: "\u6B69\u51754"
     Type: 1
     Level: 4
-    Hp: 40
-    Stamina: 40
+    Hp: 14
+    Stamina: 14
     AtkPower: 8
-    MoveSpeed: 40
-    AtkSpeed: 40
+    MoveSpeed: 14
+    AtkSpeed: 14
     EXP: 0
     UnitNum: 2
     Position: {x: -0.06818199, y: -1.0323231, z: 0}

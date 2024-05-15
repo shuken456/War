@@ -19,13 +19,6 @@ public class SortieDecitionUI : MonoBehaviour
     public GameObject InfantryPrefab;
     public GameObject ArcherPrefab;
 
-    //HP,スタミナゲージ
-    public GameObject HpGaugePrefab;
-    public GameObject StaminaGaugePrefab;
-
-    //ゲージ表示用キャンバス
-    public GameObject CanvasWorldSpace;
-
     //出撃用オブジェクト
     public GameObject SortieObject;
     public GameObject SortieRange;
@@ -121,7 +114,7 @@ public class SortieDecitionUI : MonoBehaviour
 
             Common.GetFighterStatusFromDB(Fighter.GetComponent<FighterStatus>(), pf);
             Common.FighterBuff(Fighter.GetComponent<FighterStatus>(), BaManager.PlayerUnitDataBaseAllList[Common.SelectUnitNum - 1].Strategy, false);
-            CreateGauge(Fighter);
+            BaManager.CreateGauge(Fighter);
         }
 
         //出撃フラグをtrueに
@@ -150,16 +143,5 @@ public class SortieDecitionUI : MonoBehaviour
             BaManager.ActionUI.SetActive(true);
             this.gameObject.SetActive(false);
         }
-    }
-
-    private void CreateGauge(GameObject targetObject)
-    {
-        var Hpgauge = Instantiate(HpGaugePrefab, new Vector3(0, 0, 0), Quaternion.identity);
-        Hpgauge.transform.SetParent(CanvasWorldSpace.transform, false);
-        Hpgauge.GetComponent<HpGauge>().targetFighter = targetObject;
-
-        var Staminagauge = Instantiate(StaminaGaugePrefab, new Vector3(0, 0, 0), Quaternion.identity);
-        Staminagauge.transform.SetParent(CanvasWorldSpace.transform, false);
-        Staminagauge.GetComponent<StaminaGauge>().targetFighter = targetObject;
     }
 }
