@@ -13,6 +13,7 @@ public class BattleManager : MonoBehaviour
     public GameObject SortieUI;
     public GameObject InstructionButton;
     public GameObject FighterStatusInfoUI;
+    public GameObject LogUI;
 
     //‘I‘ð’†‚Ì•ºŽm
     public List<GameObject> SelectFighter = new List<GameObject>();

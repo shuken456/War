@@ -7,6 +7,8 @@ public class Arrow : MonoBehaviour
     //ターゲットのステータス
     public FighterStatus targetEnemyStatus;
 
+    //弓を打った兵士の名前
+    public string ArcherName;
     //攻撃力
     public float AtkPower;
     //矢の速さ
@@ -16,6 +18,7 @@ public class Arrow : MonoBehaviour
 
     void Start()
     {
+        //自分のタグで敵のタグを判断
         if (this.tag == "PlayerArrow")
         {
             this.gameObject.layer = LayerMask.NameToLayer("PlayerArrow");
@@ -36,7 +39,7 @@ public class Arrow : MonoBehaviour
             return;
         }
 
-        //ターゲットの場所に移動
+        //ターゲットの場所に飛ぶ
         var v = targetEnemyStatus.gameObject.transform.position - transform.position;
         transform.position += v.normalized * ArrowSpeed * Time.deltaTime;
     }
@@ -60,6 +63,22 @@ public class Arrow : MonoBehaviour
 
             if (targetEnemyStatus.NowHp <= 0)
             {
+                if (this.tag == "PlayerArrow")
+                {
+                    GameObject.Find("BattleManager").GetComponent<BattleManager>().LogUI.GetComponent<LogUI>().DrawLog("<size=30>" + ArcherName + "</size>\n" + targetEnemyStatus.FighterName + "を倒した！");
+                }
+                else
+                {
+                    if (targetEnemyStatus.UnitLeader)
+                    {
+                        GameObject.Find("BattleManager").GetComponent<BattleManager>().LogUI.GetComponent<LogUI>().DrawLog("<size=30><color=red>" + targetEnemyStatus.FighterName + "</color></size>\n" + ArcherName + "に倒された！");
+                    }
+                    else
+                    {
+                        GameObject.Find("BattleManager").GetComponent<BattleManager>().LogUI.GetComponent<LogUI>().DrawLog("<size=30>" + targetEnemyStatus.FighterName + "</size>\n" + ArcherName + "に倒された！");
+                    }
+                }
+
                 Destroy(targetEnemyStatus.gameObject);
             }
             Destroy(this.gameObject);

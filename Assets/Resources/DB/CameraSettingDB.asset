@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61a8d0f01b9852748bc8076e082615f6, type: 3}
+  m_Name: CameraSettingDB
+  m_EditorClassIdentifier: 
+  CameraSettingDBList:
+  - MaxZoom: 8
+    MinZoom: 4
+    ZoomSpeed: 100
+    MoveSpeed: 15
+    MoveAreaScale: {x: 1, y: 0.9, z: 0}
+    MiniMapSize: 15
+    DefaultSize: 8
+    DefaultPosition: {x: 0, y: -5.5, z: -1}
+    SortieSize: {x: 19, y: 7, z: 0}
+    SortiePosition: {x: 0, y: -8, z: 0}
+  - MaxZoom: 10
+    MinZoom: 4
+    ZoomSpeed: 100
+    MoveSpeed: 15
+    MoveAreaScale: {x: 1, y: 1, z: 0}
+    MiniMapSize: 20
+    DefaultSize: 8
+    DefaultPosition: {x: 0, y: 0, z: -1}
+    SortieSize: {x: 21, y: 7, z: 0}
+    SortiePosition: {x: 0, y: -8, z: 0}

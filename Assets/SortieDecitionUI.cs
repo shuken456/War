@@ -26,6 +26,9 @@ public class SortieDecitionUI : MonoBehaviour
     //出撃場所決定フラグ
     private bool SortieDecition = false;
 
+    //クリック長押し時間カウント用
+    private float ClickTime = 0;
+
     private void OnEnable()
     {
         //DBデータ取得
@@ -81,6 +84,25 @@ public class SortieDecitionUI : MonoBehaviour
                 }
             }
         }
+
+        //右クリックが長押しでない場合、位置を回転
+        if (!SortieDecition && Input.GetMouseButton(1))
+        {
+            ClickTime += Time.unscaledDeltaTime;
+        }
+        if (!SortieDecition && Input.GetMouseButtonUp(1))
+        {
+            if (ClickTime < 0.2)
+            {
+                SortieObject.transform.eulerAngles -= new Vector3(0, 0, 90);
+
+                foreach(Transform Fighter in SortieObject.transform)
+                {
+                    Fighter.eulerAngles += new Vector3(0, 0, 90);
+                }
+            }
+            ClickTime = 0;
+        }
     }
 
     //出撃決定
@@ -121,6 +143,9 @@ public class SortieDecitionUI : MonoBehaviour
         BaManager.PlayerUnitDataBaseAllList[Common.SelectUnitNum - 1].SoriteFlg = true;
         BaManager.ActionUI.SetActive(true);
         this.gameObject.SetActive(false);
+
+        //回転を元に戻す
+        SortieObject.transform.eulerAngles -= new Vector3(0, 0, 0);
     }
 
     //キャンセル

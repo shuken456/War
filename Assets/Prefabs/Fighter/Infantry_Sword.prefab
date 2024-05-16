@@ -208,9 +208,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 408ea3d46276d7f478da8095d53df942, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BaManager: {fileID: 0}
   targetPlace: []
   targetFighter: {fileID: 0}
   targetFighterSave: {fileID: 0}
+  EnemyStatus: {fileID: 0}
+  arrowPrefab: {fileID: 0}
 --- !u!114 &8578944287813036592
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -235,6 +238,9 @@ MonoBehaviour:
   MoveSpeed: 10
   UnitNum: 0
   UnitLeader: 0
+  MaxHpBuff: 0
+  AtkPowerBuff: 0
+  MoveSpeedBuff: 0
 --- !u!50 &8154443069266424967
 Rigidbody2D:
   serializedVersion: 4

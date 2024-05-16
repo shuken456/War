@@ -29,7 +29,7 @@ public class FighterAction : MonoBehaviour
     private string EnemyTag;
 
     //攻撃中フラグ
-    private bool Atk = false;
+    private bool AtkNow = false;
 
     //攻撃相手のステータス
     public FighterStatus EnemyStatus;
@@ -43,6 +43,7 @@ public class FighterAction : MonoBehaviour
         anim = GetComponent<Animator>();
         MyStatus = GetComponent<FighterStatus>();
 
+        //自分のタグで敵のタグを判断
         if (this.tag == "PlayerFighter")
         {
             EnemyTag = "EnemyFighter";
@@ -71,13 +72,38 @@ public class FighterAction : MonoBehaviour
         }
     }
 
-    //敵の状態を確認
+    private void OnDestroy()
+    {
+        //自分が部隊長だった場合、部隊メンバーのバフを無くす
+        if (MyStatus.UnitLeader)
+        {
+            GameObject[] tagObjects = GameObject.FindGameObjectsWithTag(this.gameObject.tag);
+
+            foreach (GameObject Fighter in tagObjects)
+            {
+                FighterStatus fs = Fighter.GetComponent<FighterStatus>();
+                if (fs.UnitNum == MyStatus.UnitNum)
+                {
+                    fs.AtkPowerBuff = 0;
+                    fs.MaxHpBuff = 0;
+                    fs.MoveSpeedBuff = 0;
+
+                    if(fs.NowHp > fs.MaxHp)
+                    {
+                        fs.NowHp = fs.MaxHp;
+                    }
+                }
+            }
+        }
+    }
+   
+    //敵の状態を確認(true = 攻撃相手なし false = 攻撃相手あり)
     bool CheckEnemy()
     {
         //弓兵の場合、攻撃中か否かで判断
         if (MyStatus.Type == 2)
         {
-            return !Atk;
+            return !AtkNow;
         }
 
         if (EnemyStatus != null)
@@ -186,10 +212,33 @@ public class FighterAction : MonoBehaviour
         }
 
         //攻撃対象と接触した場合攻撃！
-        if (MyStatus.Type != 2 && !Atk && EnemyStatus == null && collision.gameObject.tag == EnemyTag)
+        if (collision.gameObject.tag == EnemyTag && MyStatus.Type != 2 && !AtkNow && EnemyStatus == null)
         {
             EnemyStatus = collision.gameObject.GetComponent<FighterStatus>();
             StartCoroutine(Attack());
+        }
+
+        //出撃時に障害物につっかえないように
+        if(collision.gameObject.layer == LayerMask.NameToLayer("Obstacle") && anim.GetInteger("Action") == StandAction)
+        {
+            var v = collision.gameObject.transform.position - transform.position;
+            if (v.x > 0)
+            {
+                transform.position += new Vector3(0.5f, 0, 0);
+            }
+            else if (v.x < 0)
+            {
+                transform.position -= new Vector3(0.5f, 0, 0);
+            }
+
+            if (v.y > 0)
+            {
+                transform.position += new Vector3(0, 0.5f, 0);
+            }
+            else if (v.y < 0)
+            {
+                transform.position -= new Vector3(0, 0.5f, 0);
+            }
         }
     }
 
@@ -203,24 +252,26 @@ public class FighterAction : MonoBehaviour
         }
 
         //攻撃対象と接触した場合攻撃！
-        if (MyStatus.Type != 2 && !Atk && EnemyStatus == null && collision.gameObject.tag == EnemyTag)
+        if (collision.gameObject.tag == EnemyTag && MyStatus.Type != 2 && !AtkNow && EnemyStatus == null)
         {
             EnemyStatus = collision.gameObject.GetComponent<FighterStatus>();
             StartCoroutine(Attack());
         }
     }
 
+    //攻撃(弓兵以外)
     private IEnumerator Attack()
     {
-        Atk = true;
-        int power;
-        float speed = 10 / (float)MyStatus.AtkSpeed;
+        AtkNow = true;
+        int power;　//攻撃力
+        float speed = 10 / (float)MyStatus.AtkSpeed; //攻撃スピード
 
         anim.SetInteger("Action", AttackAction);
         anim.SetFloat("AtkSpeed", (float)MyStatus.AtkSpeed / 10); //アニメーションスピード設定
 
         while (EnemyStatus != null)
         {
+            //方向転換
             ChangeDirection(EnemyStatus.gameObject.transform.position);
 
             yield return new WaitForSeconds(speed);
@@ -236,24 +287,41 @@ public class FighterAction : MonoBehaviour
                 power = (MyStatus.AtkPower + MyStatus.AtkPowerBuff) / 2;
             }
 
+            //敵にダメージを与える
             if (EnemyStatus != null)
             {
                 EnemyStatus.NowHp -= power;
                 if (EnemyStatus.NowHp <= 0)
                 {
+                    if (this.tag == "PlayerFighter")
+                    {
+                        GameObject.Find("BattleManager").GetComponent<BattleManager>().LogUI.GetComponent<LogUI>().DrawLog("<size=30>" + MyStatus.FighterName + "</size>\n" + EnemyStatus.FighterName + "を倒した！");
+                    }
+                    else if (this.tag == "EnemyFighter")
+                    {
+                        if(EnemyStatus.UnitLeader)
+                        {
+                            GameObject.Find("BattleManager").GetComponent<BattleManager>().LogUI.GetComponent<LogUI>().DrawLog("<size=30><color=red>" + EnemyStatus.FighterName + "(部隊長)</color></size>\n" + MyStatus.FighterName + "に倒された！");
+                        }
+                        else
+                        {
+                            GameObject.Find("BattleManager").GetComponent<BattleManager>().LogUI.GetComponent<LogUI>().DrawLog("<size=30>" + EnemyStatus.FighterName + "</size>\n" + MyStatus.FighterName + "に倒された！");
+                        }
+                    }
+
                     Destroy(EnemyStatus.gameObject);
                     EnemyStatus = null;
                 }
             }
         }
-        Atk = false;
+        AtkNow = false;
     }
 
     //弓兵用の攻撃メソッド
     private IEnumerator SearchAndShot()
     {
-        int power;
-        float speed = 10 / (float)MyStatus.AtkSpeed;
+        int power;//攻撃力
+        float speed = 10 / (float)MyStatus.AtkSpeed;//攻撃スピード
 
         while (true)
         {
@@ -264,7 +332,7 @@ public class FighterAction : MonoBehaviour
 
             if (collider != null && collider.tag == EnemyTag)
             {
-                Atk = true;
+                AtkNow = true;
                 anim.SetInteger("Action", AttackAction);
 
                 EnemyStatus = collider.gameObject.GetComponent<FighterStatus>();
@@ -283,15 +351,18 @@ public class FighterAction : MonoBehaviour
                     power = (MyStatus.AtkPower + MyStatus.AtkPowerBuff) / 2;
                 }
 
+                //矢を生成する
                 var arrow = Instantiate(arrowPrefab, transform.position, Quaternion.FromToRotation(Vector3.right, collider.transform.position - transform.position));
                 arrow.targetEnemyStatus = collider.GetComponent<FighterStatus>();
+                arrow.ArcherName = MyStatus.FighterName;
                 arrow.AtkPower = power;
                 arrow.ArrowSpeed = 2;
+                arrow.GetComponent<SpriteRenderer>().color = this.gameObject.GetComponent<SpriteRenderer>().color;
             }
 
             else
             {
-                Atk = false;
+                AtkNow = false;
             }
         }
     }
@@ -302,12 +373,12 @@ public class FighterAction : MonoBehaviour
         //方向転換
         var v = TargetDirection - transform.position;
         //右を向く
-        if (v.x >= 0)
+        if (v.x > 0)
         {
             transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
         }
         //左を向く
-        else
+        else if(v.x < 0)
         {
             transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
         }

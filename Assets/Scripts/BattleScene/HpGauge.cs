@@ -24,6 +24,7 @@ public class HpGauge : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //今のHP/MaxHPを表示　んでターゲットを追尾
         if (targetFighter != null)
         {
             Transform targetTransform = targetFighter.GetComponent<Transform>();
