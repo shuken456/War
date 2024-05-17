@@ -14,8 +14,7 @@ public class ColorUI : MonoBehaviour
     //DB保存　開発環境用
     private void OnDisable()
     {
-        //EditorUtility.SetDirty(Resources.Load<PlayerUnitDB>("DB/PlayerUnitDB"));
-        //AssetDatabase.SaveAssets();
+        Common.Save();
     }
 
     //押下したボタンの色にユニットカラーを変更

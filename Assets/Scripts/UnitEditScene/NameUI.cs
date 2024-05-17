@@ -25,8 +25,7 @@ public class NameUI : MonoBehaviour
     //DB•Û‘¶@ŠJ”­ŠÂ‹«—p
     private void OnDisable()
     {
-        //EditorUtility.SetDirty(Resources.Load<PlayerUnitDB>("DB/PlayerUnitDB"));
-        //AssetDatabase.SaveAssets();
+        Common.Save();
         EditManager.LockButton.GetComponent<Button>().interactable = true;
     }
 

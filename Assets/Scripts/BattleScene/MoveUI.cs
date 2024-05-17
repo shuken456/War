@@ -78,7 +78,15 @@ public class MoveUI : MonoBehaviour
         MovePositions.Clear();
         BaManager.SelectFighterLine.Clear();
         currentMode = Mode.MoveDecisionBefore;
-        BaManager.ActionUI.SetActive(true);
+
+        if(BaManager.StartFlg)
+        {
+            BaManager.ActionUI.SetActive(true);
+        }
+        else
+        {
+            BaManager.StartUI.SetActive(true);
+        }
     }
 
     // Update is called once per frame

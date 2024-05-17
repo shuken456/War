@@ -168,7 +168,7 @@ public class UnitEditManager : MonoBehaviour
             }
 
             //èoåÇÉÇÅ[ÉhÇÃèÍçá
-            if(Common.SortieMode && PlayerUnitDataBaseAllList[i].SoriteFlg)
+            if(PlayerUnitDataBaseAllList[i].SoriteFlg)
             {
                 UnitOblect[i].layer = LayerMask.NameToLayer("Default");
                 UnitOblect[i].transform.Find("UnitBackImage").GetComponent<SpriteRenderer>().color = Color.gray;
@@ -220,6 +220,10 @@ public class UnitEditManager : MonoBehaviour
             }
 
             SceneManager.UnloadSceneAsync("UnitEditScene");
+        }
+        else
+        {
+
         }
     }
 }

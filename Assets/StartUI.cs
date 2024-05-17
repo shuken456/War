@@ -4,18 +4,24 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class ActionUI : MonoBehaviour
+public class StartUI : MonoBehaviour
 {
     public BattleManager BaManager;
+
+    //戦開始ボタン
+    public Button GoButton;
+
+    //部隊出撃ボタン
+    public Button SortieButton;
+
+    //部隊編成ボタン
+    public Button EditUnitButton;
 
     //移動ボタン
     public Button MoveButton;
 
     //待機ボタン
     public Button WaitButton;
-
-    //部隊出撃ボタン
-    public Button SortieButton;
 
     //移動ルートを表示する線
     public GameObject MoveLine;
@@ -34,9 +40,7 @@ public class ActionUI : MonoBehaviour
     {
         ChangeButton();
         DeleteMoveRoute();
-
         Time.timeScale = 0;
-        BaManager.TimeStopText.SetActive(true);
 
         //全味方兵士の移動ルートを表示
         GameObject[] tagObjects = GameObject.FindGameObjectsWithTag("PlayerFighter");
@@ -187,13 +191,23 @@ public class ActionUI : MonoBehaviour
         }
 
         //出撃可能部隊数が0なら部隊出撃ボタンを押せないように
-        if (BaManager.UnitCountUI.Count == 0)
+        if(BaManager.UnitCountUI.Count == 0)
         {
             SortieButton.interactable = false;
         }
         else
         {
             SortieButton.interactable = true;
+        }
+
+        //出撃してたら戦開始ボタンを押せるように
+        if(BaManager.UnitCountUI.Count == BaManager.UnitCountUI.CountList[Common.SelectStageNum - 1])
+        {
+            GoButton.interactable = false;
+        }
+        else
+        {
+            GoButton.interactable = true;
         }
     }
 
@@ -208,8 +222,8 @@ public class ActionUI : MonoBehaviour
         }
     }
 
-    //再開
-    public void ReStart()
+    //戦開始
+    public void Go()
     {
         DeleteMoveRoute();
 
@@ -220,10 +234,25 @@ public class ActionUI : MonoBehaviour
         }
         BaManager.SelectFighter.Clear();
         BaManager.SelectFighterLine.Clear();
+        BaManager.StartFlg = true;
         BaManager.InstructionButton.gameObject.SetActive(true);
         Time.timeScale = 1;
-        BaManager.TimeStopText.SetActive(false);
+
         this.gameObject.SetActive(false);
+    }
+
+    //部隊編成
+    public void UnitEdit()
+    {
+        //バトルシーンを非アクティブ化して保持したままユニット一覧を呼び出す
+        DeleteMoveRoute();
+        foreach (var root in gameObject.scene.GetRootGameObjects())
+        {
+            root.SetActive(false);
+        }
+
+        Common.SortieMode = false;
+        SceneManager.LoadScene("UnitEditScene", LoadSceneMode.Additive);
     }
 
     //出撃
@@ -237,6 +266,6 @@ public class ActionUI : MonoBehaviour
         }
 
         Common.SortieMode = true;
-        SceneManager.LoadScene("UnitEditScene",LoadSceneMode.Additive);
+        SceneManager.LoadScene("UnitEditScene", LoadSceneMode.Additive);
     }
 }

@@ -37,6 +37,9 @@ public class FighterAction : MonoBehaviour
     //矢のプレハブ
     public Arrow arrowPrefab;
 
+    //経験値
+    public int EXP;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -54,7 +57,19 @@ public class FighterAction : MonoBehaviour
         }
 
         //弓兵の場合、射程内に敵がいるか確認する
-        if(MyStatus.Type == 2)
+        if (MyStatus && MyStatus.Type == 2)
+        {
+            StartCoroutine(SearchAndShot());
+        }
+    }
+
+    private void OnEnable()
+    {
+        EnemyStatus = null;
+        AtkNow = false;
+
+        //弓兵の場合、射程内に敵がいるか確認する
+        if (MyStatus && MyStatus.Type == 2)
         {
             StartCoroutine(SearchAndShot());
         }
@@ -290,22 +305,23 @@ public class FighterAction : MonoBehaviour
             //敵にダメージを与える
             if (EnemyStatus != null)
             {
+                EXP += power;
                 EnemyStatus.NowHp -= power;
                 if (EnemyStatus.NowHp <= 0)
                 {
                     if (this.tag == "PlayerFighter")
                     {
-                        GameObject.Find("BattleManager").GetComponent<BattleManager>().LogUI.GetComponent<LogUI>().DrawLog("<size=30>" + MyStatus.FighterName + "</size>\n" + EnemyStatus.FighterName + "を倒した！");
+                        GameObject.Find("BattleManager").GetComponent<BattleManager>().LogUI.DrawLog("<size=30>" + MyStatus.FighterName + "</size>\n" + EnemyStatus.FighterName + "を倒した！");
                     }
                     else if (this.tag == "EnemyFighter")
                     {
                         if(EnemyStatus.UnitLeader)
                         {
-                            GameObject.Find("BattleManager").GetComponent<BattleManager>().LogUI.GetComponent<LogUI>().DrawLog("<size=30><color=red>" + EnemyStatus.FighterName + "(部隊長)</color></size>\n" + MyStatus.FighterName + "に倒された！");
+                            GameObject.Find("BattleManager").GetComponent<BattleManager>().LogUI.DrawLog("<size=30><color=red>" + EnemyStatus.FighterName + "(部隊長)</color></size>\n" + MyStatus.FighterName + "に倒された！");
                         }
                         else
                         {
-                            GameObject.Find("BattleManager").GetComponent<BattleManager>().LogUI.GetComponent<LogUI>().DrawLog("<size=30>" + EnemyStatus.FighterName + "</size>\n" + MyStatus.FighterName + "に倒された！");
+                            GameObject.Find("BattleManager").GetComponent<BattleManager>().LogUI.DrawLog("<size=30>" + EnemyStatus.FighterName + "</size>\n" + MyStatus.FighterName + "に倒された！");
                         }
                     }
 

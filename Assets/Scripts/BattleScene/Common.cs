@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public static class Common
 {
@@ -10,7 +11,7 @@ public static class Common
     //ユニット一覧を出撃モードで開くか否か
     public static bool SortieMode = true;
 
-    //戦中か否か
+    //バトルシーンか否か
     public static bool BattleMode = true;
 
     //選択中されたステージナンバー
@@ -50,6 +51,7 @@ public static class Common
         }
     }
 
+    //兵士のステータス受け渡し
     public static void FighterStatusCopy(FighterStatus fsTo, FighterStatus fsFrom)
     {
         fsTo.Type = fsFrom.Type;
@@ -117,5 +119,12 @@ public static class Common
                 fs.MoveSpeedBuff = (int)Mathf.Round(fs.MoveSpeed * 0.3f);
             }
         }
+    }
+
+    public static void Save()
+    {
+        EditorUtility.SetDirty(Resources.Load<PlayerFighterDB>("DB/PlayerFighterDB"));
+        EditorUtility.SetDirty(Resources.Load<PlayerUnitDB>("DB/PlayerUnitDB"));
+        AssetDatabase.SaveAssets();
     }
 }

@@ -8,6 +8,8 @@ public class SaveUI : MonoBehaviour
     public void OK()
     {
         this.gameObject.SetActive(false);
-        SceneManager.LoadScene("UnitFormationScene");
+
+        SceneManager.LoadScene("UnitFormationScene", LoadSceneMode.Additive);
+        SceneManager.UnloadSceneAsync("UnitFormationScene");
     }
 }

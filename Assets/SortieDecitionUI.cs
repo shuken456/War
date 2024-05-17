@@ -20,7 +20,7 @@ public class SortieDecitionUI : MonoBehaviour
     public GameObject ArcherPrefab;
 
     //出撃用オブジェクト
-    public GameObject SortieObject;
+    public GameObject SortieTarget;
     public GameObject SortieRange;
 
     //出撃場所決定フラグ
@@ -51,7 +51,7 @@ public class SortieDecitionUI : MonoBehaviour
 
             Fighter.transform.localScale = Fighter.transform.localScale * 2;
             Fighter.GetComponent<SpriteRenderer>().color = BaManager.PlayerUnitDataBaseAllList[Common.SelectUnitNum - 1].UnitColor - new Color(0, 0, 0, 0.5f);　//色を薄くして表示する
-            Fighter.transform.parent = SortieObject.transform;
+            Fighter.transform.parent = SortieTarget.transform;
             Fighter.transform.localPosition = pf.Position;
         }
 
@@ -60,6 +60,20 @@ public class SortieDecitionUI : MonoBehaviour
 
     private void OnDisable()
     {
+        //回転を元に戻す
+        SortieTarget.transform.eulerAngles -= new Vector3(0, 0, 0);
+
+        Common.SelectUnitNum = 0;
+
+        if (BaManager.StartFlg)
+        {
+            BaManager.ActionUI.SetActive(true);
+        }
+        else
+        {
+            BaManager.StartUI.SetActive(true);
+        }
+
         SortieRange.SetActive(false);
     }
 
@@ -74,7 +88,7 @@ public class SortieDecitionUI : MonoBehaviour
 
             if(col != null)
             {
-                SortieObject.transform.position = CursorPosition;
+                SortieTarget.transform.position = CursorPosition;
 
                 //左クリックで場所指定
                 if (Input.GetMouseButtonDown(0))
@@ -94,9 +108,9 @@ public class SortieDecitionUI : MonoBehaviour
         {
             if (ClickTime < 0.2)
             {
-                SortieObject.transform.eulerAngles -= new Vector3(0, 0, 90);
+                SortieTarget.transform.eulerAngles -= new Vector3(0, 0, 90);
 
-                foreach(Transform Fighter in SortieObject.transform)
+                foreach(Transform Fighter in SortieTarget.transform)
                 {
                     Fighter.eulerAngles += new Vector3(0, 0, 90);
                 }
@@ -109,7 +123,7 @@ public class SortieDecitionUI : MonoBehaviour
     public void DecitionButtonClick()
     {
         //イラスト削除
-        foreach (Transform s in SortieObject.transform)
+        foreach (Transform s in SortieTarget.transform)
         {
             GameObject.Destroy(s.gameObject);
         }
@@ -130,7 +144,7 @@ public class SortieDecitionUI : MonoBehaviour
 
             Fighter.transform.localScale = Fighter.transform.localScale;
             Fighter.GetComponent<SpriteRenderer>().color = BaManager.PlayerUnitDataBaseAllList[Common.SelectUnitNum - 1].UnitColor;
-            Fighter.transform.parent = SortieObject.transform;
+            Fighter.transform.parent = SortieTarget.transform;
             Fighter.transform.localPosition = pf.Position;
             Fighter.transform.parent = null;
 
@@ -139,13 +153,13 @@ public class SortieDecitionUI : MonoBehaviour
             BaManager.CreateGauge(Fighter);
         }
 
-        //出撃フラグをtrueに
+        //部隊の出撃フラグをtrueに
         BaManager.PlayerUnitDataBaseAllList[Common.SelectUnitNum - 1].SoriteFlg = true;
-        BaManager.ActionUI.SetActive(true);
+        //出撃可能部隊数を-1
+        BaManager.UnitCountUI.Count -= 1;
+        BaManager.UnitCountUI.TextDraw();
+        
         this.gameObject.SetActive(false);
-
-        //回転を元に戻す
-        SortieObject.transform.eulerAngles -= new Vector3(0, 0, 0);
     }
 
     //キャンセル
@@ -159,13 +173,10 @@ public class SortieDecitionUI : MonoBehaviour
         }
         else
         {
-            foreach (Transform n in SortieObject.transform)
+            foreach (Transform n in SortieTarget.transform)
             {
                 GameObject.Destroy(n.gameObject);
             }
-
-            Common.SelectUnitNum = 0;
-            BaManager.ActionUI.SetActive(true);
             this.gameObject.SetActive(false);
         }
     }

@@ -507,9 +507,8 @@ public class UnitFormationManager : MonoBehaviour
                 PlayerFighterDataBaseAllList.Find(n => n.Name == pf.Name).UnitNum = 0;
             }
         }
-
-        //EditorUtility.SetDirty(Resources.Load<PlayerFighterDB>("DB/PlayerFighterDB"));
-        //AssetDatabase.SaveAssets();
+        Common.Save();
+        
         SaveUI.SetActive(true);
     }
 }

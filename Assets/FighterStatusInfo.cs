@@ -75,6 +75,7 @@ public class FighterStatusInfo : MonoBehaviour
     {
         if (BaManager.InstructionButton.activeSelf)
         {
+            BaManager.TimeStopText.SetActive(false);
             Time.timeScale = 1;
         }
 

@@ -28,9 +28,10 @@ public class BattleSituationUI : MonoBehaviour
             power += Fighter.GetComponent<FighterStatus>().Level;
         }
         PlayerPower.text = power.ToString();
-        if (power == 0)
+        if (power == 0 && BaManager.StartFlg)
         {
             //ïâÇØ
+            BaManager.BattleLose();
         }
 
         power = 0;
@@ -40,9 +41,10 @@ public class BattleSituationUI : MonoBehaviour
             power += Fighter.GetComponent<FighterStatus>().Level;
         }
         EnemyPower.text = power.ToString();
-        if (power == 0)
+        if (power == 0 && BaManager.StartFlg)
         {
             //èüÇø
+            BaManager.BattleWin();
         }
     }
 }

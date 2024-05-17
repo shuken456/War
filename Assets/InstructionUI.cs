@@ -35,7 +35,6 @@ public class InstructionUI : MonoBehaviour
         //アクションUIを開いて待機
         if (Input.GetMouseButtonUp(0) && BaManager.SelectFighter.Count > 0)
         {
-            Time.timeScale = 0;
             BaManager.ActionUI.SetActive(true);
             this.gameObject.SetActive(false);
         }
@@ -54,7 +53,6 @@ public class InstructionUI : MonoBehaviour
                 var col = Physics2D.OverlapPoint(CursorPosition, LayerMask.GetMask("PlayerFighter", "EnemyFighter"));
                 if(col != null)
                 {
-                    Time.timeScale = 0;
                     BaManager.FighterStatusInfoUI.SetActive(true);
                     BaManager.FighterStatusInfoUI.GetComponent<FighterStatusInfo>().TextWrite(col.GetComponent<FighterStatus>());
                     BaManager.FighterStatusInfoUI.GetComponent<FighterStatusInfo>().ImageWrite(col.GetComponent<SpriteRenderer>().sprite, col.GetComponent<SpriteRenderer>().color);
@@ -67,7 +65,6 @@ public class InstructionUI : MonoBehaviour
 
     public void InstractionButtonClick()
     {
-        Time.timeScale = 0;
         BaManager.ActionUI.SetActive(true);
         this.gameObject.SetActive(false);
     }

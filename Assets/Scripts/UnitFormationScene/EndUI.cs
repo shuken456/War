@@ -7,7 +7,10 @@ public class EndUI : MonoBehaviour
 {
     public void Yes()
     {
-        SceneManager.LoadScene("UnitEditScene");
+        Scene Bscene = SceneManager.GetSceneByName("UnitEditScene");
+
+        SceneManager.LoadScene("UnitEditScene", LoadSceneMode.Additive);
+        SceneManager.UnloadSceneAsync("UnitFormationScene");
     }
 
     public void No()

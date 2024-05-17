@@ -65,17 +65,17 @@ public class Arrow : MonoBehaviour
             {
                 if (this.tag == "PlayerArrow")
                 {
-                    GameObject.Find("BattleManager").GetComponent<BattleManager>().LogUI.GetComponent<LogUI>().DrawLog("<size=30>" + ArcherName + "</size>\n" + targetEnemyStatus.FighterName + "Çì|ÇµÇΩÅI");
+                    GameObject.Find("BattleManager").GetComponent<BattleManager>().LogUI.DrawLog("<size=30>" + ArcherName + "</size>\n" + targetEnemyStatus.FighterName + "Çì|ÇµÇΩÅI");
                 }
                 else
                 {
                     if (targetEnemyStatus.UnitLeader)
                     {
-                        GameObject.Find("BattleManager").GetComponent<BattleManager>().LogUI.GetComponent<LogUI>().DrawLog("<size=30><color=red>" + targetEnemyStatus.FighterName + "</color></size>\n" + ArcherName + "Ç…ì|Ç≥ÇÍÇΩÅI");
+                        GameObject.Find("BattleManager").GetComponent<BattleManager>().LogUI.DrawLog("<size=30><color=red>" + targetEnemyStatus.FighterName + "</color></size>\n" + ArcherName + "Ç…ì|Ç≥ÇÍÇΩÅI");
                     }
                     else
                     {
-                        GameObject.Find("BattleManager").GetComponent<BattleManager>().LogUI.GetComponent<LogUI>().DrawLog("<size=30>" + targetEnemyStatus.FighterName + "</size>\n" + ArcherName + "Ç…ì|Ç≥ÇÍÇΩÅI");
+                        GameObject.Find("BattleManager").GetComponent<BattleManager>().LogUI.DrawLog("<size=30>" + targetEnemyStatus.FighterName + "</size>\n" + ArcherName + "Ç…ì|Ç≥ÇÍÇΩÅI");
                     }
                 }
 
