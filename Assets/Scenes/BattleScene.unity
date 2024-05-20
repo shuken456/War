@@ -10197,6 +10197,8 @@ MonoBehaviour:
   FighterResultView: {fileID: 1458541448}
   FighterResultUI: {fileID: 756232057664336574, guid: 2199fda385ac042488b8395de96f5890, type: 3}
   SortieFighterList: []
+  EmptyInfantry: {fileID: 6460827936821236088, guid: 82662cc3479265843a432f210af7efd6, type: 3}
+  EmptyArcher: {fileID: 6460827936821236088, guid: e81cb99f5f84d1a4c8b1bfe9430b0340, type: 3}
 --- !u!1 &1826233700
 GameObject:
   m_ObjectHideFlags: 0

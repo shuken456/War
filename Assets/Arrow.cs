@@ -50,6 +50,7 @@ public class Arrow : MonoBehaviour
         if (collision.gameObject.tag == EnemyTag)
         {
             targetEnemyStatus = collision.gameObject.GetComponent<FighterStatus>();
+            targetEnemyStatus.Exp += 2;
 
             //‚•º‚É“–‚½‚Á‚½ê‡ƒ_ƒ[ƒWŒ¸­
             if (targetEnemyStatus.Type == 3)

@@ -37,9 +37,6 @@ public class FighterAction : MonoBehaviour
     //矢のプレハブ
     public Arrow arrowPrefab;
 
-    //経験値
-    public int EXP;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -109,6 +106,12 @@ public class FighterAction : MonoBehaviour
                     }
                 }
             }
+        }
+
+        //経験値を格納
+        if (this.tag == "PlayerFighter" && GameObject.Find("BattleManager") && !GameObject.Find("BattleManager").GetComponent<BattleManager>().ExpDic.ContainsKey(MyStatus.FighterName))
+        {
+            GameObject.Find("BattleManager").GetComponent<BattleManager>().ExpDic.Add(MyStatus.FighterName, MyStatus.Exp);
         }
     }
    
@@ -305,7 +308,10 @@ public class FighterAction : MonoBehaviour
             //敵にダメージを与える
             if (EnemyStatus != null)
             {
-                EXP += power;
+                //経験値
+                MyStatus.Exp += 2;
+                EnemyStatus.Exp += 2;
+
                 EnemyStatus.NowHp -= power;
                 if (EnemyStatus.NowHp <= 0)
                 {
@@ -355,6 +361,9 @@ public class FighterAction : MonoBehaviour
 
                 //方向転換
                 ChangeDirection(EnemyStatus.gameObject.transform.position);
+
+                //攻撃経験値
+                MyStatus.Exp += 2;
 
                 //スタミナ減少
                 if (MyStatus.NowStamina > 0)

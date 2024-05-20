@@ -66,6 +66,7 @@ public static class Common
         fsTo.MoveSpeed = fsFrom.MoveSpeed;
         fsTo.UnitNum = fsFrom.UnitNum;
         fsTo.UnitLeader = fsFrom.UnitLeader;
+        fsTo.Exp = fsFrom.Exp;
     }
 
     public static void GetFighterStatusFromDB(FighterStatus fs, PlayerFighter pf)
@@ -82,6 +83,7 @@ public static class Common
         fs.MoveSpeed = pf.MoveSpeed;
         fs.UnitNum = pf.UnitNum;
         fs.UnitLeader = pf.UnitLeader;
+        fs.Exp = pf.EXP;
     }
 
     //ÉoÉtê›íË

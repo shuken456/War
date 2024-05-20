@@ -40,6 +40,9 @@ public class BattleManager : MonoBehaviour
     //戦を開始しているか否か
     public bool StartFlg = false;
 
+    //経験値ディクショナリ
+    public Dictionary<string, int> ExpDic = new Dictionary<string, int>();
+
     // Start is called before the first frame update
     void Start()
     {
