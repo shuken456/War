@@ -30,9 +30,10 @@ public class BattleManager : MonoBehaviour
     //各ステージの敵
     public GameObject[] StageEnemy;
 
-    //HP,スタミナゲージ
+    //HP,スタミナゲージ,リーダーマーク
     public GameObject HpGaugePrefab;
     public GameObject StaminaGaugePrefab;
+    public GameObject LeaderFlagPrefab;
 
     //ゲージ表示用キャンバス
     public GameObject CanvasWorldSpace;
@@ -42,6 +43,9 @@ public class BattleManager : MonoBehaviour
 
     //経験値ディクショナリ
     public Dictionary<string, int> ExpDic = new Dictionary<string, int>();
+
+    //勝ちフラグ
+    public bool WinFlg = true;
 
     // Start is called before the first frame update
     void Start()
@@ -58,7 +62,7 @@ public class BattleManager : MonoBehaviour
         foreach (Transform Enemy in StageEnemy[Common.SelectStageNum - 1].transform)
         {
             var obj = Instantiate(Enemy.gameObject);
-            CreateGauge(obj);
+            CreateGaugeAndFlag(obj);
         }
         StartUI.SetActive(true);
     }
@@ -74,8 +78,8 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    //体力、スタミナゲージ作成
-    public void CreateGauge(GameObject targetObject)
+    //体力、スタミナゲージ、リーダーマーク作成
+    public void CreateGaugeAndFlag(GameObject targetObject)
     {
         var Hpgauge = Instantiate(HpGaugePrefab, new Vector3(0, 0, 0), Quaternion.identity);
         Hpgauge.transform.SetParent(CanvasWorldSpace.transform, false);
@@ -84,17 +88,26 @@ public class BattleManager : MonoBehaviour
         var Staminagauge = Instantiate(StaminaGaugePrefab, new Vector3(0, 0, 0), Quaternion.identity);
         Staminagauge.transform.SetParent(CanvasWorldSpace.transform, false);
         Staminagauge.GetComponent<StaminaGauge>().targetFighter = targetObject;
+
+        if(targetObject.GetComponent<FighterStatus>().UnitLeader)
+        {
+            var LeaderFlag = Instantiate(LeaderFlagPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+            LeaderFlag.transform.SetParent(CanvasWorldSpace.transform, false);
+            LeaderFlag.GetComponent<LeaderFlag>().targetFighter = targetObject;
+        }
     }
 
     //勝利
     public void BattleWin()
     {
+        WinFlg = true;
         ResultUI.SetActive(true);
     }
 
     //敗北
     public void BattleLose()
     {
+        WinFlg = false;
         ResultUI.SetActive(true);
     }
 }

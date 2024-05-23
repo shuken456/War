@@ -237,6 +237,6 @@ public class ActionUI : MonoBehaviour
         }
 
         Common.SortieMode = true;
-        SceneManager.LoadScene("UnitEditScene",LoadSceneMode.Additive);
+        SceneManager.LoadSceneAsync ("UnitEditScene",LoadSceneMode.Additive);
     }
 }

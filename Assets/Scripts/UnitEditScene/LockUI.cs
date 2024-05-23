@@ -31,7 +31,7 @@ public class LockUI : MonoBehaviour
         NewPlayerUnit.UnitColor = Color.white;
         NewPlayerUnit.Strategy = 1;
 
-        Resources.Load<PlayerUnitDB>("DB/PlayerUnitDB").PlayerUnitDBList.Add(NewPlayerUnit); //‚È‚º‚©‚±‚±‚¾‚¯‚±‚¤‚¹‚ñ‚Æ‚¢‚©‚ñ
+        Resources.Load<PlayerUnitDB>("DB/PlayerUnitDB").PlayerUnitDBList.Add(NewPlayerUnit);
         Common.Save();
         EditManager.DisplayScreenStart();
 

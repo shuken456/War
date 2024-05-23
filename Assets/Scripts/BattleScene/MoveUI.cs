@@ -213,11 +213,11 @@ public class MoveUI : MonoBehaviour
                     //移動最終決定用UI表示位置調整
                     Vector2 UIPosition = RectTransformUtility.WorldToScreenPoint(CinemachineCore.Instance.FindPotentialTargetBrain(mainCam).OutputCamera, CursorPosition);
                    
-                    if (UIPosition.x > 1600)
+                    if (UIPosition.x > 1400)
                     {
                         UIPosition.x -= 200;
                     }
-                    if (UIPosition.y > 900)
+                    if (UIPosition.y > 800)
                     {
                         UIPosition.y -= 100;
                     }

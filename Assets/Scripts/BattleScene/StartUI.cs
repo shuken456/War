@@ -252,7 +252,7 @@ public class StartUI : MonoBehaviour
         }
 
         Common.SortieMode = false;
-        SceneManager.LoadScene("UnitEditScene", LoadSceneMode.Additive);
+        SceneManager.LoadSceneAsync("UnitEditScene", LoadSceneMode.Additive);
     }
 
     //èoåÇ
@@ -266,6 +266,6 @@ public class StartUI : MonoBehaviour
         }
 
         Common.SortieMode = true;
-        SceneManager.LoadScene("UnitEditScene", LoadSceneMode.Additive);
+        SceneManager.LoadSceneAsync("UnitEditScene", LoadSceneMode.Additive);
     }
 }

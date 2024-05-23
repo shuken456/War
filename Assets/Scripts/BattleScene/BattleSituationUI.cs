@@ -44,7 +44,7 @@ public class BattleSituationUI : MonoBehaviour
         if (power == 0 && BaManager.StartFlg)
         {
             //Ÿ‚¿
-            BaManager.BattleWin();
+            BaManager.BattleLose();
         }
     }
 }

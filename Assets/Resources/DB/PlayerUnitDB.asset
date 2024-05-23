@@ -23,7 +23,7 @@ MonoBehaviour:
     UnitColor: {r: 1, g: 0.5803922, b: 0.6392157, a: 1}
     Strategy: 1
     SoriteFlg: 0
-  - Num: 2
+  - Num: 3
     Name: "\u6E05\u6F54\u968A"
     UnitColor: {r: 0, g: 0.24652743, b: 1, a: 1}
     Strategy: 3

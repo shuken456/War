@@ -9,10 +9,10 @@ public static class Common
     public static int SelectUnitNum = 0;
 
     //ユニット一覧を出撃モードで開くか否か
-    public static bool SortieMode = true;
+    public static bool SortieMode = false;
 
     //バトルシーンか否か
-    public static bool BattleMode = true;
+    public static bool BattleMode = false;
 
     //選択中されたステージナンバー
     public static int SelectStageNum = 1;

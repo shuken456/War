@@ -7,9 +7,15 @@ public class SaveUI : MonoBehaviour
 {
     public void OK()
     {
-        this.gameObject.SetActive(false);
+        StartCoroutine(LoadEditScene());
+    }
 
-        SceneManager.LoadScene("UnitFormationScene", LoadSceneMode.Additive);
+    IEnumerator LoadEditScene()
+    {
+        var op = SceneManager.LoadSceneAsync("UnitEditScene", LoadSceneMode.Additive);
+        yield return op;
+
+        //ロード後、アンロード
         SceneManager.UnloadSceneAsync("UnitFormationScene");
     }
 }

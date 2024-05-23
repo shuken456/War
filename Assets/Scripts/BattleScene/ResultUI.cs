@@ -21,9 +21,23 @@ public class ResultUI : MonoBehaviour
     public GameObject EmptyInfantry;
     public GameObject EmptyArcher;
 
+    //勝ちか負けか表示するテキスト
+    public Text ResultText;
+
     // Start is called before the first frame update
     void Start()
     {
+        if(BaManager.WinFlg)
+        {
+            ResultText.text = "勝利！";
+            ResultText.color = Color.red;
+        }
+        else
+        {
+            ResultText.text = "敗北…";
+            ResultText.color = Color.blue;
+        }
+
         //経験値リストを作成
         GameObject[] tagObjects;
         tagObjects = GameObject.FindGameObjectsWithTag("PlayerFighter");
@@ -32,7 +46,11 @@ public class ResultUI : MonoBehaviour
             FighterStatus fs = Fighter.GetComponent<FighterStatus>();
             if(!BaManager.ExpDic.ContainsKey(fs.FighterName))
             {
-                BaManager.ExpDic.Add(fs.FighterName, fs.Exp + 30);　//生き残り経験値ボーナス30
+                BaManager.ExpDic.Add(fs.FighterName, fs.Exp + 30);
+                if (BaManager.WinFlg)
+                {
+                    BaManager.ExpDic[fs.FighterName] += 30; //生き残り経験値ボーナス30
+                }
             }
         }
 

@@ -150,7 +150,7 @@ public class SortieDecitionUI : MonoBehaviour
 
             Common.GetFighterStatusFromDB(Fighter.GetComponent<FighterStatus>(), pf);
             Common.FighterBuff(Fighter.GetComponent<FighterStatus>(), BaManager.PlayerUnitDataBaseAllList[Common.SelectUnitNum - 1].Strategy, false);
-            BaManager.CreateGauge(Fighter);
+            BaManager.CreateGaugeAndFlag(Fighter);
         }
 
         //•”‘à‚ÌoŒ‚ƒtƒ‰ƒO‚ğtrue‚É

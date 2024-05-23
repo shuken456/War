@@ -153,7 +153,14 @@ public class FighterAction : MonoBehaviour
             var collider = Physics2D.OverlapCircle(transform.position, 10f, LayerMask.GetMask(EnemyTag));
             if (collider != null)
             {
-                targetFighter = collider.gameObject.transform;
+                Ray2D ray = new Ray2D(this.gameObject.transform.position, collider.gameObject.transform.position - this.gameObject.transform.position);
+                RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Vector2.Distance(this.gameObject.transform.position, collider.gameObject.transform.position), LayerMask.GetMask("Obstacle"));
+
+                if (!hit.collider)
+                {
+                    //障害物が間になければターゲットにする
+                    targetFighter = collider.gameObject.transform;
+                }
             }
         }
         if (targetPlace.Count > 0)
@@ -242,20 +249,20 @@ public class FighterAction : MonoBehaviour
             var v = collision.gameObject.transform.position - transform.position;
             if (v.x > 0)
             {
-                transform.position += new Vector3(0.5f, 0, 0);
+                transform.position += new Vector3(0.3f, 0, 0);
             }
             else if (v.x < 0)
             {
-                transform.position -= new Vector3(0.5f, 0, 0);
+                transform.position -= new Vector3(0.3f, 0, 0);
             }
 
             if (v.y > 0)
             {
-                transform.position += new Vector3(0, 0.5f, 0);
+                transform.position += new Vector3(0, 0.3f, 0);
             }
             else if (v.y < 0)
             {
-                transform.position -= new Vector3(0, 0.5f, 0);
+                transform.position -= new Vector3(0, 0.3f, 0);
             }
         }
     }
@@ -354,37 +361,43 @@ public class FighterAction : MonoBehaviour
 
             if (collider != null && collider.tag == EnemyTag)
             {
-                AtkNow = true;
-                anim.SetInteger("Action", AttackAction);
+                Ray2D ray = new Ray2D(this.gameObject.transform.position, collider.gameObject.transform.position - this.gameObject.transform.position);
+                RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Vector2.Distance(this.gameObject.transform.position, collider.gameObject.transform.position), LayerMask.GetMask("Obstacle"));
 
-                EnemyStatus = collider.gameObject.GetComponent<FighterStatus>();
-
-                //方向転換
-                ChangeDirection(EnemyStatus.gameObject.transform.position);
-
-                //攻撃経験値
-                MyStatus.Exp += 2;
-
-                //スタミナ減少
-                if (MyStatus.NowStamina > 0)
+                if (!hit.collider)
                 {
-                    MyStatus.NowStamina -= speed;
-                    power = MyStatus.AtkPower + MyStatus.AtkPowerBuff;
-                }
-                else
-                {
-                    power = (MyStatus.AtkPower + MyStatus.AtkPowerBuff) / 2;
-                }
+                    //障害物が間になければターゲットにする
+                    AtkNow = true;
+                    anim.SetInteger("Action", AttackAction);
 
-                //矢を生成する
-                var arrow = Instantiate(arrowPrefab, transform.position, Quaternion.FromToRotation(Vector3.right, collider.transform.position - transform.position));
-                arrow.targetEnemyStatus = collider.GetComponent<FighterStatus>();
-                arrow.ArcherName = MyStatus.FighterName;
-                arrow.AtkPower = power;
-                arrow.ArrowSpeed = 2;
-                arrow.GetComponent<SpriteRenderer>().color = this.gameObject.GetComponent<SpriteRenderer>().color;
+                    EnemyStatus = collider.gameObject.GetComponent<FighterStatus>();
+
+                    //方向転換
+                    ChangeDirection(EnemyStatus.gameObject.transform.position);
+
+                    //攻撃経験値
+                    MyStatus.Exp += 2;
+
+                    //スタミナ減少
+                    if (MyStatus.NowStamina > 0)
+                    {
+                        MyStatus.NowStamina -= speed;
+                        power = MyStatus.AtkPower + MyStatus.AtkPowerBuff;
+                    }
+                    else
+                    {
+                        power = (MyStatus.AtkPower + MyStatus.AtkPowerBuff) / 2;
+                    }
+
+                    //矢を生成する
+                    var arrow = Instantiate(arrowPrefab, transform.position, Quaternion.FromToRotation(Vector3.right, collider.transform.position - transform.position));
+                    arrow.targetEnemyStatus = collider.GetComponent<FighterStatus>();
+                    arrow.ArcherName = MyStatus.FighterName;
+                    arrow.AtkPower = power;
+                    arrow.ArrowSpeed = 2;
+                    arrow.GetComponent<SpriteRenderer>().color = this.gameObject.GetComponent<SpriteRenderer>().color;
+                }
             }
-
             else
             {
                 AtkNow = false;

@@ -12,7 +12,15 @@ public class SelectUI : MonoBehaviour
     {
         //ユニット編集シーンへ
         Common.SelectUnitNum = EditManager.SelectUnitNum;
-        SceneManager.LoadScene("UnitFormationScene", LoadSceneMode.Additive);
+        StartCoroutine(LoadFormationScene());
+    }
+
+    IEnumerator LoadFormationScene()
+    {
+        var op = SceneManager.LoadSceneAsync("UnitFormationScene", LoadSceneMode.Additive);
+        yield return op;
+
+        //ロード後、アンロード
         SceneManager.UnloadSceneAsync("UnitEditScene");
     }
 
