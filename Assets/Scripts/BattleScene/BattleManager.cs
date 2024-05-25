@@ -47,6 +47,9 @@ public class BattleManager : MonoBehaviour
     //勝ちフラグ
     public bool WinFlg = true;
 
+    //タイムカウント
+    public float BattleTime;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -65,6 +68,11 @@ public class BattleManager : MonoBehaviour
             CreateGaugeAndFlag(obj);
         }
         StartUI.SetActive(true);
+    }
+
+    private void Update()
+    {
+        BattleTime += Time.deltaTime;
     }
 
     private void OnEnable()

@@ -24,6 +24,11 @@ public class ResultUI : MonoBehaviour
     //勝ちか負けか表示するテキスト
     public Text ResultText;
 
+    //時間を表示するテキスト
+    public Text TimeText;
+    //星を表示するテキスト
+    public Text StarText;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +36,8 @@ public class ResultUI : MonoBehaviour
         {
             ResultText.text = "勝利！";
             ResultText.color = Color.red;
+            var timespan = new System.TimeSpan(0, 0, (int)BaManager.BattleTime);
+            TimeText.text = timespan.TotalMinutes.ToString() + "分" + timespan.Seconds.ToString() + "秒";
         }
         else
         {

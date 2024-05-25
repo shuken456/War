@@ -5,9 +5,22 @@ using UnityEngine.UI;
 
 public class FighterStatusInfoUI : MonoBehaviour
 {
+    public UnitFormationManager ufManager;
+
     public void TextWrite(FighterStatus fs)
     {
         this.transform.Find("StatusTexts/Text (Name)").GetComponent<Text>().text = fs.FighterName;
+        this.transform.Find("StatusTexts/Text (Exp)").GetComponent<Text>().text = (100 - fs.Exp).ToString();
+
+        if(fs.UnitNum == 0)
+        {
+            this.transform.Find("StatusTexts/Text (Unit)").GetComponent<Text>().text = "‚È‚µ";
+        }
+        else
+        {
+            this.transform.Find("StatusTexts/Text (Unit)").GetComponent<Text>().text = ufManager.PlayerUnitDataBaseAllList.FindAll(n => n.Num == fs.UnitNum)[0].Name;
+        }
+        
         this.transform.Find("StatusTexts/Text (Type)").GetComponent<Text>().text = Common.FighterType(fs.Type);
         this.transform.Find("StatusTexts/Text (Level)").GetComponent<Text>().text = fs.Level.ToString();
         this.transform.Find("StatusTexts/Text (Hp)").GetComponent<Text>().text = fs.MaxHp.ToString();
@@ -42,6 +55,8 @@ public class FighterStatusInfoUI : MonoBehaviour
         if(FighterName == this.transform.Find("StatusTexts/Text (Name)").GetComponent<Text>().text)
         {
             this.transform.Find("StatusTexts/Text (Name)").GetComponent<Text>().text = string.Empty;
+            this.transform.Find("StatusTexts/Text (Exp)").GetComponent<Text>().text = string.Empty;
+            this.transform.Find("StatusTexts/Text (Unit)").GetComponent<Text>().text = string.Empty;
             this.transform.Find("StatusTexts/Text (Type)").GetComponent<Text>().text = string.Empty;
             this.transform.Find("StatusTexts/Text (Level)").GetComponent<Text>().text = string.Empty;
             this.transform.Find("StatusTexts/Text (Hp)").GetComponent<Text>().text = string.Empty;

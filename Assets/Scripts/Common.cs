@@ -6,7 +6,7 @@ using UnityEditor;
 public static class Common
 {
     //ユニット一覧　で選択中されたユニットナンバー
-    public static int SelectUnitNum = 0;
+    public static int SelectUnitNum = 2;
 
     //ユニット一覧を出撃モードで開くか否か
     public static bool SortieMode = false;
