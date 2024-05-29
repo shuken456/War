@@ -234,7 +234,7 @@ public class MoveUI : MonoBehaviour
                     MoveUIAfter.SetActive(true);
                 }
 
-                //右クリックが長押しでない場合、中継点指定　※カメラ位置変更との差別化
+                //右クリックが長押しでない場合、中継点指定　※カメラ移動処理との差別化
                 if (Input.GetMouseButton(1))
                 {
                     ClickTime += Time.unscaledDeltaTime;

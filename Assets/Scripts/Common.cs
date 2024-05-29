@@ -5,17 +5,20 @@ using UnityEditor;
 
 public static class Common
 {
+    //所持金
+    public static int Money = 10;
+
+    //進行度(ステージクリア度)
+    public static int Progress = 1;
+
     //ユニット一覧　で選択中されたユニットナンバー
-    public static int SelectUnitNum = 2;
+    public static int SelectUnitNum = 0;
 
     //ユニット一覧を出撃モードで開くか否か
     public static bool SortieMode = false;
 
     //バトルシーンか否か
     public static bool BattleMode = false;
-
-    //選択中されたステージナンバー
-    public static int SelectStageNum = 1;
 
     //兵種
     public static string FighterType(int type)
@@ -123,10 +126,33 @@ public static class Common
         }
     }
 
+    //レベルアップ時のパラメータ処理
+    public static Dictionary<string, int> LevelUpParameter(int Type, int UpLevel)
+    {
+        Dictionary<string, int> UpParameter = new Dictionary<string, int>();
+        UpParameter.Add("Hp", 0);
+        UpParameter.Add("Stamina", 0);
+        UpParameter.Add("AtkPower", 0);
+        UpParameter.Add("AtkSpeed", 0);
+        UpParameter.Add("MoveSpeed", 0);
+
+        for (int i = 0; i < UpLevel; i++)
+        {
+            UpParameter["Hp"] += Random.Range(0, 3);
+            UpParameter["Stamina"] += Random.Range(0, 3);
+            UpParameter["AtkPower"] += Random.Range(0, 3);
+            UpParameter["AtkSpeed"] += Random.Range(0, 3);
+            UpParameter["MoveSpeed"] += Random.Range(0, 3);
+        }
+        return UpParameter;
+    }
+
+    //セーブ処理
     public static void Save()
     {
-        EditorUtility.SetDirty(Resources.Load<PlayerFighterDB>("DB/PlayerFighterDB"));
-        EditorUtility.SetDirty(Resources.Load<PlayerUnitDB>("DB/PlayerUnitDB"));
-        AssetDatabase.SaveAssets();
+        //EditorUtility.SetDirty(Resources.Load<PlayerFighterDB>("DB/PlayerFighterDB"));
+        //EditorUtility.SetDirty(Resources.Load<PlayerUnitDB>("DB/PlayerUnitDB"));
+        //EditorUtility.SetDirty(Resources.Load<StageDB>("DB/StageDB"));
+        //AssetDatabase.SaveAssets();
     }
 }

@@ -18,6 +18,7 @@ public class BattleManager : MonoBehaviour
     public UnitCountUI UnitCountUI;
     public GameObject TimeStopText;
     public GameObject ResultUI;
+    public GameObject BattleInfoUI;
 
     //選択中の兵士
     public List<GameObject> SelectFighter = new List<GameObject>();
@@ -47,9 +48,6 @@ public class BattleManager : MonoBehaviour
     //勝ちフラグ
     public bool WinFlg = true;
 
-    //タイムカウント
-    public float BattleTime;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -60,19 +58,15 @@ public class BattleManager : MonoBehaviour
         PlayerUnitDataBaseAllList = Resources.Load<PlayerUnitDB>("DB/PlayerUnitDB").PlayerUnitDBList.OrderBy((n) => n.Num).ToList(); //ユニット番号順に並び替え
         PlayerFighterDataBaseAllList = Resources.Load<PlayerFighterDB>("DB/PlayerFighterDB").PlayerFighterDBList
             .OrderBy((n) => n.UnitNum).ThenByDescending((n) => n.UnitLeader).ToList(); //部隊番号順、部隊長が上に来るように並び替え
-
+        
         //敵を生成
-        foreach (Transform Enemy in StageEnemy[Common.SelectStageNum - 1].transform)
+        foreach (Transform Enemy in StageEnemy[Common.Progress - 1].transform)
         {
             var obj = Instantiate(Enemy.gameObject);
             CreateGaugeAndFlag(obj);
         }
+        BattleInfoUI.SetActive(true);
         StartUI.SetActive(true);
-    }
-
-    private void Update()
-    {
-        BattleTime += Time.deltaTime;
     }
 
     private void OnEnable()

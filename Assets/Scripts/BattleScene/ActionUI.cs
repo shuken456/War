@@ -187,7 +187,7 @@ public class ActionUI : MonoBehaviour
         }
 
         //出撃可能部隊数が0なら部隊出撃ボタンを押せないように
-        if (BaManager.UnitCountUI.Count == 0)
+        if (BaManager.UnitCountUI.PossibleSortieCountNow == 0)
         {
             SortieButton.interactable = false;
         }

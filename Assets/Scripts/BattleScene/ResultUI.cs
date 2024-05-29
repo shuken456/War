@@ -23,11 +23,13 @@ public class ResultUI : MonoBehaviour
 
     //勝ちか負けか表示するテキスト
     public Text ResultText;
+    //獲得資金を表示するテキスト
+    public Text MoneyText;
 
-    //時間を表示するテキスト
-    public Text TimeText;
-    //星を表示するテキスト
-    public Text StarText;
+    //各ボタン
+    public GameObject OkButton;
+    public GameObject RevengeButton;
+    public GameObject SettingButton;
 
     // Start is called before the first frame update
     void Start()
@@ -36,13 +38,22 @@ public class ResultUI : MonoBehaviour
         {
             ResultText.text = "勝利！";
             ResultText.color = Color.red;
-            var timespan = new System.TimeSpan(0, 0, (int)BaManager.BattleTime);
-            TimeText.text = timespan.TotalMinutes.ToString() + "分" + timespan.Seconds.ToString() + "秒";
+            MoneyText.text = (Common.Progress).ToString() + "両";
+
+            OkButton.SetActive(true);
+
+            //進行度更新
+            Common.Progress += 1;
+
+            
         }
         else
         {
             ResultText.text = "敗北…";
             ResultText.color = Color.blue;
+
+            RevengeButton.SetActive(true);
+            SettingButton.SetActive(true);
         }
 
         //経験値リストを作成
@@ -96,7 +107,7 @@ public class ResultUI : MonoBehaviour
             button.transform.Find("FighterResultInfo/StatusTexts/Text (Name)").GetComponent<Text>().text = pf.Name;
             
             //レベルアップ判定
-            int AddExp = Mathf.CeilToInt(BaManager.ExpDic[pf.Name] * ((float)Common.SelectStageNum / (float)pf.Level)); //ステージと現在のレベルによって経験値に補正をかける
+            int AddExp = Mathf.CeilToInt(BaManager.ExpDic[pf.Name] * ((float)Common.Progress / (float)pf.Level)); //ステージと現在のレベルによって経験値に補正をかける
             int SumExp = AddExp + pf.EXP;
             pf.EXP = SumExp % 100;
             button.transform.Find("FighterResultInfo/StatusTexts/Text (AddExp)").GetComponent<Text>().text = "+" + AddExp.ToString();
@@ -108,7 +119,7 @@ public class ResultUI : MonoBehaviour
                 //上がるレベル数
                 int UpLevel = Mathf.FloorToInt(SumExp / 100);
                 //上がるパラメータリスト
-                Dictionary<string, int> UpParameter = LevelUpParameter(pf.Type,UpLevel);
+                Dictionary<string, int> UpParameter = Common.LevelUpParameter(pf.Type,UpLevel);
 
                 button.transform.Find("FighterResultInfo/StatusTexts/Text (LevelUp)").gameObject.SetActive(true);
                 button.transform.Find("FighterResultInfo/StatusTexts/Text (Level)").GetComponent<Text>().text = pf.Level.ToString() + "→" + (pf.Level + UpLevel).ToString();
@@ -139,24 +150,19 @@ public class ResultUI : MonoBehaviour
         Common.Save();
     }
 
-    //レベルアップ時のパラメータ処理
-    private Dictionary<string,int> LevelUpParameter(int Type,int UpLevel)
+    //OKボタンクリックで準備画面へ
+    public void OkButtonClick()
     {
-        Dictionary<string, int> UpParameter = new Dictionary<string, int>();
-        UpParameter.Add("Hp", 0);
-        UpParameter.Add("Stamina", 0);
-        UpParameter.Add("AtkPower", 0);
-        UpParameter.Add("AtkSpeed", 0);
-        UpParameter.Add("MoveSpeed", 0);
+        Common.BattleMode = false;
+        Common.SortieMode = false;
+        SceneManager.LoadScene("SettingScene");
+    }
 
-        for(int i = 0; i < UpLevel; i++)
-        {
-            UpParameter["Hp"] += Random.Range(0, 3);
-            UpParameter["Stamina"] += Random.Range(0, 3);
-            UpParameter["AtkPower"] += Random.Range(0, 3);
-            UpParameter["AtkSpeed"] += Random.Range(0, 3);
-            UpParameter["MoveSpeed"] += Random.Range(0, 3);
-        }
-        return UpParameter;
+    //再挑戦ボタンクリックで戦闘シーン再読み込み
+    public void RevengeButtonClick()
+    {
+        Common.BattleMode = false;
+        Common.SortieMode = false;
+        SceneManager.LoadScene("BattleScene");
     }
 }

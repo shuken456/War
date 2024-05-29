@@ -5,21 +5,24 @@ using UnityEngine.UI;
 
 public class UnitCountUI : MonoBehaviour
 {
+    public BattleManager BaManager;
+
     public Text CountText;
 
-    //ステージごとの初期出撃可能部隊数
-    public int[] CountList = { 2, 2, 3, 4 };
-    public int Count = 1;
+    //ステージごとの出撃可能部隊数
+    public int[] PossibleSortieCountList = { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
+    //現在の出撃可能部隊数
+    public int PossibleSortieCountNow = 99;
 
     // Start is called before the first frame update
     void Start()
     {
-        Count = CountList[Common.SelectStageNum - 1];
+        PossibleSortieCountNow = PossibleSortieCountList[Common.Progress - 1];
         TextDraw();
     }
 
     public void TextDraw()
     {
-        CountText.text = Count.ToString();
+        CountText.text = PossibleSortieCountNow.ToString();
     }
 }

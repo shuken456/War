@@ -191,7 +191,7 @@ public class StartUI : MonoBehaviour
         }
 
         //出撃可能部隊数が0なら部隊出撃ボタンを押せないように
-        if(BaManager.UnitCountUI.Count == 0)
+        if(BaManager.UnitCountUI.PossibleSortieCountNow == 0)
         {
             SortieButton.interactable = false;
         }
@@ -201,11 +201,7 @@ public class StartUI : MonoBehaviour
         }
 
         //出撃してたら戦開始ボタンを押せるように
-        if(BaManager.UnitCountUI.Count == BaManager.UnitCountUI.CountList[Common.SelectStageNum - 1])
-        {
-            GoButton.interactable = false;
-        }
-        else
+        if(BaManager.UnitCountUI.PossibleSortieCountNow < BaManager.UnitCountUI.PossibleSortieCountList[Common.Progress - 1])
         {
             GoButton.interactable = true;
         }

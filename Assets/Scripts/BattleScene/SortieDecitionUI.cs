@@ -156,7 +156,7 @@ public class SortieDecitionUI : MonoBehaviour
         //部隊の出撃フラグをtrueに
         BaManager.PlayerUnitDataBaseAllList[Common.SelectUnitNum - 1].SoriteFlg = true;
         //出撃可能部隊数を-1
-        BaManager.UnitCountUI.Count -= 1;
+        BaManager.UnitCountUI.PossibleSortieCountNow -= 1;
         BaManager.UnitCountUI.TextDraw();
         
         this.gameObject.SetActive(false);

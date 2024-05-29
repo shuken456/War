@@ -150,7 +150,7 @@ public class FighterAction : MonoBehaviour
         if (this.gameObject.tag == "EnemyFighter" && targetFighter == null)
         {
             //“G‚ð’T‚·
-            var collider = Physics2D.OverlapCircle(transform.position, 10f, LayerMask.GetMask(EnemyTag));
+            var collider = Physics2D.OverlapCircle(transform.position, 5f, LayerMask.GetMask(EnemyTag));
             if (collider != null)
             {
                 Ray2D ray = new Ray2D(this.gameObject.transform.position, collider.gameObject.transform.position - this.gameObject.transform.position);

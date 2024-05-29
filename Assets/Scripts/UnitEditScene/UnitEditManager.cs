@@ -223,7 +223,7 @@ public class UnitEditManager : MonoBehaviour
         }
         else
         {
-
+            SceneManager.LoadScene("SettingScene");
         }
     }
 }
