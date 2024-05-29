@@ -7,12 +7,6 @@ public class StrategyUI : MonoBehaviour
 {
     public UnitEditManager EditManager;
 
-    //DB保存　開発環境用
-    private void OnDisable()
-    {
-        Common.Save();
-    }
-
     //攻撃重視ボタン
     public void StrategyAtk()
     {

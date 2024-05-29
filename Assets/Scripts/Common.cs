@@ -150,9 +150,8 @@ public static class Common
     //ÉZÅ[Éuèàóù
     public static void Save()
     {
-        //EditorUtility.SetDirty(Resources.Load<PlayerFighterDB>("DB/PlayerFighterDB"));
-        //EditorUtility.SetDirty(Resources.Load<PlayerUnitDB>("DB/PlayerUnitDB"));
-        //EditorUtility.SetDirty(Resources.Load<StageDB>("DB/StageDB"));
-        //AssetDatabase.SaveAssets();
+        EditorUtility.SetDirty(Resources.Load<PlayerFighterDB>("DB/PlayerFighterDB"));
+        EditorUtility.SetDirty(Resources.Load<PlayerUnitDB>("DB/PlayerUnitDB"));
+        AssetDatabase.SaveAssets();
     }
 }

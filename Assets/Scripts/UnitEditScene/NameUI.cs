@@ -22,10 +22,8 @@ public class NameUI : MonoBehaviour
         EditManager.LockButton.GetComponent<Button>().interactable = false;
     }
 
-    //DB•Û‘¶@ŠJ”­ŠÂ‹«—p
     private void OnDisable()
     {
-        Common.Save();
         EditManager.LockButton.GetComponent<Button>().interactable = true;
     }
 

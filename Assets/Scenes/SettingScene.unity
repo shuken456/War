@@ -2132,7 +2132,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &152547813
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2761,7 +2761,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &201792958
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2908,8 +2908,6 @@ MonoBehaviour:
   WarningUI: {fileID: 1429762790}
   MoUI: {fileID: 662619989}
   FighterImage: {fileID: 762736806}
-  EmptyInfantry: {fileID: 0}
-  EmptyArcher: {fileID: 0}
   PlayerFighterDataBaseAllList: []
   ParameterText: {fileID: 879971848}
   InfoText: {fileID: 1091536499}
@@ -6412,9 +6410,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnitFormationManager, Assembly-CSharp
-        m_MethodName: SaveButtonClick
+      - m_Target: {fileID: 232593011}
+        m_TargetAssemblyTypeName: EmploymentAfterUI, Assembly-CSharp
+        m_MethodName: NameButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10110,9 +10108,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SaveUI, Assembly-CSharp
-        m_MethodName: OK
+      - m_Target: {fileID: 232593011}
+        m_TargetAssemblyTypeName: EmploymentAfterUI, Assembly-CSharp
+        m_MethodName: WarningOkButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11663,8 +11661,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: NameUI, Assembly-CSharp
+      - m_Target: {fileID: 232593011}
+        m_TargetAssemblyTypeName: EmploymentAfterUI, Assembly-CSharp
         m_MethodName: DecisionName
         m_Mode: 1
         m_Arguments:
@@ -13206,9 +13204,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnitFormationManager, Assembly-CSharp
-        m_MethodName: SaveButtonClick
+      - m_Target: {fileID: 232593011}
+        m_TargetAssemblyTypeName: EmploymentAfterUI, Assembly-CSharp
+        m_MethodName: EndButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

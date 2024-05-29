@@ -32,7 +32,6 @@ public class LockUI : MonoBehaviour
         NewPlayerUnit.Strategy = 1;
 
         Resources.Load<PlayerUnitDB>("DB/PlayerUnitDB").PlayerUnitDBList.Add(NewPlayerUnit);
-        Common.Save();
         EditManager.DisplayScreenStart();
 
         if (NewPlayerUnit.Num < 10)

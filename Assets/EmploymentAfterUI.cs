@@ -32,21 +32,21 @@ public class EmploymentAfterUI : MonoBehaviour
     void Start()
     {
         //ï∫émÇÃäGÇê›íË
-        //switch (EmUI.SelectType)
-        //{
-        //    case 1:
-        //        FighterImage.overrideSprite = EmUI.InfantryPage.transform.Find("FighterBackImage/FighterImage").GetComponent<Image>().sprite;
-        //        break;
-        //    case 2:
-        //        FighterImage.overrideSprite = EmUI.ArcherPage.transform.Find("FighterBackImage/FighterImage").GetComponent<Image>().sprite;
-        //        break;
-        //    case 3:
-        //        FighterImage.overrideSprite = EmUI.ShielderPage.transform.Find("FighterBackImage/FighterImage").GetComponent<Image>().sprite;
-        //        break;
-        //    case 4:
-        //        FighterImage.overrideSprite = EmUI.CavalryPage.transform.Find("FighterBackImage/FighterImage").GetComponent<Image>().sprite;
-        //        break;
-        //}
+        switch (EmUI.SelectType)
+        {
+            case 1:
+                FighterImage.overrideSprite = EmUI.InfantryPage.transform.Find("FighterBackImage/FighterImage").GetComponent<Image>().sprite;
+                break;
+            case 2:
+                FighterImage.overrideSprite = EmUI.ArcherPage.transform.Find("FighterBackImage/FighterImage").GetComponent<Image>().sprite;
+                break;
+            case 3:
+                FighterImage.overrideSprite = EmUI.ShielderPage.transform.Find("FighterBackImage/FighterImage").GetComponent<Image>().sprite;
+                break;
+            case 4:
+                FighterImage.overrideSprite = EmUI.CavalryPage.transform.Find("FighterBackImage/FighterImage").GetComponent<Image>().sprite;
+                break;
+        }
 
         //DBéÊìæ
         PlayerFighterDataBaseAllList = Resources.Load<PlayerFighterDB>("DB/PlayerFighterDB").PlayerFighterDBList;
@@ -69,7 +69,7 @@ public class EmploymentAfterUI : MonoBehaviour
         NewFighter.Name = Common.FighterType(type) + (PlayerFighterDataBaseAllList.FindAll((n) => n.Type == type).Count + 1).ToString();
 
         //ñºëOÇ™îÌÇÁÇ»Ç¢ÇÊÇ§Ç…Ç∑ÇÈ
-        for (int i = 1; PlayerFighterDataBaseAllList.FindAll((n) => n.Name == NewFighter.Name).Count + 1 > 0; i++)
+        for (int i = 1; PlayerFighterDataBaseAllList.FindAll((n) => n.Name == NewFighter.Name).Count > 0; i++)
         {
             NewFighter.Name = Common.FighterType(type) + (PlayerFighterDataBaseAllList.FindAll((n) => n.Type == type).Count + 1 + i).ToString();
         }

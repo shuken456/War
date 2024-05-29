@@ -146,8 +146,6 @@ public class ResultUI : MonoBehaviour
                 button.transform.Find("FighterResultInfo/StatusTexts/Text (MoveSpeed)").GetComponent<Text>().text = pf.MoveSpeed.ToString();
             }
         }
-
-        Common.Save();
     }
 
     //OKボタンクリックで準備画面へ

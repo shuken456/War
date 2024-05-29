@@ -10,13 +10,6 @@ public class ColorUI : MonoBehaviour
     [SerializeField] private EventSystem eventSystem;
     public UnitEditManager EditManager;
 
-
-    //DB保存　開発環境用
-    private void OnDisable()
-    {
-        Common.Save();
-    }
-
     //押下したボタンの色にユニットカラーを変更
     public void ColorButton()
     {
