@@ -6161,6 +6161,8 @@ MonoBehaviour:
   CanvasWorldSpace: {fileID: 1365754590}
   StartFlg: 0
   WinFlg: 1
+  PlayerFighterTable: {fileID: 11400000, guid: 04adc4bc22576c340a7b16d074cd583c, type: 2}
+  PlayerUnitTable: {fileID: 11400000, guid: 5044ab373f28ff149be339b6da253b46, type: 2}
 --- !u!1 &1061987870
 GameObject:
   m_ObjectHideFlags: 0

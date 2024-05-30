@@ -60,9 +60,19 @@ public class UnitFormationManager : MonoBehaviour
     //部隊方針保持
     private int UnitStrategy = 0;
 
+    //DB
+    [SerializeField]
+    PlayerFighterDB PlayerFighterTable;
+    [SerializeField]
+    PlayerUnitDB PlayerUnitTable;
+
     // Start is called before the first frame update
     void Start()
     {
+        //データロード
+        PlayerFighterTable.Load();
+        PlayerUnitTable.Load();
+
         //DBデータ取得
         PlayerUnitDataBaseAllList = Resources.Load<PlayerUnitDB>("DB/PlayerUnitDB").PlayerUnitDBList.OrderBy((n) => n.Num).ToList(); //ユニット番号順に並び替え
         PlayerFighterDataBaseAllList = Resources.Load<PlayerFighterDB>("DB/PlayerFighterDB").PlayerFighterDBList
@@ -507,6 +517,11 @@ public class UnitFormationManager : MonoBehaviour
                 PlayerFighterDataBaseAllList.Find(n => n.Name == pf.Name).UnitNum = 0;
             }
         }
+
+        //データセーブ
+        PlayerFighterTable.Save();
+        PlayerUnitTable.Save();
+
         SaveUI.SetActive(true);
     }
 }

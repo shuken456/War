@@ -14,11 +14,25 @@ public class SettingManager : MonoBehaviour
     public GameObject SaveQuestionUI;
     public GameObject SaveAfterUI;
 
-    
+
+    //DB
+    [SerializeField]
+    PlayerFighterDB PlayerFighterTable;
+    [SerializeField]
+    PlayerUnitDB PlayerUnitTable;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        //データロード
+        PlayerFighterTable.Load();
+        PlayerUnitTable.Load();
+    }
+
+    private void OnDisable()
+    {
+        //データセーブ
+        PlayerFighterTable.Save();
+        PlayerUnitTable.Save();
     }
 }

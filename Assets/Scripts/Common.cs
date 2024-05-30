@@ -138,20 +138,12 @@ public static class Common
 
         for (int i = 0; i < UpLevel; i++)
         {
-            UpParameter["Hp"] += Random.Range(0, 3);
+            UpParameter["Hp"] += Random.Range(3, 6);
             UpParameter["Stamina"] += Random.Range(0, 3);
             UpParameter["AtkPower"] += Random.Range(0, 3);
             UpParameter["AtkSpeed"] += Random.Range(0, 3);
             UpParameter["MoveSpeed"] += Random.Range(0, 3);
         }
         return UpParameter;
-    }
-
-    //ƒZ[ƒuˆ—
-    public static void Save()
-    {
-        EditorUtility.SetDirty(Resources.Load<PlayerFighterDB>("DB/PlayerFighterDB"));
-        EditorUtility.SetDirty(Resources.Load<PlayerUnitDB>("DB/PlayerUnitDB"));
-        AssetDatabase.SaveAssets();
     }
 }

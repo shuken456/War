@@ -13,8 +13,7 @@ public class EmployUI : MonoBehaviour
     public Text InfoText;
     public Text MoneyText;
 
-    // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
         InfoText.text = Common.FighterType(EmUI.SelectType) + "を雇います。\nよろしいですか？";
         MoneyText.text = "（必要資金:"+ EmUI.FighterMoney(EmUI.SelectType)+"両）";

@@ -25,11 +25,10 @@ public class EmploymentAfterUI : MonoBehaviour
     public Text ParameterText;
     public Text InfoText;
 
-    //名前変更
+    //名前入力フィールド
     public InputField NameField;
 
-    // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
         //兵士の絵を設定
         switch (EmUI.SelectType)
@@ -122,8 +121,6 @@ public class EmploymentAfterUI : MonoBehaviour
         MoUI.TextWrite();
 
         this.gameObject.SetActive(false);
-
-        Common.Save();
     }
 
     public void NameButtonClick()
@@ -137,7 +134,11 @@ public class EmploymentAfterUI : MonoBehaviour
     //決定ボタン押下で兵士名変更
     public void DecisionName()
     {
-        if(PlayerFighterDataBaseAllList.FindAll((n) => n.Name == NameField.text).Count == 0)
+        if(PlayerFighterDataBaseAllList.FindAll((n) => n.Name == NameField.text).Count > 0)
+        {
+            WarningUI.SetActive(true);
+        }
+        else
         {
             Fighter.Name = NameField.text;
             NameUI.SetActive(false);
@@ -145,10 +146,6 @@ public class EmploymentAfterUI : MonoBehaviour
             ParameterText.text = Fighter.Name + "\n" + Fighter.Level.ToString() + "\n" + Fighter.Hp.ToString() + "\n" + Fighter.Stamina.ToString() + "\n" + Fighter.AtkPower.ToString()
                 + "\n" + Fighter.AtkSpeed.ToString() + "\n" + Fighter.MoveSpeed.ToString();
             InfoText.text = Fighter.Name + "を雇った！";
-        }
-        else
-        {
-            WarningUI.SetActive(true);
         }
     }
     public void WarningOkButtonClick()

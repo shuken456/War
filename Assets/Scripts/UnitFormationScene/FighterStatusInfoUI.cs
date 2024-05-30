@@ -2,10 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 
 public class FighterStatusInfoUI : MonoBehaviour
 {
-    public UnitFormationManager ufManager;
+    //ユニットDB
+    private List<PlayerUnit> PlayerUnitDataBaseAllList;
+
+    private void OnEnable()
+    {
+        //DBデータ取得
+        PlayerUnitDataBaseAllList = Resources.Load<PlayerUnitDB>("DB/PlayerUnitDB").PlayerUnitDBList.OrderBy((n) => n.Num).ToList(); //ユニット番号順に並び替え
+    }
 
     public void TextWrite(FighterStatus fs)
     {
@@ -18,7 +26,7 @@ public class FighterStatusInfoUI : MonoBehaviour
         }
         else
         {
-            this.transform.Find("StatusTexts/Text (Unit)").GetComponent<Text>().text = ufManager.PlayerUnitDataBaseAllList.FindAll(n => n.Num == fs.UnitNum)[0].Name;
+            this.transform.Find("StatusTexts/Text (Unit)").GetComponent<Text>().text = PlayerUnitDataBaseAllList.FindAll(n => n.Num == fs.UnitNum)[0].Name;
         }
         
         this.transform.Find("StatusTexts/Text (Type)").GetComponent<Text>().text = Common.FighterType(fs.Type);

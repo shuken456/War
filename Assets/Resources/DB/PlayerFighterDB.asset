@@ -109,27 +109,3 @@ MonoBehaviour:
     UnitNum: 1
     Position: {x: -2.068182, y: 0.83636385, z: 0}
     UnitLeader: 1
-  - Name: "\u5F13\u30DE\u30F32"
-    Type: 2
-    Level: 33
-    Hp: 22
-    Stamina: 22
-    AtkPower: 1
-    MoveSpeed: 22
-    AtkSpeed: 22
-    EXP: 6
-    UnitNum: 1
-    Position: {x: -0.795455, y: -0.557576, z: 0}
-    UnitLeader: 0
-  - Name: "\u5F13\u30DE\u30F33"
-    Type: 2
-    Level: 55
-    Hp: 22
-    Stamina: 22
-    AtkPower: 1
-    MoveSpeed: 22
-    AtkSpeed: 22
-    EXP: 4
-    UnitNum: 1
-    Position: {x: 1.022727, y: 0.84646446, z: 0}
-    UnitLeader: 0

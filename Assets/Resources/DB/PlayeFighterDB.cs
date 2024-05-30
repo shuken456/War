@@ -6,6 +6,34 @@ using UnityEngine;
 public class PlayerFighterDB : ScriptableObject
 {
     public List<PlayerFighter> PlayerFighterDBList;
+
+    public void Save()
+    {
+        var data = JsonUtility.ToJson(this, true);
+
+        PlayerPrefs.SetString("PlayerFighterData", data);
+    }
+
+    public void Load()
+    {
+        var data = PlayerPrefs.GetString("PlayerFighterData");
+
+        JsonUtility.FromJsonOverwrite(data, this);
+    }
+
+    public void InitialSave()
+    {
+        var data = JsonUtility.ToJson(this, true);
+
+        PlayerPrefs.SetString("InitialPlayerFighterData", data);
+    }
+
+    public void InitialLoad()
+    {
+        var data = PlayerPrefs.GetString("InitialPlayerFighterData");
+
+        JsonUtility.FromJsonOverwrite(data, this);
+    }
 }
 
 [System.Serializable]

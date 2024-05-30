@@ -48,9 +48,19 @@ public class BattleManager : MonoBehaviour
     //勝ちフラグ
     public bool WinFlg = true;
 
+    //DB
+    [SerializeField]
+    PlayerFighterDB PlayerFighterTable;
+    [SerializeField]
+    PlayerUnitDB PlayerUnitTable;
+
     // Start is called before the first frame update
     void Start()
     {
+        //データロード
+        PlayerFighterTable.Load();
+        PlayerUnitTable.Load();
+
         Time.timeScale = 0;
         Common.BattleMode = true;
 
@@ -78,6 +88,13 @@ public class BattleManager : MonoBehaviour
             ActionUI.SetActive(false);
             SortieUI.SetActive(true);
         }
+    }
+
+    private void OnDisable()
+    {
+        //データセーブ
+        PlayerFighterTable.Save();
+        PlayerUnitTable.Save();
     }
 
     //体力、スタミナゲージ、リーダーマーク作成

@@ -43,11 +43,28 @@ public class UnitEditManager : MonoBehaviour
     //選択中のユニットナンバー
     public int SelectUnitNum = 1;
 
+    //DB
+    [SerializeField]
+    PlayerFighterDB PlayerFighterTable;
+    [SerializeField]
+    PlayerUnitDB PlayerUnitTable;
+
     // Start is called before the first frame update
     void Start()
     {
+        //データロード
+        PlayerFighterTable.Load();
+        PlayerUnitTable.Load();
+
         //画面表示処理
         DisplayScreenStart();
+    }
+
+    private void OnDisable()
+    {
+        //データセーブ
+        PlayerFighterTable.Save();
+        PlayerUnitTable.Save();
     }
 
     // Update is called once per frame
