@@ -11,8 +11,8 @@ public class SettingManager : MonoBehaviour
     public GameObject SortieCheckUIUI;
     public GameObject EmploymentUI;
     public GameObject FighterEditUI;
-    public GameObject SaveQuestionUI;
-    public GameObject SaveAfterUI;
+    public GameObject TitleUI;
+    public MoneyUI MoUI;
 
 
     //DB

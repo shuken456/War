@@ -23,6 +23,9 @@ public class ActionUI : MonoBehaviour
     //到着点
     public GameObject MovePoint;
 
+    //兵士一覧
+    public GameObject SortieFighterView;
+
     //一回のクリック中にその兵士が選択されたか否かを管理
     private List<GameObject> OneClickSelectFighter = new List<GameObject>();
     private List<GameObject> OneClickNoSelectFighter = new List<GameObject>();
@@ -238,5 +241,11 @@ public class ActionUI : MonoBehaviour
 
         Common.SortieMode = true;
         SceneManager.LoadSceneAsync ("UnitEditScene",LoadSceneMode.Additive);
+    }
+
+    //兵士一覧
+    public void Search()
+    {
+        SortieFighterView.SetActive(true);
     }
 }

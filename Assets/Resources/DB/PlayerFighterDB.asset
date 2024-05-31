@@ -15,97 +15,25 @@ MonoBehaviour:
   PlayerFighterDBList:
   - Name: "\u6B69\u51751"
     Type: 1
-    Level: 5
-    Hp: 12
+    Level: 1
+    Hp: 10
     Stamina: 13
-    AtkPower: 7
-    MoveSpeed: 14
-    AtkSpeed: 13
-    EXP: 14
-    UnitNum: 2
-    Position: {x: 1.3964646, y: -0.3858586, z: 0}
-    UnitLeader: 0
-  - Name: "\u6B69\u51752"
-    Type: 1
-    Level: 5
-    Hp: 13
-    Stamina: 11
-    AtkPower: 8
-    MoveSpeed: 13
-    AtkSpeed: 17
-    EXP: 37
-    UnitNum: 2
-    Position: {x: -0.87626266, y: 0.97777766, z: 0}
-    UnitLeader: 1
-  - Name: "\u6B69\u51753"
-    Type: 1
-    Level: 5
-    Hp: 15
-    Stamina: 16
-    AtkPower: 8
-    MoveSpeed: 16
-    AtkSpeed: 16
-    EXP: 80
-    UnitNum: 2
-    Position: {x: -2.1215973, y: 0.2264499, z: 0}
-    UnitLeader: 0
-  - Name: "\u5F13\u51751"
-    Type: 2
-    Level: 4
-    Hp: 12
-    Stamina: 12
-    AtkPower: 6
-    MoveSpeed: 14
-    AtkSpeed: 13
-    EXP: 36
-    UnitNum: 2
-    Position: {x: 1.3156564, y: 0.90707046, z: 0}
-    UnitLeader: 0
-  - Name: "\u5F13\u51752"
-    Type: 2
-    Level: 26
-    Hp: 15
-    Stamina: 16
-    AtkPower: 4
-    MoveSpeed: 17
-    AtkSpeed: 15
-    EXP: 49
-    UnitNum: 2
-    Position: {x: 2.4671717, y: 0.30100983, z: 0}
-    UnitLeader: 0
-  - Name: "\u6B69\u51754"
-    Type: 1
-    Level: 6
-    Hp: 17
-    Stamina: 15
-    AtkPower: 10
-    MoveSpeed: 15
-    AtkSpeed: 17
-    EXP: 26
-    UnitNum: 2
-    Position: {x: -0.5093541, y: -1.0323231, z: 0}
-    UnitLeader: 0
-  - Name: "\u6B69\u51755"
-    Type: 1
-    Level: 7
-    Hp: 18
-    Stamina: 6
-    AtkPower: 12
-    MoveSpeed: 15
-    AtkSpeed: 17
-    EXP: 26
-    UnitNum: 2
-    Position: {x: 0.24494934, y: 0.088888824, z: 0}
-    UnitLeader: 0
-  - Name: "\u5F13\u30DE\u30F3"
-    Type: 2
-    Level: 22
-    Hp: 22
-    Stamina: 22
-    AtkPower: 1
-    MoveSpeed: 22
-    AtkSpeed: 22
+    AtkPower: 2
+    MoveSpeed: 10
+    AtkSpeed: 10
     EXP: 10
     UnitNum: 1
-    Position: {x: -2.068182, y: 0.83636385, z: 0}
+    Position: {x: 1.3964646, y: -0.3858586, z: 0}
     UnitLeader: 1
+  - Name: "\u5F13\u51751"
+    Type: 2
+    Level: 1
+    Hp: 7
+    Stamina: 10
+    AtkPower: 2
+    MoveSpeed: 10
+    AtkSpeed: 7
+    EXP: 10
+    UnitNum: 1
+    Position: {x: -1.396465, y: -0.3858586, z: 0}
+    UnitLeader: 0

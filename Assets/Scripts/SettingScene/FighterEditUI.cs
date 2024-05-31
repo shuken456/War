@@ -14,6 +14,7 @@ public class FighterEditUI : MonoBehaviour
     public GameObject NameUI;
     public GameObject NameWarningUI;
     public GameObject LevelUpUI;
+    public GameObject DismissalUI;
 
     //名前入力フィールド
     public InputField NameField;
@@ -84,7 +85,7 @@ public class FighterEditUI : MonoBehaviour
     }
 
     //兵士ビュー表示
-    private void FighterViewDisplay()
+    public void FighterViewDisplay()
     {
         //兵士ビューリセット
         foreach (Transform f in FighterView.transform)
@@ -94,10 +95,14 @@ public class FighterEditUI : MonoBehaviour
 
         CountText.text = PlayerFighterDataBaseAllList.Count.ToString() + "/120";
 
-        //スクロールバーが必要な場合、ボタンの位置調整
+        //スクロールバーが必要か否かで、ボタンの位置調整
         if (PlayerFighterDataBaseAllList.Count >= 10)
         {
             FighterView.GetComponent<VerticalLayoutGroup>().padding.right = 20;
+        }
+        else
+        {
+            FighterView.GetComponent<VerticalLayoutGroup>().padding.right = 40;
         }
 
         //兵士の数分、ボタンを作成
@@ -124,7 +129,7 @@ public class FighterEditUI : MonoBehaviour
             button.GetComponent<Button>().onClick.AddListener(FighterButtonClick);
 
             //選択されている兵士のボタンは押せないようにする
-            if(SelectFighterStatus && Fighter.Name == SelectFighterStatus.FighterName)
+            if(Fighter.Name == FighterStatusInfo.transform.Find("StatusTexts/Text (Name)").GetComponent<Text>().text)
             {
                 button.GetComponent<Button>().interactable = false;
                 SelectFighterButton = button;
@@ -158,13 +163,20 @@ public class FighterEditUI : MonoBehaviour
 
         //ステータスUI表示
         FighterStatusInfo.TextWrite(SelectFighterStatus);
+        //兵士の色
+        Color UnitC = Color.white;
+        if(SelectFighterStatus.UnitNum != 0)
+        {
+            UnitC = PlayerUnitDataBaseAllList[SelectFighterStatus.UnitNum - 1].UnitColor;
+        }
+
         switch (SelectFighterStatus.Type)
         {
             case 1:
-                FighterStatusInfo.ImageWrite(InfantryImage, PlayerUnitDataBaseAllList[SelectFighterStatus.UnitNum - 1].UnitColor);
+                FighterStatusInfo.ImageWrite(InfantryImage, UnitC);
                 break;
             case 2:
-                FighterStatusInfo.ImageWrite(ArcherImage, PlayerUnitDataBaseAllList[SelectFighterStatus.UnitNum - 1].UnitColor);
+                FighterStatusInfo.ImageWrite(ArcherImage, UnitC);
                 break;
             case 3:
                 break;
@@ -226,8 +238,8 @@ public class FighterEditUI : MonoBehaviour
             PlayerFighterDataBaseAllList.Find((n) => n.Name == SelectFighterStatus.FighterName).Name = NameField.text;
             SelectFighterStatus.FighterName = NameField.text;
             NameUI.SetActive(false);
-            FighterViewDisplay();
             FighterStatusInfo.TextWrite(SelectFighterStatus);
+            FighterViewDisplay();
         }
     }
 
@@ -235,6 +247,12 @@ public class FighterEditUI : MonoBehaviour
     public void LevelUpButtonClick()
     {
         LevelUpUI.SetActive(true);
+    }
+
+    //解雇ボタンクリック
+    public void DismissalButtonClick()
+    {
+        DismissalUI.SetActive(true);
     }
 
     //戻るボタンクリック

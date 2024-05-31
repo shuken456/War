@@ -8,7 +8,7 @@ public static class Common
     //所持金
     public static int Money = 10;
 
-    //進行度(ステージクリア度)
+    //進行度(ステージクリア度 次に挑むステージ数)
     public static int Progress = 1;
 
     //ユニット一覧　で選択中されたユニットナンバー
@@ -127,7 +127,7 @@ public static class Common
     }
 
     //レベルアップ時のパラメータ処理
-    public static Dictionary<string, int> LevelUpParameter(int Type, int UpLevel)
+    public static Dictionary<string, int> LevelUpParameter(int type, int UpLevel)
     {
         Dictionary<string, int> UpParameter = new Dictionary<string, int>();
         UpParameter.Add("Hp", 0);
@@ -136,14 +136,72 @@ public static class Common
         UpParameter.Add("AtkSpeed", 0);
         UpParameter.Add("MoveSpeed", 0);
 
-        for (int i = 0; i < UpLevel; i++)
+        switch (type)
         {
-            UpParameter["Hp"] += Random.Range(3, 6);
-            UpParameter["Stamina"] += Random.Range(0, 3);
-            UpParameter["AtkPower"] += Random.Range(0, 3);
-            UpParameter["AtkSpeed"] += Random.Range(0, 3);
-            UpParameter["MoveSpeed"] += Random.Range(0, 3);
+            case 1:
+                for (int i = 0; i < UpLevel; i++)
+                {
+                    UpParameter["Hp"] += Random.Range(3, 6);
+                    UpParameter["Stamina"] += Random.Range(2, 5);
+                    UpParameter["AtkPower"] += Random.Range(0, 3);
+                    UpParameter["AtkSpeed"] += Random.Range(0, 3);
+                    UpParameter["MoveSpeed"] += Random.Range(0, 2);
+                }
+                break;
+            case 2:
+                for (int i = 0; i < UpLevel; i++)
+                {
+                    UpParameter["Hp"] += Random.Range(1, 4);
+                    UpParameter["Stamina"] += Random.Range(0, 3);
+                    UpParameter["AtkPower"] += Random.Range(0, 3);
+                    UpParameter["AtkSpeed"] += Random.Range(0, 2);
+                    UpParameter["MoveSpeed"] += Random.Range(0, 2);
+                }
+                break;
+            case 3:
+                for (int i = 0; i < UpLevel; i++)
+                {
+                    UpParameter["Hp"] += Random.Range(6, 9);
+                    UpParameter["Stamina"] += Random.Range(0, 3);
+                    UpParameter["AtkPower"] += Random.Range(0, 2);
+                    UpParameter["AtkSpeed"] += Random.Range(0, 2);
+                    UpParameter["MoveSpeed"] += Random.Range(0, 2);
+                }
+                break;
+            case 4:
+                for(int i = 0; i < UpLevel; i++)
+                {
+                    UpParameter["Hp"] += Random.Range(3, 6);
+                    UpParameter["Stamina"] += Random.Range(0, 3);
+                    UpParameter["AtkPower"] += Random.Range(0, 3);
+                    UpParameter["AtkSpeed"] += Random.Range(0, 3);
+                    UpParameter["MoveSpeed"] += Random.Range(1, 3);
+                }
+                break;
         }
+        
         return UpParameter;
+    }
+
+    //所持金と進行度セーブロード
+    public static void ProgressMoneySave()
+    {
+        PlayerPrefs.SetInt("ContinueProgress", Progress);
+        PlayerPrefs.SetInt("ContinueMoney", Money);
+    }
+
+    public static void ProgressMoneyLoad()
+    {
+        Progress = PlayerPrefs.GetInt("ContinueProgress");
+        Money = PlayerPrefs.GetInt("ContinueMoney");
+        Progress = 1;
+    }
+
+    public static void InitialSave()
+    {
+        PlayerPrefs.SetInt("ContinueProgress", 1);
+        PlayerPrefs.SetInt("ContinueMoney", 10);
+        Progress = 1;
+        Money = 10;
     }
 }

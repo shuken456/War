@@ -218,7 +218,6 @@ public class UnitEditManager : MonoBehaviour
     //ロックボタン押下
     public void LockButtonClick()
     {
-        LockButton.GetComponent<Button>().interactable = false;
         LockUI.SetActive(true);
     }
 

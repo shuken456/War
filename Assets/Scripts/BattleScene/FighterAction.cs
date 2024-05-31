@@ -394,7 +394,6 @@ public class FighterAction : MonoBehaviour
                     arrow.targetEnemyStatus = collider.GetComponent<FighterStatus>();
                     arrow.ArcherName = MyStatus.FighterName;
                     arrow.AtkPower = power;
-                    arrow.ArrowSpeed = 2;
                     arrow.GetComponent<SpriteRenderer>().color = this.gameObject.GetComponent<SpriteRenderer>().color;
                 }
             }

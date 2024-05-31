@@ -11,12 +11,12 @@ public class PlayerUnitDB : ScriptableObject
     {
         var data = JsonUtility.ToJson(this, true);
 
-        PlayerPrefs.SetString("PlayerUnitData", data);
+        PlayerPrefs.SetString("ContinueUnitData", data);
     }
 
     public void Load()
     {
-        var data = PlayerPrefs.GetString("PlayerUnitData");
+        var data = PlayerPrefs.GetString("ContinueUnitData");
 
         JsonUtility.FromJsonOverwrite(data, this);
     }
@@ -25,12 +25,13 @@ public class PlayerUnitDB : ScriptableObject
     {
         var data = JsonUtility.ToJson(this, true);
 
-        PlayerPrefs.SetString("InitialPlayerUnitData", data);
+        PlayerPrefs.SetString("InitialUnitData", data);
     }
 
     public void InitialLoad()
     {
-        var data = PlayerPrefs.GetString("InitialPlayerUnitData");
+        var data = PlayerPrefs.GetString("InitialUnitData");
+        PlayerPrefs.SetString("ContinueUnitData", data);
 
         JsonUtility.FromJsonOverwrite(data, this);
     }

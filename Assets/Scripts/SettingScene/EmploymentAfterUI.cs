@@ -10,7 +10,6 @@ public class EmploymentAfterUI : MonoBehaviour
     public EmploymentUI EmUI;
     public GameObject NameUI;
     public GameObject WarningUI;
-    public MoneyUI MoUI;
 
     //ï∫émÇÃäG
     public Image FighterImage;
@@ -86,7 +85,7 @@ public class EmploymentAfterUI : MonoBehaviour
                 NewFighter.Hp = Random.Range(5, 9);
                 NewFighter.Stamina = Random.Range(8, 13);
                 NewFighter.AtkPower = Random.Range(2, 5);
-                NewFighter.AtkSpeed = Random.Range(8, 13);
+                NewFighter.AtkSpeed = Random.Range(6, 10);
                 NewFighter.MoveSpeed = Random.Range(8, 13);
                 break;
             case 3:
@@ -118,7 +117,7 @@ public class EmploymentAfterUI : MonoBehaviour
         PlayerFighterDataBaseAllList.Add(Fighter);
         //éëã‡å∏è≠
         Common.Money -= EmUI.FighterMoney(EmUI.SelectType);
-        MoUI.TextWrite();
+        EmUI.SeManager.MoUI.TextWrite();
 
         this.gameObject.SetActive(false);
     }

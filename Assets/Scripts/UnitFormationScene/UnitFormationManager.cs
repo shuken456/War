@@ -23,6 +23,7 @@ public class UnitFormationManager : MonoBehaviour
     public GameObject SaveUI;
     public GameObject EndUI;
     public GameObject WarningUI;
+    public GameObject WarningUIMax;
 
     //ユニット表示オブジェクト
     public GameObject UnitObjectBack;
@@ -78,37 +79,15 @@ public class UnitFormationManager : MonoBehaviour
         PlayerFighterDataBaseAllList = Resources.Load<PlayerFighterDB>("DB/PlayerFighterDB").PlayerFighterDBList
             .OrderBy((n) => n.UnitNum).ThenByDescending((n) => n.UnitLeader).ThenBy((n) => n.Type).ToList(); //部隊番号順、部隊長が上に来るように、兵種順に並び替え
 
-        //スクロールバーが必要な場合、ボタンの位置調整
+        //スクロールバーが必要か否かで、ボタンの位置調整
         if(PlayerFighterDataBaseAllList.Count >= 10)
         {
-            ReserveFighterView.GetComponent<VerticalLayoutGroup>().padding.right = 10;
+            ReserveFighterView.GetComponent<VerticalLayoutGroup>().padding.right = 20;
         }
-
-        //控え兵士の数分、ボタンを作成
-        foreach(PlayerFighter Fighter in PlayerFighterDataBaseAllList)
+        else
         {
-            GameObject button = Instantiate(ReserveFighterButton, ReserveFighterView.transform);
-            button.transform.GetComponent<RectTransform>().anchoredPosition = new Vector2(-9f, 80);
-            button.transform.Find("Text (Name)").GetComponent<Text>().text = Fighter.Name;
-            button.transform.Find("Text (Type)").GetComponent<Text>().text = Common.FighterType(Fighter.Type);
-            button.transform.Find("Text (Level)").GetComponent<Text>().text = Fighter.Level.ToString();
-
-            //作成したボタンに兵士ステータスをつける
-            Common.GetFighterStatusFromDB(button.GetComponent<FighterStatus>(), Fighter);
-
-            //既にこのユニット内にいる兵士のボタンは押せないようにする
-            if (Fighter.UnitNum == Common.SelectUnitNum)
-            { 
-                button.GetComponent<Button>().interactable = false;
-            }
-            else if (Fighter.UnitNum != 0)
-            {
-                //どこかの部隊に所属済みの兵士はボタンの色を変える
-                button.GetComponent<Image>().color = Color.yellow;
-            }
-            button.GetComponent<Button>().onClick.AddListener(FighterButtonClick);
+            ReserveFighterView.GetComponent<VerticalLayoutGroup>().padding.right = 40;
         }
-
 
         //対象ユニットのデータ検索
         PlayerUnitDataBaseSelectList = PlayerUnitDataBaseAllList.FindAll(n => n.Num == Common.SelectUnitNum);
@@ -158,6 +137,77 @@ public class UnitFormationManager : MonoBehaviour
            
             //画面右下ユニットメンバーUI記載
             UnitMemberInfoWrite(i, FighterStatusList.Name, FighterStatusList.Type, FighterStatusList.Level);
+        }
+
+        ReserveFighterViewDisplay();
+
+    }
+
+    //控え兵士ビュー更新
+    private void ReserveFighterViewDisplay()
+    {
+        //選択されている兵士の名前をdestroy前に保存
+        string SelectN = string.Empty;
+        if (SelectFighterButton)
+        {
+            SelectN = SelectFighterButton.GetComponent<FighterStatus>().FighterName;
+        }
+
+        //兵士ビューリセット
+            foreach (Transform f in ReserveFighterView.transform)
+        {
+            GameObject.Destroy(f.gameObject);
+        }
+
+        //今フィールドにいる兵士の名前をNameListに保持
+        GameObject[] Fighters = GameObject.FindGameObjectsWithTag("PlayerFighter");
+        List<string> NameList = new List<string>();
+        foreach (GameObject Fighter in Fighters)
+        {
+            FighterStatus fs = Fighter.GetComponent<FighterStatus>();
+            NameList.Add(fs.FighterName);
+        }
+
+        //控え兵士の数分、ボタンを作成
+        foreach (PlayerFighter Fighter in PlayerFighterDataBaseAllList)
+        {
+            GameObject button = Instantiate(ReserveFighterButton, ReserveFighterView.transform);
+            button.transform.GetComponent<RectTransform>().anchoredPosition = new Vector2(-9f, 80);
+            button.transform.Find("Text (Name)").GetComponent<Text>().text = Fighter.Name;
+
+            if (Fighter.UnitNum == 0)
+            {
+                button.transform.Find("Text (UnitName)").GetComponent<Text>().text = "なし";
+            }
+            else
+            {
+                button.transform.Find("Text (UnitName)").GetComponent<Text>().text = PlayerUnitDataBaseAllList[Fighter.UnitNum - 1].Name;
+            }
+
+            button.transform.Find("Text (Type)").GetComponent<Text>().text = Common.FighterType(Fighter.Type);
+            button.transform.Find("Text (Level)").GetComponent<Text>().text = Fighter.Level.ToString();
+
+            //作成したボタンに兵士ステータスをつける
+            Common.GetFighterStatusFromDB(button.GetComponent<FighterStatus>(), Fighter);
+
+            //既にこのユニット内にいる兵士のボタンは押せないようにする
+            if(NameList.Contains(Fighter.Name))
+            {
+                button.GetComponent<Button>().interactable = false;
+            }
+            else if (Fighter.UnitNum != 0 && Fighter.UnitNum != Common.SelectUnitNum)
+            {
+                //どこかの部隊に所属済みの兵士はボタンの色を変える
+                button.GetComponent<Image>().color = Color.yellow;
+            }
+            button.GetComponent<Button>().onClick.AddListener(FighterButtonClick);
+
+            //ビュー更新を行っても選択されているボタンを保持する
+            if (SelectN == button.GetComponent<FighterStatus>().FighterName)
+            {
+                SelectFighterButton = button;
+                button.GetComponent<Button>().interactable = false;
+            }
         }
     }
 
@@ -215,53 +265,62 @@ public class UnitFormationManager : MonoBehaviour
                 GameObject Fighter = null;
                 FighterStatus SelectStatus = SelectFighterButton.GetComponent<FighterStatus>();
 
-                //ボタンで選択された兵士を作成してクリック位置に表示する
-                switch (SelectStatus.Type)
-                {
-                    case 1:
-                        Fighter = Instantiate(InfantryPrefab, CursorPosition, Quaternion.identity);
-                        break;
-                    case 2:
-                        Fighter = Instantiate(ArcherPrefab, CursorPosition, Quaternion.identity);
-                        break;
-                    case 3:
-                        break;
-                    case 4:
-                        break;
-                    default:
-                        break;
-                }
-
-                Fighter.transform.parent = UnitObjectBack.transform;
-
-                //ボタン内にあるステータスをファイターオブジェクトにコピー
-                FighterStatus fs = Fighter.GetComponent<FighterStatus>();
-                Common.FighterStatusCopy(fs, SelectStatus);
-                Fighter.GetComponent<SpriteRenderer>().color = PlayerUnitDataBaseSelectList[0].UnitColor;
-
+                //MAX10人まで
                 int FighterCount = GameObject.FindGameObjectsWithTag("PlayerFighter").Length;
 
-                //一人の場合、強制部隊長
-                if(FighterCount == 1)
+                if(FighterCount == 10)
                 {
-                    fs.UnitLeader = true;
-                    SelectUnitInfoUI.transform.Find("Text (UnitLeader)").GetComponent<Text>().text = fs.FighterName;
+                    WarningUIMax.SetActive(true);
                 }
                 else
                 {
-                    fs.UnitLeader = false; //部隊長が二人以上になることを防ぐため
+                    //ボタンで選択された兵士を作成してクリック位置に表示する
+                    switch (SelectStatus.Type)
+                    {
+                        case 1:
+                            Fighter = Instantiate(InfantryPrefab, CursorPosition, Quaternion.identity);
+                            break;
+                        case 2:
+                            Fighter = Instantiate(ArcherPrefab, CursorPosition, Quaternion.identity);
+                            break;
+                        case 3:
+                            break;
+                        case 4:
+                            break;
+                        default:
+                            break;
+                    }
+
+                    Fighter.transform.parent = UnitObjectBack.transform;
+
+                    //ボタン内にあるステータスをファイターオブジェクトにコピー
+                    FighterStatus fs = Fighter.GetComponent<FighterStatus>();
+                    Common.FighterStatusCopy(fs, SelectStatus);
+                    Fighter.GetComponent<SpriteRenderer>().color = PlayerUnitDataBaseSelectList[0].UnitColor;
+
+                    FighterCount = GameObject.FindGameObjectsWithTag("PlayerFighter").Length;
+                    //一人の場合、強制部隊長
+                    if (FighterCount == 1)
+                    {
+                        fs.UnitLeader = true;
+                        SelectUnitInfoUI.transform.Find("Text (UnitLeader)").GetComponent<Text>().text = fs.FighterName;
+                    }
+                    else
+                    {
+                        fs.UnitLeader = false; //部隊長が二人以上になることを防ぐため
+                    }
+
+                    //兵士の名前を表示する
+                    UnitFighterNameWrite(Fighter);
+
+                    SelectFighterButton = null;
+
+                    //画面左下ユニットUI記載変更
+                    SelectUnitInfoUI.transform.Find("Text (MemberCount)").GetComponent<Text>().text = FighterCount.ToString() + "人";
+
+                    //画面下ユニットメンバーUI追記
+                    UnitMemberInfoWrite(FighterCount - 1, SelectStatus.FighterName, SelectStatus.Type, SelectStatus.Level);
                 }
-                
-                //兵士の名前を表示する
-                UnitFighterNameWrite(Fighter);
-
-                SelectFighterButton = null;
-
-                //画面左下ユニットUI記載変更
-                SelectUnitInfoUI.transform.Find("Text (MemberCount)").GetComponent<Text>().text = FighterCount.ToString() + "人";
-
-                //画面下ユニットメンバーUI追記
-                UnitMemberInfoWrite(FighterCount - 1, SelectStatus.FighterName, SelectStatus.Type, SelectStatus.Level);
             }
         }
         if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject())
@@ -523,5 +582,43 @@ public class UnitFormationManager : MonoBehaviour
         PlayerUnitTable.Save();
 
         SaveUI.SetActive(true);
+    }
+
+    //最大人数オーバー警告　OKボタン押下時
+    public void WarningMaxOK()
+    {
+        WarningUIMax.SetActive(false);
+    }
+
+    //各並べ替えボタン処理
+    public void UnitOrderbyChange(bool on)
+    {
+        if (on)
+        {
+            PlayerFighterDataBaseAllList = Resources.Load<PlayerFighterDB>("DB/PlayerFighterDB").PlayerFighterDBList
+            .OrderBy((n) => n.UnitNum).ThenByDescending((n) => n.UnitLeader).ThenBy((n) => n.Type).ToList(); //部隊番号順、部隊長が上に来るように、兵種順に並び替え
+
+            ReserveFighterViewDisplay();
+        }
+    }
+    public void NameOrderbyChange(bool on)
+    {
+        if (on)
+        {
+            PlayerFighterDataBaseAllList = Resources.Load<PlayerFighterDB>("DB/PlayerFighterDB").PlayerFighterDBList
+            .OrderBy((n) => n.Name).ToList(); //名前順に並び替え
+
+            ReserveFighterViewDisplay();
+        }
+    }
+    public void LevelOrderbyChange(bool on)
+    {
+        if (on)
+        {
+            PlayerFighterDataBaseAllList = Resources.Load<PlayerFighterDB>("DB/PlayerFighterDB").PlayerFighterDBList
+            .OrderBy((n) => n.Level).ToList(); //Lv順に並び替え
+
+            ReserveFighterViewDisplay();
+        }
     }
 }

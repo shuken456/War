@@ -19,12 +19,6 @@ public class NameUI : MonoBehaviour
     {
         NameField.text = EditManager.PlayerUnitDataBaseAllList[EditManager.SelectUnitNum - 1].Name;
         NameField.ActivateInputField();
-        EditManager.LockButton.GetComponent<Button>().interactable = false;
-    }
-
-    private void OnDisable()
-    {
-        EditManager.LockButton.GetComponent<Button>().interactable = true;
     }
 
     //Œˆ’èƒ{ƒ^ƒ“‰Ÿ‰º‚Å•”‘à–¼•ÏX

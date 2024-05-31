@@ -11,26 +11,33 @@ public class PlayerFighterDB : ScriptableObject
     {
         var data = JsonUtility.ToJson(this, true);
 
-        PlayerPrefs.SetString("PlayerFighterData", data);
+        PlayerPrefs.SetString("ContinueFighterData", data);
+
+        //所持金と進行度セーブ
+        Common.ProgressMoneySave();
     }
 
     public void Load()
     {
-        var data = PlayerPrefs.GetString("PlayerFighterData");
+        var data = PlayerPrefs.GetString("ContinueFighterData");
 
         JsonUtility.FromJsonOverwrite(data, this);
+
+        //所持金と進行度ロード
+        Common.ProgressMoneyLoad();
     }
 
     public void InitialSave()
     {
         var data = JsonUtility.ToJson(this, true);
 
-        PlayerPrefs.SetString("InitialPlayerFighterData", data);
+        PlayerPrefs.SetString("InitialFighterData", data);
     }
 
     public void InitialLoad()
     {
-        var data = PlayerPrefs.GetString("InitialPlayerFighterData");
+        var data = PlayerPrefs.GetString("InitialFighterData");
+        PlayerPrefs.SetString("ContinueFighterData", data);
 
         JsonUtility.FromJsonOverwrite(data, this);
     }

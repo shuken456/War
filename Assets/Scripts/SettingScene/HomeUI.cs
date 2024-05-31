@@ -37,9 +37,18 @@ public class HomeUI : MonoBehaviour
         this.gameObject.SetActive(false);
     }
 
-    public void SaveButtonClick()
+    public void TitleButtonClick()
     {
-        SeManager.SaveQuestionUI.SetActive(true);
-        this.gameObject.SetActive(false);
+        SeManager.TitleUI.SetActive(true);
+    }
+
+    public void TitleYes()
+    {
+        SceneManager.LoadScene("TitleScene");
+    }
+
+    public void TitleNo()
+    {
+        SeManager.TitleUI.SetActive(false);
     }
 }
