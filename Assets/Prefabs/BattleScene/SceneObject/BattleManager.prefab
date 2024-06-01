@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1809974707847210247
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3181044031434489662}
+  - component: {fileID: 4567189695057491106}
+  m_Layer: 0
+  m_Name: BattleManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3181044031434489662
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1809974707847210247}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.1517851, y: 5.2232437, z: -0.2490516}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4567189695057491106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1809974707847210247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba984607ad059b749a5cdb3e00155b06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StartUI: {fileID: 0}
+  ActionUI: {fileID: 0}
+  MoveUI: {fileID: 0}
+  SortieUI: {fileID: 0}
+  InstructionButton: {fileID: 0}
+  FighterStatusInfoUI: {fileID: 0}
+  LogUI: {fileID: 0}
+  UnitCountUI: {fileID: 0}
+  TimeStopText: {fileID: 0}
+  ResultUI: {fileID: 0}
+  BattleInfoUI: {fileID: 0}
+  SelectFighter: []
+  SelectFighterLine: []
+  PlayerUnitDataBaseAllList: []
+  PlayerFighterDataBaseAllList: []
+  HpGaugePrefab: {fileID: 1426059961326414412, guid: 69757f9bd49c5e74992689083829e0b4, type: 3}
+  StaminaGaugePrefab: {fileID: 5731635010930339229, guid: 39b66f34f52c75b4e88c41b3efaa81eb, type: 3}
+  LeaderFlagPrefab: {fileID: 2619968486520552046, guid: e9ece2fb75f17334cb52a9be3f4baa1a, type: 3}
+  CanvasWorldSpace: {fileID: 0}
+  StartFlg: 0
+  WinFlg: 1
+  PlayerFighterTable: {fileID: 11400000, guid: 04adc4bc22576c340a7b16d074cd583c, type: 2}
+  PlayerUnitTable: {fileID: 11400000, guid: 5044ab373f28ff149be339b6da253b46, type: 2}

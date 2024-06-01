@@ -8,7 +8,7 @@ public static class Common
     //所持金
     public static int Money = 10;
 
-    //進行度(ステージクリア度 次に挑むステージ数)
+    //進行度(ステージクリア度 次に挑むステージ数または現在挑んでるステージ数)
     public static int Progress = 1;
 
     //ユニット一覧　で選択中されたユニットナンバー
@@ -194,7 +194,6 @@ public static class Common
     {
         Progress = PlayerPrefs.GetInt("ContinueProgress");
         Money = PlayerPrefs.GetInt("ContinueMoney");
-        Progress = 1;
     }
 
     public static void InitialSave()

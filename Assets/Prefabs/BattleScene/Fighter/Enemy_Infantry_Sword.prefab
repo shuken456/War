@@ -295,6 +295,8 @@ MonoBehaviour:
   targetPlace: []
   targetFighter: {fileID: 0}
   targetFighterSave: {fileID: 0}
+  EnemyStatus: {fileID: 0}
+  arrowPrefab: {fileID: 0}
 --- !u!114 &251125892775711261
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -307,18 +309,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54bb8da7570ad2a43b41e1e560b25384, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Type: 0
+  Type: 1
   FighterName: "\u6B69\u5175"
   Level: 1
-  MaxHp: 1
-  NowHp: 0
-  MaxStamina: 0
-  NowStamina: 0
-  AtkPower: 0
-  AtkSpeed: 0
+  MaxHp: 10
+  NowHp: 10
+  MaxStamina: 10
+  NowStamina: 10
+  AtkPower: 2
+  AtkSpeed: 10
   MoveSpeed: 10
   UnitNum: 0
   UnitLeader: 0
+  Exp: 0
   MaxHpBuff: 0
   AtkPowerBuff: 0
   MoveSpeedBuff: 0

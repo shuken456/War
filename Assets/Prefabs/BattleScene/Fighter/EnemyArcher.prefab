@@ -120,15 +120,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54bb8da7570ad2a43b41e1e560b25384, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Type: 0
+  Type: 2
   FighterName: "\u5F13\u5175"
-  Level: 0
-  MaxHp: 0
-  NowHp: 0
-  MaxStamina: 0
-  NowStamina: 0
-  AtkPower: 0
-  AtkSpeed: 0
+  Level: 1
+  MaxHp: 7
+  NowHp: 7
+  MaxStamina: 10
+  NowStamina: 10
+  AtkPower: 2
+  AtkSpeed: 7
   MoveSpeed: 10
   UnitNum: 0
   UnitLeader: 0

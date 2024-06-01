@@ -37,6 +37,8 @@ public class FighterAction : MonoBehaviour
     //矢のプレハブ
     public Arrow arrowPrefab;
 
+    public Vector2 SettingPosition;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -80,6 +82,17 @@ public class FighterAction : MonoBehaviour
             if(CheckEnemy())
             {
                 Move();
+            }
+        }
+        else if (this.gameObject.layer == LayerMask.NameToLayer("SortieSettingFighter"))
+        {
+            //出撃準備中の位置調整　（障害物内に出撃できないように）
+            Vector3 SettingPosition2 = Quaternion.Euler(0, 0, this.gameObject.transform.parent.gameObject.transform.transform.eulerAngles.z) * SettingPosition;
+            var col = Physics2D.OverlapPoint(this.gameObject.transform.parent.gameObject.transform.position + SettingPosition2, LayerMask.GetMask("Obstacle"));
+
+            if (!col)
+            {
+                this.gameObject.transform.localPosition = SettingPosition;
             }
         }
     }
@@ -243,28 +256,28 @@ public class FighterAction : MonoBehaviour
             StartCoroutine(Attack());
         }
 
-        //出撃時に障害物につっかえないように
-        if(collision.gameObject.layer == LayerMask.NameToLayer("Obstacle") && anim.GetInteger("Action") == StandAction)
-        {
-            var v = collision.gameObject.transform.position - transform.position;
-            if (v.x > 0)
-            {
-                transform.position += new Vector3(0.3f, 0, 0);
-            }
-            else if (v.x < 0)
-            {
-                transform.position -= new Vector3(0.3f, 0, 0);
-            }
+        ////出撃時に障害物につっかえないように
+        //if(collision.gameObject.layer == LayerMask.NameToLayer("Obstacle") && anim.GetInteger("Action") == StandAction)
+        //{
+        //    var v = collision.gameObject.transform.position - transform.position;
+        //    if (v.x > 0)
+        //    {
+        //        transform.position += new Vector3(0.3f, 0, 0);
+        //    }
+        //    else if (v.x < 0)
+        //    {
+        //        transform.position -= new Vector3(0.3f, 0, 0);
+        //    }
 
-            if (v.y > 0)
-            {
-                transform.position += new Vector3(0, 0.3f, 0);
-            }
-            else if (v.y < 0)
-            {
-                transform.position -= new Vector3(0, 0.3f, 0);
-            }
-        }
+        //    if (v.y > 0)
+        //    {
+        //        transform.position += new Vector3(0, 0.3f, 0);
+        //    }
+        //    else if (v.y < 0)
+        //    {
+        //        transform.position -= new Vector3(0, 0.3f, 0);
+        //    }
+        //}
     }
 
     private void OnCollisionEnter(Collision collision)

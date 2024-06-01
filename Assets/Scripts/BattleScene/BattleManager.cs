@@ -28,9 +28,6 @@ public class BattleManager : MonoBehaviour
     public List<PlayerUnit> PlayerUnitDataBaseAllList;
     public List<PlayerFighter> PlayerFighterDataBaseAllList;
 
-    //各ステージの敵
-    public GameObject[] StageEnemy;
-
     //HP,スタミナゲージ,リーダーマーク
     public GameObject HpGaugePrefab;
     public GameObject StaminaGaugePrefab;
@@ -69,11 +66,10 @@ public class BattleManager : MonoBehaviour
         PlayerFighterDataBaseAllList = Resources.Load<PlayerFighterDB>("DB/PlayerFighterDB").PlayerFighterDBList
             .OrderBy((n) => n.UnitNum).ThenByDescending((n) => n.UnitLeader).ToList(); //部隊番号順、部隊長が上に来るように並び替え
         
-        //敵を生成
-        foreach (Transform Enemy in StageEnemy[Common.Progress - 1].transform)
+        //敵のゲージを生成
+        foreach (GameObject Enemy in GameObject.FindGameObjectsWithTag("EnemyFighter"))
         {
-            var obj = Instantiate(Enemy.gameObject);
-            CreateGaugeAndFlag(obj);
+            CreateGaugeAndFlag(Enemy);
         }
         BattleInfoUI.SetActive(true);
         StartUI.SetActive(true);

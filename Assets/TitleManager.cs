@@ -42,7 +42,7 @@ public class TitleManager : MonoBehaviour
             //所持金と進行度初期セーブ
             Common.InitialSave();
 
-            SceneManager.LoadScene("SettingScene");
+            SceneManager.LoadScene("BattleScene1");
         }
         else
         {
@@ -58,7 +58,7 @@ public class TitleManager : MonoBehaviour
         //所持金と進行度初期セーブ
         Common.InitialSave();
 
-        SceneManager.LoadScene("SettingScene");
+        SceneManager.LoadScene("BattleScene1");
     }
 
     public void BeginWarningNo()

@@ -172,5 +172,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetEnemyStatus: {fileID: 0}
+  ArcherName: 
   AtkPower: 0
-  ArrowSpeed: 1
+  ArrowSpeed: 3

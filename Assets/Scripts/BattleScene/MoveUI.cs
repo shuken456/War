@@ -212,22 +212,33 @@ public class MoveUI : MonoBehaviour
 
                     //移動最終決定用UI表示位置調整
                     Vector2 UIPosition = RectTransformUtility.WorldToScreenPoint(CinemachineCore.Instance.FindPotentialTargetBrain(mainCam).OutputCamera, CursorPosition);
-                   
+
+                    //デフォルトは移動地点の少し右に表示させる
+                    UIPosition += new Vector2(100, 0);
+
                     if (UIPosition.x > 1400)
                     {
                         UIPosition.x -= 200;
                     }
-                    if (UIPosition.y > 800)
+                    if (UIPosition.y > 790)
                     {
-                        UIPosition.y -= 100;
+                        UIPosition.y -= 50;
+
+                        if (UIPosition.x < 750 && UIPosition.x > 600)
+                        {
+                            UIPosition.x -= 200;
+                        }
                     }
                     if (UIPosition.y < 100)
                     {
-                        UIPosition.y += 100;
+                        UIPosition.y += 50;
                     }
 
-                    //デフォルトは移動地点の少し右に表示させる
-                    MoveUIAfter.GetComponent<RectTransform>().position = UIPosition + new Vector2(100, 0);
+                    //ワールド座標に設置する
+                    Vector3 UIPosition2 = Camera.main.ScreenToWorldPoint(UIPosition);
+                    UIPosition2.z = 0;
+
+                    MoveUIAfter.GetComponent<RectTransform>().position = UIPosition2;
 
                     //移動最終決定用UIを表示
                     currentMode = Mode.MoveDecisionAfter;

@@ -161,6 +161,7 @@ public class ResultUI : MonoBehaviour
     {
         Common.BattleMode = false;
         Common.SortieMode = false;
-        SceneManager.LoadScene("BattleScene");
+        //SceneManager.LoadScene("BattleScene" + Common.Progress.ToString());
+        SceneManager.LoadScene("BattleScene1");
     }
 }

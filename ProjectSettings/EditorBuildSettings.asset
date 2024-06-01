@@ -12,12 +12,15 @@ EditorBuildSettings:
     path: Assets/Scenes/SettingScene.unity
     guid: accd5d794a5327a4e96826eea6b6ee7e
   - enabled: 1
-    path: Assets/Scenes/BattleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
     path: Assets/Scenes/UnitFormationScene.unity
     guid: f8022dde035f6064b91cb9724b9817a4
   - enabled: 1
     path: Assets/Scenes/UnitEditScene.unity
     guid: 1f3ec295c3b59154c8e112c553bcc9c4
+  - enabled: 1
+    path: Assets/Scenes/BattleScene1.unity
+    guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/BattleScene2.unity
+    guid: 014d07b128b778b498820de97c8926ae
   m_configObjects: {}

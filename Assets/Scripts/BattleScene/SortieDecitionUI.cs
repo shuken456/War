@@ -21,45 +21,61 @@ public class SortieDecitionUI : MonoBehaviour
 
     //出撃用オブジェクト
     public GameObject SortieTarget;
+    public GameObject SortieFighter;
     public GameObject SortieRange;
 
     //出撃場所決定フラグ
     private bool SortieDecition = false;
+
+    //矢印
+    public GameObject Cursol;
 
     //クリック長押し時間カウント用
     private float ClickTime = 0;
 
     private void OnEnable()
     {
+        //物理判定を使いたいため一時的に時間を変更
+        Time.timeScale = 0.01f;
+        Time.fixedDeltaTime = 0.00001f;
+
         //DBデータ取得
         BaManager.PlayerUnitDataBaseAllList = Resources.Load<PlayerUnitDB>("DB/PlayerUnitDB").PlayerUnitDBList.OrderBy((n) => n.Num).ToList(); //ユニット番号順に並び替え
         BaManager.PlayerFighterDataBaseAllList = Resources.Load<PlayerFighterDB>("DB/PlayerFighterDB").PlayerFighterDBList.FindAll(n => n.UnitNum == Common.SelectUnitNum).ToList();
 
-        //選択されたユニットの兵士を画面に表示させる
+        //選択されたユニットの兵士を画面に作成する
         foreach (PlayerFighter pf in BaManager.PlayerFighterDataBaseAllList)
         {
             GameObject Fighter = null;
 
             if (pf.Type == 1)
             {
-                Fighter = Instantiate(EmptyInfantry, new Vector3(0, 0, 0), Quaternion.identity);
+                Fighter = Instantiate(InfantryPrefab, new Vector3(0, 0, 0), Quaternion.identity);
             }
             else if (pf.Type == 2)
             {
-                Fighter = Instantiate(EmptyArcher, new Vector3(0, 0, 0), Quaternion.identity);
+                Fighter = Instantiate(ArcherPrefab, new Vector3(0, 0, 0), Quaternion.identity);
             }
 
-            Fighter.transform.localScale = Fighter.transform.localScale * 2;
             Fighter.GetComponent<SpriteRenderer>().color = BaManager.PlayerUnitDataBaseAllList[Common.SelectUnitNum - 1].UnitColor - new Color(0, 0, 0, 0.5f);　//色を薄くして表示する
-            Fighter.transform.parent = SortieTarget.transform;
+            Fighter.transform.parent = SortieFighter.transform;
             Fighter.transform.localPosition = pf.Position;
+            Fighter.GetComponent<FighterAction>().SettingPosition = pf.Position;　//編成画面の位置通りに表示する
+            Common.GetFighterStatusFromDB(Fighter.GetComponent<FighterStatus>(), pf);
+            Common.FighterBuff(Fighter.GetComponent<FighterStatus>(), BaManager.PlayerUnitDataBaseAllList[Common.SelectUnitNum - 1].Strategy, false);
+            Fighter.layer = LayerMask.NameToLayer("SortieSettingFighter");　//障害物にのみ判定があるレイヤーに一時的に変更
+            Fighter.tag = "SortieSettingFighter";
         }
 
         SortieRange.SetActive(true);
+        Cursol.SetActive(true);
     }
 
     private void OnDisable()
     {
+        Time.timeScale = 1;
+        Time.fixedDeltaTime = 0.02f;
+
         //回転を元に戻す
         SortieTarget.transform.eulerAngles -= new Vector3(0, 0, 0);
 
@@ -75,6 +91,7 @@ public class SortieDecitionUI : MonoBehaviour
         }
 
         SortieRange.SetActive(false);
+        Cursol.SetActive(false);
     }
 
     // Update is called once per frame
@@ -95,6 +112,12 @@ public class SortieDecitionUI : MonoBehaviour
                 {
                     SortieDecition = true;
                     DecitionButton.interactable = true;
+
+                    //色を濃く表示
+                    foreach (Transform Fighter in SortieFighter.transform)
+                    {
+                        Fighter.gameObject.GetComponent<SpriteRenderer>().color = BaManager.PlayerUnitDataBaseAllList[Common.SelectUnitNum - 1].UnitColor;
+                    }
                 }
             }
         }
@@ -110,7 +133,7 @@ public class SortieDecitionUI : MonoBehaviour
             {
                 SortieTarget.transform.eulerAngles -= new Vector3(0, 0, 90);
 
-                foreach(Transform Fighter in SortieTarget.transform)
+                foreach (Transform Fighter in SortieFighter.transform)
                 {
                     Fighter.eulerAngles += new Vector3(0, 0, 90);
                 }
@@ -122,35 +145,13 @@ public class SortieDecitionUI : MonoBehaviour
     //出撃決定
     public void DecitionButtonClick()
     {
-        //イラスト削除
-        foreach (Transform s in SortieTarget.transform)
+        //兵士の付属オブジェクトを作成、タグとレイヤー変更
+        foreach (Transform Fighter in SortieFighter.transform)
         {
-            GameObject.Destroy(s.gameObject);
-        }
-
-        //兵士のオブジェクトを作成
-        foreach (PlayerFighter pf in BaManager.PlayerFighterDataBaseAllList)
-        {
-            GameObject Fighter = null;
-
-            if (pf.Type == 1)
-            {
-                Fighter = Instantiate(InfantryPrefab, new Vector3(0, 0, 0), Quaternion.identity);
-            }
-            else if (pf.Type == 2)
-            {
-                Fighter = Instantiate(ArcherPrefab, new Vector3(0, 0, 0), Quaternion.identity);
-            }
-
-            Fighter.transform.localScale = Fighter.transform.localScale;
-            Fighter.GetComponent<SpriteRenderer>().color = BaManager.PlayerUnitDataBaseAllList[Common.SelectUnitNum - 1].UnitColor;
-            Fighter.transform.parent = SortieTarget.transform;
-            Fighter.transform.localPosition = pf.Position;
-            Fighter.transform.parent = null;
-
-            Common.GetFighterStatusFromDB(Fighter.GetComponent<FighterStatus>(), pf);
-            Common.FighterBuff(Fighter.GetComponent<FighterStatus>(), BaManager.PlayerUnitDataBaseAllList[Common.SelectUnitNum - 1].Strategy, false);
-            BaManager.CreateGaugeAndFlag(Fighter);
+            Fighter.gameObject.transform.parent = null;
+            BaManager.CreateGaugeAndFlag(Fighter.gameObject);
+            Fighter.gameObject.layer = LayerMask.NameToLayer("PlayerFighter");
+            Fighter.tag = "PlayerFighter";
         }
 
         //部隊の出撃フラグをtrueに
@@ -170,10 +171,17 @@ public class SortieDecitionUI : MonoBehaviour
         {
             SortieDecition = false;
             DecitionButton.interactable = false;
+
+            //色を薄く表示
+            foreach (Transform Fighter in SortieFighter.transform)
+            {
+                Fighter.gameObject.GetComponent<SpriteRenderer>().color = BaManager.PlayerUnitDataBaseAllList[Common.SelectUnitNum - 1].UnitColor - new Color(0, 0, 0, 0.5f);
+            }
         }
         else
         {
-            foreach (Transform n in SortieTarget.transform)
+            //出撃兵士オブジェクト削除
+            foreach (Transform n in SortieFighter.transform)
             {
                 GameObject.Destroy(n.gameObject);
             }

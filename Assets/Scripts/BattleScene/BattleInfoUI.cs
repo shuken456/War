@@ -26,7 +26,8 @@ public class BattleInfoUI : MonoBehaviour
         {
            pu.SoriteFlg = false;
         }
-        SceneManager.LoadScene("BattleScene");
+        //SceneManager.LoadScene("BattleScene" + Common.Progress.ToString());
+        SceneManager.LoadScene("BattleScene1");
     }
 
     public void SettingButtonClick()

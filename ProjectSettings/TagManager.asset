@@ -11,6 +11,7 @@ TagManager:
   - MoveObject
   - PlayerArrow
   - EnemyArrow
+  - SortieSettingFighter
   layers:
   - Default
   - TransparentFX
@@ -33,7 +34,7 @@ TagManager:
   - 
   - Marker
   - 
-  - 
+  - SortieSettingFighter
   - 
   - 
   - 

@@ -228,8 +228,9 @@ public class UnitEditManager : MonoBehaviour
         //バトルシーンをアクティブ化する
         if(Common.BattleMode)
         {
-            Scene Bscene = SceneManager.GetSceneByName("BattleScene");
-            
+            //Scene Bscene = SceneManager.GetSceneByName("BattleScene" + Common.Progress.ToString());
+            Scene Bscene = SceneManager.GetSceneByName("BattleScene1");
+
             foreach (var root in Bscene.GetRootGameObjects())
             {
                 root.SetActive(true);
