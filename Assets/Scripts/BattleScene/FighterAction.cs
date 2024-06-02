@@ -46,7 +46,7 @@ public class FighterAction : MonoBehaviour
         MyStatus = GetComponent<FighterStatus>();
 
         //自分のタグで敵のタグを判断
-        if (this.tag == "PlayerFighter")
+        if (this.tag == "PlayerFighter" || this.tag == "SortieSettingFighter")
         {
             EnemyTag = "EnemyFighter";
         }
@@ -84,9 +84,9 @@ public class FighterAction : MonoBehaviour
                 Move();
             }
         }
+        //出撃準備中の位置調整　（障害物内に出撃できないように）
         else if (this.gameObject.layer == LayerMask.NameToLayer("SortieSettingFighter"))
         {
-            //出撃準備中の位置調整　（障害物内に出撃できないように）
             Vector3 SettingPosition2 = Quaternion.Euler(0, 0, this.gameObject.transform.parent.gameObject.transform.transform.eulerAngles.z) * SettingPosition;
             var col = Physics2D.OverlapPoint(this.gameObject.transform.parent.gameObject.transform.position + SettingPosition2, LayerMask.GetMask("Obstacle"));
 
@@ -162,7 +162,7 @@ public class FighterAction : MonoBehaviour
         //移動目標を設定
         if (this.gameObject.tag == "EnemyFighter" && targetFighter == null)
         {
-            //敵を探す
+            //敵兵士は自動で味方兵士を探す
             var collider = Physics2D.OverlapCircle(transform.position, 5f, LayerMask.GetMask(EnemyTag));
             if (collider != null)
             {
@@ -335,6 +335,7 @@ public class FighterAction : MonoBehaviour
                 EnemyStatus.NowHp -= power;
                 if (EnemyStatus.NowHp <= 0)
                 {
+                    //ログ表示
                     if (this.tag == "PlayerFighter")
                     {
                         GameObject.Find("BattleManager").GetComponent<BattleManager>().LogUI.DrawLog("<size=30>" + MyStatus.FighterName + "</size>\n" + EnemyStatus.FighterName + "を倒した！");
@@ -350,7 +351,6 @@ public class FighterAction : MonoBehaviour
                             GameObject.Find("BattleManager").GetComponent<BattleManager>().LogUI.DrawLog("<size=30>" + EnemyStatus.FighterName + "</size>\n" + MyStatus.FighterName + "に倒された！");
                         }
                     }
-
                     Destroy(EnemyStatus.gameObject);
                     EnemyStatus = null;
                 }

@@ -3,13 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
+//兵士右クリック時のステータス表示UI
 public class FighterStatusInfo : MonoBehaviour
 {
     public BattleManager BaManager;
-    private FighterStatus BeforeFs;
+    private FighterStatus BeforeFs; //一回前に開いた兵士
 
+    //表示テキスト記載
     public void TextWrite(FighterStatus fs)
     {
+        //前に開いた兵士の選択状態の見た目を解除
         if(BeforeFs)
         {
             if(BaManager.SelectFighter.Contains(BeforeFs.gameObject))
@@ -48,29 +52,14 @@ public class FighterStatusInfo : MonoBehaviour
         }
     }
 
+    //兵士画像表示
     public void ImageWrite(Sprite sprite, Color color)
     {
         this.transform.Find("FighterStatusInfoImage/FighterBack/FighterImage").GetComponent<Image>().sprite = sprite;
         this.transform.Find("FighterStatusInfoImage/FighterBack/FighterImage").GetComponent<Image>().color = color;
     }
 
-    public void Clear(string FighterName)
-    {
-        if (FighterName == this.transform.Find("StatusTexts/Text (Name)").GetComponent<Text>().text)
-        {
-            this.transform.Find("FighterStatusInfoImage/StatusTexts/Text (Name)").GetComponent<Text>().text = string.Empty;
-            this.transform.Find("FighterStatusInfoImage/StatusTexts/Text (Type)").GetComponent<Text>().text = string.Empty;
-            this.transform.Find("FighterStatusInfoImage/StatusTexts/Text (Level)").GetComponent<Text>().text = string.Empty;
-            this.transform.Find("FighterStatusInfoImage/StatusTexts/Text (Hp)").GetComponent<Text>().text = string.Empty;
-            this.transform.Find("FighterStatusInfoImage/StatusTexts/Text (Stamina)").GetComponent<Text>().text = string.Empty;
-            this.transform.Find("FighterStatusInfoImage/StatusTexts/Text (AtkPower)").GetComponent<Text>().text = string.Empty;
-            this.transform.Find("FighterStatusInfoImage/StatusTexts/Text (AtkSpeed)").GetComponent<Text>().text = string.Empty;
-            this.transform.Find("FighterStatusInfoImage/StatusTexts/Text (MoveSpeed)").GetComponent<Text>().text = string.Empty;
-            this.transform.Find("FighterStatusInfoImage/FighterBack/FighterImage").GetComponent<Image>().sprite = null;
-            this.transform.Find("FighterStatusInfoImage/FighterBack/FighterImage").GetComponent<Image>().color = Color.clear;
-        }
-    }
-
+    //閉じるボタン押下
     public void Close()
     {
         if (BaManager.InstructionButton.activeSelf)
@@ -79,6 +68,7 @@ public class FighterStatusInfo : MonoBehaviour
             Time.timeScale = 1;
         }
 
+        //普通に選択状態の兵士だった場合、見た目を戻す
         if (BaManager.SelectFighter.Contains(BeforeFs.gameObject))
         {
             BeforeFs.gameObject.transform.Find("SelectImage").GetComponent<SpriteRenderer>().color = Color.yellow;

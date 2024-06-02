@@ -10,6 +10,7 @@ public class LogUI : MonoBehaviour
     //ログ用テキスト
     public GameObject LogText;
 
+    //ログ記載
     public void DrawLog(string log)
     {
         GameObject Text = Instantiate(LogText, LogView.transform);

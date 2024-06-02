@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//選択されている兵士を表示するUI 画面左
 public class SelectFighterInfoUI : MonoBehaviour
 {
     public BattleManager BaManager;
@@ -17,6 +18,7 @@ public class SelectFighterInfoUI : MonoBehaviour
         UpdateView();
     }
 
+    //ビュー記載
     public void UpdateView()
     {
         foreach (Transform s in SelectFighterView.transform)
@@ -24,6 +26,7 @@ public class SelectFighterInfoUI : MonoBehaviour
             GameObject.Destroy(s.gameObject);
         }
 
+        //選択されている兵士の名前等を表示
         foreach (GameObject Fighter in BaManager.SelectFighter)
         {
             FighterStatus fs = Fighter.GetComponent<FighterStatus>();

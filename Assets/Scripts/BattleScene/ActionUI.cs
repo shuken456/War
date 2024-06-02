@@ -243,7 +243,7 @@ public class ActionUI : MonoBehaviour
         SceneManager.LoadSceneAsync ("UnitEditScene",LoadSceneMode.Additive);
     }
 
-    //•ºŽmˆê——
+    //•ºŽmˆê——‰æ–Ê‚ðŠJ‚­
     public void Search()
     {
         SortieFighterView.SetActive(true);

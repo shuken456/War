@@ -21,6 +21,7 @@ public class FighterNameChaseText : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //•ºm–¼‚ğ•\¦@•”‘à’·‚Íš‚ğ‚Â‚¯‚é
         if (targetFighter != null)
         {
             if(targetFighter.GetComponent<FighterStatus>().UnitLeader)

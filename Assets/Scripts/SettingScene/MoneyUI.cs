@@ -13,6 +13,7 @@ public class MoneyUI : MonoBehaviour
         TextWrite();
     }
 
+    //Š‹à‚ğ•\¦(‰æ–Ê‰Eã)
     public void TextWrite()
     {
         PointText.text = Common.Money.ToString() + "—¼";

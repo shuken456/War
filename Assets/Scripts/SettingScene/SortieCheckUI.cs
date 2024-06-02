@@ -14,6 +14,7 @@ public class SortieCheckUI : MonoBehaviour
         InfoText.text = "ステージ" + Common.Progress.ToString() + "に出陣します。\nよろしいですか？";
     }
 
+    //出陣　次のステージを開始
     public void YesButtonClick()
     {
         //SceneManager.LoadScene("BattleScene" + Common.Progress.ToString());

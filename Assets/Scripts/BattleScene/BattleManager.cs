@@ -8,7 +8,11 @@ using System.Linq;
 public class BattleManager : MonoBehaviour
 {
     //各UI
+    public GameObject StartDisplay;
+    public GameObject StartHelpUI;
     public GameObject StartUI;
+    public GameObject BattleStartDisplay;
+    public GameObject BattleStartHelpUI;
     public GameObject ActionUI;
     public GameObject MoveUI;
     public GameObject SortieUI;
@@ -54,25 +58,44 @@ public class BattleManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        StartCoroutine(StartSetting());
+    }
+
+    //シーン起動時
+    private IEnumerator StartSetting()
+    {
+        Time.timeScale = 0;
+        Common.BattleMode = true;
+
         //データロード
         PlayerFighterTable.Load();
         PlayerUnitTable.Load();
-
-        Time.timeScale = 0;
-        Common.BattleMode = true;
 
         //DBデータ取得
         PlayerUnitDataBaseAllList = Resources.Load<PlayerUnitDB>("DB/PlayerUnitDB").PlayerUnitDBList.OrderBy((n) => n.Num).ToList(); //ユニット番号順に並び替え
         PlayerFighterDataBaseAllList = Resources.Load<PlayerFighterDB>("DB/PlayerFighterDB").PlayerFighterDBList
             .OrderBy((n) => n.UnitNum).ThenByDescending((n) => n.UnitLeader).ToList(); //部隊番号順、部隊長が上に来るように並び替え
+
+        //ステージ名表示
+        StartDisplay.transform.Find("Text (StageNum)").GetComponent<Text>().text = "ステージ" + Common.Progress.ToString();
+        StartDisplay.gameObject.SetActive(true);
+        yield return new WaitForSecondsRealtime(2);
+        StartDisplay.gameObject.SetActive(false);
+
         
         //敵のゲージを生成
         foreach (GameObject Enemy in GameObject.FindGameObjectsWithTag("EnemyFighter"))
         {
             CreateGaugeAndFlag(Enemy);
         }
+
         BattleInfoUI.SetActive(true);
         StartUI.SetActive(true);
+
+        if(StartHelpUI)
+        {
+            StartHelpUI.SetActive(true);
+        }
     }
 
     private void OnEnable()
@@ -92,6 +115,45 @@ public class BattleManager : MonoBehaviour
         PlayerFighterTable.Save();
         PlayerUnitTable.Save();
     }
+
+
+    //戦開始ボタンクリック
+    public void BattleStart()
+    {
+        StartCoroutine(BattleStartSetting());
+    }
+
+    private IEnumerator BattleStartSetting()
+    {
+        StartUI.GetComponent<StartUI>().DeleteMoveRoute();
+
+        //それぞれの変数と画面状態を元に戻す
+        foreach (GameObject Fighter in SelectFighter)
+        {
+            Fighter.transform.Find("SelectImage").GetComponent<SpriteRenderer>().color = Color.clear;
+        }
+        SelectFighter.Clear();
+        SelectFighterLine.Clear();
+        StartFlg = true;
+        
+        Time.timeScale = 1;
+
+        StartUI.gameObject.SetActive(false);
+
+        //戦闘開始ホラ貝表示
+        BattleStartDisplay.gameObject.SetActive(true);
+        yield return new WaitForSecondsRealtime(2);
+        BattleStartDisplay.gameObject.SetActive(false);
+
+        //戦術指示ボタン表示
+        InstructionButton.gameObject.SetActive(true);
+
+        if (BattleStartHelpUI)
+        {
+            BattleStartHelpUI.SetActive(true);
+        }
+    }
+
 
     //体力、スタミナゲージ、リーダーマーク作成
     public void CreateGaugeAndFlag(GameObject targetObject)

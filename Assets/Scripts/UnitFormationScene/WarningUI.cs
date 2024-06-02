@@ -8,6 +8,7 @@ public class WarningUI : MonoBehaviour
     public Text InfoText;
     public UnitFormationManager ufManager;
 
+    //Šù‚É‘¼‚Ì•”‘à‚ÉŠ‘®‚µ‚Ä‚¢‚é•ºm‚ÍŠm”F
     private void OnEnable()
     {
         FighterStatus SelectStatus = ufManager.SelectFighterButton.GetComponent<FighterStatus>();

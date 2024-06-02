@@ -24,6 +24,7 @@ public class StaminaGauge : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //スタミナ表示
         if (targetFighter != null)
         {
             Transform targetTransform = targetFighter.GetComponent<Transform>();

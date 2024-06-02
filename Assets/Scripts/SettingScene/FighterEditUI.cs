@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using System.Linq;
 using UnityEngine.EventSystems;
 
+//•ºŽmˆê——UI
 public class FighterEditUI : MonoBehaviour
 {
     public SettingManager SeManager;

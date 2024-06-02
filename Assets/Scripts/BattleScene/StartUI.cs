@@ -42,6 +42,12 @@ public class StartUI : MonoBehaviour
         DeleteMoveRoute();
         Time.timeScale = 0;
 
+        //説明の都合のため　ステージ1では編成できないように
+        if(Common.Progress == 1)
+        {
+            EditUnitButton.interactable = false;
+        }
+
         //全味方兵士の移動ルートを表示
         GameObject[] tagObjects = GameObject.FindGameObjectsWithTag("PlayerFighter");
 
@@ -216,25 +222,6 @@ public class StartUI : MonoBehaviour
         {
             Destroy(MoveObject);
         }
-    }
-
-    //戦開始
-    public void Go()
-    {
-        DeleteMoveRoute();
-
-        //それぞれの変数と画面状態を元に戻す
-        foreach (GameObject Fighter in BaManager.SelectFighter)
-        {
-            Fighter.transform.Find("SelectImage").GetComponent<SpriteRenderer>().color = Color.clear;
-        }
-        BaManager.SelectFighter.Clear();
-        BaManager.SelectFighterLine.Clear();
-        BaManager.StartFlg = true;
-        BaManager.InstructionButton.gameObject.SetActive(true);
-        Time.timeScale = 1;
-
-        this.gameObject.SetActive(false);
     }
 
     //部隊編成

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//雇用するかの確認UI
 public class EmployUI : MonoBehaviour
 {
     //各UI

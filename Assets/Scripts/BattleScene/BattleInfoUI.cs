@@ -11,6 +11,7 @@ public class BattleInfoUI : MonoBehaviour
 
     private float DefaultTime;
 
+    //画面右下　メニューボタンクリック時
     public void MenuButtonClick()
     {
         DefaultTime = Time.timeScale;
@@ -18,6 +19,7 @@ public class BattleInfoUI : MonoBehaviour
         MenuUI.SetActive(true);
     }
 
+    //ステージやり直し
     public void RevengeButtonClick()
     {
         //出撃フラグを元に戻す
@@ -30,6 +32,7 @@ public class BattleInfoUI : MonoBehaviour
         SceneManager.LoadScene("BattleScene1");
     }
 
+    //準備画面へ戻る
     public void SettingButtonClick()
     {
         //出撃フラグを元に戻す
@@ -41,6 +44,7 @@ public class BattleInfoUI : MonoBehaviour
         SceneManager.LoadScene("SettingScene");
     }
 
+    //メニューを閉じる
     public void MenuCloseButtonClick()
     {
         Time.timeScale = DefaultTime;

@@ -21,19 +21,19 @@ MonoBehaviour:
     AtkPower: 2
     MoveSpeed: 10
     AtkSpeed: 10
-    EXP: 10
+    EXP: 0
     UnitNum: 1
-    Position: {x: 1.3964646, y: -0.3858586, z: 0}
-    UnitLeader: 1
+    Position: {x: 0, y: 0.7, z: 0}
+    UnitLeader: 0
   - Name: "\u5F13\u51751"
     Type: 2
     Level: 1
-    Hp: 7
+    Hp: 8
     Stamina: 10
     AtkPower: 2
-    MoveSpeed: 10
-    AtkSpeed: 7
-    EXP: 10
+    MoveSpeed: 8
+    AtkSpeed: 10
+    EXP: 0
     UnitNum: 1
-    Position: {x: -1.396465, y: -0.3858586, z: 0}
+    Position: {x: 0, y: -0.7, z: 0}
     UnitLeader: 0

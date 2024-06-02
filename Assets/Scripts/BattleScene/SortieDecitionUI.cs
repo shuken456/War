@@ -148,11 +148,12 @@ public class SortieDecitionUI : MonoBehaviour
         //兵士の付属オブジェクトを作成、タグとレイヤー変更
         foreach (Transform Fighter in SortieFighter.transform)
         {
-            Fighter.gameObject.transform.parent = null;
             BaManager.CreateGaugeAndFlag(Fighter.gameObject);
             Fighter.gameObject.layer = LayerMask.NameToLayer("PlayerFighter");
             Fighter.tag = "PlayerFighter";
         }
+
+        SortieFighter.transform.gameObject.transform.parent = null;
 
         //部隊の出撃フラグをtrueに
         BaManager.PlayerUnitDataBaseAllList[Common.SelectUnitNum - 1].SoriteFlg = true;

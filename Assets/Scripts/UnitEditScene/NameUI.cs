@@ -28,7 +28,6 @@ public class NameUI : MonoBehaviour
         EditManager.DisplayScreenStart();
         EditManager.DisplayUnitUI();
         GameObject.Find("Unit" + EditManager.SelectUnitNum.ToString()).transform.Find("UnitBackImage").GetComponent<SpriteRenderer>().color = Color.green;
-        EditManager.SelectUI.SetActive(true);
         this.gameObject.SetActive(false);
     }
 }

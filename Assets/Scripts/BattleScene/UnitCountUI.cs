@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//oŒ‚‰Â”\•”‘à”•\¦UI ‰æ–Ê¶ã
 public class UnitCountUI : MonoBehaviour
 {
     public BattleManager BaManager;

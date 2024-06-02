@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//解雇UI
 public class DismissalUI : MonoBehaviour
 {
     public FighterEditUI FeUI;
@@ -11,7 +12,7 @@ public class DismissalUI : MonoBehaviour
     public Text MoneyText;
 
     private FighterStatus fs;
-    private int GetMoney;
+    private int GetMoney; //解雇したときに手に入るお金
 
     void OnEnable()
     {
@@ -24,9 +25,11 @@ public class DismissalUI : MonoBehaviour
 
     public void YesButtonClick()
     {
+        //兵士データを削除
         FeUI.PlayerFighterDataBaseAllList.Remove(Resources.Load<PlayerFighterDB>("DB/PlayerFighterDB").PlayerFighterDBList.Find((n) => n.Name == fs.FighterName));
         Resources.Load<PlayerFighterDB>("DB/PlayerFighterDB").PlayerFighterDBList.Remove(Resources.Load<PlayerFighterDB>("DB/PlayerFighterDB").PlayerFighterDBList.Find((n) => n.Name == fs.FighterName));
 
+        //所持金プラス
         Common.Money += GetMoney;
 
         FeUI.ButtonClickChange(false);

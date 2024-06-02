@@ -12,7 +12,6 @@ public class StrategyUI : MonoBehaviour
     {
         EditManager.PlayerUnitDataBaseAllList[EditManager.SelectUnitNum - 1].Strategy = 1;
         EditManager.DisplayUnitUI();
-        EditManager.SelectUI.SetActive(true);
         this.gameObject.SetActive(false);
     }
 
@@ -21,7 +20,6 @@ public class StrategyUI : MonoBehaviour
     {
         EditManager.PlayerUnitDataBaseAllList[EditManager.SelectUnitNum - 1].Strategy = 2;
         EditManager.DisplayUnitUI();
-        EditManager.SelectUI.SetActive(true);
         this.gameObject.SetActive(false);
     }
 
@@ -30,7 +28,6 @@ public class StrategyUI : MonoBehaviour
     {
         EditManager.PlayerUnitDataBaseAllList[EditManager.SelectUnitNum - 1].Strategy = 3;
         EditManager.DisplayUnitUI();
-        EditManager.SelectUI.SetActive(true);
         this.gameObject.SetActive(false);
     }
 }

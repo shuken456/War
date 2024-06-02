@@ -31,7 +31,7 @@ public class CameraWork : MonoBehaviour
 
     void Update()
     {
-        //ホイールを取得
+        //ホイールを取得　それによってズーム
         var scroll = Input.mouseScrollDelta.y * Time.unscaledDeltaTime * ZoomSpeed;
 
         float AfterZoom = mainCam.m_Lens.OrthographicSize - scroll;
@@ -48,7 +48,7 @@ public class CameraWork : MonoBehaviour
             startCamPos = mainCam.transform.position;
         }
 
-        //マウスカーソルのドラッグ位置によってカメラを移動
+        //マウスカーソルのドラッグ位置によってカメラを移動（右ドラッグ）
         if (Input.GetMouseButton(1))
         {
             //(移動開始座標 - マウスの現在座標) / 解像度 で正規化

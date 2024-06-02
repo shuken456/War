@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//兵士一覧からのレベルアップ後のパラメータ表示UI
 public class LevelUpAfterUI : MonoBehaviour
 {
     public LevelUpInfoUI LuUI;
@@ -15,6 +16,7 @@ public class LevelUpAfterUI : MonoBehaviour
 
     private void OnEnable()
     {
+        //レベルアップ後の兵士パラメータを表示
         FighterImage.sprite = LuUI.FeUI.FighterStatusInfo.transform.Find("FighterBack/FighterImage").GetComponent<Image>().sprite;
         FighterImage.color = LuUI.FeUI.FighterStatusInfo.transform.Find("FighterBack/FighterImage").GetComponent<Image>().color;
 

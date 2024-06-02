@@ -23,7 +23,7 @@ public class UnitEditManager : MonoBehaviour
     public GameObject StrategyUI;
     public GameObject ColorUI;
     public GameObject NameUI;
-    public GameObject SortieUI;
+    public GameObject SortieButton;
 
     //出撃中表示
     public GameObject SortieNow;
@@ -93,12 +93,12 @@ public class UnitEditManager : MonoBehaviour
                 UIPosition.x -= 130;
                 UIPosition.y -= 150;
 
-                //出撃モードの場合、出撃UIを出す
+                //出撃モードの場合は出撃ボタン、そうでない場合は編成UIを出す
                 if (Common.SortieMode)
                 {
-                    SortieUI.SetActive(false);
-                    SortieUI.GetComponent<RectTransform>().position = UIPosition;
-                    SortieUI.SetActive(true);
+                    SortieButton.SetActive(false);
+                    SortieButton.GetComponent<RectTransform>().position = UIPosition + new Vector2 (0,10);
+                    SortieButton.SetActive(true);
                 }
                 else
                 {
@@ -221,6 +221,7 @@ public class UnitEditManager : MonoBehaviour
         LockUI.SetActive(true);
     }
 
+    //終了ボタン
     public void EndButtonClick()
     {
         Common.SelectUnitNum = 0;

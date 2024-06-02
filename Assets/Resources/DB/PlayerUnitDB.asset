@@ -15,6 +15,6 @@ MonoBehaviour:
   PlayerUnitDBList:
   - Num: 1
     Name: "\u7B2C1\u90E8\u968A"
-    UnitColor: {r: 0.12156863, g: 0.8352941, b: 1, a: 1}
+    UnitColor: {r: 1, g: 1, b: 0, a: 1}
     Strategy: 1
     SoriteFlg: 1

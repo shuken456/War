@@ -64,6 +64,7 @@ public class Arrow : MonoBehaviour
 
             if (targetEnemyStatus.NowHp <= 0)
             {
+                //ÉçÉOï\é¶
                 if (this.tag == "PlayerArrow")
                 {
                     GameObject.Find("BattleManager").GetComponent<BattleManager>().LogUI.DrawLog("<size=30>" + ArcherName + "</size>\n" + targetEnemyStatus.FighterName + "Çì|ÇµÇΩÅI");

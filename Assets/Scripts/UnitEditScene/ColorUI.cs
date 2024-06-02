@@ -15,7 +15,6 @@ public class ColorUI : MonoBehaviour
     {
         EditManager.PlayerUnitDataBaseAllList[EditManager.SelectUnitNum - 1].UnitColor = eventSystem.currentSelectedGameObject.GetComponent<Image>().color;
         EditManager.DisplayScreenStart();
-        EditManager.SelectUI.SetActive(true);
         GameObject.Find("Unit" + EditManager.SelectUnitNum.ToString()).transform.Find("UnitBackImage").GetComponent<SpriteRenderer>().color = Color.green;
         this.gameObject.SetActive(false);
     }

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
 
+//雇用確定後表示するUI
 public class EmploymentAfterUI : MonoBehaviour
 {
     //UI
@@ -122,6 +123,7 @@ public class EmploymentAfterUI : MonoBehaviour
         this.gameObject.SetActive(false);
     }
 
+    //名前変更ボタン押下
     public void NameButtonClick()
     {
         NameUI.SetActive(true);

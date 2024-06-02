@@ -109,18 +109,19 @@ public class ResultUI : MonoBehaviour
             //レベルアップ判定
             int AddExp = Mathf.CeilToInt(BaManager.ExpDic[pf.Name] * ((float)Common.Progress / (float)pf.Level)); //ステージと現在のレベルによって経験値に補正をかける
             int SumExp = AddExp + pf.EXP;
-            pf.EXP = SumExp % 100;
+
+            //上がるレベル数 ※経験値が100たまったら1レベルアップ
+            int UpLevel = Mathf.FloorToInt(SumExp / 100);
+
+            pf.EXP = SumExp - (100 * UpLevel);
             button.transform.Find("FighterResultInfo/StatusTexts/Text (AddExp)").GetComponent<Text>().text = "+" + AddExp.ToString();
             button.transform.Find("FighterResultInfo/StatusTexts/Text (NextExp)").GetComponent<Text>().text = (100 - pf.EXP).ToString();
 
-            //経験値が100たまったら1レベルアップ
-            if (SumExp >= 100)
+            //パラメータアップ
+            if (UpLevel > 0)
             {
-                //上がるレベル数
-                int UpLevel = Mathf.FloorToInt(SumExp / 100);
                 //上がるパラメータリスト
                 Dictionary<string, int> UpParameter = Common.LevelUpParameter(pf.Type,UpLevel);
-
                 button.transform.Find("FighterResultInfo/StatusTexts/Text (LevelUp)").gameObject.SetActive(true);
                 button.transform.Find("FighterResultInfo/StatusTexts/Text (Level)").GetComponent<Text>().text = pf.Level.ToString() + "→" + (pf.Level + UpLevel).ToString();
                 button.transform.Find("FighterResultInfo/StatusTexts/Text (Hp)").GetComponent<Text>().text = pf.Hp + "→" + (pf.Hp + UpParameter["Hp"]).ToString();

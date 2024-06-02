@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//画面中央上　戦力表示UI
 public class BattleSituationUI : MonoBehaviour
 {
     public Text PlayerPower;
@@ -13,7 +14,10 @@ public class BattleSituationUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        UpdatePower();
+        if(Time.timeScale >= 1)
+        {
+            UpdatePower();
+        }
     }
 
     //レベルの合計を戦力として表示する

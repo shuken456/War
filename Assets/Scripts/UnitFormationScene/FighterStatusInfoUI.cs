@@ -15,6 +15,7 @@ public class FighterStatusInfoUI : MonoBehaviour
         PlayerUnitDataBaseAllList = Resources.Load<PlayerUnitDB>("DB/PlayerUnitDB").PlayerUnitDBList.OrderBy((n) => n.Num).ToList(); //ユニット番号順に並び替え
     }
 
+    //兵士のステータスを表示
     public void TextWrite(FighterStatus fs)
     {
         this.transform.Find("StatusTexts/Text (Name)").GetComponent<Text>().text = fs.FighterName;
@@ -52,6 +53,7 @@ public class FighterStatusInfoUI : MonoBehaviour
         }
     }
 
+    //兵士の画像を表示
     public void ImageWrite(Sprite sprite, Color color)
     {
         this.transform.Find("FighterBack/FighterImage").GetComponent<Image>().sprite = sprite;
