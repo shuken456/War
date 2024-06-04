@@ -51,6 +51,8 @@ public class HomeUI : MonoBehaviour
 
     public void TitleYes()
     {
+        //DontDestoy‚É“ü‚Á‚Ä‚éBGM‚ğíœ
+        Destroy(GameObject.Find("BGM"));
         SceneManager.LoadScene("TitleScene");
     }
 

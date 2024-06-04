@@ -23,6 +23,7 @@ public class BattleManager : MonoBehaviour
     public GameObject TimeStopText;
     public GameObject ResultUI;
     public GameObject BattleInfoUI;
+    public GameObject GameClearUI;
 
     //選択中の兵士
     public List<GameObject> SelectFighter = new List<GameObject>();
@@ -54,6 +55,17 @@ public class BattleManager : MonoBehaviour
     PlayerFighterDB PlayerFighterTable;
     [SerializeField]
     PlayerUnitDB PlayerUnitTable;
+
+    //各BGM
+    public AudioSource SettingBGM;
+    public AudioSource LastBattleBGM;
+    public AudioSource BattleBGM;
+    public AudioSource VoiceBGM;
+    public AudioSource HoragaiSE;
+    public AudioSource ButtonSE;
+    public AudioSource WinBGM;
+    public AudioSource LoseBGM;
+    public AudioSource GameClearBGM;
 
     // Start is called before the first frame update
     void Start()
@@ -140,6 +152,10 @@ public class BattleManager : MonoBehaviour
 
         StartUI.gameObject.SetActive(false);
 
+        //ホラ貝を鳴らす
+        SettingBGM.Stop();
+        HoragaiSE.Play();
+
         //戦闘開始ホラ貝表示
         BattleStartDisplay.gameObject.SetActive(true);
         yield return new WaitForSecondsRealtime(2);
@@ -152,6 +168,10 @@ public class BattleManager : MonoBehaviour
         {
             BattleStartHelpUI.SetActive(true);
         }
+
+        //戦闘BGMを鳴らす
+        BattleMusic().Stop();
+        VoiceBGM.Play();
     }
 
 
@@ -177,14 +197,42 @@ public class BattleManager : MonoBehaviour
     //勝利
     public void BattleWin()
     {
+        BattleMusic().Stop();
+        VoiceBGM.Stop();
         WinFlg = true;
-        ResultUI.SetActive(true);
+
+        //ステージ20でクリア
+        if(Common.Progress < 20)
+        {
+            WinBGM.Play();
+            ResultUI.SetActive(true);
+        }
+        else
+        {
+            GameClearBGM.Play();
+            GameClearUI.SetActive(true);
+        }
     }
 
     //敗北
     public void BattleLose()
     {
+        BattleMusic().Stop();
+        VoiceBGM.Stop();
+        LoseBGM.Play();
         WinFlg = false;
         ResultUI.SetActive(true);
+    }
+
+    private AudioSource BattleMusic()
+    {
+        if (Common.Progress < 20)
+        {
+            return BattleBGM;
+        }
+        else
+        {
+            return LastBattleBGM;
+        }
     }
 }

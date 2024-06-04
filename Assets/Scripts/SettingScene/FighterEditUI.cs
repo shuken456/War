@@ -54,6 +54,9 @@ public class FighterEditUI : MonoBehaviour
     public GameObject SelectFighterButton;
     public FighterStatus SelectFighterStatus;
 
+    //ボタン押下SE
+    public AudioSource SE;
+
     void OnEnable()
     {
         //DBデータ取得
@@ -149,6 +152,8 @@ public class FighterEditUI : MonoBehaviour
     //兵士のボタンクリックイベント
     public void FighterButtonClick()
     {
+        SE.Play();
+
         //各ボタンを押せるようにする
         ButtonClickChange(true);
 

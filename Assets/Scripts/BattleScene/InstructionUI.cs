@@ -25,6 +25,7 @@ public class InstructionUI : MonoBehaviour
             var col = Physics2D.OverlapPoint(CursorPosition, LayerMask.GetMask("PlayerFighter"));
             if (col != null && !BaManager.SelectFighter.Contains(col.gameObject))
             {
+                BaManager.ButtonSE.Play();
                 BaManager.SelectFighter.Add(col.gameObject);
 
                 //‘I‘ğ’†‚ÌŒ©‚½–Ú‚ğ•ÏX
@@ -53,6 +54,7 @@ public class InstructionUI : MonoBehaviour
                 var col = Physics2D.OverlapPoint(CursorPosition, LayerMask.GetMask("PlayerFighter", "EnemyFighter"));
                 if(col != null)
                 {
+                    BaManager.ButtonSE.Play();
                     BaManager.FighterStatusInfoUI.SetActive(true);
                     BaManager.FighterStatusInfoUI.GetComponent<FighterStatusInfo>().TextWrite(col.GetComponent<FighterStatus>());
                     BaManager.FighterStatusInfoUI.GetComponent<FighterStatusInfo>().ImageWrite(col.GetComponent<SpriteRenderer>().sprite, col.GetComponent<SpriteRenderer>().color);

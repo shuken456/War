@@ -7,9 +7,24 @@ using UnityEngine.SceneManagement;
 public class BattleInfoUI : MonoBehaviour
 {
     public BattleManager BaManager;
+
     public GameObject MenuUI;
+    public Button SettingButton;
 
     private float DefaultTime;
+
+    private void OnEnable()
+    {
+        //最初のステージは準備画面へ戻れないように
+        if(Common.Progress == 1)
+        {
+            SettingButton.interactable = false;
+        }
+        else
+        {
+            SettingButton.interactable = true;
+        }
+    }
 
     //画面右下　メニューボタンクリック時
     public void MenuButtonClick()
@@ -28,6 +43,12 @@ public class BattleInfoUI : MonoBehaviour
         {
            pu.SoriteFlg = false;
         }
+
+        //DontDestoyに入ってるBGMを削除
+        Destroy(GameObject.Find("SettingBGM"));
+        Destroy(GameObject.Find("BattleBGM"));
+        Destroy(GameObject.Find("VoiceBGM"));
+
         //SceneManager.LoadScene("BattleScene" + Common.Progress.ToString());
         SceneManager.LoadScene("BattleScene1");
     }
@@ -41,6 +62,14 @@ public class BattleInfoUI : MonoBehaviour
         {
             pu.SoriteFlg = false;
         }
+
+        Common.BattleMode = false;
+
+        //DontDestoyに入ってるBGMを削除
+        Destroy(GameObject.Find("SettingBGM"));
+        Destroy(GameObject.Find("BattleBGM"));
+        Destroy(GameObject.Find("VoiceBGM"));
+
         SceneManager.LoadScene("SettingScene");
     }
 

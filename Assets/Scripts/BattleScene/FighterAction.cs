@@ -244,7 +244,7 @@ public class FighterAction : MonoBehaviour
     {
         //áŠQ•¨or–¡•û•ºŽm‚ÉG‚ê‚½ê‡A‚ ‚é’ö“x–Ú“I’n‚É‹ß‚¯‚ê‚Î’…‚¢‚½‚±‚Æ‚É‚·‚é@¦‚Â‚Á‚©‚¦–hŽ~
         if ((collision.gameObject.layer == LayerMask.NameToLayer("Obstacle") || collision.gameObject.layer == LayerMask.NameToLayer("PlayerFighter")) && 
-            targetPlace.Count > 0 && Mathf.Abs(transform.position.x - targetPlace[0].x) < 1.5f && Mathf.Abs(transform.position.y - targetPlace[0].y) < 1.5f)
+            targetPlace.Count > 0 && Mathf.Abs(transform.position.x - targetPlace[0].x) < 1f && Mathf.Abs(transform.position.y - targetPlace[0].y) < 1f)
         {
             targetPlace.RemoveAt(0);
         }
@@ -280,7 +280,7 @@ public class FighterAction : MonoBehaviour
         //}
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         //–¡•ûƒ^[ƒQƒbƒg‚ÉÚG‚µ‚½ê‡A‰Ÿ‚µ‘±‚¯‚È‚¢‚æ‚¤‚Éˆê“xíœ
         if (collision.gameObject.transform == targetFighter && collision.gameObject.layer == this.gameObject.layer)

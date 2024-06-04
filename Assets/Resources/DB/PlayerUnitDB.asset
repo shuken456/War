@@ -17,4 +17,4 @@ MonoBehaviour:
     Name: "\u7B2C1\u90E8\u968A"
     UnitColor: {r: 1, g: 1, b: 0, a: 1}
     Strategy: 1
-    SoriteFlg: 1
+    SoriteFlg: 0

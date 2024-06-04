@@ -184,6 +184,8 @@ public class MoveUI : MonoBehaviour
                 //左クリックで移動ルート一時決定、決定UIを表示
                 if (Input.GetMouseButtonUp(0))
                 {
+                    BaManager.ButtonSE.Play();
+
                     //クリック位置を保持しておく
                     LastPosition = CursorPosition;
 

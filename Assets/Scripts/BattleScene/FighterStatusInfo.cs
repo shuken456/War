@@ -9,6 +9,13 @@ public class FighterStatusInfo : MonoBehaviour
 {
     public BattleManager BaManager;
     private FighterStatus BeforeFs; //一回前に開いた兵士
+    private float DefaultTime;
+
+    private void OnEnable()
+    {
+        DefaultTime = Time.timeScale;
+        Time.timeScale = 0;
+    }
 
     //表示テキスト記載
     public void TextWrite(FighterStatus fs)
@@ -80,5 +87,6 @@ public class FighterStatusInfo : MonoBehaviour
 
         BeforeFs = null;
         this.gameObject.SetActive(false);
+        Time.timeScale = DefaultTime;
     }
 }

@@ -98,14 +98,26 @@ public static class Common
             {
                 fs.AtkPowerBuff = (int)Mathf.Round(fs.AtkPower * 0.3f);
             }
+            else
+            {
+                fs.AtkPowerBuff = 0;
+            }
             if (UnitStrategy == 2)
             {
                 fs.MaxHpBuff = Mathf.Round(fs.MaxHp * 0.3f);
                 fs.NowHp += fs.MaxHpBuff;
             }
+            else
+            {
+                fs.MaxHpBuff = 0;
+            }
             if (UnitStrategy == 3)
             {
                 fs.MoveSpeedBuff = (int)Mathf.Round(fs.MoveSpeed * 0.3f);
+            }
+            else
+            {
+                fs.MoveSpeedBuff = 0;
             }
         }
         else
@@ -114,14 +126,26 @@ public static class Common
             {
                 fs.AtkPowerBuff = (int)Mathf.Round(fs.AtkPower * 0.3f);
             }
+            else
+            {
+                fs.AtkPowerBuff = 0;
+            }
             if (fs.UnitLeader || UnitStrategy == 2)
             {
                 fs.MaxHpBuff = Mathf.Round(fs.MaxHp * 0.3f);
                 fs.NowHp += fs.MaxHpBuff;
             }
+            else
+            {
+                fs.MaxHpBuff = 0;
+            }
             if (fs.UnitLeader || UnitStrategy == 3)
             {
                 fs.MoveSpeedBuff = (int)Mathf.Round(fs.MoveSpeed * 0.3f);
+            }
+            else
+            {
+                fs.MoveSpeedBuff = 0;
             }
         }
     }

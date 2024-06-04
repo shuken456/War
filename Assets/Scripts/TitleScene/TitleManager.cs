@@ -8,7 +8,6 @@ public class TitleManager : MonoBehaviour
 {
     public Button ContinueButton;
     public GameObject BeginWarningUI;
-    private string ContinueData;
 
     //DB
     [SerializeField]
@@ -19,11 +18,8 @@ public class TitleManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        PlayerPrefs.DeleteAll();
-        ContinueData = PlayerPrefs.GetString("ContinueFighterData", string.Empty);
-
-        //データが存在するかチェック
-        if (ContinueData == string.Empty)
+        //ステージ1をクリアしたデータが存在するかチェック
+        if (PlayerPrefs.GetInt("ContinueProgress") < 2)
         {
             ContinueButton.interactable = false;
         }
@@ -36,7 +32,7 @@ public class TitleManager : MonoBehaviour
     //はじめから
     public void Begin()
     {
-        if (ContinueData == string.Empty)
+        if (PlayerPrefs.GetInt("ContinueProgress") == 0)
         {
             //初期データをここでセーブ　次にはじめからスタートする時に使う
             PlayerFighterTable.InitialSave();

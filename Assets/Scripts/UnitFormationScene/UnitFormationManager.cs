@@ -20,6 +20,7 @@ public class UnitFormationManager : MonoBehaviour
     public GameObject SelectUnitInfoUI;
     public GameObject[] UnitMemberInfoUI;
 
+    public GameObject HelpUI;
     public GameObject SaveUI;
     public GameObject EndUI;
     public GameObject WarningUI;
@@ -60,6 +61,9 @@ public class UnitFormationManager : MonoBehaviour
 
     //部隊方針保持
     private int UnitStrategy = 0;
+
+    //ボタン押下SE
+    public AudioSource SE;
 
     //DB
     [SerializeField]
@@ -132,15 +136,20 @@ public class UnitFormationManager : MonoBehaviour
             Fighter.transform.parent = UnitObjectBack.transform;
             Fighter.transform.localPosition = FighterStatusList.Position;
 
-            //兵士の名前を表示する
-            UnitFighterNameWrite(Fighter);
-           
             //画面右下ユニットメンバーUI記載
             UnitMemberInfoWrite(i, FighterStatusList.Name, FighterStatusList.Type, FighterStatusList.Level);
+
+            //兵士の名前を表示する
+            UnitFighterNameWrite(Fighter);
         }
 
         ReserveFighterViewDisplay();
 
+        if (PlayerPrefs.GetInt("FormationHelp",0) == 0)
+        {
+            PlayerPrefs.SetInt("FormationHelp", 1);
+            HelpUI.SetActive(true);
+        }
     }
 
     //控え兵士ビュー更新
@@ -453,6 +462,10 @@ public class UnitFormationManager : MonoBehaviour
 
                     //画面下ユニットメンバーUI記載
                     UnitMemberInfoWrite(0, fs.FighterName, fs.Type, fs.Level);
+
+                    //ステータスUI更新(ステータスバフ変更のため)
+                    Common.FighterBuff(fs, UnitStrategy, false);
+                    FighterStatusInfo.TextWrite(fs);
                 }
             }
         }
@@ -462,6 +475,8 @@ public class UnitFormationManager : MonoBehaviour
     //兵士のボタンクリックイベント
     public void FighterButtonClick()
     {
+        SE.Play();
+
         //ボタンで選択されている兵士がいる場合、再度選択できるようにボタン状態を元に戻す
         if (SelectFighterButton != null)
         {

@@ -15,25 +15,49 @@ MonoBehaviour:
   PlayerFighterDBList:
   - Name: "\u6B69\u51751"
     Type: 1
-    Level: 1
-    Hp: 10
-    Stamina: 13
-    AtkPower: 2
-    MoveSpeed: 10
-    AtkSpeed: 10
-    EXP: 0
+    Level: 6
+    Hp: 29
+    Stamina: 30
+    AtkPower: 10
+    MoveSpeed: 13
+    AtkSpeed: 13
+    EXP: 13
     UnitNum: 1
-    Position: {x: 0, y: 0.7, z: 0}
-    UnitLeader: 0
+    Position: {x: -0.13888931, y: 0.54343444, z: 0}
+    UnitLeader: 1
   - Name: "\u5F13\u51751"
     Type: 2
-    Level: 1
-    Hp: 8
-    Stamina: 10
-    AtkPower: 2
-    MoveSpeed: 8
-    AtkSpeed: 10
-    EXP: 0
+    Level: 5
+    Hp: 15
+    Stamina: 13
+    AtkPower: 9
+    MoveSpeed: 11
+    AtkSpeed: 12
+    EXP: 27
     UnitNum: 1
-    Position: {x: 0, y: -0.7, z: 0}
+    Position: {x: 1.6489894, y: 0.35151523, z: 0}
+    UnitLeader: 0
+  - Name: "\u5F13\u51752"
+    Type: 2
+    Level: 1
+    Hp: 6
+    Stamina: 12
+    AtkPower: 4
+    MoveSpeed: 11
+    AtkSpeed: 8
+    EXP: 0
+    UnitNum: 0
+    Position: {x: 0, y: 0, z: 0}
+    UnitLeader: 0
+  - Name: "\u5F13\u51753"
+    Type: 2
+    Level: 1
+    Hp: 6
+    Stamina: 8
+    AtkPower: 4
+    MoveSpeed: 9
+    AtkSpeed: 6
+    EXP: 0
+    UnitNum: 0
+    Position: {x: 0, y: 0, z: 0}
     UnitLeader: 0

@@ -45,7 +45,6 @@ public class ResultUI : MonoBehaviour
             //進行度更新
             Common.Progress += 1;
 
-            
         }
         else
         {
@@ -64,7 +63,7 @@ public class ResultUI : MonoBehaviour
             FighterStatus fs = Fighter.GetComponent<FighterStatus>();
             if(!BaManager.ExpDic.ContainsKey(fs.FighterName))
             {
-                BaManager.ExpDic.Add(fs.FighterName, fs.Exp + 30);
+                BaManager.ExpDic.Add(fs.FighterName, fs.Exp);
                 if (BaManager.WinFlg)
                 {
                     BaManager.ExpDic[fs.FighterName] += 30; //生き残り経験値ボーナス30
@@ -154,6 +153,12 @@ public class ResultUI : MonoBehaviour
     {
         Common.BattleMode = false;
         Common.SortieMode = false;
+
+        //DontDestoyに入ってるBGMを削除
+        Destroy(GameObject.Find("SettingBGM"));
+        Destroy(GameObject.Find("BattleBGM"));
+        Destroy(GameObject.Find("VoiceBGM"));
+
         SceneManager.LoadScene("SettingScene");
     }
 
@@ -162,6 +167,12 @@ public class ResultUI : MonoBehaviour
     {
         Common.BattleMode = false;
         Common.SortieMode = false;
+
+        //DontDestoyに入ってるBGMを削除
+        Destroy(GameObject.Find("SettingBGM"));
+        Destroy(GameObject.Find("BattleBGM"));
+        Destroy(GameObject.Find("VoiceBGM"));
+
         //SceneManager.LoadScene("BattleScene" + Common.Progress.ToString());
         SceneManager.LoadScene("BattleScene1");
     }

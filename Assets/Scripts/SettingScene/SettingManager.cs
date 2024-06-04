@@ -7,13 +7,13 @@ using System.Linq;
 public class SettingManager : MonoBehaviour
 {
     //各UI
+    public GameObject HelpUI;
     public GameObject HomeUI;
     public GameObject SortieCheckUIUI;
     public GameObject EmploymentUI;
     public GameObject FighterEditUI;
     public GameObject TitleUI;
     public MoneyUI MoUI;
-
 
     //DB
     [SerializeField]
@@ -27,6 +27,12 @@ public class SettingManager : MonoBehaviour
         //データロード
         PlayerFighterTable.Load();
         PlayerUnitTable.Load();
+
+        if (PlayerPrefs.GetInt("SettingHelp", 0) == 0)
+        {
+            PlayerPrefs.SetInt("SettingHelp", 1);
+            HelpUI.SetActive(true);
+        }
     }
 
     private void OnDisable()

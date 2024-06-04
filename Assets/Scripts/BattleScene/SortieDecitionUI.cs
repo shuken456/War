@@ -110,6 +110,7 @@ public class SortieDecitionUI : MonoBehaviour
                 //左クリックで場所指定
                 if (Input.GetMouseButtonDown(0))
                 {
+                    BaManager.ButtonSE.Play();
                     SortieDecition = true;
                     DecitionButton.interactable = true;
 
@@ -131,6 +132,7 @@ public class SortieDecitionUI : MonoBehaviour
         {
             if (ClickTime < 0.2)
             {
+                BaManager.ButtonSE.Play();
                 SortieTarget.transform.eulerAngles -= new Vector3(0, 0, 90);
 
                 foreach (Transform Fighter in SortieFighter.transform)
@@ -153,7 +155,7 @@ public class SortieDecitionUI : MonoBehaviour
             Fighter.tag = "PlayerFighter";
         }
 
-        SortieFighter.transform.gameObject.transform.parent = null;
+        SortieFighter.transform.DetachChildren();
 
         //部隊の出撃フラグをtrueに
         BaManager.PlayerUnitDataBaseAllList[Common.SelectUnitNum - 1].SoriteFlg = true;
