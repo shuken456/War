@@ -43,6 +43,9 @@ public class UnitEditManager : MonoBehaviour
     //選択中のユニットナンバー
     public int SelectUnitNum = 1;
 
+    //ボタン押下SE
+    public AudioSource SE;
+
     //DB
     [SerializeField]
     PlayerFighterDB PlayerFighterTable;
@@ -78,6 +81,8 @@ public class UnitEditManager : MonoBehaviour
             var col = Physics2D.OverlapPoint(CursorPosition, LayerMask.GetMask("PlayerUnit"));
             if (col != null)
             {
+                SE.Play();
+
                 //選択していたユニットの背景を白、新たに選択したユニット背景を緑に
                 GameObject.Find("Unit" + SelectUnitNum.ToString()).transform.Find("UnitBackImage").GetComponent<SpriteRenderer>().color = Color.white;
                 SelectUnitNum = int.Parse(col.gameObject.name.Replace("Unit", ""));
@@ -229,8 +234,7 @@ public class UnitEditManager : MonoBehaviour
         //バトルシーンをアクティブ化する
         if(Common.BattleMode)
         {
-            //Scene Bscene = SceneManager.GetSceneByName("BattleScene" + Common.Progress.ToString());
-            Scene Bscene = SceneManager.GetSceneByName("BattleScene1");
+            Scene Bscene = SceneManager.GetSceneByName("BattleScene" + Common.Progress.ToString());
 
             foreach (var root in Bscene.GetRootGameObjects())
             {

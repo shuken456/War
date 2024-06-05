@@ -26,8 +26,7 @@ public class SortieButton : MonoBehaviour
         //出撃ユニットを選び返す
         Common.SelectUnitNum = EditManager.SelectUnitNum;
 
-        //Scene Bscene = SceneManager.GetSceneByName("BattleScene" + Common.Progress.ToString());
-        Scene Bscene = SceneManager.GetSceneByName("BattleScene1");
+        Scene Bscene = SceneManager.GetSceneByName("BattleScene" + Common.Progress.ToString());
 
         foreach (var root in Bscene.GetRootGameObjects())
         {

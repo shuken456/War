@@ -231,6 +231,8 @@ public class UnitFormationManager : MonoBehaviour
             var col = Physics2D.OverlapPoint(CursorPosition, LayerMask.GetMask("PlayerFighter"));
             if (col != null)
             {
+                SE.Play();
+
                 //選択されている兵士が既にいる場合、その兵士の見た目を元に戻す
                 if(StatusShowFighter != null)
                 {
@@ -283,6 +285,7 @@ public class UnitFormationManager : MonoBehaviour
                 }
                 else
                 {
+                    SE.Play();
                     //ボタンで選択された兵士を作成してクリック位置に表示する
                     switch (SelectStatus.Type)
                     {
@@ -356,6 +359,7 @@ public class UnitFormationManager : MonoBehaviour
             var col = Physics2D.OverlapPoint(CursorPosition, LayerMask.GetMask("PlayerFighter"));
             if (col != null)
             {
+                SE.Play();
                 StartCoroutine(DestroyFighter(col));
             }
         }

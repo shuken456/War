@@ -47,10 +47,10 @@ public class BattleInfoUI : MonoBehaviour
         //DontDestoy‚É“ü‚Á‚Ä‚éBGM‚ğíœ
         Destroy(GameObject.Find("SettingBGM"));
         Destroy(GameObject.Find("BattleBGM"));
+        Destroy(GameObject.Find("LastBattleBGM"));
         Destroy(GameObject.Find("VoiceBGM"));
 
-        //SceneManager.LoadScene("BattleScene" + Common.Progress.ToString());
-        SceneManager.LoadScene("BattleScene1");
+        SceneManager.LoadScene("BattleScene" + Common.Progress.ToString());
     }
 
     //€”õ‰æ–Ê‚Ö–ß‚é
@@ -68,6 +68,7 @@ public class BattleInfoUI : MonoBehaviour
         //DontDestoy‚É“ü‚Á‚Ä‚éBGM‚ğíœ
         Destroy(GameObject.Find("SettingBGM"));
         Destroy(GameObject.Find("BattleBGM"));
+        Destroy(GameObject.Find("LastBattleBGM"));
         Destroy(GameObject.Find("VoiceBGM"));
 
         SceneManager.LoadScene("SettingScene");

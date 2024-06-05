@@ -75,6 +75,8 @@ public class SortieFighterInfo : MonoBehaviour
     //兵士のボタンクリックイベント
     public void FighterButtonClick()
     {
+        BaManager.ButtonSE.Play();
+
         FighterStatus fs = PlayerFighters.Find((n) => n.FighterName == eventSystem.currentSelectedGameObject.GetComponent<FighterStatus>().FighterName);
         mainCam.transform.position = fs.gameObject.transform.position - new Vector3(0, 0, 1);//その兵士が画面中央に来るようにする
 

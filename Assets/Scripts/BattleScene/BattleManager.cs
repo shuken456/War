@@ -33,10 +33,8 @@ public class BattleManager : MonoBehaviour
     public List<PlayerUnit> PlayerUnitDataBaseAllList;
     public List<PlayerFighter> PlayerFighterDataBaseAllList;
 
-    //HP,スタミナゲージ,リーダーマーク
-    public GameObject HpGaugePrefab;
-    public GameObject StaminaGaugePrefab;
-    public GameObject LeaderFlagPrefab;
+    //HP,スタミナゲージ等をまとめた追尾オブジェクト
+    public GameObject ChaseObjectPrefab;
 
     //ゲージ表示用キャンバス
     public GameObject CanvasWorldSpace;
@@ -57,19 +55,30 @@ public class BattleManager : MonoBehaviour
     PlayerUnitDB PlayerUnitTable;
 
     //各BGM
-    public AudioSource SettingBGM;
-    public AudioSource LastBattleBGM;
-    public AudioSource BattleBGM;
-    public AudioSource VoiceBGM;
-    public AudioSource HoragaiSE;
+    private AudioSource SettingBGM;
+    private AudioSource VoiceBGM;
+    private AudioSource BattleBGM;
+    private AudioSource LastBattleBGM;
+    private AudioSource HoragaiSE;
     public AudioSource ButtonSE;
-    public AudioSource WinBGM;
-    public AudioSource LoseBGM;
-    public AudioSource GameClearBGM;
+    private AudioSource WinBGM;
+    private AudioSource LoseBGM;
+    private AudioSource GameClearBGM;
 
     // Start is called before the first frame update
     void Start()
     {
+        //BGM格納
+        SettingBGM = GameObject.Find("SettingBGM").GetComponent<AudioSource>();
+        VoiceBGM = GameObject.Find("VoiceBGM").GetComponent<AudioSource>();
+        BattleBGM = GameObject.Find("BattleBGM").GetComponent<AudioSource>();
+        LastBattleBGM = GameObject.Find("LastBattleBGM").GetComponent<AudioSource>();
+        HoragaiSE = GameObject.Find("HoragaiSE").GetComponent<AudioSource>();
+        ButtonSE = GameObject.Find("ButtonSE").GetComponent<AudioSource>();
+        WinBGM = GameObject.Find("WinBGM").GetComponent<AudioSource>();
+        LoseBGM = GameObject.Find("LoseBGM").GetComponent<AudioSource>();
+        GameClearBGM = GameObject.Find("GameClearBGM").GetComponent<AudioSource>();
+
         StartCoroutine(StartSetting());
     }
 
@@ -87,6 +96,9 @@ public class BattleManager : MonoBehaviour
         PlayerUnitDataBaseAllList = Resources.Load<PlayerUnitDB>("DB/PlayerUnitDB").PlayerUnitDBList.OrderBy((n) => n.Num).ToList(); //ユニット番号順に並び替え
         PlayerFighterDataBaseAllList = Resources.Load<PlayerFighterDB>("DB/PlayerFighterDB").PlayerFighterDBList
             .OrderBy((n) => n.UnitNum).ThenByDescending((n) => n.UnitLeader).ToList(); //部隊番号順、部隊長が上に来るように並び替え
+
+        /////////
+        Common.Progress = 1;
 
         //ステージ名表示
         StartDisplay.transform.Find("Text (StageNum)").GetComponent<Text>().text = "ステージ" + Common.Progress.ToString();
@@ -170,33 +182,23 @@ public class BattleManager : MonoBehaviour
         }
 
         //戦闘BGMを鳴らす
-        BattleMusic().Stop();
+        BattleMusic().Play();
         VoiceBGM.Play();
     }
 
 
-    //体力、スタミナゲージ、リーダーマーク作成
+    //体力、スタミナゲージ等追尾オブジェクト作成
     public void CreateGaugeAndFlag(GameObject targetObject)
     {
-        var Hpgauge = Instantiate(HpGaugePrefab, new Vector3(0, 0, 0), Quaternion.identity);
-        Hpgauge.transform.SetParent(CanvasWorldSpace.transform, false);
-        Hpgauge.GetComponent<HpGauge>().targetFighter = targetObject;
-
-        var Staminagauge = Instantiate(StaminaGaugePrefab, new Vector3(0, 0, 0), Quaternion.identity);
-        Staminagauge.transform.SetParent(CanvasWorldSpace.transform, false);
-        Staminagauge.GetComponent<StaminaGauge>().targetFighter = targetObject;
-
-        if(targetObject.GetComponent<FighterStatus>().UnitLeader)
-        {
-            var LeaderFlag = Instantiate(LeaderFlagPrefab, new Vector3(0, 0, 0), Quaternion.identity);
-            LeaderFlag.transform.SetParent(CanvasWorldSpace.transform, false);
-            LeaderFlag.GetComponent<LeaderFlag>().targetFighter = targetObject;
-        }
+        var ChaseObject = Instantiate(ChaseObjectPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+        ChaseObject.transform.SetParent(CanvasWorldSpace.transform, false);
+        ChaseObject.GetComponent<ChaseObject>().targetFighter = targetObject;
     }
 
     //勝利
     public void BattleWin()
     {
+        StartFlg = false;
         BattleMusic().Stop();
         VoiceBGM.Stop();
         WinFlg = true;
@@ -217,6 +219,7 @@ public class BattleManager : MonoBehaviour
     //敗北
     public void BattleLose()
     {
+        StartFlg = false;
         BattleMusic().Stop();
         VoiceBGM.Stop();
         LoseBGM.Play();

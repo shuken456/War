@@ -92,7 +92,7 @@ public class ActionUI : MonoBehaviour
     void Update()
     {
         //左クリックで兵士選択、解除
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && BaManager.StartFlg)
         {
             Vector3 CursorPosition = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y, 0f);
 

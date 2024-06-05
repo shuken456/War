@@ -34,7 +34,9 @@ public class ResultUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(BaManager.WinFlg)
+        Time.timeScale = 0;
+
+        if (BaManager.WinFlg)
         {
             ResultText.text = "Ÿ—˜I";
             ResultText.color = Color.red;
@@ -157,6 +159,7 @@ public class ResultUI : MonoBehaviour
         //DontDestoy‚É“ü‚Á‚Ä‚éBGM‚ğíœ
         Destroy(GameObject.Find("SettingBGM"));
         Destroy(GameObject.Find("BattleBGM"));
+        Destroy(GameObject.Find("LastBattleBGM"));
         Destroy(GameObject.Find("VoiceBGM"));
 
         SceneManager.LoadScene("SettingScene");
@@ -171,9 +174,9 @@ public class ResultUI : MonoBehaviour
         //DontDestoy‚É“ü‚Á‚Ä‚éBGM‚ğíœ
         Destroy(GameObject.Find("SettingBGM"));
         Destroy(GameObject.Find("BattleBGM"));
+        Destroy(GameObject.Find("LastBattleBGM"));
         Destroy(GameObject.Find("VoiceBGM"));
 
-        //SceneManager.LoadScene("BattleScene" + Common.Progress.ToString());
-        SceneManager.LoadScene("BattleScene1");
+        SceneManager.LoadScene("BattleScene" + Common.Progress.ToString());
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class SoundKeepScript : MonoBehaviour
 {
     public int Num;
-    public static bool[] isLoad = { false, false, false };// 自身がすでにロードされているかを判定するフラグ
+    public static bool[] isLoad = { false, false, false, false };// 自身がすでにロードされているかを判定するフラグ
 
     private void Awake()
     {

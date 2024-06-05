@@ -17,8 +17,7 @@ public class SortieCheckUI : MonoBehaviour
     //出陣　次のステージを開始
     public void YesButtonClick()
     {
-        //SceneManager.LoadScene("BattleScene" + Common.Progress.ToString());
-        SceneManager.LoadScene("BattleScene1");
+        SceneManager.LoadScene("BattleScene" + Common.Progress.ToString());
     }
 
     public void NoButtonClick()

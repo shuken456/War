@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class City : MonoBehaviour
 {
+    public BattleManager BaManager;
+
     //コントロールゲーム表示用キャンパス
     public GameObject CanvasWorldSpace;
 
@@ -23,7 +25,10 @@ public class City : MonoBehaviour
     //コントロールゲージ
     private Slider slider;
     private Image sliderImage;
-    
+
+    //回復表示プレハブ
+    public GameObject HealPrefab;
+
     //街の状態
     public enum CityStatus
     {
@@ -47,6 +52,12 @@ public class City : MonoBehaviour
     //回復周期
     public float HealTime;
 
+    //制圧した時の音
+    private AudioSource ControlSE;
+
+    //初制圧時に出撃可能部隊数をプラス1するため
+    private bool FirstControl = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -56,9 +67,13 @@ public class City : MonoBehaviour
         slider.maxValue = ControlTime;
         rangeRenderer.transform.localScale = new Vector3(2, 2) * Range; //半径なので二倍
 
+        ControlSE = this.gameObject.GetComponent<AudioSource>();
         //スライダーの色変更用に取得
         sliderImage = slider.gameObject.transform.Find("Fill Area/Fill").gameObject.GetComponent<Image>();
+    }
 
+    private void OnEnable()
+    {
         //回復は周期的に行いたいのでここで呼ぶ
         StartCoroutine(Heal());
     }
@@ -106,6 +121,21 @@ public class City : MonoBehaviour
                     this.transform.Find("CityRange").gameObject.layer = LayerMask.NameToLayer("PlayerBase");
                     currentStatus = CityStatus.Player;
                     rangeRenderer.color = Color.yellow - new Color(0, 0, 0, 0.75f); //薄い黄色
+
+                    ControlSE.Play();
+                    
+                    if(FirstControl)
+                    {
+                        //出撃可能部隊数を+1
+                        BaManager.UnitCountUI.PossibleSortieCountNow += 1;
+                        BaManager.UnitCountUI.TextDraw();
+                        FirstControl = false;
+                        BaManager.LogUI.DrawLog("<color=red><size=30>拠点を制圧した！</size>\n出撃可能部隊数+１</color>");
+                    }
+                    else
+                    {
+                        BaManager.LogUI.DrawLog("<color=red><size=30>拠点を制圧した！</size></color>");
+                    }
                 }
             }
         }
@@ -137,6 +167,9 @@ public class City : MonoBehaviour
                     this.transform.Find("CityRange").gameObject.layer = LayerMask.NameToLayer("EnemyBase");
                     currentStatus = CityStatus.Enemy;
                     rangeRenderer.color = Color.magenta - new Color(0, 0, 0, 0.75f);//薄い紫
+
+                    ControlSE.Play();
+                    BaManager.LogUI.DrawLog("<size=30><color=red>拠点を制圧された！</color></size>");
                 }
             }
         }
@@ -159,6 +192,7 @@ public class City : MonoBehaviour
                     if (fighterStatus.NowHp < (fighterStatus.MaxHp + fighterStatus.MaxHpBuff))
                     {
                         fighterStatus.NowHp += Mathf.Round((fighterStatus.MaxHp + fighterStatus.MaxHpBuff) / 10);
+                        Instantiate(HealPrefab, Fighter.gameObject.transform.position + new Vector3(0f, -0.2f, 0), Quaternion.identity);
                     }
                 }
             }
@@ -173,6 +207,7 @@ public class City : MonoBehaviour
                     if (fighterStatus.NowHp < (fighterStatus.MaxHp + fighterStatus.MaxHpBuff))
                     {
                         fighterStatus.NowHp += Mathf.Round((fighterStatus.MaxHp + fighterStatus.MaxHpBuff) / 10);
+                        Instantiate(HealPrefab, Fighter.gameObject.transform.position + new Vector3(0f, -0.2f, 0), Quaternion.identity);
                     }
                 }
             }

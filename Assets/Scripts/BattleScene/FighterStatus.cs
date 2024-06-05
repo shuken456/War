@@ -33,6 +33,8 @@ public class FighterStatus : MonoBehaviour
     //現在の経験値
     public int Exp;
 
+    //部隊長が倒されてるかフラグ
+    public bool DeadUnitLeader;
     //HPバフ
     public float MaxHpBuff;
     //攻撃力バフ

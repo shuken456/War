@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Arrow : MonoBehaviour
 {
+    private BattleManager BaManager;
+
     //ターゲットのステータス
     public FighterStatus targetEnemyStatus;
 
@@ -15,19 +17,24 @@ public class Arrow : MonoBehaviour
     public float ArrowSpeed;
 
     private string EnemyTag;
+    private string EnemyBaseTag;
 
     void Start()
     {
+        BaManager = GameObject.Find("BattleManager").GetComponent<BattleManager>();
+
         //自分のタグで敵のタグを判断
         if (this.tag == "PlayerArrow")
         {
             this.gameObject.layer = LayerMask.NameToLayer("PlayerArrow");
             EnemyTag = "EnemyFighter";
+            EnemyBaseTag = "EnemyBase";
         }
         else
         {
             this.gameObject.layer = LayerMask.NameToLayer("EnemyArrow");
             EnemyTag = "PlayerFighter";
+            EnemyBaseTag = "PlayerBase";
         }
     }
 
@@ -47,7 +54,7 @@ public class Arrow : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         //攻撃
-        if (collision.gameObject.tag == EnemyTag)
+        if (collision.gameObject.tag == EnemyTag || collision.gameObject.tag == EnemyBaseTag)
         {
             targetEnemyStatus = collision.gameObject.GetComponent<FighterStatus>();
             targetEnemyStatus.Exp += 2;
@@ -62,22 +69,22 @@ public class Arrow : MonoBehaviour
                 targetEnemyStatus.NowHp -= AtkPower;
             }
 
-            if (targetEnemyStatus.NowHp <= 0)
+            if (targetEnemyStatus.NowHp <= 0 && targetEnemyStatus.gameObject.tag == EnemyTag)
             {
                 //ログ表示
                 if (this.tag == "PlayerArrow")
                 {
-                    GameObject.Find("BattleManager").GetComponent<BattleManager>().LogUI.DrawLog("<size=30>" + ArcherName + "</size>\n" + targetEnemyStatus.FighterName + "を倒した！");
+                    BaManager.LogUI.DrawLog("<size=30>" + ArcherName + "</size>\n" + targetEnemyStatus.FighterName + "を倒した！");
                 }
                 else
                 {
                     if (targetEnemyStatus.UnitLeader)
                     {
-                        GameObject.Find("BattleManager").GetComponent<BattleManager>().LogUI.DrawLog("<size=30><color=red>" + targetEnemyStatus.FighterName + "</color></size>\n" + ArcherName + "に倒された！");
+                        BaManager.LogUI.DrawLog("<size=30><color=red>" + targetEnemyStatus.FighterName + "</color></size>\n" + ArcherName + "に倒された！");
                     }
                     else
                     {
-                        GameObject.Find("BattleManager").GetComponent<BattleManager>().LogUI.DrawLog("<size=30>" + targetEnemyStatus.FighterName + "</size>\n" + ArcherName + "に倒された！");
+                        BaManager.LogUI.DrawLog("<size=30>" + targetEnemyStatus.FighterName + "</size>\n" + ArcherName + "に倒された！");
                     }
                 }
 

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class FighterAction : MonoBehaviour
 {
+    private BattleManager BaManager;
+
     // ƒAƒjƒ[ƒVƒ‡ƒ“
     private Animator anim;
 
@@ -27,6 +29,7 @@ public class FighterAction : MonoBehaviour
 
     //“G‚Ìƒ^ƒO
     private string EnemyTag;
+    private string EnemyBaseTag;
 
     //UŒ‚’†ƒtƒ‰ƒO
     private bool AtkNow = false;
@@ -45,14 +48,21 @@ public class FighterAction : MonoBehaviour
         anim = GetComponent<Animator>();
         MyStatus = GetComponent<FighterStatus>();
 
+        if(GameObject.Find("BattleManager"))
+        {
+            BaManager = GameObject.Find("BattleManager").GetComponent<BattleManager>();
+        }
+
         //©•ª‚Ìƒ^ƒO‚Å“G‚Ìƒ^ƒO‚ğ”»’f
         if (this.tag == "PlayerFighter" || this.tag == "SortieSettingFighter")
         {
             EnemyTag = "EnemyFighter";
+            EnemyBaseTag = "EnemyBase";
         }
         else
         {
             EnemyTag = "PlayerFighter";
+            EnemyBaseTag = "PlayerBase";
         }
 
         //‹|•º‚Ìê‡AË’ö“à‚É“G‚ª‚¢‚é‚©Šm”F‚·‚é
@@ -109,6 +119,7 @@ public class FighterAction : MonoBehaviour
                 FighterStatus fs = Fighter.GetComponent<FighterStatus>();
                 if (fs.UnitNum == MyStatus.UnitNum)
                 {
+                    fs.DeadUnitLeader = true;
                     fs.AtkPowerBuff = 0;
                     fs.MaxHpBuff = 0;
                     fs.MoveSpeedBuff = 0;
@@ -122,9 +133,9 @@ public class FighterAction : MonoBehaviour
         }
 
         //ŒoŒ±’l‚ğŠi”[
-        if (this.tag == "PlayerFighter" && GameObject.Find("BattleManager") && !GameObject.Find("BattleManager").GetComponent<BattleManager>().ExpDic.ContainsKey(MyStatus.FighterName))
+        if (this.tag == "PlayerFighter" && BaManager && !BaManager.ExpDic.ContainsKey(MyStatus.FighterName))
         {
-            GameObject.Find("BattleManager").GetComponent<BattleManager>().ExpDic.Add(MyStatus.FighterName, MyStatus.Exp);
+            BaManager.ExpDic.Add(MyStatus.FighterName, MyStatus.Exp);
         }
     }
    
@@ -137,10 +148,22 @@ public class FighterAction : MonoBehaviour
             return !AtkNow;
         }
 
+        //“G‚ª‚ ‚é’ö“x—£‚ê‚½‚çƒ^[ƒQƒbƒg‚©‚çíœ
         if (EnemyStatus != null)
         {
             Vector2 direction = EnemyStatus.transform.position - this.transform.position;
-            if ((Mathf.Abs(direction.x) > 2f || Mathf.Abs(direction.y) > 2f))
+            float MaxDirection;
+            //“G•ºm‚©“Gé‚©‚É‚æ‚Á‚Ä‹——£‚ğ•Ï‚¦‚é
+            if (EnemyStatus.gameObject.tag == EnemyTag)
+            {
+                MaxDirection = 2f;
+            }
+            else
+            {
+                MaxDirection = 7f;
+            }
+
+            if (Mathf.Abs(direction.x) > MaxDirection || Mathf.Abs(direction.y) > MaxDirection)
             {
                 EnemyStatus = null;
                 return true;
@@ -160,20 +183,28 @@ public class FighterAction : MonoBehaviour
     private void Move()
     {
         //ˆÚ“®–Ú•W‚ğİ’è
-        if (this.gameObject.tag == "EnemyFighter" && targetFighter == null)
+        if (this.gameObject.tag == "EnemyFighter")
         {
-            //“G•ºm‚Í©“®‚Å–¡•û•ºm‚ğ’T‚·
-            var collider = Physics2D.OverlapCircle(transform.position, 5f, LayerMask.GetMask(EnemyTag));
-            if (collider != null)
+            if (targetFighter == null && MyStatus.NowStamina >= (MyStatus.MaxStamina / 2))
             {
-                Ray2D ray = new Ray2D(this.gameObject.transform.position, collider.gameObject.transform.position - this.gameObject.transform.position);
-                RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Vector2.Distance(this.gameObject.transform.position, collider.gameObject.transform.position), LayerMask.GetMask("Obstacle"));
-
-                if (!hit.collider)
+                //“G•ºm‚Í©“®‚Å–¡•û•ºm‚ğ’T‚·
+                var collider = Physics2D.OverlapCircle(transform.position, 6f, LayerMask.GetMask(EnemyTag));
+                if (collider != null)
                 {
-                    //áŠQ•¨‚ªŠÔ‚É‚È‚¯‚ê‚Îƒ^[ƒQƒbƒg‚É‚·‚é
-                    targetFighter = collider.gameObject.transform;
+                    Ray2D ray = new Ray2D(this.gameObject.transform.position, collider.gameObject.transform.position - this.gameObject.transform.position);
+                    RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Vector2.Distance(this.gameObject.transform.position, collider.gameObject.transform.position), LayerMask.GetMask("Obstacle"));
+
+                    if (!hit.collider)
+                    {
+                        //áŠQ•¨‚ªŠÔ‚É‚È‚¯‚ê‚Îƒ^[ƒQƒbƒg‚É‚·‚é
+                        targetFighter = collider.gameObject.transform;
+                    }
                 }
+            }
+            else if (MyStatus.NowStamina <= 0)
+            {
+                //ƒXƒ^ƒ~ƒi‚ª‚È‚¯‚ê‚Î’Ç‚¤‚Ì‚ğ«‚ß‚é
+                targetFighter = null;
             }
         }
         if (targetPlace.Count > 0)
@@ -250,7 +281,7 @@ public class FighterAction : MonoBehaviour
         }
 
         //UŒ‚‘ÎÛ‚ÆÚG‚µ‚½ê‡UŒ‚I
-        if (collision.gameObject.tag == EnemyTag && MyStatus.Type != 2 && !AtkNow && EnemyStatus == null)
+        if ((collision.gameObject.tag == EnemyTag || collision.gameObject.tag == EnemyBaseTag) && MyStatus.Type != 2 && !AtkNow && EnemyStatus == null)
         {
             EnemyStatus = collision.gameObject.GetComponent<FighterStatus>();
             StartCoroutine(Attack());
@@ -290,7 +321,7 @@ public class FighterAction : MonoBehaviour
         }
 
         //UŒ‚‘ÎÛ‚ÆÚG‚µ‚½ê‡UŒ‚I
-        if (collision.gameObject.tag == EnemyTag && MyStatus.Type != 2 && !AtkNow && EnemyStatus == null)
+        if ((collision.gameObject.tag == EnemyTag || collision.gameObject.tag == EnemyBaseTag) && MyStatus.Type != 2 && !AtkNow && EnemyStatus == null)
         {
             EnemyStatus = collision.gameObject.GetComponent<FighterStatus>();
             StartCoroutine(Attack());
@@ -333,22 +364,22 @@ public class FighterAction : MonoBehaviour
                 EnemyStatus.Exp += 2;
 
                 EnemyStatus.NowHp -= power;
-                if (EnemyStatus.NowHp <= 0)
+                if (EnemyStatus.NowHp <= 0 && EnemyStatus.gameObject.tag == EnemyTag)
                 {
                     //ƒƒO•\¦
                     if (this.tag == "PlayerFighter")
                     {
-                        GameObject.Find("BattleManager").GetComponent<BattleManager>().LogUI.DrawLog("<size=30>" + MyStatus.FighterName + "</size>\n" + EnemyStatus.FighterName + "‚ğ“|‚µ‚½I");
+                        BaManager.LogUI.DrawLog("<size=30>" + MyStatus.FighterName + "</size>\n" + EnemyStatus.FighterName + "‚ğ“|‚µ‚½I");
                     }
                     else if (this.tag == "EnemyFighter")
                     {
                         if(EnemyStatus.UnitLeader)
                         {
-                            GameObject.Find("BattleManager").GetComponent<BattleManager>().LogUI.DrawLog("<size=30><color=red>" + EnemyStatus.FighterName + "(•”‘à’·)</color></size>\n" + MyStatus.FighterName + "‚É“|‚³‚ê‚½I");
+                            BaManager.LogUI.DrawLog("<size=30><color=red>" + EnemyStatus.FighterName + "(•”‘à’·)</color></size>\n" + MyStatus.FighterName + "‚É“|‚³‚ê‚½I");
                         }
                         else
                         {
-                            GameObject.Find("BattleManager").GetComponent<BattleManager>().LogUI.DrawLog("<size=30>" + EnemyStatus.FighterName + "</size>\n" + MyStatus.FighterName + "‚É“|‚³‚ê‚½I");
+                            BaManager.LogUI.DrawLog("<size=30>" + EnemyStatus.FighterName + "</size>\n" + MyStatus.FighterName + "‚É“|‚³‚ê‚½I");
                         }
                     }
                     Destroy(EnemyStatus.gameObject);
@@ -370,12 +401,12 @@ public class FighterAction : MonoBehaviour
             yield return new WaitForSeconds(speed);
 
             //TODO ‚±‚±‚Å“G‚ğ’T‚µ‚ÄA–î‚ğŒ‚‚Â githubtest
-            var collider = Physics2D.OverlapCircle(transform.position, 5f, LayerMask.GetMask(EnemyTag));
+            var collider = Physics2D.OverlapCircle(transform.position, 5f, LayerMask.GetMask(EnemyTag, EnemyBaseTag));
 
-            if (collider != null && collider.tag == EnemyTag)
+            if (collider != null && (collider.tag == EnemyTag || collider.tag == EnemyBaseTag))
             {
                 Ray2D ray = new Ray2D(this.gameObject.transform.position, collider.gameObject.transform.position - this.gameObject.transform.position);
-                RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Vector2.Distance(this.gameObject.transform.position, collider.gameObject.transform.position), LayerMask.GetMask("Obstacle"));
+                RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Vector2.Distance(this.gameObject.transform.position, collider.gameObject.transform.position), LayerMask.GetMask("Obstacle","PlayerBase"));
 
                 if (!hit.collider)
                 {
