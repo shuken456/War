@@ -8,7 +8,7 @@ public class Castle : MonoBehaviour
     public SpriteRenderer rangeRenderer;
 
     //”ÍˆÍ
-    public float Range;
+    public Vector2 Range;
 
     //‰ñ•œüŠú
     public float HealTime;
@@ -28,8 +28,11 @@ public class Castle : MonoBehaviour
     void Start()
     {
         MyStatus = this.gameObject.GetComponent<FighterStatus>();
-        rangeRenderer.transform.localScale = new Vector3(2, 2) * Range; //”¼Œa‚È‚Ì‚Å“ñ”{
+        rangeRenderer.transform.localScale = Range;
+    }
 
+    private void OnEnable()
+    {
         //‰ñ•œ‚ÍüŠú“I‚És‚¢‚½‚¢‚Ì‚Å‚±‚±‚ÅŒÄ‚Ô
         StartCoroutine(Heal());
     }
@@ -43,9 +46,6 @@ public class Castle : MonoBehaviour
             Time.timeScale = 0;
             StartCoroutine(GameSet());
         }
-
-        colliderPlayer = Physics2D.OverlapCircleAll(transform.position, Range, LayerMask.GetMask("PlayerFighter"));
-        colliderEnemy = Physics2D.OverlapCircleAll(transform.position, Range, LayerMask.GetMask("EnemyFighter"));
     }
 
     private IEnumerator GameSet()
@@ -75,9 +75,11 @@ public class Castle : MonoBehaviour
         {
             yield return new WaitForSeconds(HealTime);
 
-            //–¡•û§ˆ³ó‘Ô‚Ìê‡A”ÍˆÍ“à‚Ì–¡•û•ºm‚ğ‰ñ•œ
+            //–¡•ûé‚Ìê‡A”ÍˆÍ“à‚Ì–¡•û•ºm‚ğ‰ñ•œ
             if (this.tag == "PlayerBase")
             {
+                colliderPlayer = Physics2D.OverlapBoxAll (transform.position, Range, 0f,LayerMask.GetMask("PlayerFighter"));
+
                 foreach (Collider2D Fighter in colliderPlayer)
                 {
                     FighterStatus fighterStatus = Fighter.gameObject.GetComponent<FighterStatus>();
@@ -90,9 +92,11 @@ public class Castle : MonoBehaviour
                 }
             }
 
-            //“G§ˆ³ó‘Ô‚Ìê‡A”ÍˆÍ“à‚Ì“G•ºm‚ğ‰ñ•œ
+            //“Gé‚Ìê‡A”ÍˆÍ“à‚Ì“G•ºm‚ğ‰ñ•œ
             else if (this.tag == "EnemyBase")
             {
+                colliderEnemy = Physics2D.OverlapBoxAll(transform.position, Range, 0f, LayerMask.GetMask("EnemyFighter"));
+
                 foreach (Collider2D Fighter in colliderEnemy)
                 {
                     FighterStatus fighterStatus = Fighter.gameObject.GetComponent<FighterStatus>();

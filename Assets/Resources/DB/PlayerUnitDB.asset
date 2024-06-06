@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerUnitDBList:
   - Num: 1
-    Name: "\u7B2C1\u90E8\u968A"
+    Name: "\u30D1\u30B9\u30BF\u5927\u597D\u304D\u968A"
     UnitColor: {r: 1, g: 1, b: 0, a: 1}
     Strategy: 1
     SoriteFlg: 0

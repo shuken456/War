@@ -254,8 +254,10 @@ public class MoveUI : MonoBehaviour
                 }
                 if (Input.GetMouseButtonUp(1))
                 {
-                    if(ClickTime < 0.2)
+                    //’†Œp“_Žw’è‚Í‚T‰ñ‚Ü‚Å
+                    if(ClickTime < 0.2 && MovePositions.Count < 5)
                     {
+                        BaManager.ButtonSE.Play();
                         foreach (LineRenderer FighterLine in BaManager.SelectFighterLine)
                         {
                             FighterLine.positionCount++;

@@ -58,7 +58,6 @@ public class BattleManager : MonoBehaviour
     private AudioSource SettingBGM;
     private AudioSource VoiceBGM;
     private AudioSource BattleBGM;
-    private AudioSource LastBattleBGM;
     private AudioSource HoragaiSE;
     public AudioSource ButtonSE;
     private AudioSource WinBGM;
@@ -72,7 +71,6 @@ public class BattleManager : MonoBehaviour
         SettingBGM = GameObject.Find("SettingBGM").GetComponent<AudioSource>();
         VoiceBGM = GameObject.Find("VoiceBGM").GetComponent<AudioSource>();
         BattleBGM = GameObject.Find("BattleBGM").GetComponent<AudioSource>();
-        LastBattleBGM = GameObject.Find("LastBattleBGM").GetComponent<AudioSource>();
         HoragaiSE = GameObject.Find("HoragaiSE").GetComponent<AudioSource>();
         ButtonSE = GameObject.Find("ButtonSE").GetComponent<AudioSource>();
         WinBGM = GameObject.Find("WinBGM").GetComponent<AudioSource>();
@@ -96,9 +94,6 @@ public class BattleManager : MonoBehaviour
         PlayerUnitDataBaseAllList = Resources.Load<PlayerUnitDB>("DB/PlayerUnitDB").PlayerUnitDBList.OrderBy((n) => n.Num).ToList(); //ユニット番号順に並び替え
         PlayerFighterDataBaseAllList = Resources.Load<PlayerFighterDB>("DB/PlayerFighterDB").PlayerFighterDBList
             .OrderBy((n) => n.UnitNum).ThenByDescending((n) => n.UnitLeader).ToList(); //部隊番号順、部隊長が上に来るように並び替え
-
-        /////////
-        Common.Progress = 1;
 
         //ステージ名表示
         StartDisplay.transform.Find("Text (StageNum)").GetComponent<Text>().text = "ステージ" + Common.Progress.ToString();
@@ -182,7 +177,7 @@ public class BattleManager : MonoBehaviour
         }
 
         //戦闘BGMを鳴らす
-        BattleMusic().Play();
+        BattleBGM.Play();
         VoiceBGM.Play();
     }
 
@@ -199,7 +194,7 @@ public class BattleManager : MonoBehaviour
     public void BattleWin()
     {
         StartFlg = false;
-        BattleMusic().Stop();
+        BattleBGM.Stop();
         VoiceBGM.Stop();
         WinFlg = true;
 
@@ -220,22 +215,10 @@ public class BattleManager : MonoBehaviour
     public void BattleLose()
     {
         StartFlg = false;
-        BattleMusic().Stop();
+        BattleBGM.Stop();
         VoiceBGM.Stop();
         LoseBGM.Play();
         WinFlg = false;
         ResultUI.SetActive(true);
-    }
-
-    private AudioSource BattleMusic()
-    {
-        if (Common.Progress < 20)
-        {
-            return BattleBGM;
-        }
-        else
-        {
-            return LastBattleBGM;
-        }
     }
 }

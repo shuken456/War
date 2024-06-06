@@ -32,7 +32,7 @@ public class TitleManager : MonoBehaviour
     //はじめから
     public void Begin()
     {
-        if (PlayerPrefs.GetInt("ContinueProgress") == 0)
+        if (PlayerPrefs.GetInt("ContinueProgress") < 2)
         {
             //初期データをここでセーブ　次にはじめからスタートする時に使う
             PlayerFighterTable.InitialSave();
@@ -69,6 +69,10 @@ public class TitleManager : MonoBehaviour
     //続きから
     public void Continue()
     {
+        //データロード
+        PlayerFighterTable.Load();
+        PlayerUnitTable.Load();
+
         SceneManager.LoadScene("SettingScene");
     }
 }

@@ -275,7 +275,7 @@ public class FighterAction : MonoBehaviour
     {
         //áŠQ•¨or–¡•û•ºŽm‚ÉG‚ê‚½ê‡A‚ ‚é’ö“x–Ú“I’n‚É‹ß‚¯‚ê‚Î’…‚¢‚½‚±‚Æ‚É‚·‚é@¦‚Â‚Á‚©‚¦–hŽ~
         if ((collision.gameObject.layer == LayerMask.NameToLayer("Obstacle") || collision.gameObject.layer == LayerMask.NameToLayer("PlayerFighter")) && 
-            targetPlace.Count > 0 && Mathf.Abs(transform.position.x - targetPlace[0].x) < 1f && Mathf.Abs(transform.position.y - targetPlace[0].y) < 1f)
+            targetPlace.Count > 0 && Mathf.Abs(transform.position.x - targetPlace[0].x) < 1.3f && Mathf.Abs(transform.position.y - targetPlace[0].y) < 1.3f)
         {
             targetPlace.RemoveAt(0);
         }

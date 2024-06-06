@@ -6,10 +6,10 @@ using UnityEditor;
 public static class Common
 {
     //所持金
-    public static int Money = 10;
+    public static int Money;
 
     //進行度(ステージクリア度 次に挑むステージ数または現在挑んでるステージ数)
-    public static int Progress = 2;
+    public static int Progress;
 
     //ユニット一覧　で選択中されたユニットナンバー
     public static int SelectUnitNum = 0;
@@ -166,27 +166,27 @@ public static class Common
                 for (int i = 0; i < UpLevel; i++)
                 {
                     UpParameter["Hp"] += Random.Range(3, 6);
-                    UpParameter["Stamina"] += Random.Range(2, 5);
+                    UpParameter["Stamina"] += Random.Range(2, 4);
                     UpParameter["AtkPower"] += Random.Range(0, 3);
                     UpParameter["AtkSpeed"] += Random.Range(0, 3);
-                    UpParameter["MoveSpeed"] += Random.Range(0, 2);
+                    UpParameter["MoveSpeed"] += Random.Range(0, 3);
                 }
                 break;
             case 2:
                 for (int i = 0; i < UpLevel; i++)
                 {
                     UpParameter["Hp"] += Random.Range(1, 4);
-                    UpParameter["Stamina"] += Random.Range(0, 3);
+                    UpParameter["Stamina"] += Random.Range(1, 3);
                     UpParameter["AtkPower"] += Random.Range(0, 3);
                     UpParameter["AtkSpeed"] += Random.Range(0, 2);
-                    UpParameter["MoveSpeed"] += Random.Range(0, 2);
+                    UpParameter["MoveSpeed"] += Random.Range(0, 3);
                 }
                 break;
             case 3:
                 for (int i = 0; i < UpLevel; i++)
                 {
                     UpParameter["Hp"] += Random.Range(6, 9);
-                    UpParameter["Stamina"] += Random.Range(0, 3);
+                    UpParameter["Stamina"] += Random.Range(1, 3);
                     UpParameter["AtkPower"] += Random.Range(0, 2);
                     UpParameter["AtkSpeed"] += Random.Range(0, 2);
                     UpParameter["MoveSpeed"] += Random.Range(0, 2);
@@ -196,10 +196,10 @@ public static class Common
                 for(int i = 0; i < UpLevel; i++)
                 {
                     UpParameter["Hp"] += Random.Range(3, 6);
-                    UpParameter["Stamina"] += Random.Range(0, 3);
+                    UpParameter["Stamina"] += Random.Range(1, 3);
                     UpParameter["AtkPower"] += Random.Range(0, 3);
                     UpParameter["AtkSpeed"] += Random.Range(0, 3);
-                    UpParameter["MoveSpeed"] += Random.Range(1, 3);
+                    UpParameter["MoveSpeed"] += Random.Range(2, 4);
                 }
                 break;
         }
@@ -222,9 +222,16 @@ public static class Common
 
     public static void InitialSave()
     {
+        //お金と進行度初期化
         PlayerPrefs.SetInt("ContinueProgress", 1);
-        PlayerPrefs.SetInt("ContinueMoney", 10);
+        PlayerPrefs.SetInt("ContinueMoney", 0);
         Progress = 1;
-        Money = 10;
+        Money = 0;
+
+        //各ヘルプ表示フラグもセーブ
+        PlayerPrefs.SetInt("SettingHelp", 0);
+        PlayerPrefs.SetInt("FormationHelp", 0);
+        PlayerPrefs.SetInt("ShielderHelp", 0);
+        PlayerPrefs.SetInt("CavalryHelp", 0);
     }
 }

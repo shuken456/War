@@ -10,6 +10,10 @@ public class SelectUI : MonoBehaviour
 
     public void ChangeFormation()
     {
+        //データセーブ
+        EditManager.PlayerFighterTable.Save();
+        EditManager.PlayerUnitTable.Save();
+
         //ユニット編集シーンへ
         Common.SelectUnitNum = EditManager.SelectUnitNum;
         StartCoroutine(LoadFormationScene());

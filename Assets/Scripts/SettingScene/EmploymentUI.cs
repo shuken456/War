@@ -23,6 +23,8 @@ public class EmploymentUI : MonoBehaviour
     public Button ArcherButton;
     public Button ShielderButton;
     public Button CavalryButton;
+    public GameObject ShielderHelpUI;
+    public GameObject CavalryHelpUI;
 
     //選択している兵種
     public int SelectType;
@@ -38,20 +40,32 @@ public class EmploymentUI : MonoBehaviour
         //盾兵はステージ5クリアで雇用できる
         if (Common.Progress > 5)
         {
+            if(PlayerPrefs.GetInt("ShielderHelp", 0) == 0 && Common.Progress >= 6)
+            {
+                PlayerPrefs.SetInt("ShielderHelp", 1);
+                ShielderHelpUI.SetActive(true);
+            }
             ShielderButton.interactable = true;
         }
         else
         {
+            ShielderHelpUI.SetActive(false);
             ShielderButton.interactable = false;
         }
 
         //騎兵はステージ10クリアで雇用できる
         if (Common.Progress > 10)
         {
+            if (PlayerPrefs.GetInt("CavalryHelp", 0) == 0 && Common.Progress >= 11)
+            {
+                PlayerPrefs.SetInt("CavalryHelp", 1);
+                CavalryHelpUI.SetActive(true);
+            }
             CavalryButton.interactable = true;
         }
         else
         {
+            CavalryHelpUI.SetActive(false);
             CavalryButton.interactable = false;
         }
     }

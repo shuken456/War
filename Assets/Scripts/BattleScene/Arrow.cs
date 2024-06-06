@@ -59,10 +59,14 @@ public class Arrow : MonoBehaviour
             targetEnemyStatus = collision.gameObject.GetComponent<FighterStatus>();
             targetEnemyStatus.Exp += 2;
 
-            //盾兵に当たった場合ダメージ減少
+            //盾兵に当たった場合ダメージ減少,騎兵は増加
             if (targetEnemyStatus.Type == 3)
             {
                 targetEnemyStatus.NowHp -= AtkPower * 0.2f;
+            }
+            else if (targetEnemyStatus.Type == 4)
+            {
+                targetEnemyStatus.NowHp -= AtkPower * 1.5f;
             }
             else
             {

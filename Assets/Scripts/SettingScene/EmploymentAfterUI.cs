@@ -78,28 +78,28 @@ public class EmploymentAfterUI : MonoBehaviour
             case 1:
                 NewFighter.Hp = Random.Range(8, 13);
                 NewFighter.Stamina = Random.Range(13, 18);
-                NewFighter.AtkPower = Random.Range(2, 5);
+                NewFighter.AtkPower = Random.Range(2, 4);
                 NewFighter.AtkSpeed = Random.Range(8, 13);
                 NewFighter.MoveSpeed = Random.Range(8, 13);
                 break;
             case 2:
                 NewFighter.Hp = Random.Range(5, 9);
                 NewFighter.Stamina = Random.Range(8, 13);
-                NewFighter.AtkPower = Random.Range(2, 5);
+                NewFighter.AtkPower = Random.Range(2, 4);
                 NewFighter.AtkSpeed = Random.Range(6, 10);
                 NewFighter.MoveSpeed = Random.Range(8, 13);
                 break;
             case 3:
-                NewFighter.Hp = Random.Range(15, 20);
+                NewFighter.Hp = Random.Range(17, 22);
                 NewFighter.Stamina = Random.Range(8, 13);
-                NewFighter.AtkPower = Random.Range(1, 4);
+                NewFighter.AtkPower = Random.Range(1, 3);
                 NewFighter.AtkSpeed = Random.Range(6, 10);
                 NewFighter.MoveSpeed = Random.Range(6, 10);
                 break;
             case 4:
                 NewFighter.Hp = Random.Range(8, 13);
                 NewFighter.Stamina = Random.Range(8, 13);
-                NewFighter.AtkPower = Random.Range(2, 5);
+                NewFighter.AtkPower = Random.Range(2, 4);
                 NewFighter.AtkSpeed = Random.Range(8, 13);
                 NewFighter.MoveSpeed = Random.Range(13, 18);
                 break;

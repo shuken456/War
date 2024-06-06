@@ -40,12 +40,10 @@ public class ResultUI : MonoBehaviour
         {
             ResultText.text = "勝利！";
             ResultText.color = Color.red;
-            MoneyText.text = (Common.Progress).ToString() + "両";
+            MoneyText.text = ((Common.Progress * 2) + 3).ToString() + "両"; //所持金プラス
+            Common.Money += ((Common.Progress * 2) + 3);
 
             OkButton.SetActive(true);
-
-            //進行度更新
-            Common.Progress += 1;
 
         }
         else
@@ -71,6 +69,16 @@ public class ResultUI : MonoBehaviour
                     BaManager.ExpDic[fs.FighterName] += 30; //生き残り経験値ボーナス30
                 }
             }
+        }
+
+        if (BaManager.WinFlg)
+        {
+            List<string> nameList = BaManager.ExpDic.Keys.ToList();
+            foreach (string name in nameList)
+            {
+                BaManager.ExpDic[name] += 30; //勝利ボーナス30
+            }
+
         }
 
         //出撃した兵士を取得
@@ -107,8 +115,8 @@ public class ResultUI : MonoBehaviour
             button.transform.Find("FighterResultInfo/FighterBack/FighterImage").GetComponent<Image>().color = BaManager.PlayerUnitDataBaseAllList.Find((n) => n.Num == pf.UnitNum).UnitColor;
             button.transform.Find("FighterResultInfo/StatusTexts/Text (Name)").GetComponent<Text>().text = pf.Name;
             
-            //レベルアップ判定
-            int AddExp = Mathf.CeilToInt(BaManager.ExpDic[pf.Name] * ((float)Common.Progress / (float)pf.Level)); //ステージと現在のレベルによって経験値に補正をかける
+            //レベルアップ判定 元々の経験値を引くことで加算される経験値を求める
+            int AddExp = Mathf.CeilToInt((BaManager.ExpDic[pf.Name] - pf.EXP) * ((float)Common.Progress / (float)pf.Level)); //ステージと現在のレベルによって経験値に補正をかける
             int SumExp = AddExp + pf.EXP;
 
             //上がるレベル数 ※経験値が100たまったら1レベルアップ
@@ -147,6 +155,12 @@ public class ResultUI : MonoBehaviour
                 button.transform.Find("FighterResultInfo/StatusTexts/Text (AtkSpeed)").GetComponent<Text>().text = pf.AtkSpeed.ToString();
                 button.transform.Find("FighterResultInfo/StatusTexts/Text (MoveSpeed)").GetComponent<Text>().text = pf.MoveSpeed.ToString();
             }
+        }
+
+        if (BaManager.WinFlg)
+        {
+            //進行度更新
+            Common.Progress += 1;
         }
     }
 

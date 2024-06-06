@@ -135,7 +135,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rangeRenderer: {fileID: 1708065058126513827}
-  Range: 4
+  Range: {x: 14, y: 5}
   HealTime: 2.5
   HealPrefab: {fileID: 407946045267226585, guid: 86c5d9e377f312a4080aa3da78678171, type: 3}
   Fire: {fileID: 2042458023908560263}
@@ -154,8 +154,8 @@ MonoBehaviour:
   Type: 0
   FighterName: "\u5473\u65B9\u62E0\u70B9"
   Level: 0
-  MaxHp: 500
-  NowHp: 500
+  MaxHp: 100
+  NowHp: 100
   MaxStamina: 0
   NowStamina: 0
   AtkPower: 0
@@ -227,7 +227,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.06894755, y: -0.00000023841858}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -238,7 +238,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.9351926, y: 4.033689}
+  m_Size: {x: 3, y: 3}
   m_EdgeRadius: 0
 --- !u!1 &4886790499307219689
 GameObject:
@@ -251,7 +251,7 @@ GameObject:
   - component: {fileID: 4921869629721978898}
   - component: {fileID: 1708065058126513827}
   - component: {fileID: 5293932506491448980}
-  - component: {fileID: 5148125048906666087}
+  - component: {fileID: 4597581054398332999}
   m_Layer: 16
   m_Name: CastleRange
   m_TagString: PlayerBase
@@ -315,7 +315,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -4
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 0, a: 0.2509804}
   m_FlipX: 0
   m_FlipY: 0
@@ -353,8 +353,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 3
---- !u!58 &5148125048906666087
-CircleCollider2D:
+--- !u!61 &4597581054398332999
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -386,8 +386,18 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 5.12, y: 5.12}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &7419026136554464070
 GameObject:
   m_ObjectHideFlags: 0
@@ -415,7 +425,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8751635123952431804}

@@ -22,7 +22,6 @@ public class SortieDecitionUI : MonoBehaviour
     //出撃用オブジェクト
     public GameObject SortieTarget;
     public GameObject SortieFighter;
-    public GameObject SortieRange;
 
     //出撃場所決定フラグ
     private bool SortieDecition = false;
@@ -67,7 +66,6 @@ public class SortieDecitionUI : MonoBehaviour
             Fighter.tag = "SortieSettingFighter";
         }
 
-        SortieRange.SetActive(true);
         Cursol.SetActive(true);
     }
 
@@ -90,7 +88,6 @@ public class SortieDecitionUI : MonoBehaviour
             BaManager.StartUI.SetActive(true);
         }
 
-        SortieRange.SetActive(false);
         Cursol.SetActive(false);
     }
 

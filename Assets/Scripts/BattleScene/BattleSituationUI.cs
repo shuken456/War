@@ -11,13 +11,10 @@ public class BattleSituationUI : MonoBehaviour
 
     public BattleManager BaManager;
 
-    // Update is called once per frame
+
     void Update()
     {
-        if(Time.timeScale >= 1)
-        {
-            UpdatePower();
-        }
+        UpdatePower();
     }
 
     //ƒŒƒxƒ‹‚Ì‡Œv‚ğí—Í‚Æ‚µ‚Ä•\¦‚·‚é
@@ -32,7 +29,7 @@ public class BattleSituationUI : MonoBehaviour
             power += Fighter.GetComponent<FighterStatus>().Level;
         }
         PlayerPower.text = power.ToString();
-        if (power == 0 && BaManager.StartFlg)
+        if (power == 0 && BaManager.StartFlg && Time.timeScale >= 1)
         {
             //•‰‚¯
             BaManager.BattleLose();
@@ -45,7 +42,7 @@ public class BattleSituationUI : MonoBehaviour
             power += Fighter.GetComponent<FighterStatus>().Level;
         }
         EnemyPower.text = power.ToString();
-        if (power == 0 && BaManager.StartFlg)
+        if (power == 0 && BaManager.StartFlg && Time.timeScale >= 1)
         {
             //Ÿ‚¿
             BaManager.BattleWin();

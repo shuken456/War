@@ -13,7 +13,7 @@ public class StageInfoUI : MonoBehaviour
 
     //勝利、敗北条件リスト
     private string[] WinConditionList = {"敵の全滅", "敵の全滅or\n目標地点到達", "敵将の撃破", "敵の全滅or\n敵拠点撃破" };
-    private string[] LoseConditionList = { "味方の全滅", "味方の全滅or\n防衛地点到達", "敵の全滅or\n味方拠点撃破" };
+    private string[] LoseConditionList = { "味方の全滅or\n味方拠点撃破", "味方の全滅or\n防衛地点到達"};
     private int[] StageWinList = { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
     private int[] StageLoseList = { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 

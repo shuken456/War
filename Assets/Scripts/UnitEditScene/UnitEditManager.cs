@@ -47,10 +47,8 @@ public class UnitEditManager : MonoBehaviour
     public AudioSource SE;
 
     //DB
-    [SerializeField]
-    PlayerFighterDB PlayerFighterTable;
-    [SerializeField]
-    PlayerUnitDB PlayerUnitTable;
+    public PlayerFighterDB PlayerFighterTable;
+    public PlayerUnitDB PlayerUnitTable;
 
     // Start is called before the first frame update
     void Start()
@@ -65,9 +63,7 @@ public class UnitEditManager : MonoBehaviour
 
     private void OnDisable()
     {
-        //データセーブ
-        PlayerFighterTable.Save();
-        PlayerUnitTable.Save();
+        
     }
 
     // Update is called once per frame
@@ -229,6 +225,10 @@ public class UnitEditManager : MonoBehaviour
     //終了ボタン
     public void EndButtonClick()
     {
+        //データセーブ
+        PlayerFighterTable.Save();
+        PlayerUnitTable.Save();
+
         Common.SelectUnitNum = 0;
 
         //バトルシーンをアクティブ化する

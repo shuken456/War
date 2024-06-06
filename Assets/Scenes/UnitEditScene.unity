@@ -406,7 +406,7 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: 85c176c2a74131b46a9e10f29292736c, type: 3}
 --- !u!82 &39502333 stripped
 AudioSource:
-  m_CorrespondingSourceObject: {fileID: 1638954161538499900, guid: 85c176c2a74131b46a9e10f29292736c, type: 3}
+  m_CorrespondingSourceObject: {fileID: 4001344606160961330, guid: 85c176c2a74131b46a9e10f29292736c, type: 3}
   m_PrefabInstance: {fileID: 39502332}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &53452476
