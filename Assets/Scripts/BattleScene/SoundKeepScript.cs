@@ -17,9 +17,4 @@ public class SoundKeepScript : MonoBehaviour
         isLoad[Num] = true; // ロードされていなかったら、フラグをロード済みに設定する
         DontDestroyOnLoad(this.gameObject);
     }
-
-    private void OnDestroy()
-    {
-        isLoad[Num] = false;
-    }
 }

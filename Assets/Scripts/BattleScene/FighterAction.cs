@@ -183,30 +183,34 @@ public class FighterAction : MonoBehaviour
     private void Move()
     {
         //à⁄ìÆñ⁄ïWÇê›íË
-        if (this.gameObject.tag == "EnemyFighter")
+        if (targetFighter == null)
         {
-            if (targetFighter == null && MyStatus.NowStamina >= (MyStatus.MaxStamina / 2))
-            {
-                //ìGï∫émÇÕé©ìÆÇ≈ñ°ï˚ï∫émÇíTÇ∑
-                var collider = Physics2D.OverlapCircle(transform.position, 6f, LayerMask.GetMask(EnemyTag));
-                if (collider != null)
-                {
-                    Ray2D ray = new Ray2D(this.gameObject.transform.position, collider.gameObject.transform.position - this.gameObject.transform.position);
-                    RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Vector2.Distance(this.gameObject.transform.position, collider.gameObject.transform.position), LayerMask.GetMask("Obstacle"));
+            float range = 0;
 
-                    if (!hit.collider)
-                    {
-                        //è·äQï®Ç™ä‘Ç…Ç»ÇØÇÍÇŒÉ^Å[ÉQÉbÉgÇ…Ç∑ÇÈ
-                        targetFighter = collider.gameObject.transform;
-                    }
+            //ìGï∫émÇÕçLÇ¢îÕàÕÇ≈ÅAñ°ï˚ï∫émÇÕã∑Ç¢îÕàÕÇ≈ìGÇíTÇ∑
+            if (this.gameObject.tag == "PlayerFighter")
+            {
+                range = 1.5f;
+            }
+            else if(MyStatus.NowStamina >= (MyStatus.MaxStamina / 2))
+            {
+                range = 6f;
+            }
+
+            var collider = Physics2D.OverlapCircle(transform.position, range, LayerMask.GetMask(EnemyTag));
+            if (collider != null)
+            {
+                Ray2D ray = new Ray2D(this.gameObject.transform.position, collider.gameObject.transform.position - this.gameObject.transform.position);
+                RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Vector2.Distance(this.gameObject.transform.position, collider.gameObject.transform.position), LayerMask.GetMask("Obstacle"));
+
+                if (!hit.collider)
+                {
+                    //è·äQï®Ç™ä‘Ç…Ç»ÇØÇÍÇŒÉ^Å[ÉQÉbÉgÇ…Ç∑ÇÈ
+                    targetFighter = collider.gameObject.transform;
                 }
             }
-            else if (MyStatus.NowStamina <= 0)
-            {
-                //ÉXÉ^É~ÉiÇ™Ç»ÇØÇÍÇŒí«Ç§ÇÃÇé´ÇﬂÇÈ
-                targetFighter = null;
-            }
         }
+            
         if (targetPlace.Count > 0)
         {
             NowTargetPlace = targetPlace[0];

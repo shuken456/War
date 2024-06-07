@@ -152,6 +152,17 @@ public class UnitFormationManager : MonoBehaviour
         }
     }
 
+    //ダブルクリック判定を行うため、この画面では時間を動かす
+    private void OnEnable()
+    {
+        Time.timeScale = 1;
+    }
+
+    private void OnDisable()
+    {
+        Time.timeScale = 0;
+    }
+
     //控え兵士ビュー更新
     private void ReserveFighterViewDisplay()
     {
@@ -573,7 +584,7 @@ public class UnitFormationManager : MonoBehaviour
             bool originLeader = pfl[0].UnitLeader;
 
             //データ変更
-            pfl[0].Position = Fighter.transform.localPosition;
+            pfl[0].Position = new Vector3(float.Parse(Fighter.transform.localPosition.x.ToString("F1")), float.Parse(Fighter.transform.localPosition.y.ToString("F1")), 0); //桁数が多くならないよう小数点二位で切る
             pfl[0].UnitNum = Common.SelectUnitNum;
             pfl[0].UnitLeader = fs.UnitLeader;
 

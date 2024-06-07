@@ -4613,8 +4613,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 13.8, y: 9.51226}
-  m_SizeDelta: {x: 237.70856, y: 399.2057}
+  m_AnchoredPosition: {x: 13.8, y: 7.2}
+  m_SizeDelta: {x: 237.70856, y: 425}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &348454430
 MonoBehaviour:
@@ -10250,8 +10250,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 33.4, y: 9.51226}
-  m_SizeDelta: {x: 237.70856, y: 399.2057}
+  m_AnchoredPosition: {x: 33.4, y: 7.2}
+  m_SizeDelta: {x: 237.70856, y: 425}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &879971848
 MonoBehaviour:
@@ -10366,7 +10366,7 @@ MonoBehaviour:
   PlayerFighterDataBaseAllList: []
   FighterView: {fileID: 116499793}
   FighterButton: {fileID: 6536777607375178372, guid: 97482a467d2a3424fa0b7c93db2759b4, type: 3}
-  InfantryImage: {fileID: 21300000, guid: 975635bb453632c46a55f715cd6d21f3, type: 3}
+  InfantryImage: {fileID: 21300000, guid: c2e69728e1e556a43a2d152058e13708, type: 3}
   ArcherImage: {fileID: 21300000, guid: 6d19bd7bc04bc3d47bb313bdf7e709ff, type: 3}
   CountText: {fileID: 957223606}
   FighterStatusInfo: {fileID: 1445251519}
@@ -12563,7 +12563,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 975635bb453632c46a55f715cd6d21f3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c2e69728e1e556a43a2d152058e13708, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

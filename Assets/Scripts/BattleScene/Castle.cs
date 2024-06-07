@@ -5,7 +5,7 @@ using UnityEngine;
 public class Castle : MonoBehaviour
 {
     //”ÍˆÍ‰æ‘œ
-    public SpriteRenderer rangeRenderer;
+    public GameObject rangeRenderer;
 
     //”ÍˆÍ
     public Vector2 Range;
@@ -28,7 +28,7 @@ public class Castle : MonoBehaviour
     void Start()
     {
         MyStatus = this.gameObject.GetComponent<FighterStatus>();
-        rangeRenderer.transform.localScale = Range;
+        rangeRenderer.GetComponent<SpriteRenderer>().transform.localScale = Range;
     }
 
     private void OnEnable()
@@ -78,7 +78,7 @@ public class Castle : MonoBehaviour
             //–¡•ûé‚Ìê‡A”ÍˆÍ“à‚Ì–¡•û•ºm‚ğ‰ñ•œ
             if (this.tag == "PlayerBase")
             {
-                colliderPlayer = Physics2D.OverlapBoxAll (transform.position, Range, 0f,LayerMask.GetMask("PlayerFighter"));
+                colliderPlayer = Physics2D.OverlapBoxAll (rangeRenderer.transform.position, Range, 0f,LayerMask.GetMask("PlayerFighter"));
 
                 foreach (Collider2D Fighter in colliderPlayer)
                 {
@@ -95,7 +95,7 @@ public class Castle : MonoBehaviour
             //“Gé‚Ìê‡A”ÍˆÍ“à‚Ì“G•ºm‚ğ‰ñ•œ
             else if (this.tag == "EnemyBase")
             {
-                colliderEnemy = Physics2D.OverlapBoxAll(transform.position, Range, 0f, LayerMask.GetMask("EnemyFighter"));
+                colliderEnemy = Physics2D.OverlapBoxAll(rangeRenderer.transform.position, Range, 0f, LayerMask.GetMask("EnemyFighter"));
 
                 foreach (Collider2D Fighter in colliderEnemy)
                 {

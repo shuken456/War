@@ -22,7 +22,7 @@ public class LockUI : MonoBehaviour
 
     private void OnEnable()
     {
-        NeedMoney = EditManager.PlayerUnitDataBaseAllList.Count * 5;
+        NeedMoney = (EditManager.PlayerUnitDataBaseAllList.Count + 1) * 3;
         InfoText.text = "新たな部隊を解放しますか？\n（必要資金: " + NeedMoney.ToString() + "両）";
 
         //資金が足りなければボタンを押せないように

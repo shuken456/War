@@ -35,25 +35,27 @@ public class ResultUI : MonoBehaviour
     void Start()
     {
         Time.timeScale = 0;
+        int GetMoney;
 
         if (BaManager.WinFlg)
         {
             ResultText.text = "勝利！";
             ResultText.color = Color.red;
-            MoneyText.text = ((Common.Progress * 2) + 3).ToString() + "両"; //所持金プラス
-            Common.Money += ((Common.Progress * 2) + 3);
-
+            GetMoney = (Common.Progress * 2) + 3;
             OkButton.SetActive(true);
-
         }
         else
         {
             ResultText.text = "敗北…";
             ResultText.color = Color.blue;
-
+            GetMoney = Common.Progress;
             RevengeButton.SetActive(true);
             SettingButton.SetActive(true);
         }
+
+        //所持金プラス
+        MoneyText.text = GetMoney.ToString() + "両"; 
+        Common.Money += GetMoney;
 
         //経験値リストを作成
         GameObject[] tagObjects;
@@ -171,10 +173,7 @@ public class ResultUI : MonoBehaviour
         Common.SortieMode = false;
 
         //DontDestoyに入ってるBGMを削除
-        Destroy(GameObject.Find("SettingBGM"));
-        Destroy(GameObject.Find("BattleBGM"));
-        Destroy(GameObject.Find("LastBattleBGM"));
-        Destroy(GameObject.Find("VoiceBGM"));
+        Common.MusicReset();
 
         SceneManager.LoadScene("SettingScene");
     }
@@ -186,10 +185,7 @@ public class ResultUI : MonoBehaviour
         Common.SortieMode = false;
 
         //DontDestoyに入ってるBGMを削除
-        Destroy(GameObject.Find("SettingBGM"));
-        Destroy(GameObject.Find("BattleBGM"));
-        Destroy(GameObject.Find("LastBattleBGM"));
-        Destroy(GameObject.Find("VoiceBGM"));
+        Common.MusicReset();
 
         SceneManager.LoadScene("BattleScene" + Common.Progress.ToString());
     }

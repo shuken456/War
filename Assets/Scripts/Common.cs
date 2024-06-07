@@ -234,4 +234,17 @@ public static class Common
         PlayerPrefs.SetInt("ShielderHelp", 0);
         PlayerPrefs.SetInt("CavalryHelp", 0);
     }
+
+    public static void MusicReset()
+    {
+        //DontDestoy‚É“ü‚Á‚Ä‚éBGM‚ğíœ
+        SoundKeepScript.isLoad[0] = false;
+        SoundKeepScript.isLoad[1] = false;
+        SoundKeepScript.isLoad[2] = false;
+        SoundKeepScript.isLoad[3] = false;
+        Object.Destroy(GameObject.Find("BGM"));
+        Object.Destroy(GameObject.Find("SettingBGM"));
+        Object.Destroy(GameObject.Find("BattleBGM"));
+        Object.Destroy(GameObject.Find("VoiceBGM"));
+    }
 }

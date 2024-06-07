@@ -20,8 +20,6 @@ public class HomeUI : MonoBehaviour
     //oŒ‚ƒ{ƒ^ƒ“‰Ÿ‰º
     public void SortieButtonClick()
     {
-        //DontDestoy‚É“ü‚Á‚Ä‚éBGM‚ğíœ
-        Destroy(GameObject.Find("BGM"));
         SeManager.SortieCheckUIUI.SetActive(true);
     }
 
@@ -54,7 +52,7 @@ public class HomeUI : MonoBehaviour
     public void TitleYes()
     {
         //DontDestoy‚É“ü‚Á‚Ä‚éBGM‚ğíœ
-        Destroy(GameObject.Find("BGM"));
+        Common.MusicReset();
         SceneManager.LoadScene("TitleScene");
     }
 

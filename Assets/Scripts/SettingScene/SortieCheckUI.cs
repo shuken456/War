@@ -17,6 +17,9 @@ public class SortieCheckUI : MonoBehaviour
     //出陣　次のステージを開始
     public void YesButtonClick()
     {
+        //DontDestoyに入ってるBGMを削除
+        Common.MusicReset();
+
         SceneManager.LoadScene("BattleScene" + Common.Progress.ToString());
     }
 

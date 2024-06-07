@@ -24,10 +24,7 @@ public class GameClearUI : MonoBehaviour
         Common.BattleMode = false;
 
         //DontDestoy‚É“ü‚Á‚Ä‚éBGM‚ğíœ
-        Destroy(GameObject.Find("SettingBGM"));
-        Destroy(GameObject.Find("BattleBGM"));
-        Destroy(GameObject.Find("LastBattleBGM"));
-        Destroy(GameObject.Find("VoiceBGM"));
+        Common.MusicReset();
 
         SceneManager.LoadScene("TitleScene");
     }

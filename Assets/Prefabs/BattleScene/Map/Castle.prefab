@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24576de628d2cbf46b02c04bc5747fe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rangeRenderer: {fileID: 1708065058126513827}
+  rangeRenderer: {fileID: 4886790499307219689}
   Range: {x: 14, y: 5}
   HealTime: 2.5
   HealPrefab: {fileID: 407946045267226585, guid: 86c5d9e377f312a4080aa3da78678171, type: 3}
