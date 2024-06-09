@@ -115,8 +115,8 @@ public class City : MonoBehaviour
                 slider.value += (Time.deltaTime * FighterCount);
                 sliderImage.color = Color.yellow;
 
-                //ゲージMaxかつ範囲内に敵がいない場合、制圧
-                if (slider.value >= ControlTime && colliderEnemy.Length == 0)
+                //ゲージMaxで制圧
+                if (slider.value >= ControlTime)
                 {
                     this.transform.Find("CityRange").gameObject.layer = LayerMask.NameToLayer("PlayerBase");
                     currentStatus = CityStatus.Player;
@@ -130,11 +130,15 @@ public class City : MonoBehaviour
                         BaManager.UnitCountUI.PossibleSortieCountNow += 1;
                         BaManager.UnitCountUI.TextDraw();
                         FirstControl = false;
-                        BaManager.LogUI.DrawLog("<color=red><size=30>拠点を制圧した！</size>\n出撃可能部隊数+１</color>");
+                        StartCoroutine(BaManager.LogUI.DrawLog("<color=red><size=30>拠点を制圧した！</size>\n出撃可能部隊数+１</color>"));
+
+                        //時間を止めてあげる
+                        BaManager.ActionUI.SetActive(true);
+                        BaManager.InstructionButton.SetActive(false);
                     }
                     else
                     {
-                        BaManager.LogUI.DrawLog("<color=red><size=30>拠点を制圧した！</size></color>");
+                        StartCoroutine(BaManager.LogUI.DrawLog("<color=red><size=30>拠点を制圧した！</size></color>"));
                     }
                 }
             }
@@ -161,15 +165,15 @@ public class City : MonoBehaviour
                 slider.value += (Time.deltaTime * Mathf.Abs(FighterCount));
                 sliderImage.color = Color.magenta;
 
-                //ゲージMaxかつ範囲内に敵がいない場合、制圧
-                if (slider.value >= ControlTime && colliderPlayer.Length == 0)
+                //ゲージMaxで制圧
+                if (slider.value >= ControlTime)
                 {
                     this.transform.Find("CityRange").gameObject.layer = LayerMask.NameToLayer("EnemyBase");
                     currentStatus = CityStatus.Enemy;
                     rangeRenderer.color = Color.magenta - new Color(0, 0, 0, 0.75f);//薄い紫
 
                     ControlSE.Play();
-                    BaManager.LogUI.DrawLog("<size=30><color=red>拠点を制圧された！</color></size>");
+                    StartCoroutine(BaManager.LogUI.DrawLog("<size=30><color=red>拠点を制圧された！</color></size>"));
                 }
             }
         }

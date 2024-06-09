@@ -48,7 +48,7 @@ public class EmploymentAfterUI : MonoBehaviour
         }
 
         //DBæ“¾
-        PlayerFighterDataBaseAllList = Resources.Load<PlayerFighterDB>("DB/PlayerFighterDB").PlayerFighterDBList;
+        PlayerFighterDataBaseAllList = EmUI.SeManager.PlayerFighterTable.PlayerFighterDBList;
 
         //•ºm‚Ì”\—Íİ’è
         Fighter = FighterParameter(EmUI.SelectType);
@@ -148,9 +148,5 @@ public class EmploymentAfterUI : MonoBehaviour
                 + "\n" + Fighter.AtkSpeed.ToString() + "\n" + Fighter.MoveSpeed.ToString();
             InfoText.text = Fighter.Name + "‚ğŒÙ‚Á‚½I";
         }
-    }
-    public void WarningOkButtonClick()
-    {
-        WarningUI.SetActive(false);
     }
 }

@@ -32,7 +32,7 @@ public class BattleSituationUI : MonoBehaviour
         if (power == 0 && BaManager.StartFlg && Time.timeScale >= 1)
         {
             //•‰‚¯
-            BaManager.BattleLose();
+            StartCoroutine(BaManager.BattleLose());
         }
 
         power = 0;
@@ -45,7 +45,7 @@ public class BattleSituationUI : MonoBehaviour
         if (power == 0 && BaManager.StartFlg && Time.timeScale >= 1)
         {
             //Ÿ‚¿
-            BaManager.BattleWin();
+            StartCoroutine(BaManager.BattleWin());
         }
     }
 }

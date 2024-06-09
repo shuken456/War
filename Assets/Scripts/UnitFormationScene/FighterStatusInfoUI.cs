@@ -6,13 +6,15 @@ using System.Linq;
 
 public class FighterStatusInfoUI : MonoBehaviour
 {
+    public PlayerUnitDB PlayerUnitTable;
+
     //ユニットDB
     private List<PlayerUnit> PlayerUnitDataBaseAllList;
 
     private void OnEnable()
     {
         //DBデータ取得
-        PlayerUnitDataBaseAllList = Resources.Load<PlayerUnitDB>("DB/PlayerUnitDB").PlayerUnitDBList.OrderBy((n) => n.Num).ToList(); //ユニット番号順に並び替え
+        PlayerUnitDataBaseAllList = PlayerUnitTable.PlayerUnitDBList.OrderBy((n) => n.Num).ToList(); //ユニット番号順に並び替え
     }
 
     //兵士のステータスを表示

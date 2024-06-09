@@ -33,6 +33,8 @@ public class FighterEditUI : MonoBehaviour
     //兵士の絵
     public Sprite InfantryImage;
     public Sprite ArcherImage;
+    public Sprite ShielderImage;
+    public Sprite CavalryImage;
 
     //兵数テキスト
     public Text CountText;
@@ -60,8 +62,8 @@ public class FighterEditUI : MonoBehaviour
     void OnEnable()
     {
         //DBデータ取得
-        PlayerUnitDataBaseAllList = Resources.Load<PlayerUnitDB>("DB/PlayerUnitDB").PlayerUnitDBList.OrderBy((n) => n.Num).ToList(); //ユニット番号順に並び替え
-        PlayerFighterDataBaseAllList = Resources.Load<PlayerFighterDB>("DB/PlayerFighterDB").PlayerFighterDBList
+        PlayerUnitDataBaseAllList = SeManager.PlayerUnitTable.PlayerUnitDBList.OrderBy((n) => n.Num).ToList(); //ユニット番号順に並び替え
+        PlayerFighterDataBaseAllList = SeManager.PlayerFighterTable.PlayerFighterDBList
             .OrderBy((n) => n.UnitNum).ThenByDescending((n) => n.UnitLeader).ThenBy((n) => n.Type).ToList(); //部隊番号順、部隊長が上に来るように、兵種順に並び替え
 
         FighterViewDisplay();
@@ -185,8 +187,10 @@ public class FighterEditUI : MonoBehaviour
                 FighterStatusInfo.ImageWrite(ArcherImage, UnitC);
                 break;
             case 3:
+                FighterStatusInfo.ImageWrite(ShielderImage, UnitC);
                 break;
             case 4:
+                FighterStatusInfo.ImageWrite(CavalryImage, UnitC);
                 break;
             default:
                 break;
@@ -198,7 +202,7 @@ public class FighterEditUI : MonoBehaviour
     {
         if (on)
         {
-            PlayerFighterDataBaseAllList = Resources.Load<PlayerFighterDB>("DB/PlayerFighterDB").PlayerFighterDBList
+            PlayerFighterDataBaseAllList = SeManager.PlayerFighterTable.PlayerFighterDBList
             .OrderBy((n) => n.UnitNum).ThenByDescending((n) => n.UnitLeader).ThenBy((n) => n.Type).ToList(); //部隊番号順、部隊長が上に来るように、兵種順に並び替え
 
             FighterViewDisplay();
@@ -208,7 +212,7 @@ public class FighterEditUI : MonoBehaviour
     {
         if (on)
         {
-            PlayerFighterDataBaseAllList = Resources.Load<PlayerFighterDB>("DB/PlayerFighterDB").PlayerFighterDBList
+            PlayerFighterDataBaseAllList = SeManager.PlayerFighterTable.PlayerFighterDBList
             .OrderBy((n) => n.Name).ToList(); //名前順に並び替え
 
             FighterViewDisplay();
@@ -218,7 +222,7 @@ public class FighterEditUI : MonoBehaviour
     {
         if (on)
         {
-            PlayerFighterDataBaseAllList = Resources.Load<PlayerFighterDB>("DB/PlayerFighterDB").PlayerFighterDBList
+            PlayerFighterDataBaseAllList = SeManager.PlayerFighterTable.PlayerFighterDBList
             .OrderBy((n) => n.Level).ToList(); //Lv順に並び替え
 
             FighterViewDisplay();

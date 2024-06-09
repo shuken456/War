@@ -26,8 +26,8 @@ public class DismissalUI : MonoBehaviour
     public void YesButtonClick()
     {
         //兵士データを削除
-        FeUI.PlayerFighterDataBaseAllList.Remove(Resources.Load<PlayerFighterDB>("DB/PlayerFighterDB").PlayerFighterDBList.Find((n) => n.Name == fs.FighterName));
-        Resources.Load<PlayerFighterDB>("DB/PlayerFighterDB").PlayerFighterDBList.Remove(Resources.Load<PlayerFighterDB>("DB/PlayerFighterDB").PlayerFighterDBList.Find((n) => n.Name == fs.FighterName));
+        FeUI.PlayerFighterDataBaseAllList.Remove(FeUI.SeManager.PlayerFighterTable.PlayerFighterDBList.Find((n) => n.Name == fs.FighterName));
+        FeUI.SeManager.PlayerFighterTable.PlayerFighterDBList.Remove(FeUI.SeManager.PlayerFighterTable.PlayerFighterDBList.Find((n) => n.Name == fs.FighterName));
 
         //所持金プラス
         Common.Money += GetMoney;

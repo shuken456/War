@@ -73,6 +73,17 @@ public class TitleManager : MonoBehaviour
         PlayerFighterTable.Load();
         PlayerUnitTable.Load();
 
+        //出撃フラグを元に戻す ※対戦中に強制終了されるとフラグが戻らないため
+        List<PlayerUnit> SortieUnit = PlayerUnitTable.PlayerUnitDBList.FindAll((n) => n.SoriteFlg);
+        foreach (PlayerUnit pu in SortieUnit)
+        {
+            pu.SoriteFlg = false;
+        }
+
+        //データセーブ
+        PlayerFighterTable.Save();
+        PlayerUnitTable.Save();
+
         SceneManager.LoadScene("SettingScene");
     }
 }

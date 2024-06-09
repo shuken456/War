@@ -123,7 +123,7 @@ public class EmploymentUI : MonoBehaviour
     public void EmployButtonClick()
     {
         //兵士数と所持金チェック
-        if(Resources.Load<PlayerFighterDB>("DB/PlayerFighterDB").PlayerFighterDBList.Count == 120)
+        if(SeManager.PlayerFighterTable.PlayerFighterDBList.Count == 120)
         {
             WarningUI.SetActive(true);
             WarningText.text = "最大人数を超えるため\n新たに雇用ができません。";
@@ -143,11 +143,6 @@ public class EmploymentUI : MonoBehaviour
     {
         SeManager.HomeUI.SetActive(true);
         this.gameObject.SetActive(false);
-    }
-
-    public void WarningOkButtonClick()
-    {
-        WarningUI.SetActive(false);
     }
 
     //兵種を雇う金額

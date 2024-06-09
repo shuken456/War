@@ -8,8 +8,7 @@ public class SortieCheckUI : MonoBehaviour
 {
     public Text InfoText;
 
-    // Start is called before the first frame update
-    void Start()
+    private void OnEnable()
     {
         InfoText.text = "ステージ" + Common.Progress.ToString() + "に出陣します。\nよろしいですか？";
     }

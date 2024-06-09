@@ -45,7 +45,7 @@ public class LockUI : MonoBehaviour
         NewPlayerUnit.UnitColor = Color.yellow;
         NewPlayerUnit.Strategy = 1;
 
-        Resources.Load<PlayerUnitDB>("DB/PlayerUnitDB").PlayerUnitDBList.Add(NewPlayerUnit);
+        EditManager.PlayerUnitTable.PlayerUnitDBList.Add(NewPlayerUnit);
         EditManager.DisplayScreenStart();
 
         //ロックボタンの位置を次の部隊の位置へ

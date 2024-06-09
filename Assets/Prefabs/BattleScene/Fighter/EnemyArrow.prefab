@@ -174,4 +174,4 @@ MonoBehaviour:
   targetEnemyStatus: {fileID: 0}
   ArcherName: 
   AtkPower: 0
-  ArrowSpeed: 3
+  ArrowSpeed: 5

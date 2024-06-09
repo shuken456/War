@@ -16,10 +16,8 @@ public class SettingManager : MonoBehaviour
     public MoneyUI MoUI;
 
     //DB
-    [SerializeField]
-    PlayerFighterDB PlayerFighterTable;
-    [SerializeField]
-    PlayerUnitDB PlayerUnitTable;
+    public PlayerFighterDB PlayerFighterTable;
+    public PlayerUnitDB PlayerUnitTable;
 
     // Start is called before the first frame update
     void Start()

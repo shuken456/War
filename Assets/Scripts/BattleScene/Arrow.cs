@@ -78,17 +78,17 @@ public class Arrow : MonoBehaviour
                 //ÉçÉOï\é¶
                 if (this.tag == "PlayerArrow")
                 {
-                    BaManager.LogUI.DrawLog("<size=30>" + ArcherName + "</size>\n" + targetEnemyStatus.FighterName + "Çì|ÇµÇΩÅI");
+                    StartCoroutine(BaManager.LogUI.DrawLog("<size=30>" + ArcherName + "</size>\n" + targetEnemyStatus.FighterName + "Çì|ÇµÇΩÅI"));
                 }
                 else
                 {
                     if (targetEnemyStatus.UnitLeader)
                     {
-                        BaManager.LogUI.DrawLog("<size=30><color=red>" + targetEnemyStatus.FighterName + "</color></size>\n" + ArcherName + "Ç…ì|Ç≥ÇÍÇΩÅI");
+                        StartCoroutine(BaManager.LogUI.DrawLog("<size=30><color=red>" + targetEnemyStatus.FighterName + "</color></size>\n" + ArcherName + "Ç…ì|Ç≥ÇÍÇΩÅI"));
                     }
                     else
                     {
-                        BaManager.LogUI.DrawLog("<size=30>" + targetEnemyStatus.FighterName + "</size>\n" + ArcherName + "Ç…ì|Ç≥ÇÍÇΩÅI");
+                        StartCoroutine(BaManager.LogUI.DrawLog("<size=30>" + targetEnemyStatus.FighterName + "</size>\n" + ArcherName + "Ç…ì|Ç≥ÇÍÇΩÅI"));
                     }
                 }
 

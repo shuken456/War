@@ -1366,6 +1366,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d09d366c91582845aa968aefc8734e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerUnitTable: {fileID: 11400000, guid: 5044ab373f28ff149be339b6da253b46, type: 2}
 --- !u!1 &271183311
 GameObject:
   m_ObjectHideFlags: 0
@@ -2698,6 +2699,8 @@ MonoBehaviour:
   FighterStatusInfo: {fileID: 243987959}
   InfantryPrefab: {fileID: 8173002973714255833, guid: dd4ad52ea4e83d64e8bb3befeef39c2c, type: 3}
   ArcherPrefab: {fileID: 8441970963311356601, guid: f1862997a5733274798a6c5140da9ec4, type: 3}
+  ShielderPrefab: {fileID: 8171073606547755451, guid: ec1d125781f68d74e8230d608648ff48, type: 3}
+  CavalryPrefab: {fileID: 6215065411322182496, guid: 6b7de831a6868c14d9c9adfac7619213, type: 3}
   CanvasWorldSpace: {fileID: 315350689}
   ChaseFighterNameText: {fileID: 6674020620715769159, guid: 517b2aeccb1c93f48ae66c6860697583, type: 3}
   ReserveFighterView: {fileID: 191413896}
@@ -2833,8 +2836,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 20.20001, y: -61.500008}
-  m_SizeDelta: {x: 171.10718, y: -32.0591}
+  m_AnchoredPosition: {x: 19.6195, y: -61.500008}
+  m_SizeDelta: {x: 256.0551, y: -32.0591}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &503051180
 MonoBehaviour:
@@ -5131,8 +5134,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 20.200014, y: -76.4}
-  m_SizeDelta: {x: 171.10718, y: -32.0591}
+  m_AnchoredPosition: {x: 19.6195, y: -76.4}
+  m_SizeDelta: {x: 256.0551, y: -32.0591}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &971408307
 MonoBehaviour:
@@ -6078,18 +6081,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2120727218}
-        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
-        m_MethodName: PlayOneShot
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 8300000, guid: 699cdb5557b8f2a42bf3af43b5cb09c3, type: 3}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1233810128}
         m_TargetAssemblyTypeName: EndUI, Assembly-CSharp
         m_MethodName: Yes
@@ -8161,18 +8152,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2120727218}
-        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
-        m_MethodName: PlayOneShot
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 8300000, guid: 699cdb5557b8f2a42bf3af43b5cb09c3, type: 3}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1316089937}
         m_TargetAssemblyTypeName: SaveUI, Assembly-CSharp
         m_MethodName: OK
@@ -9007,8 +8986,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 20.00002, y: -69.00001}
-  m_SizeDelta: {x: 99.4824, y: -32.0591}
+  m_AnchoredPosition: {x: 19.3568, y: -69.00001}
+  m_SizeDelta: {x: 161.9876, y: -32.0591}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1437538046
 MonoBehaviour:
@@ -11458,8 +11437,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 20.200016, y: -47.600006}
-  m_SizeDelta: {x: 171.10718, y: -32.0591}
+  m_AnchoredPosition: {x: 19.6195, y: -47.600006}
+  m_SizeDelta: {x: 256.0551, y: -32.0591}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1887653070
 MonoBehaviour:
@@ -12283,8 +12262,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 20.00002, y: -54.40001}
-  m_SizeDelta: {x: 99.4824, y: -32.0591}
+  m_AnchoredPosition: {x: 19.3568, y: -54.40001}
+  m_SizeDelta: {x: 161.9876, y: -32.0591}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2104861658
 MonoBehaviour:
@@ -12418,7 +12397,7 @@ MonoBehaviour:
         m_MethodName: PlayOneShot
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 8300000, guid: 699cdb5557b8f2a42bf3af43b5cb09c3, type: 3}
+          m_ObjectArgument: {fileID: 8300000, guid: 139b0bb44b9d67e4095b795287823eaf, type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0

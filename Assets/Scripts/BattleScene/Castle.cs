@@ -48,6 +48,7 @@ public class Castle : MonoBehaviour
         }
     }
 
+    //ゲームセット　城が燃えるところを見せる
     private IEnumerator GameSet()
     {
         GameObject.Find("Virtual Camera").transform.position = this.gameObject.transform.position - new Vector3(0, 0, 1);//城が画面中央に来るようにする
@@ -56,15 +57,13 @@ public class Castle : MonoBehaviour
 
         this.gameObject.transform.Find("Fire").gameObject.SetActive(true);
 
-        yield return new WaitForSecondsRealtime(1f);
-
         if (this.gameObject.tag == "EnemyBase")
         {
-            GameObject.Find("BattleManager").GetComponent<BattleManager>().BattleWin();
+            yield return StartCoroutine(GameObject.Find("BattleManager").GetComponent<BattleManager>().BattleWin());
         }
         else
         {
-            GameObject.Find("BattleManager").GetComponent<BattleManager>().BattleLose();
+            yield return StartCoroutine(GameObject.Find("BattleManager").GetComponent<BattleManager>().BattleLose());
         }
     }
 

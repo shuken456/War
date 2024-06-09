@@ -49,10 +49,8 @@ public class BattleManager : MonoBehaviour
     public bool WinFlg = true;
 
     //DB
-    [SerializeField]
-    PlayerFighterDB PlayerFighterTable;
-    [SerializeField]
-    PlayerUnitDB PlayerUnitTable;
+    public PlayerFighterDB PlayerFighterTable;
+    public PlayerUnitDB PlayerUnitTable;
 
     //各BGM
     private AudioSource SettingBGM;
@@ -62,7 +60,6 @@ public class BattleManager : MonoBehaviour
     public AudioSource ButtonSE;
     private AudioSource WinBGM;
     private AudioSource LoseBGM;
-    private AudioSource GameClearBGM;
 
     // Start is called before the first frame update
     void Start()
@@ -75,7 +72,6 @@ public class BattleManager : MonoBehaviour
         ButtonSE = GameObject.Find("ButtonSE").GetComponent<AudioSource>();
         WinBGM = GameObject.Find("WinBGM").GetComponent<AudioSource>();
         LoseBGM = GameObject.Find("LoseBGM").GetComponent<AudioSource>();
-        GameClearBGM = GameObject.Find("GameClearBGM").GetComponent<AudioSource>();
 
         StartCoroutine(StartSetting());
     }
@@ -91,8 +87,8 @@ public class BattleManager : MonoBehaviour
         PlayerUnitTable.Load();
 
         //DBデータ取得
-        PlayerUnitDataBaseAllList = Resources.Load<PlayerUnitDB>("DB/PlayerUnitDB").PlayerUnitDBList.OrderBy((n) => n.Num).ToList(); //ユニット番号順に並び替え
-        PlayerFighterDataBaseAllList = Resources.Load<PlayerFighterDB>("DB/PlayerFighterDB").PlayerFighterDBList
+        PlayerUnitDataBaseAllList = PlayerUnitTable.PlayerUnitDBList.OrderBy((n) => n.Num).ToList(); //ユニット番号順に並び替え
+        PlayerFighterDataBaseAllList = PlayerFighterTable.PlayerFighterDBList
             .OrderBy((n) => n.UnitNum).ThenByDescending((n) => n.UnitLeader).ToList(); //部隊番号順、部隊長が上に来るように並び替え
 
         //ステージ名表示
@@ -122,6 +118,7 @@ public class BattleManager : MonoBehaviour
         //ユニット一覧画面から出撃する部隊を選ばれたときは出撃UIを表示する
         if(Common.SelectUnitNum != 0)
         {
+            ButtonSE.Play();
             StartUI.SetActive(false);
             ActionUI.SetActive(false);
             SortieUI.SetActive(true);
@@ -191,34 +188,41 @@ public class BattleManager : MonoBehaviour
     }
 
     //勝利
-    public void BattleWin()
+    public IEnumerator BattleWin()
     {
+        Time.timeScale = 0;
         StartFlg = false;
-        BattleBGM.Stop();
-        VoiceBGM.Stop();
         WinFlg = true;
 
+        yield return new WaitForSecondsRealtime(1f);
+
+        BattleBGM.Stop();
+        VoiceBGM.Stop();
+        WinBGM.Play();
+
         //ステージ20でクリア
-        if(Common.Progress < 20)
+        if (Common.Progress < 20)
         {
-            WinBGM.Play();
             ResultUI.SetActive(true);
         }
         else
         {
-            GameClearBGM.Play();
             GameClearUI.SetActive(true);
         }
     }
 
     //敗北
-    public void BattleLose()
+    public IEnumerator BattleLose()
     {
+        Time.timeScale = 0;
         StartFlg = false;
+        WinFlg = false;
+
+        yield return new WaitForSecondsRealtime(1f);
+
         BattleBGM.Stop();
         VoiceBGM.Stop();
         LoseBGM.Play();
-        WinFlg = false;
         ResultUI.SetActive(true);
     }
 }

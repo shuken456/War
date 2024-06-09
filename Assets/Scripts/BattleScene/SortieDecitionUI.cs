@@ -13,18 +13,17 @@ public class SortieDecitionUI : MonoBehaviour
     public Button DecitionButton;
 
     //兵士プレハブ
-    public GameObject EmptyInfantry;
-    public GameObject EmptyArcher;
-
     public GameObject InfantryPrefab;
     public GameObject ArcherPrefab;
+    public GameObject ShielderPrefab;
+    public GameObject CavalryPrefab;
 
     //出撃用オブジェクト
     public GameObject SortieTarget;
     public GameObject SortieFighter;
 
     //出撃場所決定フラグ
-    private bool SortieDecition = false;
+    private bool SortieDecition;
 
     //矢印
     public GameObject Cursol;
@@ -32,28 +31,43 @@ public class SortieDecitionUI : MonoBehaviour
     //クリック長押し時間カウント用
     private float ClickTime = 0;
 
+    //選択されたユニットの兵士リスト
+    private List<PlayerFighter> SelectPlayerFighterDataBaseList;
+
     private void OnEnable()
     {
+        SortieDecition = false;
+        DecitionButton.interactable = false;
+
         //物理判定を使いたいため一時的に時間を変更
         Time.timeScale = 0.01f;
         Time.fixedDeltaTime = 0.00001f;
 
         //DBデータ取得
-        BaManager.PlayerUnitDataBaseAllList = Resources.Load<PlayerUnitDB>("DB/PlayerUnitDB").PlayerUnitDBList.OrderBy((n) => n.Num).ToList(); //ユニット番号順に並び替え
-        BaManager.PlayerFighterDataBaseAllList = Resources.Load<PlayerFighterDB>("DB/PlayerFighterDB").PlayerFighterDBList.FindAll(n => n.UnitNum == Common.SelectUnitNum).ToList();
+        BaManager.PlayerUnitDataBaseAllList = BaManager.PlayerUnitTable.PlayerUnitDBList.OrderBy((n) => n.Num).ToList(); //ユニット番号順に並び替え
+        SelectPlayerFighterDataBaseList = BaManager.PlayerFighterTable.PlayerFighterDBList.FindAll(n => n.UnitNum == Common.SelectUnitNum).ToList();
 
         //選択されたユニットの兵士を画面に作成する
-        foreach (PlayerFighter pf in BaManager.PlayerFighterDataBaseAllList)
+        foreach (PlayerFighter pf in SelectPlayerFighterDataBaseList)
         {
             GameObject Fighter = null;
 
-            if (pf.Type == 1)
+            switch (pf.Type)
             {
-                Fighter = Instantiate(InfantryPrefab, new Vector3(0, 0, 0), Quaternion.identity);
-            }
-            else if (pf.Type == 2)
-            {
-                Fighter = Instantiate(ArcherPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+                case 1:
+                    Fighter = Instantiate(InfantryPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+                    break;
+                case 2:
+                    Fighter = Instantiate(ArcherPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+                    break;
+                case 3:
+                    Fighter = Instantiate(ShielderPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+                    break;
+                case 4:
+                    Fighter = Instantiate(CavalryPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+                    break;
+                default:
+                    break;
             }
 
             Fighter.GetComponent<SpriteRenderer>().color = BaManager.PlayerUnitDataBaseAllList[Common.SelectUnitNum - 1].UnitColor - new Color(0, 0, 0, 0.5f);　//色を薄くして表示する

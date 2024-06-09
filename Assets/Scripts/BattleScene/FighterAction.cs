@@ -148,19 +148,19 @@ public class FighterAction : MonoBehaviour
             return !AtkNow;
         }
 
-        //ìGÇ™Ç†ÇÈíˆìxó£ÇÍÇΩÇÁÉ^Å[ÉQÉbÉgÇ©ÇÁçÌèú
+        //ãﬂê⁄çUåÇíÜÇÕÅAìGÇ™Ç†ÇÈíˆìxó£ÇÍÇΩÇÁÉ^Å[ÉQÉbÉgÇ©ÇÁçÌèú
         if (EnemyStatus != null)
         {
             Vector2 direction = EnemyStatus.transform.position - this.transform.position;
             float MaxDirection;
-            //ìGï∫émÇ©ìGèÈÇ©Ç…ÇÊÇ¡Çƒãóó£ÇïœÇ¶ÇÈ
+            //ìGï∫émÇ©ìGèÈÇ©Ç…ÇÊÇ¡Çƒãóó£ÇïœÇ¶ÇÈ(ìGèÈÇÕëÂÇ´Ç¢ÇΩÇﬂÅAï∫émÇ∆ìØÇ∂ãóó£Ç≈ä«óùÇ≈Ç´Ç»Ç¢)
             if (EnemyStatus.gameObject.tag == EnemyTag)
             {
-                MaxDirection = 2f;
+                MaxDirection = 1.5f;
             }
             else
             {
-                MaxDirection = 7f;
+                MaxDirection = 2.3f;
             }
 
             if (Mathf.Abs(direction.x) > MaxDirection || Mathf.Abs(direction.y) > MaxDirection)
@@ -190,7 +190,7 @@ public class FighterAction : MonoBehaviour
             //ìGï∫émÇÕçLÇ¢îÕàÕÇ≈ÅAñ°ï˚ï∫émÇÕã∑Ç¢îÕàÕÇ≈ìGÇíTÇ∑
             if (this.gameObject.tag == "PlayerFighter")
             {
-                range = 1.5f;
+                range = 1.25f;
             }
             else if(MyStatus.NowStamina >= (MyStatus.MaxStamina / 2))
             {
@@ -373,17 +373,17 @@ public class FighterAction : MonoBehaviour
                     //ÉçÉOï\é¶
                     if (this.tag == "PlayerFighter")
                     {
-                        BaManager.LogUI.DrawLog("<size=30>" + MyStatus.FighterName + "</size>\n" + EnemyStatus.FighterName + "Çì|ÇµÇΩÅI");
+                        StartCoroutine(BaManager.LogUI.DrawLog("<size=30>" + MyStatus.FighterName + "</size>\n" + EnemyStatus.FighterName + "Çì|ÇµÇΩÅI"));
                     }
                     else if (this.tag == "EnemyFighter")
                     {
                         if(EnemyStatus.UnitLeader)
                         {
-                            BaManager.LogUI.DrawLog("<size=30><color=red>" + EnemyStatus.FighterName + "(ïîë‡í∑)</color></size>\n" + MyStatus.FighterName + "Ç…ì|Ç≥ÇÍÇΩÅI");
+                            StartCoroutine(BaManager.LogUI.DrawLog("<size=30><color=red>" + EnemyStatus.FighterName + "(ïîë‡í∑)</color></size>\n" + MyStatus.FighterName + "Ç…ì|Ç≥ÇÍÇΩÅI"));
                         }
                         else
                         {
-                            BaManager.LogUI.DrawLog("<size=30>" + EnemyStatus.FighterName + "</size>\n" + MyStatus.FighterName + "Ç…ì|Ç≥ÇÍÇΩÅI");
+                            StartCoroutine(BaManager.LogUI.DrawLog("<size=30>" + EnemyStatus.FighterName + "</size>\n" + MyStatus.FighterName + "Ç…ì|Ç≥ÇÍÇΩÅI"));
                         }
                     }
                     Destroy(EnemyStatus.gameObject);
@@ -410,7 +410,7 @@ public class FighterAction : MonoBehaviour
             if (collider != null && (collider.tag == EnemyTag || collider.tag == EnemyBaseTag))
             {
                 Ray2D ray = new Ray2D(this.gameObject.transform.position, collider.gameObject.transform.position - this.gameObject.transform.position);
-                RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Vector2.Distance(this.gameObject.transform.position, collider.gameObject.transform.position), LayerMask.GetMask("Obstacle","PlayerBase"));
+                RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Vector2.Distance(this.gameObject.transform.position, collider.gameObject.transform.position), LayerMask.GetMask("Obstacle"));
 
                 if (!hit.collider)
                 {
@@ -420,8 +420,12 @@ public class FighterAction : MonoBehaviour
 
                     EnemyStatus = collider.gameObject.GetComponent<FighterStatus>();
 
-                    //ï˚å¸ì]ä∑
-                    ChangeDirection(EnemyStatus.gameObject.transform.position);
+                    //ÇΩÇ‹Ç…óéÇøÇÈ
+                    if(EnemyStatus)
+                    {
+                        //ï˚å¸ì]ä∑
+                        ChangeDirection(EnemyStatus.gameObject.transform.position);
+                    }
 
                     //çUåÇåoå±íl
                     MyStatus.Exp += 2;
@@ -444,9 +448,15 @@ public class FighterAction : MonoBehaviour
                     arrow.AtkPower = power;
                     arrow.GetComponent<SpriteRenderer>().color = this.gameObject.GetComponent<SpriteRenderer>().color;
                 }
+                else
+                {
+                    EnemyStatus = null;
+                    AtkNow = false;
+                }
             }
             else
             {
+                EnemyStatus = null;
                 AtkNow = false;
             }
         }

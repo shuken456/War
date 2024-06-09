@@ -4827,6 +4827,7 @@ GameObject:
   - component: {fileID: 361822328}
   - component: {fileID: 361822330}
   - component: {fileID: 361822329}
+  - component: {fileID: 361822331}
   m_Layer: 5
   m_Name: WarningUI
   m_TagString: Untagged
@@ -4892,6 +4893,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 361822327}
   m_CullTransparentMesh: 1
+--- !u!114 &361822331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 361822327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e7860e12cb8eb34ab35c874ceaea89d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &372036040
 GameObject:
   m_ObjectHideFlags: 0
@@ -5061,18 +5074,6 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1621592225282737352}
-        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
-        m_MethodName: PlayOneShot
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 8300000, guid: 699cdb5557b8f2a42bf3af43b5cb09c3, type: 3}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -8514,7 +8515,7 @@ MonoBehaviour:
         m_MethodName: PlayOneShot
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 8300000, guid: 699cdb5557b8f2a42bf3af43b5cb09c3, type: 3}
+          m_ObjectArgument: {fileID: 8300000, guid: 139b0bb44b9d67e4095b795287823eaf, type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -10368,6 +10369,8 @@ MonoBehaviour:
   FighterButton: {fileID: 6536777607375178372, guid: 97482a467d2a3424fa0b7c93db2759b4, type: 3}
   InfantryImage: {fileID: 21300000, guid: c2e69728e1e556a43a2d152058e13708, type: 3}
   ArcherImage: {fileID: 21300000, guid: 6d19bd7bc04bc3d47bb313bdf7e709ff, type: 3}
+  ShielderImage: {fileID: 21300000, guid: 9f813a0250a318548b117a669347ef20, type: 3}
+  CavalryImage: {fileID: 21300000, guid: 9f813a0250a318548b117a669347ef20, type: 3}
   CountText: {fileID: 957223606}
   FighterStatusInfo: {fileID: 1445251519}
   UnitOrderby: {fileID: 452718515}
@@ -11845,9 +11848,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 232593011}
-        m_TargetAssemblyTypeName: EmploymentAfterUI, Assembly-CSharp
-        m_MethodName: WarningOkButtonClick
+      - m_Target: {fileID: 1429762794}
+        m_TargetAssemblyTypeName: WarningOnly, Assembly-CSharp
+        m_MethodName: OK
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11964,7 +11967,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 975635bb453632c46a55f715cd6d21f3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c2e69728e1e556a43a2d152058e13708, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -12306,7 +12309,7 @@ MonoBehaviour:
         m_MethodName: PlayOneShot
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 8300000, guid: 699cdb5557b8f2a42bf3af43b5cb09c3, type: 3}
+          m_ObjectArgument: {fileID: 8300000, guid: 139b0bb44b9d67e4095b795287823eaf, type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -13134,9 +13137,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 232593011}
-        m_TargetAssemblyTypeName: EmploymentAfterUI, Assembly-CSharp
-        m_MethodName: WarningOkButtonClick
+      - m_Target: {fileID: 1660157819}
+        m_TargetAssemblyTypeName: WarningOnly, Assembly-CSharp
+        m_MethodName: OK
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -16174,6 +16177,7 @@ GameObject:
   - component: {fileID: 1429762791}
   - component: {fileID: 1429762793}
   - component: {fileID: 1429762792}
+  - component: {fileID: 1429762794}
   m_Layer: 5
   m_Name: WarningUI
   m_TagString: Untagged
@@ -16239,6 +16243,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1429762790}
   m_CullTransparentMesh: 1
+--- !u!114 &1429762794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1429762790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e7860e12cb8eb34ab35c874ceaea89d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1445251517
 GameObject:
   m_ObjectHideFlags: 0
@@ -16292,6 +16308,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d09d366c91582845aa968aefc8734e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerUnitTable: {fileID: 11400000, guid: 5044ab373f28ff149be339b6da253b46, type: 2}
 --- !u!114 &1445251520
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17213,9 +17230,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 201792959}
-        m_TargetAssemblyTypeName: EmploymentUI, Assembly-CSharp
-        m_MethodName: WarningOkButtonClick
+      - m_Target: {fileID: 361822331}
+        m_TargetAssemblyTypeName: WarningOnly, Assembly-CSharp
+        m_MethodName: OK
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -18368,6 +18385,7 @@ GameObject:
   - component: {fileID: 1660157816}
   - component: {fileID: 1660157818}
   - component: {fileID: 1660157817}
+  - component: {fileID: 1660157819}
   m_Layer: 5
   m_Name: NameWarningUI
   m_TagString: Untagged
@@ -18433,6 +18451,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1660157815}
   m_CullTransparentMesh: 1
+--- !u!114 &1660157819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1660157815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e7860e12cb8eb34ab35c874ceaea89d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1673523310
 GameObject:
   m_ObjectHideFlags: 0
@@ -22026,9 +22056,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '
-
-'
+  m_Text: 
 --- !u!222 &2127019032
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -22216,7 +22244,7 @@ MonoBehaviour:
         m_MethodName: PlayOneShot
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 8300000, guid: 699cdb5557b8f2a42bf3af43b5cb09c3, type: 3}
+          m_ObjectArgument: {fileID: 8300000, guid: 139b0bb44b9d67e4095b795287823eaf, type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0

@@ -35,6 +35,8 @@ public class UnitFormationManager : MonoBehaviour
     //各兵士のプレハブ
     public GameObject InfantryPrefab;
     public GameObject ArcherPrefab;
+    public GameObject ShielderPrefab;
+    public GameObject CavalryPrefab;
 
     //直接クリックして選択した兵士
     private GameObject SelectFighter = null;
@@ -66,21 +68,23 @@ public class UnitFormationManager : MonoBehaviour
     public AudioSource SE;
 
     //DB
-    [SerializeField]
-    PlayerFighterDB PlayerFighterTable;
-    [SerializeField]
-    PlayerUnitDB PlayerUnitTable;
+    public PlayerFighterDB PlayerFighterTable;
+    public PlayerUnitDB PlayerUnitTable;
 
     // Start is called before the first frame update
     void Start()
     {
+        //ダブルクリック判定を行うため、この画面では時間を動かす
+        Time.timeScale = 1;
+        //ボタン押下で遷移される画面のため音を鳴らす
+        SE.Play();
         //データロード
         PlayerFighterTable.Load();
         PlayerUnitTable.Load();
 
         //DBデータ取得
-        PlayerUnitDataBaseAllList = Resources.Load<PlayerUnitDB>("DB/PlayerUnitDB").PlayerUnitDBList.OrderBy((n) => n.Num).ToList(); //ユニット番号順に並び替え
-        PlayerFighterDataBaseAllList = Resources.Load<PlayerFighterDB>("DB/PlayerFighterDB").PlayerFighterDBList
+        PlayerUnitDataBaseAllList = PlayerUnitTable.PlayerUnitDBList.OrderBy((n) => n.Num).ToList(); //ユニット番号順に並び替え
+        PlayerFighterDataBaseAllList = PlayerFighterTable.PlayerFighterDBList
             .OrderBy((n) => n.UnitNum).ThenByDescending((n) => n.UnitLeader).ThenBy((n) => n.Type).ToList(); //部隊番号順、部隊長が上に来るように、兵種順に並び替え
 
         //スクロールバーが必要か否かで、ボタンの位置調整
@@ -119,14 +123,7 @@ public class UnitFormationManager : MonoBehaviour
             PlayerFighter FighterStatusList = PlayerFighterDataBaseSelectList[i];
 
             //兵種によってオブジェクトを作成
-            if (FighterStatusList.Type == 1)
-            {
-                Fighter = Instantiate(InfantryPrefab, new Vector3(0, 0, 0), Quaternion.identity);
-            }
-            else if (FighterStatusList.Type == 2)
-            {
-                Fighter = Instantiate(ArcherPrefab, new Vector3(0, 0, 0), Quaternion.identity);
-            }
+            Fighter = Instantiate(FighterPrefab(FighterStatusList.Type), new Vector3(0, 0, 0), Quaternion.identity);
             Fighter.GetComponent<SpriteRenderer>().color = PlayerUnitDataBaseSelectList[0].UnitColor;
 
             //作成した兵士オブジェクトにステータスをつける
@@ -152,12 +149,7 @@ public class UnitFormationManager : MonoBehaviour
         }
     }
 
-    //ダブルクリック判定を行うため、この画面では時間を動かす
-    private void OnEnable()
-    {
-        Time.timeScale = 1;
-    }
-
+    
     private void OnDisable()
     {
         Time.timeScale = 0;
@@ -298,22 +290,7 @@ public class UnitFormationManager : MonoBehaviour
                 {
                     SE.Play();
                     //ボタンで選択された兵士を作成してクリック位置に表示する
-                    switch (SelectStatus.Type)
-                    {
-                        case 1:
-                            Fighter = Instantiate(InfantryPrefab, CursorPosition, Quaternion.identity);
-                            break;
-                        case 2:
-                            Fighter = Instantiate(ArcherPrefab, CursorPosition, Quaternion.identity);
-                            break;
-                        case 3:
-                            break;
-                        case 4:
-                            break;
-                        default:
-                            break;
-                    }
-
+                    Fighter = Instantiate(FighterPrefab(SelectStatus.Type), CursorPosition, Quaternion.identity);
                     Fighter.transform.parent = UnitObjectBack.transform;
 
                     //ボタン内にあるステータスをファイターオブジェクトにコピー
@@ -507,21 +484,8 @@ public class UnitFormationManager : MonoBehaviour
 
         //ステータスUI表示
         FighterStatusInfo.TextWrite(SelectStatus);
-        switch (SelectStatus.Type)
-        {
-            case 1:
-                FighterStatusInfo.ImageWrite(InfantryPrefab.GetComponent<SpriteRenderer>().sprite, PlayerUnitDataBaseSelectList[0].UnitColor);
-                break;
-            case 2:
-                FighterStatusInfo.ImageWrite(ArcherPrefab.GetComponent<SpriteRenderer>().sprite, PlayerUnitDataBaseSelectList[0].UnitColor);
-                break;
-            case 3:
-                break;
-            case 4:
-                break;
-            default:
-                break;
-        }
+        //兵士画像表示
+        FighterStatusInfo.ImageWrite(FighterPrefab(SelectStatus.Type).GetComponent<SpriteRenderer>().sprite, PlayerUnitDataBaseSelectList[0].UnitColor);
 
         if(SelectStatus.UnitNum != 0 && SelectStatus.UnitNum != Common.SelectUnitNum)
         {
@@ -625,7 +589,7 @@ public class UnitFormationManager : MonoBehaviour
     {
         if (on)
         {
-            PlayerFighterDataBaseAllList = Resources.Load<PlayerFighterDB>("DB/PlayerFighterDB").PlayerFighterDBList
+            PlayerFighterDataBaseAllList = PlayerFighterTable.PlayerFighterDBList
             .OrderBy((n) => n.UnitNum).ThenByDescending((n) => n.UnitLeader).ThenBy((n) => n.Type).ToList(); //部隊番号順、部隊長が上に来るように、兵種順に並び替え
 
             ReserveFighterViewDisplay();
@@ -635,7 +599,7 @@ public class UnitFormationManager : MonoBehaviour
     {
         if (on)
         {
-            PlayerFighterDataBaseAllList = Resources.Load<PlayerFighterDB>("DB/PlayerFighterDB").PlayerFighterDBList
+            PlayerFighterDataBaseAllList = PlayerFighterTable.PlayerFighterDBList
             .OrderBy((n) => n.Name).ToList(); //名前順に並び替え
 
             ReserveFighterViewDisplay();
@@ -645,10 +609,27 @@ public class UnitFormationManager : MonoBehaviour
     {
         if (on)
         {
-            PlayerFighterDataBaseAllList = Resources.Load<PlayerFighterDB>("DB/PlayerFighterDB").PlayerFighterDBList
+            PlayerFighterDataBaseAllList = PlayerFighterTable.PlayerFighterDBList
             .OrderBy((n) => n.Level).ToList(); //Lv順に並び替え
 
             ReserveFighterViewDisplay();
+        }
+    }
+
+    private GameObject FighterPrefab(int type)
+    {
+        switch (type)
+        {
+            case 1:
+                return InfantryPrefab;
+            case 2:
+                return ArcherPrefab;
+            case 3:
+                return ShielderPrefab;
+            case 4:
+                return CavalryPrefab;
+            default:
+                return null;
         }
     }
 }

@@ -35,6 +35,8 @@ public class UnitEditManager : MonoBehaviour
     //各兵士のプレハブ（画像のみ）
     public GameObject EmptyInfantry;
     public GameObject EmptyArcher;
+    public GameObject EmptyShielder;
+    public GameObject EmptyCavalry;
 
     //ユニットDBと兵士DB
     public List<PlayerUnit> PlayerUnitDataBaseAllList;
@@ -53,17 +55,15 @@ public class UnitEditManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //ボタン押下で遷移される画面のため音を鳴らす
+        SE.Play();
+
         //データロード
         PlayerFighterTable.Load();
         PlayerUnitTable.Load();
 
         //画面表示処理
         DisplayScreenStart();
-    }
-
-    private void OnDisable()
-    {
-        
     }
 
     // Update is called once per frame
@@ -91,18 +91,18 @@ public class UnitEditManager : MonoBehaviour
 
                 //選択語UI表示位置調整
                 Vector2 UIPosition = RectTransformUtility.WorldToScreenPoint(Camera.main, col.gameObject.transform.position);
-                UIPosition.x -= 130;
-                UIPosition.y -= 150;
-
+                
                 //出撃モードの場合は出撃ボタン、そうでない場合は編成UIを出す
                 if (Common.SortieMode)
                 {
-                    SortieButton.SetActive(false);
-                    SortieButton.GetComponent<RectTransform>().position = UIPosition + new Vector2 (0,10);
+                    UIPosition.y -= 80;
+                    SortieButton.GetComponent<RectTransform>().position = UIPosition;
                     SortieButton.SetActive(true);
                 }
                 else
                 {
+                    UIPosition.x -= 130;
+                    UIPosition.y -= 150;
                     SelectUI.GetComponent<RectTransform>().position = UIPosition;
                     SelectUI.SetActive(true);
                 }
@@ -147,8 +147,8 @@ public class UnitEditManager : MonoBehaviour
     public void DisplayScreenStart()
     {
         //DBデータ取得
-        PlayerUnitDataBaseAllList = Resources.Load<PlayerUnitDB>("DB/PlayerUnitDB").PlayerUnitDBList.OrderBy((n) => n.Num).ToList(); //ユニット番号順に並び替え
-        PlayerFighterDataBaseAllList = Resources.Load<PlayerFighterDB>("DB/PlayerFighterDB").PlayerFighterDBList.OrderByDescending((n) => n.UnitLeader).ToList(); //ユニットリーダーが頭に来るようにに並び替え
+        PlayerUnitDataBaseAllList = PlayerUnitTable.PlayerUnitDBList.OrderBy((n) => n.Num).ToList(); //ユニット番号順に並び替え
+        PlayerFighterDataBaseAllList = PlayerFighterTable.PlayerFighterDBList.OrderByDescending((n) => n.UnitLeader).ToList(); //ユニットリーダーが頭に来るようにに並び替え
         
         //所持ユニット数
         int UnitCount = PlayerUnitDataBaseAllList.Count;
@@ -171,13 +171,22 @@ public class UnitEditManager : MonoBehaviour
             {
                 GameObject Fighter = null;
 
-                if (PlayerFighterDataBaseUnitList[j].Type == 1)
+                switch (PlayerFighterDataBaseUnitList[j].Type)
                 {
-                    Fighter = Instantiate(EmptyInfantry, new Vector3(0, 0, 0), Quaternion.identity);
-                }
-                else if (PlayerFighterDataBaseUnitList[j].Type == 2)
-                {
-                    Fighter = Instantiate(EmptyArcher, new Vector3(0, 0, 0), Quaternion.identity);
+                    case 1:
+                        Fighter = Instantiate(EmptyInfantry, new Vector3(0, 0, 0), Quaternion.identity);
+                        break;
+                    case 2:
+                        Fighter = Instantiate(EmptyArcher, new Vector3(0, 0, 0), Quaternion.identity);
+                        break;
+                    case 3:
+                        Fighter = Instantiate(EmptyShielder, new Vector3(0, 0, 0), Quaternion.identity);
+                        break;
+                    case 4:
+                        Fighter = Instantiate(EmptyCavalry, new Vector3(0, 0, 0), Quaternion.identity);
+                        break;
+                    default:
+                        break;
                 }
 
                 Fighter.GetComponent<SpriteRenderer>().color = PlayerUnitDataBaseAllList[i].UnitColor;

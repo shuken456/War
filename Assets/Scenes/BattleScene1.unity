@@ -494,6 +494,18 @@ PrefabInstance:
       propertyPath: ButtonSE
       value: 
       objectReference: {fileID: 5522730930096700975}
+    - target: {fileID: 1553593649755564917, guid: b29bad8b392e6f246a370ba37a470632, type: 3}
+      propertyPath: orthographic size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5467288440239481956, guid: b29bad8b392e6f246a370ba37a470632, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1192.7981
+      objectReference: {fileID: 0}
+    - target: {fileID: 5467288440239481956, guid: b29bad8b392e6f246a370ba37a470632, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -462.3525
+      objectReference: {fileID: 0}
     - target: {fileID: 8182688989420947975, guid: b29bad8b392e6f246a370ba37a470632, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1190.8884

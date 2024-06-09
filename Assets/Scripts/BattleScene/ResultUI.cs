@@ -20,6 +20,8 @@ public class ResultUI : MonoBehaviour
     //兵士プレハブ
     public GameObject EmptyInfantry;
     public GameObject EmptyArcher;
+    public GameObject EmptyShielder;
+    public GameObject EmptyCavalry;
 
     //勝ちか負けか表示するテキスト
     public Text ResultText;
@@ -108,8 +110,10 @@ public class ResultUI : MonoBehaviour
                     button.transform.Find("FighterResultInfo/FighterBack/FighterImage").GetComponent<Image>().sprite = EmptyArcher.GetComponent<SpriteRenderer>().sprite;
                     break;
                 case 3:
+                    button.transform.Find("FighterResultInfo/FighterBack/FighterImage").GetComponent<Image>().sprite = EmptyShielder.GetComponent<SpriteRenderer>().sprite;
                     break;
                 case 4:
+                    button.transform.Find("FighterResultInfo/FighterBack/FighterImage").GetComponent<Image>().sprite = EmptyCavalry.GetComponent<SpriteRenderer>().sprite;
                     break;
                 default:
                     break;
