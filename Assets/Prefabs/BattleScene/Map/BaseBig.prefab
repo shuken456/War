@@ -138,7 +138,7 @@ MonoBehaviour:
   ControlTime: 10
   Range: 3
   HealPrefab: {fileID: 407946045267226585, guid: 86c5d9e377f312a4080aa3da78678171, type: 3}
-  HealTime: 2.5
+  HealTime: 3
 --- !u!82 &1309571202833763000
 AudioSource:
   m_ObjectHideFlags: 0

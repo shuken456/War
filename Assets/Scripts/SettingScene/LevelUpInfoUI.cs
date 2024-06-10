@@ -57,7 +57,7 @@ public class LevelUpInfoUI : MonoBehaviour
         UpLevel += 1;
         UpLevelText.text = "Lv" + (DefaultLevel + UpLevel).ToString();
 
-        NeedMoney += ((DefaultLevel + UpLevel) / 5) + 1;
+        NeedMoney += ((DefaultLevel + UpLevel) / 4) + 1;
         MoneyText.text = "（必要資金: " + NeedMoney.ToString() + "両）";
 
         MinusButton.SetActive(true);
@@ -76,7 +76,7 @@ public class LevelUpInfoUI : MonoBehaviour
         UpLevel -= 1;
         UpLevelText.text = "Lv" + (DefaultLevel + UpLevel).ToString();
 
-        NeedMoney -= ((DefaultLevel + UpLevel + 1) / 5) + 1;
+        NeedMoney -= ((DefaultLevel + UpLevel + 1) / 4) + 1; 
         MoneyText.text = "（必要資金: " + NeedMoney.ToString() + "両）";
 
         if (UpLevel == 1)

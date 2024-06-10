@@ -136,7 +136,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rangeRenderer: {fileID: 4886790499307219689}
   Range: {x: 14, y: 5}
-  HealTime: 2.5
+  HealTime: 3
   HealPrefab: {fileID: 407946045267226585, guid: 86c5d9e377f312a4080aa3da78678171, type: 3}
   Fire: {fileID: 2042458023908560263}
 --- !u!114 &6805723297433261061

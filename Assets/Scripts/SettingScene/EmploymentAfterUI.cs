@@ -11,6 +11,7 @@ public class EmploymentAfterUI : MonoBehaviour
     public EmploymentUI EmUI;
     public GameObject NameUI;
     public GameObject WarningUI;
+    public Button OneMoreButton;
 
     //兵士の絵
     public Image FighterImage;
@@ -57,6 +58,16 @@ public class EmploymentAfterUI : MonoBehaviour
         ParameterText.text = Fighter.Name + "\n" + Fighter.Level.ToString() + "\n" + Fighter.Hp.ToString() + "\n" + Fighter.Stamina.ToString() + "\n" + Fighter.AtkPower.ToString()
             + "\n" + Fighter.AtkSpeed.ToString() + "\n" + Fighter.MoveSpeed.ToString();
         InfoText.text = Fighter.Name + "を雇った！";
+
+        //兵士数と所持金チェック もう一人雇えるかチェック
+        if (PlayerFighterDataBaseAllList.Count == 119 || Common.Money < EmUI.FighterMoney(EmUI.SelectType) * 2)
+        {
+            OneMoreButton.interactable = false;
+        }
+        else
+        {
+            OneMoreButton.interactable = true;
+        }
     }
 
     //雇った兵士のパラメータ設定
@@ -112,6 +123,18 @@ public class EmploymentAfterUI : MonoBehaviour
         return NewFighter;
     }
 
+    //もう1人雇うボタン押下
+    public void OneMoreButtonClick()
+    {
+        //兵士を追加
+        PlayerFighterDataBaseAllList.Add(Fighter);
+        //資金減少
+        Common.Money -= EmUI.FighterMoney(EmUI.SelectType);
+        EmUI.SeManager.MoUI.TextWrite();
+        OnEnable();
+    }
+
+    //終了ボタン押下
     public void EndButtonClick()
     {
         //兵士を追加

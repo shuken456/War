@@ -18,6 +18,7 @@ public class LogUI : MonoBehaviour
         GameObject Text = Instantiate(LogText, LogView.transform);
         Text.transform.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 0);
         Text.transform.Find("Text(Log)").GetComponent<Text>().text = log;
+        Scrollbar.value = 0;
         yield return new WaitForSecondsRealtime(0.02f);
 
         //スクロールバーを一番下に ※コルーチンにしないと完全に一番下に行かない
