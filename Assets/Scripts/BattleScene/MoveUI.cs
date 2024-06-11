@@ -214,7 +214,7 @@ public class MoveUI : MonoBehaviour
 
                     //移動最終決定用UI表示位置調整
                     Vector2 UIPosition = RectTransformUtility.WorldToScreenPoint(CinemachineCore.Instance.FindPotentialTargetBrain(mainCam).OutputCamera, CursorPosition);
-
+                    
                     //デフォルトは移動地点の少し右に表示させる
                     UIPosition += new Vector2(100, 0);
 
@@ -226,7 +226,7 @@ public class MoveUI : MonoBehaviour
                     {
                         UIPosition.y -= 50;
 
-                        if (UIPosition.x < 750 && UIPosition.x > 600)
+                        if (UIPosition.x < 850 && UIPosition.x > 700)
                         {
                             UIPosition.x -= 200;
                         }
@@ -241,6 +241,10 @@ public class MoveUI : MonoBehaviour
                     UIPosition2.z = 0;
 
                     MoveUIAfter.GetComponent<RectTransform>().position = UIPosition2;
+
+                    //UIのサイズ調整
+                    float size = 0.018f * (GameObject.Find("Virtual Camera").GetComponent<CinemachineVirtualCamera>().m_Lens.OrthographicSize / 8);
+                    MoveUIAfter.GetComponent<RectTransform>().localScale = new Vector2(size, size);
 
                     //移動最終決定用UIを表示
                     currentMode = Mode.MoveDecisionAfter;

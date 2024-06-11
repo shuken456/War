@@ -210,7 +210,7 @@ public class StartUI : MonoBehaviour
         }
 
         //出撃してたら戦開始ボタンを押せるように
-        if(BaManager.UnitCountUI.PossibleSortieCountNow < BaManager.UnitCountUI.PossibleSortieCountList[Common.Progress - 1])
+        if(BaManager.UnitCountUI.PossibleSortieCountNow < BaManager.UnitCountUI.PossibleSortieCountDefault)
         {
             GoButton.interactable = true;
         }

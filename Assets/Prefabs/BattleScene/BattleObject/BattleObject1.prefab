@@ -3758,7 +3758,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BaManager: {fileID: 845004492668195962}
   CountText: {fileID: 3538440499963227186}
-  PossibleSortieCountList: 010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  PossibleSortieCountDefault: 0
   PossibleSortieCountNow: 99
 --- !u!1 &1282970490819149195
 GameObject:
@@ -14397,6 +14397,7 @@ MonoBehaviour:
   PlayerFighterTable: {fileID: 11400000, guid: 04adc4bc22576c340a7b16d074cd583c, type: 2}
   PlayerUnitTable: {fileID: 11400000, guid: 5044ab373f28ff149be339b6da253b46, type: 2}
   ButtonSE: {fileID: 0}
+  StageTargetPlace: {fileID: 0}
 --- !u!1 &1369679783190116940
 GameObject:
   m_ObjectHideFlags: 0
@@ -16976,7 +16977,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 2.6007252}
-  m_SizeDelta: {x: 480.9032, y: 162.2709}
+  m_SizeDelta: {x: 600, y: 162.2709}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3648656151724478869
 CanvasRenderer:
@@ -17542,7 +17543,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2409830269899892705}
   m_HandleRect: {fileID: 4012785840058103620}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -21264,8 +21265,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 26.499985, y: -18.423138}
-  m_SizeDelta: {x: 91.485, y: 58.2472}
+  m_AnchoredPosition: {x: 28, y: -18.423138}
+  m_SizeDelta: {x: 108, y: 58.2472}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3136904240531687874
 CanvasRenderer:
@@ -31908,7 +31909,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 2356983
+    m_Bits: 27522807
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -35123,7 +35124,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6073711655441547043}
   m_HandleRect: {fileID: 3683402176048553887}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -36251,8 +36252,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -26.499985, y: -18.423138}
-  m_SizeDelta: {x: 91.485, y: 58.2472}
+  m_AnchoredPosition: {x: -28, y: -18.423138}
+  m_SizeDelta: {x: 108, y: 58.2472}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1641739657540037826
 CanvasRenderer:

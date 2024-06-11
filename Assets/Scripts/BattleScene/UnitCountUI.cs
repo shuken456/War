@@ -11,14 +11,19 @@ public class UnitCountUI : MonoBehaviour
     public Text CountText;
 
     //ステージごとの出撃可能部隊数
-    public int[] PossibleSortieCountList = { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
+    private int[] PossibleSortieCountList = { 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2};
+
+    //元々の出撃可能部隊数
+    public int PossibleSortieCountDefault;
+
     //現在の出撃可能部隊数
     public int PossibleSortieCountNow = 99;
 
     // Start is called before the first frame update
     void Start()
     {
-        PossibleSortieCountNow = PossibleSortieCountList[Common.Progress - 1];
+        PossibleSortieCountDefault = PossibleSortieCountList[Common.Progress - 1];
+        PossibleSortieCountNow = PossibleSortieCountDefault;
         TextDraw();
     }
 

@@ -25,6 +25,7 @@ public class InstructionUI : MonoBehaviour
             var col = Physics2D.OverlapPoint(CursorPosition, LayerMask.GetMask("PlayerFighter"));
             if (col != null && !BaManager.SelectFighter.Contains(col.gameObject))
             {
+                Time.timeScale = 0;
                 BaManager.ButtonSE.Play();
                 BaManager.SelectFighter.Add(col.gameObject);
 

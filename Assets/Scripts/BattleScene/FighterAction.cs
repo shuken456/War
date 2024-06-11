@@ -160,7 +160,7 @@ public class FighterAction : MonoBehaviour
             }
             else
             {
-                MaxDirection = 2.3f;
+                MaxDirection = 2.5f;
             }
 
             if (Mathf.Abs(direction.x) > MaxDirection || Mathf.Abs(direction.y) > MaxDirection)
@@ -278,7 +278,7 @@ public class FighterAction : MonoBehaviour
     private void OnCollisionStay2D(Collision2D collision)
     {
         //áŠQ•¨or–¡•û•ºm‚ÉG‚ê‚½ê‡A‚ ‚é’ö“x–Ú“I’n‚É‹ß‚¯‚ê‚Î’…‚¢‚½‚±‚Æ‚É‚·‚é@¦‚Â‚Á‚©‚¦–h~
-        if ((collision.gameObject.layer == LayerMask.NameToLayer("Obstacle") || collision.gameObject.layer == LayerMask.NameToLayer("PlayerFighter")) && 
+        if ((collision.gameObject.layer == LayerMask.NameToLayer("Obstacle") || collision.gameObject.layer == this.gameObject.layer) && 
             targetPlace.Count > 0 && Mathf.Abs(transform.position.x - targetPlace[0].x) < 1.3f && Mathf.Abs(transform.position.y - targetPlace[0].y) < 1.3f)
         {
             targetPlace.RemoveAt(0);
@@ -420,7 +420,7 @@ public class FighterAction : MonoBehaviour
 
                     EnemyStatus = collider.gameObject.GetComponent<FighterStatus>();
 
-                    //‚½‚Ü‚É—‚¿‚é
+                    //‚½‚Ü‚É—‚¿‚é‚Ì‚Åif‘‚¢‚Ä‚Ü‚·
                     if(EnemyStatus)
                     {
                         //•ûŒü“]Š·
@@ -442,8 +442,8 @@ public class FighterAction : MonoBehaviour
                     }
 
                     //–î‚ğ¶¬‚·‚é
+                    arrowPrefab.targetEnemyStatus = collider.GetComponent<FighterStatus>();
                     var arrow = Instantiate(arrowPrefab, transform.position, Quaternion.FromToRotation(Vector3.right, collider.transform.position - transform.position));
-                    arrow.targetEnemyStatus = collider.GetComponent<FighterStatus>();
                     arrow.ArcherName = MyStatus.FighterName;
                     arrow.AtkPower = power;
                     arrow.GetComponent<SpriteRenderer>().color = this.gameObject.GetComponent<SpriteRenderer>().color;

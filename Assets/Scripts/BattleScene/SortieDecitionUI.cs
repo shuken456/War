@@ -112,7 +112,7 @@ public class SortieDecitionUI : MonoBehaviour
         if (!SortieDecition && !EventSystem.current.IsPointerOverGameObject())
         {
             Vector3 CursorPosition = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y, 0f);
-            var col = Physics2D.OverlapPoint(CursorPosition, LayerMask.GetMask("PlayerBase"));
+            var col = Physics2D.OverlapPoint(CursorPosition, LayerMask.GetMask("PlayerHealRange"));
 
             if(col != null)
             {

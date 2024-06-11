@@ -113,7 +113,7 @@ public static class Common
             }
             if (UnitStrategy == 3)
             {
-                fs.MoveSpeedBuff = (int)Mathf.Round(fs.MoveSpeed * 0.3f);
+                fs.MoveSpeedBuff = (int)Mathf.Round(fs.MoveSpeed * 0.2f);
             }
             else
             {
@@ -141,7 +141,7 @@ public static class Common
             }
             if (fs.UnitLeader || UnitStrategy == 3)
             {
-                fs.MoveSpeedBuff = (int)Mathf.Round(fs.MoveSpeed * 0.3f);
+                fs.MoveSpeedBuff = (int)Mathf.Round(fs.MoveSpeed * 0.2f);
             }
             else
             {
@@ -185,7 +185,7 @@ public static class Common
             case 3:
                 for (int i = 0; i < UpLevel; i++)
                 {
-                    UpParameter["Hp"] += Random.Range(6, 9);
+                    UpParameter["Hp"] += Random.Range(5, 8);
                     UpParameter["Stamina"] += Random.Range(1, 3);
                     UpParameter["AtkPower"] += Random.Range(0, 2);
                     UpParameter["AtkSpeed"] += Random.Range(0, 2);

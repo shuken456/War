@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class City : MonoBehaviour
+public class Base : MonoBehaviour
 {
     public BattleManager BaManager;
 
@@ -105,7 +105,7 @@ public class City : MonoBehaviour
                 {
                     this.transform.Find("CityRange").gameObject.layer = LayerMask.NameToLayer("Default");
                     currentStatus = CityStatus.Default;
-                    rangeRenderer.color = new Color(1, 1, 1, 0.5f);
+                    rangeRenderer.color = new Color(0.5f, 0.5f, 0.5f, 0.5f);
                 }
             }
             else if (currentStatus == CityStatus.Default || currentStatus == CityStatus.PlayerBecoming)
@@ -118,7 +118,7 @@ public class City : MonoBehaviour
                 //ゲージMaxで制圧
                 if (slider.value >= ControlTime)
                 {
-                    this.transform.Find("CityRange").gameObject.layer = LayerMask.NameToLayer("PlayerBase");
+                    this.transform.Find("CityRange").gameObject.layer = LayerMask.NameToLayer("PlayerHealRange");
                     currentStatus = CityStatus.Player;
                     rangeRenderer.color = Color.yellow - new Color(0, 0, 0, 0.75f); //薄い黄色
 
@@ -155,7 +155,7 @@ public class City : MonoBehaviour
                 {
                     this.transform.Find("CityRange").gameObject.layer = LayerMask.NameToLayer("Default");
                     currentStatus = CityStatus.Default;
-                    rangeRenderer.color = new Color(1, 1, 1, 0.5f);
+                    rangeRenderer.color = new Color(0.5f, 0.5f, 0.5f, 0.5f);
                 }
             }
             else if (currentStatus == CityStatus.Default || currentStatus == CityStatus.EnemyBecoming)
@@ -168,7 +168,7 @@ public class City : MonoBehaviour
                 //ゲージMaxで制圧
                 if (slider.value >= ControlTime)
                 {
-                    this.transform.Find("CityRange").gameObject.layer = LayerMask.NameToLayer("EnemyBase");
+                    this.transform.Find("CityRange").gameObject.layer = LayerMask.NameToLayer("EnemyHealRange");
                     currentStatus = CityStatus.Enemy;
                     rangeRenderer.color = Color.magenta - new Color(0, 0, 0, 0.75f);//薄い紫
 

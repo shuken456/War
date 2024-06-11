@@ -56,6 +56,7 @@ public class Castle : MonoBehaviour
         yield return new WaitForSecondsRealtime(1f);
 
         this.gameObject.transform.Find("Fire").gameObject.SetActive(true);
+        this.gameObject.GetComponent<AudioSource>().Play();//Œø‰Ê‰¹‚ð–Â‚ç‚·
 
         if (this.gameObject.tag == "EnemyBase")
         {

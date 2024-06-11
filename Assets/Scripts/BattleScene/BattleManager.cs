@@ -61,6 +61,9 @@ public class BattleManager : MonoBehaviour
     private AudioSource WinBGM;
     private AudioSource LoseBGM;
 
+    //目標地点
+    public GameObject StageTargetPlace;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -97,7 +100,6 @@ public class BattleManager : MonoBehaviour
         yield return new WaitForSecondsRealtime(2);
         StartDisplay.gameObject.SetActive(false);
 
-        
         //敵のゲージを生成
         foreach (GameObject Enemy in GameObject.FindGameObjectsWithTag("EnemyFighter"))
         {
@@ -105,8 +107,17 @@ public class BattleManager : MonoBehaviour
         }
 
         BattleInfoUI.SetActive(true);
+
+        //目標地点があれば表示
+        if (StageTargetPlace)
+        {
+            StageTargetPlace.SetActive(true);
+            StartCoroutine(ShowPlace());
+        }
+
         StartUI.SetActive(true);
 
+        //ユーザーに見せるヘルプがあれば表示
         if(StartHelpUI)
         {
             StartHelpUI.SetActive(true);
@@ -168,6 +179,7 @@ public class BattleManager : MonoBehaviour
         //戦術指示ボタン表示
         InstructionButton.gameObject.SetActive(true);
 
+        //ユーザーに見せるヘルプがあれば表示
         if (BattleStartHelpUI)
         {
             BattleStartHelpUI.SetActive(true);
@@ -225,4 +237,15 @@ public class BattleManager : MonoBehaviour
         LoseBGM.Play();
         ResultUI.SetActive(true);
     }
+
+
+    //目標地点がどこか見せる
+    private IEnumerator ShowPlace()
+    {
+        Vector3 pos = GameObject.Find("Virtual Camera").transform.position;
+        GameObject.Find("Virtual Camera").transform.position = StageTargetPlace.transform.position - new Vector3(0, 0, 1);
+        yield return new WaitForSecondsRealtime(2f);
+        GameObject.Find("Virtual Camera").transform.position = pos;
+    }
+
 }

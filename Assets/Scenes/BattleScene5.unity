@@ -481,6 +481,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -462.3525
       objectReference: {fileID: 0}
+    - target: {fileID: 1731893434782622442, guid: c27aff7f996df174680edcac3f2baa2c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1829270514619202418, guid: c27aff7f996df174680edcac3f2baa2c, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -557,6 +561,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6060428604726598611, guid: c27aff7f996df174680edcac3f2baa2c, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 691.69214
+      objectReference: {fileID: 0}
+    - target: {fileID: 6060428604726598611, guid: c27aff7f996df174680edcac3f2baa2c, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 197.30338
+      objectReference: {fileID: 0}
+    - target: {fileID: 6060428604726598611, guid: c27aff7f996df174680edcac3f2baa2c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 29.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6060428604726598611, guid: c27aff7f996df174680edcac3f2baa2c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 21.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6290400961109182785, guid: c27aff7f996df174680edcac3f2baa2c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6376170334551023584, guid: c27aff7f996df174680edcac3f2baa2c, type: 3}
       propertyPath: m_Text
       value: "\u5C0F\u62E0\u70B9\u306F\u5473\u65B9\u5175\u58EB\u304C\u8FD1\u304F\u306B\u3044\u308B\u3068\n\u6642\u9593\u7D4C\u904E\u3067\u5236\u5727\u3059\u308B\u3053\u3068\u304C\u3067\u304D\u307E\u3059\uFF01\n"
@@ -581,6 +605,10 @@ PrefabInstance:
       propertyPath: m_Text
       value: "\u2192"
       objectReference: {fileID: 0}
+    - target: {fileID: 8296335965933132526, guid: c27aff7f996df174680edcac3f2baa2c, type: 3}
+      propertyPath: m_Text
+      value: "\u2190\u672C\u62E0\u70B9\u5468\u8FBA\u3067\u3082\n\u3000\u56DE\u5FA9\u53EF\u80FD\uFF01"
+      objectReference: {fileID: 0}
     - target: {fileID: 8299590055408154163, guid: c27aff7f996df174680edcac3f2baa2c, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -588,6 +616,10 @@ PrefabInstance:
     - target: {fileID: 8299590055408154163, guid: c27aff7f996df174680edcac3f2baa2c, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9040180779750978449, guid: c27aff7f996df174680edcac3f2baa2c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
