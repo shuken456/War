@@ -33,6 +33,8 @@ public static class Common
                 return "‚•º";
             case 4:
                 return "‹R•º";
+            case 5:
+                return "«ŒR";
             default:
                 return string.Empty;
         }

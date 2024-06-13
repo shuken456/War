@@ -42,13 +42,16 @@ public class FighterAction : MonoBehaviour
 
     public Vector2 SettingPosition;
 
+    private AudioSource AtkSE;
+
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
         MyStatus = GetComponent<FighterStatus>();
+        AtkSE = GetComponent<AudioSource>();
 
-        if(GameObject.Find("BattleManager"))
+        if (GameObject.Find("BattleManager"))
         {
             BaManager = GameObject.Find("BattleManager").GetComponent<BattleManager>();
         }
@@ -87,55 +90,65 @@ public class FighterAction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Time.timeScale >= 1)
+        if (Common.BattleMode)
         {
-            if(CheckEnemy())
+            if (Time.timeScale >= 1 && CheckEnemy())
             {
                 Move();
             }
-        }
-        //出撃準備中の位置調整　（障害物内に出撃できないように）
-        else if (this.gameObject.layer == LayerMask.NameToLayer("SortieSettingFighter"))
-        {
-            Vector3 SettingPosition2 = Quaternion.Euler(0, 0, this.gameObject.transform.parent.gameObject.transform.transform.eulerAngles.z) * SettingPosition;
-            var col = Physics2D.OverlapPoint(this.gameObject.transform.parent.gameObject.transform.position + SettingPosition2, LayerMask.GetMask("Obstacle"));
-
-            if (!col)
+            //出撃準備中の位置調整　（障害物内に出撃できないように）
+            else if (this.gameObject.layer == LayerMask.NameToLayer("SortieSettingFighter"))
             {
-                this.gameObject.transform.localPosition = SettingPosition;
+                Vector3 SettingPosition2 = Quaternion.Euler(0, 0, this.gameObject.transform.parent.gameObject.transform.transform.eulerAngles.z) * SettingPosition;
+                var col = Physics2D.OverlapPoint(this.gameObject.transform.parent.gameObject.transform.position + SettingPosition2, LayerMask.GetMask("Obstacle"));
+
+                if (!col)
+                {
+                    this.gameObject.transform.localPosition = SettingPosition;
+                }
             }
-        }
+        }  
     }
 
     private void OnDestroy()
     {
-        //自分が部隊長だった場合、部隊メンバーのバフを無くす
-        if (MyStatus.UnitLeader)
+        if(Common.BattleMode)
         {
-            GameObject[] tagObjects = GameObject.FindGameObjectsWithTag(this.gameObject.tag);
-
-            foreach (GameObject Fighter in tagObjects)
+            //自分が部隊長だった場合、部隊メンバーのバフを無くす
+            if (MyStatus.UnitLeader)
             {
-                FighterStatus fs = Fighter.GetComponent<FighterStatus>();
-                if (fs.UnitNum == MyStatus.UnitNum)
-                {
-                    fs.DeadUnitLeader = true;
-                    fs.AtkPowerBuff = 0;
-                    fs.MaxHpBuff = 0;
-                    fs.MoveSpeedBuff = 0;
+                GameObject[] tagObjects = GameObject.FindGameObjectsWithTag(this.gameObject.tag);
 
-                    if(fs.NowHp > fs.MaxHp)
+                foreach (GameObject Fighter in tagObjects)
+                {
+                    FighterStatus fs = Fighter.GetComponent<FighterStatus>();
+                    if (fs.UnitNum == MyStatus.UnitNum)
                     {
-                        fs.NowHp = fs.MaxHp;
+                        fs.DeadUnitLeader = true;
+                        fs.AtkPowerBuff = 0;
+                        fs.MaxHpBuff = 0;
+                        fs.MoveSpeedBuff = 0;
+
+                        if (fs.NowHp > fs.MaxHp)
+                        {
+                            fs.NowHp = fs.MaxHp;
+                        }
                     }
                 }
             }
-        }
 
-        //経験値を格納
-        if (this.tag == "PlayerFighter" && BaManager && !BaManager.ExpDic.ContainsKey(MyStatus.FighterName))
-        {
-            BaManager.ExpDic.Add(MyStatus.FighterName, MyStatus.Exp);
+            //経験値を格納
+            if (this.tag == "PlayerFighter" && BaManager && !BaManager.ExpDic.ContainsKey(MyStatus.FighterName))
+            {
+                BaManager.ExpDic.Add(MyStatus.FighterName, MyStatus.Exp);
+            }
+
+            //自分が将軍の場合ゲームセット
+            if (MyStatus.Type == 5 && this.tag == "EnemyFighter" && BaManager.StartFlg)
+            {
+                //勝ち
+                BaManager.Win();
+            }
         }
     }
    
@@ -156,7 +169,15 @@ public class FighterAction : MonoBehaviour
             //敵兵士か敵城かによって距離を変える(敵城は大きいため、兵士と同じ距離で管理できない)
             if (EnemyStatus.gameObject.tag == EnemyTag)
             {
-                MaxDirection = 1.5f;
+                //騎兵かどうかによって距離を変える
+                if(EnemyStatus.Type <= 3)
+                {
+                    MaxDirection = 1.5f;
+                }
+                else
+                {
+                    MaxDirection = 2f;
+                }
             }
             else
             {
@@ -235,17 +256,17 @@ public class FighterAction : MonoBehaviour
         {
             anim.SetInteger("Action", RunAction);
             
-            float moveSpeed;
+            float moveSpeed = MyStatus.MoveSpeed + MyStatus.MoveSpeedBuff;
 
             //スタミナ減少
             if (MyStatus.NowStamina > 0)
             {
                 MyStatus.NowStamina -= Time.deltaTime;
-                moveSpeed = MyStatus.MoveSpeed + MyStatus.MoveSpeedBuff;
             }
             else
             {
-                moveSpeed = (MyStatus.MoveSpeed + MyStatus.MoveSpeedBuff) / 2;
+                //スタミナがなければ移動速度減少
+                moveSpeed /= 2;
             }
 
             //移動
@@ -336,7 +357,7 @@ public class FighterAction : MonoBehaviour
     private IEnumerator Attack()
     {
         AtkNow = true;
-        int power;　//攻撃力
+        float power = MyStatus.AtkPower + MyStatus.AtkPowerBuff;　//攻撃力
         float speed = 10 / (float)MyStatus.AtkSpeed; //攻撃スピード
 
         anim.SetInteger("Action", AttackAction);
@@ -353,16 +374,24 @@ public class FighterAction : MonoBehaviour
             if (MyStatus.NowStamina > 0)
             {
                 MyStatus.NowStamina -= speed;
-                power = MyStatus.AtkPower + MyStatus.AtkPowerBuff;
             }
             else
             {
-                power = (MyStatus.AtkPower + MyStatus.AtkPowerBuff) / 2;
+                //スタミナがなければ攻撃力減少
+                power /= 2;
             }
 
             //敵にダメージを与える
             if (EnemyStatus != null)
             {
+                AtkSE.Play();
+
+                //自分が騎兵で相手が歩兵なら攻撃力アップ
+                if (MyStatus.Type == 4 && EnemyStatus.Type == 1)
+                {
+                    power *= 1.5f;
+                }
+
                 //経験値
                 MyStatus.Exp += 2;
                 EnemyStatus.Exp += 2;
@@ -397,7 +426,7 @@ public class FighterAction : MonoBehaviour
     //弓兵用の攻撃メソッド
     private IEnumerator SearchAndShot()
     {
-        int power;//攻撃力
+        int power = MyStatus.AtkPower + MyStatus.AtkPowerBuff;　//攻撃力
         float speed = 10 / (float)MyStatus.AtkSpeed;//攻撃スピード
 
         while (true)
@@ -434,14 +463,15 @@ public class FighterAction : MonoBehaviour
                     if (MyStatus.NowStamina > 0)
                     {
                         MyStatus.NowStamina -= speed;
-                        power = MyStatus.AtkPower + MyStatus.AtkPowerBuff;
                     }
                     else
                     {
-                        power = (MyStatus.AtkPower + MyStatus.AtkPowerBuff) / 2;
+                        //スタミナがなければ攻撃力減少
+                        power /= 2;
                     }
 
                     //矢を生成する
+                    AtkSE.Play();
                     arrowPrefab.targetEnemyStatus = collider.GetComponent<FighterStatus>();
                     var arrow = Instantiate(arrowPrefab, transform.position, Quaternion.FromToRotation(Vector3.right, collider.transform.position - transform.position));
                     arrow.ArcherName = MyStatus.FighterName;

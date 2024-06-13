@@ -589,6 +589,7 @@ public class UnitFormationManager : MonoBehaviour
     {
         if (on)
         {
+            SE.Play();
             PlayerFighterDataBaseAllList = PlayerFighterTable.PlayerFighterDBList
             .OrderBy((n) => n.UnitNum).ThenByDescending((n) => n.UnitLeader).ThenBy((n) => n.Type).ToList(); //•”‘à”Ô†‡A•”‘à’·‚ªã‚É—ˆ‚é‚æ‚¤‚ÉA•ºí‡‚É•À‚Ñ‘Ö‚¦
 
@@ -599,6 +600,7 @@ public class UnitFormationManager : MonoBehaviour
     {
         if (on)
         {
+            SE.Play();
             PlayerFighterDataBaseAllList = PlayerFighterTable.PlayerFighterDBList
             .OrderBy((n) => n.Name).ToList(); //–¼‘O‡‚É•À‚Ñ‘Ö‚¦
 
@@ -609,6 +611,7 @@ public class UnitFormationManager : MonoBehaviour
     {
         if (on)
         {
+            SE.Play();
             PlayerFighterDataBaseAllList = PlayerFighterTable.PlayerFighterDBList
             .OrderBy((n) => n.Level).ToList(); //Lv‡‚É•À‚Ñ‘Ö‚¦
 

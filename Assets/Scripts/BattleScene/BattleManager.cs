@@ -199,13 +199,19 @@ public class BattleManager : MonoBehaviour
         ChaseObject.GetComponent<ChaseObject>().targetFighter = targetObject;
     }
 
+    //将軍撃破用勝利呼び出し（ondestroyでコルーチンを呼べないため）
+    public void Win()
+    {
+        StartCoroutine(BattleWin());
+    }
+
     //勝利
     public IEnumerator BattleWin()
     {
-        Time.timeScale = 0;
         StartFlg = false;
         WinFlg = true;
-
+        Time.timeScale = 0;
+        
         yield return new WaitForSecondsRealtime(1f);
 
         BattleBGM.Stop();
