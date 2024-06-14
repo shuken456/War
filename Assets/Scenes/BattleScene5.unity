@@ -485,6 +485,22 @@ PrefabInstance:
       propertyPath: targetPlace.Array.data[0].y
       value: -10.5
       objectReference: {fileID: 0}
+    - target: {fileID: 491734526116785754, guid: c27aff7f996df174680edcac3f2baa2c, type: 3}
+      propertyPath: MaxHp
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 491734526116785754, guid: c27aff7f996df174680edcac3f2baa2c, type: 3}
+      propertyPath: NowHp
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 491734526116785754, guid: c27aff7f996df174680edcac3f2baa2c, type: 3}
+      propertyPath: MaxStamina
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 491734526116785754, guid: c27aff7f996df174680edcac3f2baa2c, type: 3}
+      propertyPath: NowStamina
+      value: 18
+      objectReference: {fileID: 0}
     - target: {fileID: 691835934220273426, guid: c27aff7f996df174680edcac3f2baa2c, type: 3}
       propertyPath: targetPlace.Array.size
       value: 1
@@ -504,6 +520,22 @@ PrefabInstance:
     - target: {fileID: 788747496347553963, guid: c27aff7f996df174680edcac3f2baa2c, type: 3}
       propertyPath: m_LocalPosition.y
       value: -462.3525
+      objectReference: {fileID: 0}
+    - target: {fileID: 1287490951350766310, guid: c27aff7f996df174680edcac3f2baa2c, type: 3}
+      propertyPath: MaxHp
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 1287490951350766310, guid: c27aff7f996df174680edcac3f2baa2c, type: 3}
+      propertyPath: NowHp
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 1287490951350766310, guid: c27aff7f996df174680edcac3f2baa2c, type: 3}
+      propertyPath: MaxStamina
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 1287490951350766310, guid: c27aff7f996df174680edcac3f2baa2c, type: 3}
+      propertyPath: NowStamina
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 1548099880344764647, guid: c27aff7f996df174680edcac3f2baa2c, type: 3}
       propertyPath: targetPlace.Array.size
@@ -537,6 +569,22 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -8.600001
       objectReference: {fileID: 0}
+    - target: {fileID: 2316170717282646421, guid: c27aff7f996df174680edcac3f2baa2c, type: 3}
+      propertyPath: MaxHp
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 2316170717282646421, guid: c27aff7f996df174680edcac3f2baa2c, type: 3}
+      propertyPath: NowHp
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 2316170717282646421, guid: c27aff7f996df174680edcac3f2baa2c, type: 3}
+      propertyPath: MaxStamina
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 2316170717282646421, guid: c27aff7f996df174680edcac3f2baa2c, type: 3}
+      propertyPath: NowStamina
+      value: 18
+      objectReference: {fileID: 0}
     - target: {fileID: 2711967463324727525, guid: c27aff7f996df174680edcac3f2baa2c, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.14312276
@@ -544,6 +592,22 @@ PrefabInstance:
     - target: {fileID: 2711967463324727525, guid: c27aff7f996df174680edcac3f2baa2c, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3095611068103277089, guid: c27aff7f996df174680edcac3f2baa2c, type: 3}
+      propertyPath: MaxHp
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 3095611068103277089, guid: c27aff7f996df174680edcac3f2baa2c, type: 3}
+      propertyPath: NowHp
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 3095611068103277089, guid: c27aff7f996df174680edcac3f2baa2c, type: 3}
+      propertyPath: MaxStamina
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 3095611068103277089, guid: c27aff7f996df174680edcac3f2baa2c, type: 3}
+      propertyPath: NowStamina
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 3418135433370636509, guid: c27aff7f996df174680edcac3f2baa2c, type: 3}
       propertyPath: targetPlace.Array.size
@@ -573,6 +637,22 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: cbbc869762d762640a16c112203f1690, type: 3}
+    - target: {fileID: 4379364986598833760, guid: c27aff7f996df174680edcac3f2baa2c, type: 3}
+      propertyPath: MaxHp
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 4379364986598833760, guid: c27aff7f996df174680edcac3f2baa2c, type: 3}
+      propertyPath: NowHp
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 4379364986598833760, guid: c27aff7f996df174680edcac3f2baa2c, type: 3}
+      propertyPath: MaxStamina
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 4379364986598833760, guid: c27aff7f996df174680edcac3f2baa2c, type: 3}
+      propertyPath: NowStamina
+      value: 18
+      objectReference: {fileID: 0}
     - target: {fileID: 4472905995914559867, guid: c27aff7f996df174680edcac3f2baa2c, type: 3}
       propertyPath: m_TileAssetArray.Array.data[16].m_Data
       value: 
@@ -14049,6 +14129,38 @@ PrefabInstance:
       propertyPath: m_Text
       value: "\u5C0F\u62E0\u70B9\u3092\u5236\u5727\u3059\u308B\u3068\u2026\n\u30FB\u5468\u56F2\u306E\u5473\u65B9\u3092\u5F90\u3005\u306B\u56DE\u5FA9\n\u30FB\u51FA\u6483\u53EF\u80FD\u90E8\u968A\u6570\u304C\uFF0B\uFF11\n\u30FB\u62E0\u70B9\u5468\u56F2\u304B\u3089\u51FA\u6483\u53EF\u80FD\u306B\n\n\u3069\u3093\u3069\u3093\u62E0\u70B9\u3092\u5236\u5727\u3057\u3066\n\u6226\u6CC1\u3092\u6709\u5229\u306B\u9032\u3081\u3066\u3044\u304D\u307E\u3057\u3087\u3046\uFF01"
       objectReference: {fileID: 0}
+    - target: {fileID: 5668885166115560693, guid: c27aff7f996df174680edcac3f2baa2c, type: 3}
+      propertyPath: MaxHp
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 5668885166115560693, guid: c27aff7f996df174680edcac3f2baa2c, type: 3}
+      propertyPath: NowHp
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 5668885166115560693, guid: c27aff7f996df174680edcac3f2baa2c, type: 3}
+      propertyPath: MaxStamina
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 5668885166115560693, guid: c27aff7f996df174680edcac3f2baa2c, type: 3}
+      propertyPath: NowStamina
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 5762273645657511434, guid: c27aff7f996df174680edcac3f2baa2c, type: 3}
+      propertyPath: MaxHp
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 5762273645657511434, guid: c27aff7f996df174680edcac3f2baa2c, type: 3}
+      propertyPath: NowHp
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 5762273645657511434, guid: c27aff7f996df174680edcac3f2baa2c, type: 3}
+      propertyPath: MaxStamina
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 5762273645657511434, guid: c27aff7f996df174680edcac3f2baa2c, type: 3}
+      propertyPath: NowStamina
+      value: 18
+      objectReference: {fileID: 0}
     - target: {fileID: 6007752518496986339, guid: c27aff7f996df174680edcac3f2baa2c, type: 3}
       propertyPath: BattleStartHelpUI
       value: 
@@ -14108,6 +14220,22 @@ PrefabInstance:
     - target: {fileID: 6060428604726598611, guid: c27aff7f996df174680edcac3f2baa2c, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 21.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6207462019327125071, guid: c27aff7f996df174680edcac3f2baa2c, type: 3}
+      propertyPath: MaxHp
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 6207462019327125071, guid: c27aff7f996df174680edcac3f2baa2c, type: 3}
+      propertyPath: NowHp
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 6207462019327125071, guid: c27aff7f996df174680edcac3f2baa2c, type: 3}
+      propertyPath: MaxStamina
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 6207462019327125071, guid: c27aff7f996df174680edcac3f2baa2c, type: 3}
+      propertyPath: NowStamina
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 6290400961109182785, guid: c27aff7f996df174680edcac3f2baa2c, type: 3}
       propertyPath: m_IsActive
@@ -14185,6 +14313,22 @@ PrefabInstance:
       propertyPath: m_Text
       value: "\u2192"
       objectReference: {fileID: 0}
+    - target: {fileID: 8135748627912719843, guid: c27aff7f996df174680edcac3f2baa2c, type: 3}
+      propertyPath: MaxHp
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 8135748627912719843, guid: c27aff7f996df174680edcac3f2baa2c, type: 3}
+      propertyPath: NowHp
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 8135748627912719843, guid: c27aff7f996df174680edcac3f2baa2c, type: 3}
+      propertyPath: MaxStamina
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 8135748627912719843, guid: c27aff7f996df174680edcac3f2baa2c, type: 3}
+      propertyPath: NowStamina
+      value: 18
+      objectReference: {fileID: 0}
     - target: {fileID: 8296335965933132526, guid: c27aff7f996df174680edcac3f2baa2c, type: 3}
       propertyPath: m_Text
       value: "\u2190\u672C\u62E0\u70B9\u5468\u8FBA\u3067\u3082\n\u3000\u56DE\u5FA9\u53EF\u80FD\uFF01"
@@ -14196,6 +14340,22 @@ PrefabInstance:
     - target: {fileID: 8299590055408154163, guid: c27aff7f996df174680edcac3f2baa2c, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8608377960347445753, guid: c27aff7f996df174680edcac3f2baa2c, type: 3}
+      propertyPath: MaxHp
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 8608377960347445753, guid: c27aff7f996df174680edcac3f2baa2c, type: 3}
+      propertyPath: NowHp
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 8608377960347445753, guid: c27aff7f996df174680edcac3f2baa2c, type: 3}
+      propertyPath: MaxStamina
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 8608377960347445753, guid: c27aff7f996df174680edcac3f2baa2c, type: 3}
+      propertyPath: NowStamina
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 9040180779750978449, guid: c27aff7f996df174680edcac3f2baa2c, type: 3}
       propertyPath: m_IsActive

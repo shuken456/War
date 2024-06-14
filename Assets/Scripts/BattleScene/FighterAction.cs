@@ -384,8 +384,11 @@ public class FighterAction : MonoBehaviour
             //敵にダメージを与える
             if (EnemyStatus != null)
             {
-                AtkSE.Play();
-
+                if(AtkSE)
+                {
+                    AtkSE.Play();
+                }
+                
                 //自分が騎兵で相手が歩兵なら攻撃力アップ
                 if (MyStatus.Type == 4 && EnemyStatus.Type == 1)
                 {
@@ -470,8 +473,12 @@ public class FighterAction : MonoBehaviour
                         power /= 2;
                     }
 
+                    if (AtkSE)
+                    {
+                        AtkSE.Play();
+                    }
+
                     //矢を生成する
-                    AtkSE.Play();
                     arrowPrefab.targetEnemyStatus = collider.GetComponent<FighterStatus>();
                     var arrow = Instantiate(arrowPrefab, transform.position, Quaternion.FromToRotation(Vector3.right, collider.transform.position - transform.position));
                     arrow.ArcherName = MyStatus.FighterName;

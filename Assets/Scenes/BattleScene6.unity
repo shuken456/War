@@ -827,11 +827,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 251125892775711261, guid: 6bc61f0220470fd4c8c70de5c78587a5, type: 3}
       propertyPath: MaxHp
-      value: 20
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 251125892775711261, guid: 6bc61f0220470fd4c8c70de5c78587a5, type: 3}
       propertyPath: NowHp
-      value: 20
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 251125892775711261, guid: 6bc61f0220470fd4c8c70de5c78587a5, type: 3}
       propertyPath: AtkPower
@@ -847,11 +847,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 251125892775711261, guid: 6bc61f0220470fd4c8c70de5c78587a5, type: 3}
       propertyPath: MaxStamina
-      value: 20
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 251125892775711261, guid: 6bc61f0220470fd4c8c70de5c78587a5, type: 3}
       propertyPath: NowStamina
-      value: 20
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 3080875872678014106, guid: 6bc61f0220470fd4c8c70de5c78587a5, type: 3}
       propertyPath: targetPlace.Array.size
@@ -949,11 +949,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 251125892775711261, guid: 6bc61f0220470fd4c8c70de5c78587a5, type: 3}
       propertyPath: MaxHp
-      value: 20
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 251125892775711261, guid: 6bc61f0220470fd4c8c70de5c78587a5, type: 3}
       propertyPath: NowHp
-      value: 20
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 251125892775711261, guid: 6bc61f0220470fd4c8c70de5c78587a5, type: 3}
       propertyPath: AtkPower
@@ -969,11 +969,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 251125892775711261, guid: 6bc61f0220470fd4c8c70de5c78587a5, type: 3}
       propertyPath: MaxStamina
-      value: 20
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 251125892775711261, guid: 6bc61f0220470fd4c8c70de5c78587a5, type: 3}
       propertyPath: NowStamina
-      value: 20
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 3161932324450165181, guid: 6bc61f0220470fd4c8c70de5c78587a5, type: 3}
       propertyPath: m_Name
@@ -1288,11 +1288,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 251125892775711261, guid: 6bc61f0220470fd4c8c70de5c78587a5, type: 3}
       propertyPath: MaxHp
-      value: 20
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 251125892775711261, guid: 6bc61f0220470fd4c8c70de5c78587a5, type: 3}
       propertyPath: NowHp
-      value: 20
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 251125892775711261, guid: 6bc61f0220470fd4c8c70de5c78587a5, type: 3}
       propertyPath: AtkPower
@@ -1308,11 +1308,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 251125892775711261, guid: 6bc61f0220470fd4c8c70de5c78587a5, type: 3}
       propertyPath: MaxStamina
-      value: 20
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 251125892775711261, guid: 6bc61f0220470fd4c8c70de5c78587a5, type: 3}
       propertyPath: NowStamina
-      value: 20
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 3080875872678014106, guid: 6bc61f0220470fd4c8c70de5c78587a5, type: 3}
       propertyPath: targetPlace.Array.size
@@ -15302,11 +15302,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5668885166115560693, guid: c27aff7f996df174680edcac3f2baa2c, type: 3}
       propertyPath: MaxHp
-      value: 20
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 5668885166115560693, guid: c27aff7f996df174680edcac3f2baa2c, type: 3}
       propertyPath: NowHp
-      value: 20
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 5668885166115560693, guid: c27aff7f996df174680edcac3f2baa2c, type: 3}
       propertyPath: AtkPower
@@ -15322,11 +15322,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5668885166115560693, guid: c27aff7f996df174680edcac3f2baa2c, type: 3}
       propertyPath: MaxStamina
-      value: 20
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 5668885166115560693, guid: c27aff7f996df174680edcac3f2baa2c, type: 3}
       propertyPath: NowStamina
-      value: 20
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 5725213733327934325, guid: c27aff7f996df174680edcac3f2baa2c, type: 3}
       propertyPath: Level
@@ -44848,11 +44848,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 251125892775711261, guid: 6bc61f0220470fd4c8c70de5c78587a5, type: 3}
       propertyPath: MaxHp
-      value: 20
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 251125892775711261, guid: 6bc61f0220470fd4c8c70de5c78587a5, type: 3}
       propertyPath: NowHp
-      value: 20
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 251125892775711261, guid: 6bc61f0220470fd4c8c70de5c78587a5, type: 3}
       propertyPath: AtkPower
@@ -44868,11 +44868,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 251125892775711261, guid: 6bc61f0220470fd4c8c70de5c78587a5, type: 3}
       propertyPath: MaxStamina
-      value: 20
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 251125892775711261, guid: 6bc61f0220470fd4c8c70de5c78587a5, type: 3}
       propertyPath: NowStamina
-      value: 20
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 3161932324450165181, guid: 6bc61f0220470fd4c8c70de5c78587a5, type: 3}
       propertyPath: m_Name
@@ -44950,11 +44950,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 251125892775711261, guid: 6bc61f0220470fd4c8c70de5c78587a5, type: 3}
       propertyPath: MaxHp
-      value: 20
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 251125892775711261, guid: 6bc61f0220470fd4c8c70de5c78587a5, type: 3}
       propertyPath: NowHp
-      value: 20
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 251125892775711261, guid: 6bc61f0220470fd4c8c70de5c78587a5, type: 3}
       propertyPath: AtkPower
@@ -44970,11 +44970,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 251125892775711261, guid: 6bc61f0220470fd4c8c70de5c78587a5, type: 3}
       propertyPath: MaxStamina
-      value: 20
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 251125892775711261, guid: 6bc61f0220470fd4c8c70de5c78587a5, type: 3}
       propertyPath: NowStamina
-      value: 20
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 3161932324450165181, guid: 6bc61f0220470fd4c8c70de5c78587a5, type: 3}
       propertyPath: m_Name
@@ -45124,11 +45124,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 251125892775711261, guid: 6bc61f0220470fd4c8c70de5c78587a5, type: 3}
       propertyPath: MaxHp
-      value: 20
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 251125892775711261, guid: 6bc61f0220470fd4c8c70de5c78587a5, type: 3}
       propertyPath: NowHp
-      value: 20
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 251125892775711261, guid: 6bc61f0220470fd4c8c70de5c78587a5, type: 3}
       propertyPath: AtkPower
@@ -45144,11 +45144,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 251125892775711261, guid: 6bc61f0220470fd4c8c70de5c78587a5, type: 3}
       propertyPath: MaxStamina
-      value: 20
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 251125892775711261, guid: 6bc61f0220470fd4c8c70de5c78587a5, type: 3}
       propertyPath: NowStamina
-      value: 20
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 3080875872678014106, guid: 6bc61f0220470fd4c8c70de5c78587a5, type: 3}
       propertyPath: targetPlace.Array.size
@@ -45416,11 +45416,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 251125892775711261, guid: 6bc61f0220470fd4c8c70de5c78587a5, type: 3}
       propertyPath: MaxHp
-      value: 20
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 251125892775711261, guid: 6bc61f0220470fd4c8c70de5c78587a5, type: 3}
       propertyPath: NowHp
-      value: 20
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 251125892775711261, guid: 6bc61f0220470fd4c8c70de5c78587a5, type: 3}
       propertyPath: AtkPower
@@ -45436,11 +45436,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 251125892775711261, guid: 6bc61f0220470fd4c8c70de5c78587a5, type: 3}
       propertyPath: MaxStamina
-      value: 20
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 251125892775711261, guid: 6bc61f0220470fd4c8c70de5c78587a5, type: 3}
       propertyPath: NowStamina
-      value: 20
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 3080875872678014106, guid: 6bc61f0220470fd4c8c70de5c78587a5, type: 3}
       propertyPath: targetPlace.Array.size

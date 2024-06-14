@@ -11,7 +11,7 @@ public class UnitCountUI : MonoBehaviour
     public Text CountText;
 
     //ステージごとの出撃可能部隊数
-    private int[] PossibleSortieCountList = { 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2};
+    private int[] PossibleSortieCountList = { 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 3, 5, 4, 5, 5, 0, 0, 0, 0};
 
     //元々の出撃可能部隊数
     public int PossibleSortieCountDefault;
