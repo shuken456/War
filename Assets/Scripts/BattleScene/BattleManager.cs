@@ -197,6 +197,9 @@ public class BattleManager : MonoBehaviour
         var ChaseObject = Instantiate(ChaseObjectPrefab, new Vector3(0, 0, 0), Quaternion.identity);
         ChaseObject.transform.SetParent(CanvasWorldSpace.transform, false);
         ChaseObject.GetComponent<ChaseObject>().targetFighter = targetObject;
+
+        //移動UIより前に来ないようにする
+        ChaseObject.transform.SetAsFirstSibling();
     }
 
     //将軍撃破用勝利呼び出し（ondestroyでコルーチンを呼べないため）

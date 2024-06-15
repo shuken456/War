@@ -115,10 +115,18 @@ public class EmploymentAfterUI : MonoBehaviour
                 NewFighter.MoveSpeed = Random.Range(13, 18);
                 break;
         }
-        NewFighter.Level = 1;
         NewFighter.EXP = 0;
         NewFighter.UnitNum = 0;
         NewFighter.UnitLeader = false;
+
+        //現在の進行度によってレベルをランダムに設定
+        NewFighter.Level = Random.Range(1, Common.Progress);
+        Dictionary<string, int> UpParameter = Common.LevelUpParameter(NewFighter.Type, NewFighter.Level - 1);
+        NewFighter.Hp += UpParameter["Hp"];
+        NewFighter.Stamina += UpParameter["Stamina"];
+        NewFighter.AtkPower += UpParameter["AtkPower"];
+        NewFighter.AtkSpeed += UpParameter["AtkSpeed"];
+        NewFighter.MoveSpeed += UpParameter["MoveSpeed"];
 
         return NewFighter;
     }

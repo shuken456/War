@@ -30,6 +30,8 @@ public class FighterAction : MonoBehaviour
     //“G‚Ìƒ^ƒO
     private string EnemyTag;
     private string EnemyBaseTag;
+    //–¡•û‹’“_‚Ìƒ^ƒO
+    private string PlayerBaseTag;
 
     //UŒ‚’†ƒtƒ‰ƒO
     private bool AtkNow = false;
@@ -61,11 +63,13 @@ public class FighterAction : MonoBehaviour
         {
             EnemyTag = "EnemyFighter";
             EnemyBaseTag = "EnemyBase";
+            PlayerBaseTag = "PlayerBase";
         }
         else
         {
             EnemyTag = "PlayerFighter";
             EnemyBaseTag = "PlayerBase";
+            PlayerBaseTag = "EnemyBase";
         }
 
         //‹|•º‚Ìê‡AŽË’ö“à‚É“G‚ª‚¢‚é‚©Šm”F‚·‚é
@@ -100,7 +104,7 @@ public class FighterAction : MonoBehaviour
             else if (this.gameObject.layer == LayerMask.NameToLayer("SortieSettingFighter"))
             {
                 Vector3 SettingPosition2 = Quaternion.Euler(0, 0, this.gameObject.transform.parent.gameObject.transform.transform.eulerAngles.z) * SettingPosition;
-                var col = Physics2D.OverlapPoint(this.gameObject.transform.parent.gameObject.transform.position + SettingPosition2, LayerMask.GetMask("Obstacle"));
+                var col = Physics2D.OverlapPoint(this.gameObject.transform.parent.gameObject.transform.position + SettingPosition2, LayerMask.GetMask("Obstacle","PlayerBase"));
 
                 if (!col)
                 {
@@ -215,14 +219,14 @@ public class FighterAction : MonoBehaviour
             }
             else if(MyStatus.NowStamina >= (MyStatus.MaxStamina / 2))
             {
-                range = 6f;
+                range = 7f;
             }
 
             var collider = Physics2D.OverlapCircle(transform.position, range, LayerMask.GetMask(EnemyTag));
             if (collider != null)
             {
                 Ray2D ray = new Ray2D(this.gameObject.transform.position, collider.gameObject.transform.position - this.gameObject.transform.position);
-                RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Vector2.Distance(this.gameObject.transform.position, collider.gameObject.transform.position), LayerMask.GetMask("Obstacle"));
+                RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Vector2.Distance(this.gameObject.transform.position, collider.gameObject.transform.position), LayerMask.GetMask("Obstacle",EnemyBaseTag,PlayerBaseTag));
 
                 if (!hit.collider)
                 {
@@ -311,29 +315,6 @@ public class FighterAction : MonoBehaviour
             EnemyStatus = collision.gameObject.GetComponent<FighterStatus>();
             StartCoroutine(Attack());
         }
-
-        ////oŒ‚Žž‚ÉáŠQ•¨‚É‚Â‚Á‚©‚¦‚È‚¢‚æ‚¤‚É
-        //if(collision.gameObject.layer == LayerMask.NameToLayer("Obstacle") && anim.GetInteger("Action") == StandAction)
-        //{
-        //    var v = collision.gameObject.transform.position - transform.position;
-        //    if (v.x > 0)
-        //    {
-        //        transform.position += new Vector3(0.3f, 0, 0);
-        //    }
-        //    else if (v.x < 0)
-        //    {
-        //        transform.position -= new Vector3(0.3f, 0, 0);
-        //    }
-
-        //    if (v.y > 0)
-        //    {
-        //        transform.position += new Vector3(0, 0.3f, 0);
-        //    }
-        //    else if (v.y < 0)
-        //    {
-        //        transform.position -= new Vector3(0, 0.3f, 0);
-        //    }
-        //}
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -357,7 +338,6 @@ public class FighterAction : MonoBehaviour
     private IEnumerator Attack()
     {
         AtkNow = true;
-        float power = MyStatus.AtkPower + MyStatus.AtkPowerBuff;@//UŒ‚—Í
         float speed = 10 / (float)MyStatus.AtkSpeed; //UŒ‚ƒXƒs[ƒh
 
         anim.SetInteger("Action", AttackAction);
@@ -365,6 +345,8 @@ public class FighterAction : MonoBehaviour
 
         while (EnemyStatus != null)
         {
+            float power = MyStatus.AtkPower + MyStatus.AtkPowerBuff; //UŒ‚—Í
+
             //•ûŒü“]Š·
             ChangeDirection(EnemyStatus.gameObject.transform.position);
 
@@ -429,20 +411,21 @@ public class FighterAction : MonoBehaviour
     //‹|•º—p‚ÌUŒ‚ƒƒ\ƒbƒh
     private IEnumerator SearchAndShot()
     {
-        int power = MyStatus.AtkPower + MyStatus.AtkPowerBuff;@//UŒ‚—Í
         float speed = 10 / (float)MyStatus.AtkSpeed;//UŒ‚ƒXƒs[ƒh
 
         while (true)
         {
+            float power = MyStatus.AtkPower + MyStatus.AtkPowerBuff; //UŒ‚—Í
+
             yield return new WaitForSeconds(speed);
 
             //TODO ‚±‚±‚Å“G‚ð’T‚µ‚ÄA–î‚ðŒ‚‚Â githubtest
-            var collider = Physics2D.OverlapCircle(transform.position, 5f, LayerMask.GetMask(EnemyTag, EnemyBaseTag));
+            var collider = Physics2D.OverlapCircle(transform.position, 6f, LayerMask.GetMask(EnemyTag, EnemyBaseTag));
 
             if (collider != null && (collider.tag == EnemyTag || collider.tag == EnemyBaseTag))
             {
                 Ray2D ray = new Ray2D(this.gameObject.transform.position, collider.gameObject.transform.position - this.gameObject.transform.position);
-                RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Vector2.Distance(this.gameObject.transform.position, collider.gameObject.transform.position), LayerMask.GetMask("Obstacle"));
+                RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Vector2.Distance(this.gameObject.transform.position, collider.gameObject.transform.position), LayerMask.GetMask("Obstacle", EnemyBaseTag, PlayerBaseTag));
 
                 if (!hit.collider)
                 {

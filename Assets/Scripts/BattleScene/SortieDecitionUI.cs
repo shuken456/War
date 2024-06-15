@@ -89,7 +89,7 @@ public class SortieDecitionUI : MonoBehaviour
         Time.fixedDeltaTime = 0.02f;
 
         //‰ñ“]‚ğŒ³‚É–ß‚·
-        SortieTarget.transform.eulerAngles -= new Vector3(0, 0, 0);
+        SortieTarget.transform.eulerAngles = new Vector3(0, 0, 0);
 
         Common.SelectUnitNum = 0;
 
@@ -173,7 +173,7 @@ public class SortieDecitionUI : MonoBehaviour
         //oŒ‚‰Â”\•”‘à”‚ğ-1
         BaManager.UnitCountUI.PossibleSortieCountNow -= 1;
         BaManager.UnitCountUI.TextDraw();
-        
+
         this.gameObject.SetActive(false);
     }
 

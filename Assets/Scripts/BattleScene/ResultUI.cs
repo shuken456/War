@@ -43,7 +43,7 @@ public class ResultUI : MonoBehaviour
         {
             ResultText.text = "èüóòÅI";
             ResultText.color = Color.red;
-            GetMoney = (Common.Progress * 2) + 3;
+            GetMoney = (Common.Progress * 2) + 4;
             OkButton.SetActive(true);
         }
         else

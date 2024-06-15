@@ -13,6 +13,11 @@ public class Base : MonoBehaviour
     //コントロールゲージプレハブ
     public GameObject ControlSlider;
 
+    //敵兵士プレハブ
+    public GameObject EnemyFighter;
+    private Dictionary<string, int> UpParameter;
+    private int EnemyHealCount = 0;
+
     //街範囲画像
     public SpriteRenderer rangeRenderer;
 
@@ -61,6 +66,9 @@ public class Base : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //出現する敵兵士のステータス確定
+        UpParameter = Common.LevelUpParameter(1, Common.Progress - 4);
+        
         //各設定
         slider = Instantiate(ControlSlider, this.transform.position + new Vector3(0, 1f, 0), Quaternion.identity).GetComponent<Slider>();
         slider.transform.SetParent(CanvasWorldSpace.transform, true);
@@ -174,6 +182,7 @@ public class Base : MonoBehaviour
 
                     ControlSE.Play();
                     StartCoroutine(BaManager.LogUI.DrawLog("<size=30><color=red>拠点を制圧された！</color></size>"));
+                    EnemyHealCount = 0;
                 }
             }
         }
@@ -189,6 +198,8 @@ public class Base : MonoBehaviour
             //味方制圧状態の場合、範囲内の味方兵士を回復
             if (currentStatus == CityStatus.Player)
             {
+                EnemyHealCount = 0;
+
                 foreach (Collider2D Fighter in colliderPlayer)
                 {
                     FighterStatus fighterStatus = Fighter.gameObject.GetComponent<FighterStatus>();
@@ -205,6 +216,26 @@ public class Base : MonoBehaviour
             //敵制圧状態の場合、範囲内の敵兵士を回復
             else if (currentStatus == CityStatus.Enemy)
             {
+                EnemyHealCount++;
+
+                //3回回復分時間が経過したら敵兵士を出現させる
+                if (EnemyHealCount == 3)
+                {
+                    EnemyHealCount = 0;
+                    GameObject Enemy = Instantiate(EnemyFighter, this.transform.position, Quaternion.identity);
+
+                    //出現する敵兵士のステータス設定　※プレハブにステータスを代入するとおかしくなるので、作った兵士オブジェクトに代入する
+                    FighterStatus fs = Enemy.GetComponent<FighterStatus>();
+                    fs.Level = Common.Progress - 1;
+                    fs.MaxHp += UpParameter["Hp"];
+                    fs.NowHp += UpParameter["Hp"];
+                    fs.MaxStamina += UpParameter["Stamina"];
+                    fs.NowStamina += UpParameter["Stamina"];
+                    fs.AtkPower += UpParameter["AtkPower"];
+                    fs.AtkSpeed += UpParameter["AtkSpeed"];
+                    fs.MoveSpeed += UpParameter["MoveSpeed"];
+                }
+
                 foreach (Collider2D Fighter in colliderEnemy)
                 {
                     FighterStatus fighterStatus = Fighter.gameObject.GetComponent<FighterStatus>();

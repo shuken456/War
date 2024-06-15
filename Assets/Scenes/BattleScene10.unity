@@ -647,6 +647,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1212083110368480604, guid: 344ed6218eeb74a47856c73eb6277feb, type: 3}
+      propertyPath: MaxHp
+      value: 130
+      objectReference: {fileID: 0}
+    - target: {fileID: 1212083110368480604, guid: 344ed6218eeb74a47856c73eb6277feb, type: 3}
+      propertyPath: NowHp
+      value: 130
+      objectReference: {fileID: 0}
+    - target: {fileID: 1212083110368480604, guid: 344ed6218eeb74a47856c73eb6277feb, type: 3}
+      propertyPath: AtkPower
+      value: 18
+      objectReference: {fileID: 0}
     - target: {fileID: 1311674674580383443, guid: 344ed6218eeb74a47856c73eb6277feb, type: 3}
       propertyPath: MaxHp
       value: 35

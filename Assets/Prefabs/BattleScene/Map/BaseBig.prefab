@@ -134,6 +134,7 @@ MonoBehaviour:
   BaManager: {fileID: 0}
   CanvasWorldSpace: {fileID: 0}
   ControlSlider: {fileID: 5464722191987919225, guid: 2bef086d58787424c978bb0216fd6e22, type: 3}
+  EnemyFighter: {fileID: 3161932324450165181, guid: 6bc61f0220470fd4c8c70de5c78587a5, type: 3}
   rangeRenderer: {fileID: 4574533832641281211}
   ControlTime: 10
   Range: 3

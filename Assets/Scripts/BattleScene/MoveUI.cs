@@ -140,7 +140,7 @@ public class MoveUI : MonoBehaviour
                 {
                     Vector3 SelectFighterPosition = BaManager.SelectFighter[i].transform.position;
                     ray = new Ray2D(SelectFighterPosition, CursorPosition - SelectFighterPosition);
-                    hit = Physics2D.Raycast(ray.origin, ray.direction, Vector2.Distance(SelectFighterPosition, CursorPosition), LayerMask.GetMask("Obstacle"));
+                    hit = Physics2D.Raycast(ray.origin, ray.direction, Vector2.Distance(SelectFighterPosition, CursorPosition), LayerMask.GetMask("Obstacle", "PlayerBase"));
 
                     if (hit.collider)
                     {
@@ -159,7 +159,7 @@ public class MoveUI : MonoBehaviour
                 //中継点からのルートに障害物がないか確認
                 Vector3 BeforePosition = MovePositions[MovePositions.Count - 1];
                 ray = new Ray2D(BeforePosition, CursorPosition - BeforePosition);
-                hit = Physics2D.Raycast(ray.origin, ray.direction, Vector2.Distance(BeforePosition, CursorPosition), LayerMask.GetMask("Obstacle"));
+                hit = Physics2D.Raycast(ray.origin, ray.direction, Vector2.Distance(BeforePosition, CursorPosition), LayerMask.GetMask("Obstacle", "PlayerBase"));
 
                 if (hit.collider)
                 {
