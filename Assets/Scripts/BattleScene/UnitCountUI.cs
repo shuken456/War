@@ -22,7 +22,7 @@ public class UnitCountUI : MonoBehaviour
     //ステージ17    →8
     //ステージ18,19 →9
     //ステージ20    →10
-    private int[] PossibleSortieCountList = { 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 3, 5, 4, 5, 5, 5, 6, 6, 7};
+    private int[] PossibleSortieCountList = { 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 3, 5, 4, 5, 5, 5, 9, 6, 7};
 
     //元々の出撃可能部隊数
     public int PossibleSortieCountDefault;

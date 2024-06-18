@@ -35,7 +35,7 @@ public class LevelUpInfoUI : MonoBehaviour
         MinusButton.SetActive(false);
         UpLevel = 1;
         DefaultLevel = FeUI.SelectFighterStatus.Level;
-        NeedMoney = ((DefaultLevel + UpLevel) / 5) + 1;
+        NeedMoney = ((DefaultLevel + UpLevel) / 4) + 1;
 
         //テキスト表示
         NameText.text = FeUI.SelectFighterStatus.FighterName;

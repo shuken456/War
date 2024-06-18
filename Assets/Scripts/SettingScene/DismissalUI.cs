@@ -17,7 +17,7 @@ public class DismissalUI : MonoBehaviour
     void OnEnable()
     {
         fs = FeUI.SelectFighterStatus;
-        GetMoney = (fs.Level / 3) + 1;
+        GetMoney = (fs.Level / 5) + 1;
 
         InfoText.text = fs.FighterName + "を解雇します。\nよろしいですか？";
         MoneyText.text = "（獲得資金: " + GetMoney.ToString() + "両）";

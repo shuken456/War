@@ -198,8 +198,6 @@ public class Base : MonoBehaviour
             //味方制圧状態の場合、範囲内の味方兵士を回復
             if (currentStatus == CityStatus.Player)
             {
-                EnemyHealCount = 0;
-
                 foreach (Collider2D Fighter in colliderPlayer)
                 {
                     FighterStatus fighterStatus = Fighter.gameObject.GetComponent<FighterStatus>();
@@ -218,10 +216,9 @@ public class Base : MonoBehaviour
             {
                 EnemyHealCount++;
 
-                //3回回復分時間が経過したら敵兵士を出現させる
-                if (EnemyHealCount == 3)
+                //2回回復分時間が経過したら敵兵士を出現させる
+                if (EnemyHealCount == 2)
                 {
-                    EnemyHealCount = 0;
                     GameObject Enemy = Instantiate(EnemyFighter, this.transform.position, Quaternion.identity);
 
                     //出現する敵兵士のステータス設定　※プレハブにステータスを代入するとおかしくなるので、作った兵士オブジェクトに代入する
@@ -234,6 +231,8 @@ public class Base : MonoBehaviour
                     fs.AtkPower += UpParameter["AtkPower"];
                     fs.AtkSpeed += UpParameter["AtkSpeed"];
                     fs.MoveSpeed += UpParameter["MoveSpeed"];
+
+                    EnemyHealCount = 0;
                 }
 
                 foreach (Collider2D Fighter in colliderEnemy)

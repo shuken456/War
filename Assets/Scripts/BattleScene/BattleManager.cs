@@ -215,7 +215,7 @@ public class BattleManager : MonoBehaviour
         WinFlg = true;
         Time.timeScale = 0;
         
-        yield return new WaitForSecondsRealtime(1f);
+        yield return new WaitForSecondsRealtime(1.5f);
 
         BattleBGM.Stop();
         VoiceBGM.Stop();
@@ -239,7 +239,7 @@ public class BattleManager : MonoBehaviour
         StartFlg = false;
         WinFlg = false;
 
-        yield return new WaitForSecondsRealtime(1f);
+        yield return new WaitForSecondsRealtime(1.5f);
 
         BattleBGM.Stop();
         VoiceBGM.Stop();

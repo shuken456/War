@@ -215,7 +215,7 @@ public class FighterAction : MonoBehaviour
             //“G•ºŽm‚ÍL‚¢”ÍˆÍ‚ÅA–¡•û•ºŽm‚Í‹·‚¢”ÍˆÍ‚Å“G‚ð’T‚·
             if (this.gameObject.tag == "PlayerFighter")
             {
-                range = 1.25f;
+                range = 1.5f;
             }
             else if(MyStatus.NowStamina >= (MyStatus.MaxStamina / 2))
             {

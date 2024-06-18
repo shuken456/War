@@ -31,7 +31,7 @@ public class BattleSituationUI : MonoBehaviour
         PlayerPower.text = power.ToString();
         if (power == 0 && BaManager.StartFlg && Time.timeScale >= 1)
         {
-            //•‰‚¯
+            //–¡•ûí—Í0‚Å•‰‚¯
             StartCoroutine(BaManager.BattleLose());
         }
 
@@ -44,7 +44,7 @@ public class BattleSituationUI : MonoBehaviour
         EnemyPower.text = power.ToString();
         if (power == 0 && BaManager.StartFlg && Time.timeScale >= 1)
         {
-            //Ÿ‚¿
+            //“Gí—Í0‚ÅŸ‚¿
             StartCoroutine(BaManager.BattleWin());
         }
     }
