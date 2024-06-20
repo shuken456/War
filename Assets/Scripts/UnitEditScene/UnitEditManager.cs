@@ -80,7 +80,10 @@ public class UnitEditManager : MonoBehaviour
                 SE.Play();
 
                 //選択していたユニットの背景を白、新たに選択したユニット背景を緑に
-                GameObject.Find("Unit" + SelectUnitNum.ToString()).transform.Find("UnitBackImage").GetComponent<SpriteRenderer>().color = Color.white;
+                if(!PlayerUnitDataBaseAllList[SelectUnitNum - 1].SoriteFlg)
+                {
+                    GameObject.Find("Unit" + SelectUnitNum.ToString()).transform.Find("UnitBackImage").GetComponent<SpriteRenderer>().color = Color.white;
+                }
                 SelectUnitNum = int.Parse(col.gameObject.name.Replace("Unit", ""));
                 col.gameObject.transform.Find("UnitBackImage").GetComponent<SpriteRenderer>().color = Color.green;
 

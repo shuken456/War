@@ -220,6 +220,7 @@ public class Base : MonoBehaviour
                 if (EnemyHealCount == 2)
                 {
                     GameObject Enemy = Instantiate(EnemyFighter, this.transform.position, Quaternion.identity);
+                    BaManager.CreateGaugeAndFlag(Enemy);
 
                     //出現する敵兵士のステータス設定　※プレハブにステータスを代入するとおかしくなるので、作った兵士オブジェクトに代入する
                     FighterStatus fs = Enemy.GetComponent<FighterStatus>();

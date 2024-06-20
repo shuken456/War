@@ -173,8 +173,12 @@ public class ActionUI : MonoBehaviour
             FighterA.targetPlace.Clear();
             FighterA.targetFighter = null;
             FighterA.targetFighterSave = null;
+
+            //‘I‘ğó‘Ô‰ğœ
+            Fighter.gameObject.transform.Find("SelectImage").GetComponent<SpriteRenderer>().color = Color.clear;
         }
 
+        BaManager.SelectFighter.Clear();
         OnEnable();
     }
 

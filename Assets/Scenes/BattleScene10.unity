@@ -649,15 +649,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1212083110368480604, guid: 344ed6218eeb74a47856c73eb6277feb, type: 3}
       propertyPath: MaxHp
-      value: 130
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 1212083110368480604, guid: 344ed6218eeb74a47856c73eb6277feb, type: 3}
       propertyPath: NowHp
-      value: 130
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 1212083110368480604, guid: 344ed6218eeb74a47856c73eb6277feb, type: 3}
       propertyPath: AtkPower
       value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 1212083110368480604, guid: 344ed6218eeb74a47856c73eb6277feb, type: 3}
+      propertyPath: AtkSpeed
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1311674674580383443, guid: 344ed6218eeb74a47856c73eb6277feb, type: 3}
       propertyPath: MaxHp

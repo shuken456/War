@@ -226,7 +226,7 @@ public class FighterAction : MonoBehaviour
             if (collider != null)
             {
                 Ray2D ray = new Ray2D(this.gameObject.transform.position, collider.gameObject.transform.position - this.gameObject.transform.position);
-                RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Vector2.Distance(this.gameObject.transform.position, collider.gameObject.transform.position), LayerMask.GetMask("Obstacle",EnemyBaseTag,PlayerBaseTag));
+                RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Vector2.Distance(this.gameObject.transform.position, collider.gameObject.transform.position), LayerMask.GetMask("Obstacle",PlayerBaseTag));
 
                 if (!hit.collider)
                 {
@@ -338,10 +338,10 @@ public class FighterAction : MonoBehaviour
     private IEnumerator Attack()
     {
         AtkNow = true;
-        float speed = 10 / (float)MyStatus.AtkSpeed; //攻撃スピード
+        float speed = 15 / (float)MyStatus.AtkSpeed; //攻撃スピード
 
         anim.SetInteger("Action", AttackAction);
-        anim.SetFloat("AtkSpeed", (float)MyStatus.AtkSpeed / 10); //アニメーションスピード設定
+        anim.SetFloat("AtkSpeed", (float)MyStatus.AtkSpeed / 15); //アニメーションスピード設定
 
         while (EnemyStatus != null)
         {
@@ -411,7 +411,7 @@ public class FighterAction : MonoBehaviour
     //弓兵用の攻撃メソッド
     private IEnumerator SearchAndShot()
     {
-        float speed = 10 / (float)MyStatus.AtkSpeed;//攻撃スピード
+        float speed = 15 / (float)MyStatus.AtkSpeed;//攻撃スピード
 
         while (true)
         {
@@ -419,13 +419,13 @@ public class FighterAction : MonoBehaviour
 
             yield return new WaitForSeconds(speed);
 
-            //TODO ここで敵を探して、矢を撃つ githubtest
+            //TODO ここで敵を探して、矢を撃つ
             var collider = Physics2D.OverlapCircle(transform.position, 6f, LayerMask.GetMask(EnemyTag, EnemyBaseTag));
 
             if (collider != null && (collider.tag == EnemyTag || collider.tag == EnemyBaseTag))
             {
                 Ray2D ray = new Ray2D(this.gameObject.transform.position, collider.gameObject.transform.position - this.gameObject.transform.position);
-                RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Vector2.Distance(this.gameObject.transform.position, collider.gameObject.transform.position), LayerMask.GetMask("Obstacle", EnemyBaseTag, PlayerBaseTag));
+                RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Vector2.Distance(this.gameObject.transform.position, collider.gameObject.transform.position), LayerMask.GetMask("Obstacle", PlayerBaseTag));
 
                 if (!hit.collider)
                 {

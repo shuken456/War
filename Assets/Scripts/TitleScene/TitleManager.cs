@@ -34,9 +34,18 @@ public class TitleManager : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("ContinueProgress") < 2)
         {
-            //初期データをここでセーブ　次にはじめからスタートする時に使う
-            PlayerFighterTable.InitialSave();
-            PlayerUnitTable.InitialSave();
+            if(PlayerPrefs.GetString("InitialFighterData") == string.Empty)
+            {
+                //初期データをここでセーブ　次にはじめからスタートする時に使う
+                PlayerFighterTable.InitialSave();
+                PlayerUnitTable.InitialSave();
+            }
+            else
+            {
+                //初期データロード
+                PlayerFighterTable.InitialLoad();
+                PlayerUnitTable.InitialLoad();
+            }
             //所持金と進行度初期セーブ
             Common.InitialSave();
 

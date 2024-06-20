@@ -15,37 +15,481 @@ MonoBehaviour:
   PlayerFighterDBList:
   - Name: "\u6B69\u51751"
     Type: 1
-    Level: 1
-    Hp: 10
-    Stamina: 15
-    AtkPower: 2
-    MoveSpeed: 10
-    AtkSpeed: 10
-    EXP: 0
+    Level: 9
+    Hp: 43
+    Stamina: 36
+    AtkPower: 4
+    MoveSpeed: 18
+    AtkSpeed: 21
+    EXP: 89
     UnitNum: 1
-    Position: {x: 0, y: 0, z: 0}
+    Position: {x: -0.1, y: 0.2, z: 0}
     UnitLeader: 1
   - Name: "\u6B69\u51752"
     Type: 1
-    Level: 1
-    Hp: 10
-    Stamina: 15
-    AtkPower: 2
-    MoveSpeed: 10
-    AtkSpeed: 10
-    EXP: 0
+    Level: 9
+    Hp: 42
+    Stamina: 37
+    AtkPower: 5
+    MoveSpeed: 22
+    AtkSpeed: 14
+    EXP: 27
     UnitNum: 1
-    Position: {x: 1.5, y: 0, z: 0}
+    Position: {x: 1.9, y: 0.2, z: 0}
     UnitLeader: 0
   - Name: "\u6B69\u51753"
     Type: 1
-    Level: 1
-    Hp: 10
-    Stamina: 15
-    AtkPower: 2
-    MoveSpeed: 10
-    AtkSpeed: 10
-    EXP: 0
+    Level: 10
+    Hp: 48
+    Stamina: 39
+    AtkPower: 14
+    MoveSpeed: 20
+    AtkSpeed: 21
+    EXP: 17
     UnitNum: 1
-    Position: {x: -1.5, y: 0, z: 0}
+    Position: {x: -0.9, y: 1.1, z: 0}
+    UnitLeader: 0
+  - Name: "\u5F13\u51751"
+    Type: 2
+    Level: 11
+    Hp: 28
+    Stamina: 25
+    AtkPower: 14
+    MoveSpeed: 23
+    AtkSpeed: 17
+    EXP: 5
+    UnitNum: 2
+    Position: {x: 1.4, y: 0.6, z: 0}
+    UnitLeader: 0
+  - Name: "\u5F13\u51752"
+    Type: 2
+    Level: 9
+    Hp: 24
+    Stamina: 22
+    AtkPower: 11
+    MoveSpeed: 15
+    AtkSpeed: 8
+    EXP: 89
+    UnitNum: 2
+    Position: {x: 1.4, y: 1.9, z: 0}
+    UnitLeader: 0
+  - Name: "\u5F13\u51753"
+    Type: 2
+    Level: 10
+    Hp: 24
+    Stamina: 26
+    AtkPower: 10
+    MoveSpeed: 20
+    AtkSpeed: 11
+    EXP: 1
+    UnitNum: 2
+    Position: {x: 1.8, y: -0.5, z: 0}
+    UnitLeader: 0
+  - Name: "\u6B69\u51754"
+    Type: 1
+    Level: 9
+    Hp: 40
+    Stamina: 39
+    AtkPower: 15
+    MoveSpeed: 16
+    AtkSpeed: 19
+    EXP: 70
+    UnitNum: 1
+    Position: {x: 0, y: 1.5, z: 0}
+    UnitLeader: 0
+  - Name: "\u6B69\u51755"
+    Type: 1
+    Level: 8
+    Hp: 37
+    Stamina: 34
+    AtkPower: 12
+    MoveSpeed: 14
+    AtkSpeed: 14
+    EXP: 88
+    UnitNum: 1
+    Position: {x: 0.1, y: -1, z: 0}
+    UnitLeader: 0
+  - Name: "\u6B69\u51756"
+    Type: 1
+    Level: 8
+    Hp: 39
+    Stamina: 31
+    AtkPower: 10
+    MoveSpeed: 18
+    AtkSpeed: 15
+    EXP: 83
+    UnitNum: 1
+    Position: {x: 0.8, y: 1.4, z: 0}
+    UnitLeader: 0
+  - Name: "\u5F13\u51754"
+    Type: 2
+    Level: 9
+    Hp: 21
+    Stamina: 20
+    AtkPower: 7
+    MoveSpeed: 21
+    AtkSpeed: 11
+    EXP: 77
+    UnitNum: 2
+    Position: {x: 0.5, y: 0, z: 0}
+    UnitLeader: 1
+  - Name: "\u5F13\u51755"
+    Type: 2
+    Level: 9
+    Hp: 22
+    Stamina: 23
+    AtkPower: 9
+    MoveSpeed: 16
+    AtkSpeed: 12
+    EXP: 81
+    UnitNum: 2
+    Position: {x: -0.3, y: 0.2, z: 0}
+    UnitLeader: 0
+  - Name: "\u5F13\u51756"
+    Type: 2
+    Level: 8
+    Hp: 21
+    Stamina: 17
+    AtkPower: 11
+    MoveSpeed: 14
+    AtkSpeed: 13
+    EXP: 93
+    UnitNum: 2
+    Position: {x: -1.9, y: 0, z: 0}
+    UnitLeader: 0
+  - Name: "\u5F13\u51757"
+    Type: 2
+    Level: 9
+    Hp: 18
+    Stamina: 24
+    AtkPower: 10
+    MoveSpeed: 25
+    AtkSpeed: 12
+    EXP: 51
+    UnitNum: 2
+    Position: {x: -1.1, y: -0.6, z: 0}
+    UnitLeader: 0
+  - Name: "\u5F13\u51758"
+    Type: 2
+    Level: 9
+    Hp: 19
+    Stamina: 22
+    AtkPower: 9
+    MoveSpeed: 13
+    AtkSpeed: 13
+    EXP: 53
+    UnitNum: 2
+    Position: {x: 0.5, y: 1.3, z: 0}
+    UnitLeader: 0
+  - Name: "\u5F13\u51759"
+    Type: 2
+    Level: 8
+    Hp: 20
+    Stamina: 21
+    AtkPower: 9
+    MoveSpeed: 25
+    AtkSpeed: 10
+    EXP: 97
+    UnitNum: 2
+    Position: {x: -1.1, y: 0.6, z: 0}
+    UnitLeader: 0
+  - Name: "\u5F13\u517510"
+    Type: 2
+    Level: 10
+    Hp: 22
+    Stamina: 25
+    AtkPower: 12
+    MoveSpeed: 19
+    AtkSpeed: 12
+    EXP: 9
+    UnitNum: 2
+    Position: {x: 0.7, y: -1.2, z: 0}
+    UnitLeader: 0
+  - Name: "\u6B69\u51757"
+    Type: 1
+    Level: 8
+    Hp: 35
+    Stamina: 30
+    AtkPower: 8
+    MoveSpeed: 18
+    AtkSpeed: 14
+    EXP: 61
+    UnitNum: 1
+    Position: {x: -1.4, y: -0.1, z: 0}
+    UnitLeader: 0
+  - Name: "\u6B69\u51758"
+    Type: 1
+    Level: 8
+    Hp: 36
+    Stamina: 32
+    AtkPower: 7
+    MoveSpeed: 19
+    AtkSpeed: 17
+    EXP: 95
+    UnitNum: 1
+    Position: {x: 1.5, y: -0.9, z: 0}
+    UnitLeader: 0
+  - Name: "\u6B69\u51759"
+    Type: 1
+    Level: 8
+    Hp: 39
+    Stamina: 33
+    AtkPower: 10
+    MoveSpeed: 17
+    AtkSpeed: 16
+    EXP: 50
+    UnitNum: 1
+    Position: {x: 1.7, y: 1.4, z: 0}
+    UnitLeader: 0
+  - Name: "\u6B69\u517510"
+    Type: 1
+    Level: 7
+    Hp: 28
+    Stamina: 30
+    AtkPower: 9
+    MoveSpeed: 12
+    AtkSpeed: 16
+    EXP: 99
+    UnitNum: 1
+    Position: {x: 0.8, y: 0.2, z: 0}
+    UnitLeader: 0
+  - Name: "\u76FE\u51751"
+    Type: 3
+    Level: 9
+    Hp: 67
+    Stamina: 19
+    AtkPower: 5
+    MoveSpeed: 12
+    AtkSpeed: 14
+    EXP: 45
+    UnitNum: 3
+    Position: {x: 0.9, y: 1.2, z: 0}
+    UnitLeader: 0
+  - Name: "\u76FE\u51752"
+    Type: 3
+    Level: 7
+    Hp: 58
+    Stamina: 19
+    AtkPower: 4
+    MoveSpeed: 12
+    AtkSpeed: 8
+    EXP: 8
+    UnitNum: 3
+    Position: {x: 1.6, y: 0.4, z: 0}
+    UnitLeader: 0
+  - Name: "\u76FE\u51753"
+    Type: 3
+    Level: 8
+    Hp: 58
+    Stamina: 18
+    AtkPower: 5
+    MoveSpeed: 11
+    AtkSpeed: 9
+    EXP: 46
+    UnitNum: 3
+    Position: {x: 0, y: 1.2, z: 0}
+    UnitLeader: 0
+  - Name: "\u76FE\u51754"
+    Type: 3
+    Level: 10
+    Hp: 74
+    Stamina: 21
+    AtkPower: 10
+    MoveSpeed: 15
+    AtkSpeed: 9
+    EXP: 54
+    UnitNum: 3
+    Position: {x: 0.3, y: 0, z: 0}
+    UnitLeader: 1
+  - Name: "\u76FE\u51755"
+    Type: 3
+    Level: 7
+    Hp: 57
+    Stamina: 17
+    AtkPower: 4
+    MoveSpeed: 9
+    AtkSpeed: 13
+    EXP: 15
+    UnitNum: 3
+    Position: {x: -0.6, y: -0.7, z: 0}
+    UnitLeader: 0
+  - Name: "\u76FE\u51756"
+    Type: 3
+    Level: 8
+    Hp: 62
+    Stamina: 17
+    AtkPower: 4
+    MoveSpeed: 15
+    AtkSpeed: 11
+    EXP: 28
+    UnitNum: 3
+    Position: {x: 2.3, y: -0.4, z: 0}
+    UnitLeader: 0
+  - Name: "\u76FE\u51757"
+    Type: 3
+    Level: 8
+    Hp: 57
+    Stamina: 26
+    AtkPower: 5
+    MoveSpeed: 11
+    AtkSpeed: 11
+    EXP: 82
+    UnitNum: 3
+    Position: {x: 1.3, y: -0.9, z: 0}
+    UnitLeader: 0
+  - Name: "\u76FE\u51758"
+    Type: 3
+    Level: 7
+    Hp: 56
+    Stamina: 20
+    AtkPower: 5
+    MoveSpeed: 9
+    AtkSpeed: 14
+    EXP: 45
+    UnitNum: 3
+    Position: {x: -0.9, y: 1, z: 0}
+    UnitLeader: 0
+  - Name: "\u76FE\u51759"
+    Type: 3
+    Level: 9
+    Hp: 69
+    Stamina: 24
+    AtkPower: 7
+    MoveSpeed: 10
+    AtkSpeed: 12
+    EXP: 74
+    UnitNum: 3
+    Position: {x: -1.5, y: -0.5, z: 0}
+    UnitLeader: 0
+  - Name: "\u76FE\u517510"
+    Type: 3
+    Level: 10
+    Hp: 74
+    Stamina: 23
+    AtkPower: 8
+    MoveSpeed: 15
+    AtkSpeed: 14
+    EXP: 27
+    UnitNum: 3
+    Position: {x: 0.2, y: -1.2, z: 0}
+    UnitLeader: 0
+  - Name: "\u76FE\u517511"
+    Type: 3
+    Level: 9
+    Hp: 67
+    Stamina: 23
+    AtkPower: 7
+    MoveSpeed: 11
+    AtkSpeed: 12
+    EXP: 0
+    UnitNum: 4
+    Position: {x: 0.3, y: 0.5, z: 0}
+    UnitLeader: 1
+  - Name: "\u76FE\u517512"
+    Type: 3
+    Level: 7
+    Hp: 55
+    Stamina: 22
+    AtkPower: 3
+    MoveSpeed: 11
+    AtkSpeed: 14
+    EXP: 57
+    UnitNum: 4
+    Position: {x: -1.1, y: 0.2, z: 0}
+    UnitLeader: 0
+  - Name: "\u76FE\u517513"
+    Type: 3
+    Level: 5
+    Hp: 43
+    Stamina: 15
+    AtkPower: 4
+    MoveSpeed: 9
+    AtkSpeed: 9
+    EXP: 20
+    UnitNum: 4
+    Position: {x: 1.8, y: 0.3, z: 0}
+    UnitLeader: 0
+  - Name: "\u76FE\u517514"
+    Type: 3
+    Level: 7
+    Hp: 47
+    Stamina: 19
+    AtkPower: 4
+    MoveSpeed: 11
+    AtkSpeed: 9
+    EXP: 98
+    UnitNum: 4
+    Position: {x: 0.3, y: -0.7, z: 0}
+    UnitLeader: 0
+  - Name: "\u76FE\u517515"
+    Type: 3
+    Level: 4
+    Hp: 36
+    Stamina: 14
+    AtkPower: 2
+    MoveSpeed: 9
+    AtkSpeed: 11
+    EXP: 60
+    UnitNum: 4
+    Position: {x: -1.1, y: -1.1, z: 0}
+    UnitLeader: 0
+  - Name: "\u76FE\u517516"
+    Type: 3
+    Level: 7
+    Hp: 55
+    Stamina: 19
+    AtkPower: 4
+    MoveSpeed: 10
+    AtkSpeed: 11
+    EXP: 17
+    UnitNum: 4
+    Position: {x: 1.8, y: -1, z: 0}
+    UnitLeader: 0
+  - Name: "\u76FE\u517517"
+    Type: 3
+    Level: 7
+    Hp: 54
+    Stamina: 18
+    AtkPower: 3
+    MoveSpeed: 9
+    AtkSpeed: 11
+    EXP: 92
+    UnitNum: 4
+    Position: {x: -0.6, y: 1.3, z: 0}
+    UnitLeader: 0
+  - Name: "\u76FE\u517518"
+    Type: 3
+    Level: 6
+    Hp: 49
+    Stamina: 20
+    AtkPower: 5
+    MoveSpeed: 10
+    AtkSpeed: 7
+    EXP: 24
+    UnitNum: 4
+    Position: {x: 0.3, y: 1.7, z: 0}
+    UnitLeader: 0
+  - Name: "\u76FE\u517519"
+    Type: 3
+    Level: 7
+    Hp: 56
+    Stamina: 17
+    AtkPower: 6
+    MoveSpeed: 13
+    AtkSpeed: 9
+    EXP: 80
+    UnitNum: 4
+    Position: {x: 1.1, y: 1.1, z: 0}
+    UnitLeader: 0
+  - Name: "\u76FE\u517520"
+    Type: 3
+    Level: 7
+    Hp: 57
+    Stamina: 15
+    AtkPower: 3
+    MoveSpeed: 11
+    AtkSpeed: 11
+    EXP: 10
+    UnitNum: 4
+    Position: {x: 2, y: 1.5, z: 0}
     UnitLeader: 0

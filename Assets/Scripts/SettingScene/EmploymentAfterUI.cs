@@ -59,7 +59,7 @@ public class EmploymentAfterUI : MonoBehaviour
             + "\n" + Fighter.AtkSpeed.ToString() + "\n" + Fighter.MoveSpeed.ToString();
         InfoText.text = Fighter.Name + "を雇った！";
 
-        //兵士数と所持金チェック もう一人雇えるかチェック
+        //兵士数と所持金チェック ※もう一人雇えるかチェック
         if (PlayerFighterDataBaseAllList.Count == 119 || Common.Money < EmUI.FighterMoney(EmUI.SelectType) * 2)
         {
             OneMoreButton.interactable = false;

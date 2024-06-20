@@ -84,7 +84,7 @@ public class Arrow : MonoBehaviour
                 {
                     if (targetEnemyStatus.UnitLeader)
                     {
-                        StartCoroutine(BaManager.LogUI.DrawLog("<size=30><color=red>" + targetEnemyStatus.FighterName + "</color></size>\n" + ArcherName + "Ç…ì|Ç≥ÇÍÇΩÅI"));
+                        StartCoroutine(BaManager.LogUI.DrawLog("<size=30><color=red>" + targetEnemyStatus.FighterName + "(ïîë‡í∑)</color></size>\n" + ArcherName + "Ç…ì|Ç≥ÇÍÇΩÅI"));
                     }
                     else
                     {

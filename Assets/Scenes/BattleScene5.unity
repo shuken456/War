@@ -621,6 +621,10 @@ PrefabInstance:
       propertyPath: targetPlace.Array.data[0].y
       value: -10.5
       objectReference: {fileID: 0}
+    - target: {fileID: 3680235263684828751, guid: c27aff7f996df174680edcac3f2baa2c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -6.81
+      objectReference: {fileID: 0}
     - target: {fileID: 4063165857269625953, guid: c27aff7f996df174680edcac3f2baa2c, type: 3}
       propertyPath: targetPlace.Array.size
       value: 1
@@ -14125,9 +14129,13 @@ PrefabInstance:
       propertyPath: m_Tiles.Array.data[1679].second.m_TileSpriteIndex
       value: 25
       objectReference: {fileID: 0}
+    - target: {fileID: 4509381875440971525, guid: c27aff7f996df174680edcac3f2baa2c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -8.71
+      objectReference: {fileID: 0}
     - target: {fileID: 4571771631142352269, guid: c27aff7f996df174680edcac3f2baa2c, type: 3}
       propertyPath: m_Text
-      value: "\u5C0F\u62E0\u70B9\u3092\u5236\u5727\u3059\u308B\u3068\u2026\n\u30FB\u51FA\u6483\u53EF\u80FD\u90E8\u968A\u6570\u304C\uFF0B\uFF11\n\u30FB\u62E0\u70B9\u5468\u56F2\u304B\u3089\u51FA\u6483\u53EF\u80FD\u306B\n\u30FB\u5468\u56F2\u306E\u5473\u65B9\u3092\u5F90\u3005\u306B\u56DE\u5FA9\n\n\u3069\u3093\u3069\u3093\u62E0\u70B9\u3092\u5236\u5727\u3057\u3066\n\u6226\u6CC1\u3092\u6709\u5229\u306B\u9032\u3081\u3066\u3044\u304D\u307E\u3057\u3087\u3046\uFF01"
+      value: "\u5C0F\u62E0\u70B9\u3092\u5236\u5727\u3059\u308B\u3068\u2026\n\u30FB\u51FA\u6483\u53EF\u80FD\u90E8\u968A\u6570\u304C\uFF0B\uFF11\n\u30FB\u5C0F\u62E0\u70B9\u5468\u56F2\u304B\u3089\u51FA\u6483\u53EF\u80FD\u306B\n\u30FB\u5468\u56F2\u306E\u5473\u65B9\u3092\u5F90\u3005\u306B\u56DE\u5FA9\n\n\u3069\u3093\u3069\u3093\u62E0\u70B9\u3092\u5236\u5727\u3057\u3066\n\u6226\u6CC1\u3092\u6709\u5229\u306B\u9032\u3081\u3066\u3044\u304D\u307E\u3057\u3087\u3046\uFF01"
       objectReference: {fileID: 0}
     - target: {fileID: 5668885166115560693, guid: c27aff7f996df174680edcac3f2baa2c, type: 3}
       propertyPath: MaxHp

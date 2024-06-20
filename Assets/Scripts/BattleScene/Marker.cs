@@ -13,7 +13,8 @@ public class Marker : MonoBehaviour
             float size = GameObject.Find("MiniMapCamera").GetComponent<Camera>().orthographicSize / 6;
             this.gameObject.transform.localScale = new Vector3(size, size, 1);
         }
-        
+
+        this.GetComponent<SpriteRenderer>().color = this.transform.parent.gameObject.GetComponent<SpriteRenderer>().color;
     }
 
 }

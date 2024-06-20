@@ -201,7 +201,7 @@ public static class Common
                     UpParameter["Stamina"] += Random.Range(1, 3);
                     UpParameter["AtkPower"] += Random.Range(0, 3);
                     UpParameter["AtkSpeed"] += Random.Range(0, 3);
-                    UpParameter["MoveSpeed"] += Random.Range(2, 4);
+                    UpParameter["MoveSpeed"] += Random.Range(1, 4);
                 }
                 break;
         }
