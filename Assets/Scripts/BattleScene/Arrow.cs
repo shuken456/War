@@ -19,6 +19,9 @@ public class Arrow : MonoBehaviour
     private string EnemyTag;
     private string EnemyBaseTag;
 
+    //攻撃エフェクト
+    public GameObject AtkEffect;
+
     void Start()
     {
         BaManager = GameObject.Find("BattleManager").GetComponent<BattleManager>();
@@ -56,6 +59,9 @@ public class Arrow : MonoBehaviour
         //攻撃
         if (collision.gameObject.tag == EnemyTag || collision.gameObject.tag == EnemyBaseTag)
         {
+            //攻撃エフェクト表示
+            Instantiate(AtkEffect, collision.gameObject.transform.position, Quaternion.identity);
+
             targetEnemyStatus = collision.gameObject.GetComponent<FighterStatus>();
             targetEnemyStatus.Exp += 2;
 

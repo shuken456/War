@@ -42,7 +42,7 @@ public class ChaseObject : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         //今のHP、スタミナ等を表示　ターゲットを追尾
         if (targetFighter != null)

@@ -175,3 +175,4 @@ MonoBehaviour:
   ArcherName: 
   AtkPower: 0
   ArrowSpeed: 5
+  AtkEffect: {fileID: 4800288856175577004, guid: 90e6709a9a432754aab2fc4849a522bf, type: 3}

@@ -46,6 +46,9 @@ public class FighterAction : MonoBehaviour
 
     private AudioSource AtkSE;
 
+    //攻撃エフェクト
+    public GameObject AtkEffect;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -215,7 +218,7 @@ public class FighterAction : MonoBehaviour
             //敵兵士は広い範囲で、味方兵士は狭い範囲で敵を探す
             if (this.gameObject.tag == "PlayerFighter")
             {
-                range = 1.5f;
+                range = 2f;
             }
             else if(MyStatus.NowStamina >= (MyStatus.MaxStamina / 2))
             {
@@ -275,8 +278,8 @@ public class FighterAction : MonoBehaviour
 
             //移動
             var v = NowTargetPlace - transform.position;
-            transform.position += v.normalized * (moveSpeed / 10) * Time.deltaTime;
-            anim.SetFloat("RunSpeed", moveSpeed / 10); //アニメーションスピード設定
+            transform.position += v.normalized * (moveSpeed / 12) * Time.deltaTime;
+            anim.SetFloat("RunSpeed", moveSpeed / 12); //アニメーションスピード設定
 
             ChangeDirection(NowTargetPlace);
 
@@ -341,9 +344,9 @@ public class FighterAction : MonoBehaviour
         float speed = 15 / (float)MyStatus.AtkSpeed; //攻撃スピード
 
         anim.SetInteger("Action", AttackAction);
-        anim.SetFloat("AtkSpeed", (float)MyStatus.AtkSpeed / 15); //アニメーションスピード設定
+        anim.SetFloat("AtkSpeed", (float)MyStatus.AtkSpeed / 30); //アニメーションスピード設定
 
-        while (EnemyStatus != null)
+        while (EnemyStatus)
         {
             float power = MyStatus.AtkPower + MyStatus.AtkPowerBuff; //攻撃力
 
@@ -352,21 +355,24 @@ public class FighterAction : MonoBehaviour
 
             yield return new WaitForSeconds(speed);
 
-            //スタミナ減少
-            if (MyStatus.NowStamina > 0)
-            {
-                MyStatus.NowStamina -= speed;
-            }
-            else
-            {
-                //スタミナがなければ攻撃力減少
-                power /= 2;
-            }
-
             //敵にダメージを与える
-            if (EnemyStatus != null)
+            if (EnemyStatus)
             {
-                if(AtkSE)
+                //攻撃エフェクト表示
+                Instantiate(AtkEffect, EnemyStatus.gameObject.transform.position, Quaternion.identity);
+
+                //スタミナ減少
+                if (MyStatus.NowStamina > 0)
+                {
+                    MyStatus.NowStamina -= speed;
+                }
+                else
+                {
+                    //スタミナがなければ攻撃力減少
+                    power /= 2;
+                }
+
+                if (AtkSE)
                 {
                     AtkSE.Play();
                 }

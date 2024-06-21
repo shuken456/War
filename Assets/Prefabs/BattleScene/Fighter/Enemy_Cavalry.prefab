@@ -130,6 +130,7 @@ MonoBehaviour:
   EnemyStatus: {fileID: 0}
   arrowPrefab: {fileID: 0}
   SettingPosition: {x: 0, y: 0}
+  AtkEffect: {fileID: 4800288856175577004, guid: 90e6709a9a432754aab2fc4849a522bf, type: 3}
 --- !u!114 &4496283637335854062
 MonoBehaviour:
   m_ObjectHideFlags: 0
