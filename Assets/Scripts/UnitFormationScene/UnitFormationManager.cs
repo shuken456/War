@@ -231,43 +231,7 @@ public class UnitFormationManager : MonoBehaviour
         //左クリックでユニットの選択か追加、ドラッグで移動、ダブルクリックで部隊長変更
         if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
         {
-            var col = Physics2D.OverlapPoint(CursorPosition, LayerMask.GetMask("PlayerFighter"));
-            if (col != null)
-            {
-                SE.Play();
-
-                //選択されている兵士が既にいる場合、その兵士の見た目を元に戻す
-                if(StatusShowFighter != null)
-                {
-                    StatusShowFighter.gameObject.transform.Find("SelectImage").GetComponent<SpriteRenderer>().color = Color.clear;
-                }
-
-                //ボタンで選択されている兵士がいる場合、再度選択できるようにボタン状態を元に戻す
-                if(SelectFighterButton != null)
-                {
-                    SelectFighterButton.GetComponent<Button>().interactable = true;
-                }
-                SelectFighter = col.gameObject;
-                StatusShowFighter = col.gameObject;
-
-                FighterStatus fs = StatusShowFighter.GetComponent<FighterStatus>();
-                StatusShowFighterName = fs.FighterName;
-
-                //見た目を変更
-                StatusShowFighter.gameObject.transform.Find("SelectImage").GetComponent<SpriteRenderer>().color = Color.yellow;
-
-                //バフ設定
-                Common.FighterBuff(fs, UnitStrategy, false);
-
-                //ステータスUI表示
-                FighterStatusInfo.TextWrite(StatusShowFighter.GetComponent<FighterStatus>());
-                FighterStatusInfo.ImageWrite(StatusShowFighter.GetComponent<SpriteRenderer>().sprite, StatusShowFighter.GetComponent<SpriteRenderer>().color);
-
-                //ダブルクリックか判定
-                ClickCount++;
-                Invoke("OnDoubleClick", 0.3f);
-            }
-            else if(SelectFighterButton != null && !SelectFighterButton.GetComponent<Button>().interactable)
+            if (SelectFighterButton != null && !SelectFighterButton.GetComponent<Button>().interactable)
             {
                 //左のユニット編成用オブジェクト内でない場合return
                 if (CursorPosition.x > UnitObjectBack.transform.position.x + 2.5 || CursorPosition.x < UnitObjectBack.transform.position.x - 2.5 ||
@@ -282,7 +246,7 @@ public class UnitFormationManager : MonoBehaviour
                 //MAX10人まで
                 int FighterCount = GameObject.FindGameObjectsWithTag("PlayerFighter").Length;
 
-                if(FighterCount == 10)
+                if (FighterCount == 10)
                 {
                     WarningUIMax.SetActive(true);
                 }
@@ -321,6 +285,43 @@ public class UnitFormationManager : MonoBehaviour
                     //画面下ユニットメンバーUI追記
                     UnitMemberInfoWrite(FighterCount - 1, SelectStatus.FighterName, SelectStatus.Type, SelectStatus.Level);
                 }
+            }
+
+            var col = Physics2D.OverlapPoint(CursorPosition, LayerMask.GetMask("PlayerFighter"));
+            if (col != null)
+            {
+                SE.Play();
+
+                //選択されている兵士が既にいる場合、その兵士の見た目を元に戻す
+                if(StatusShowFighter != null)
+                {
+                    StatusShowFighter.gameObject.transform.Find("SelectImage").GetComponent<SpriteRenderer>().color = Color.clear;
+                }
+
+                //ボタンで選択されている兵士がいる場合、再度選択できるようにボタン状態を元に戻す
+                if(SelectFighterButton != null)
+                {
+                    SelectFighterButton.GetComponent<Button>().interactable = true;
+                }
+                SelectFighter = col.gameObject;
+                StatusShowFighter = col.gameObject;
+
+                FighterStatus fs = StatusShowFighter.GetComponent<FighterStatus>();
+                StatusShowFighterName = fs.FighterName;
+
+                //見た目を変更
+                StatusShowFighter.gameObject.transform.Find("SelectImage").GetComponent<SpriteRenderer>().color = Color.yellow;
+
+                //バフ設定
+                Common.FighterBuff(fs, UnitStrategy, false);
+
+                //ステータスUI表示
+                FighterStatusInfo.TextWrite(StatusShowFighter.GetComponent<FighterStatus>());
+                FighterStatusInfo.ImageWrite(StatusShowFighter.GetComponent<SpriteRenderer>().sprite, StatusShowFighter.GetComponent<SpriteRenderer>().color);
+
+                //ダブルクリックか判定
+                ClickCount++;
+                Invoke("OnDoubleClick", 0.3f);
             }
         }
         if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject())
