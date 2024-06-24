@@ -174,7 +174,6 @@ public class ResultUI : MonoBehaviour
     public void OkButtonClick()
     {
         Common.BattleMode = false;
-        Common.SortieMode = false;
 
         //DontDestoy‚É“ü‚Á‚Ä‚éBGM‚ğíœ
         Common.MusicReset();
@@ -186,7 +185,6 @@ public class ResultUI : MonoBehaviour
     public void RevengeButtonClick()
     {
         Common.BattleMode = false;
-        Common.SortieMode = false;
 
         //DontDestoy‚É“ü‚Á‚Ä‚éBGM‚ğíœ
         Common.MusicReset();

@@ -64,6 +64,10 @@ public class MoveUI : MonoBehaviour
             moveline.SetPosition(1, Fighter.transform.position);
             BaManager.SelectFighterLine.Add(moveline);
         }
+
+        //×–‚‚É‚È‚éUI‚ğˆê“I‚ÉŒ©‚¦‚È‚¢‚æ‚¤‚É
+        BaManager.LogUI.gameObject.SetActive(false);
+        BaManager.UnitCountUI.gameObject.SetActive(false);
     }
 
     private void OnDisable()
@@ -87,6 +91,10 @@ public class MoveUI : MonoBehaviour
         {
             BaManager.StartUI.SetActive(true);
         }
+
+        //Á‚µ‚½UI‚ğŒ©‚¦‚é‚æ‚¤‚É
+        BaManager.LogUI.gameObject.SetActive(true);
+        BaManager.UnitCountUI.gameObject.SetActive(true);
     }
 
     // Update is called once per frame

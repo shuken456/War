@@ -33,6 +33,7 @@ public class HomeUI : MonoBehaviour
     //•”‘à•Ò¬ƒ{ƒ^ƒ“‰Ÿ‰º
     public void UnitEditButtonClick()
     {
+        Common.SortieMode = false;
         SceneManager.LoadScene("UnitEditScene");
     }
 
