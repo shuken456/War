@@ -220,38 +220,39 @@ public class MoveUI : MonoBehaviour
                         }
                     }
 
-                    //移動最終決定用UI表示位置調整
-                    Vector2 UIPosition = RectTransformUtility.WorldToScreenPoint(CinemachineCore.Instance.FindPotentialTargetBrain(mainCam).OutputCamera, CursorPosition);
-                    
+                    //カメラ倍率
+                    float CameraZoom = GameObject.Find("Virtual Camera").GetComponent<CinemachineVirtualCamera>().m_Lens.OrthographicSize / 8;
+
+                    ////移動最終決定用UI表示位置調整
+                    Vector2 ScreenPosition = RectTransformUtility.WorldToScreenPoint(CinemachineCore.Instance.FindPotentialTargetBrain(mainCam).OutputCamera, CursorPosition);
+                    Vector2 UIPosition = CursorPosition;
+
                     //デフォルトは移動地点の少し右に表示させる
-                    UIPosition += new Vector2(100, 0);
+                    ScreenPosition += new Vector2(100, 0);
+                    UIPosition += new Vector2(1.3f * CameraZoom, 0);
 
-                    if (UIPosition.x > 1400)
+                    if (ScreenPosition.x > 1400)
                     {
-                        UIPosition.x -= 200;
+                        UIPosition.x -= 2.6f * CameraZoom;
                     }
-                    if (UIPosition.y > 790)
+                    if (ScreenPosition.y > 790)
                     {
-                        UIPosition.y -= 50;
+                        UIPosition.y -= 0.7f * CameraZoom;
 
-                        if (UIPosition.x < 850 && UIPosition.x > 700)
+                        if (ScreenPosition.x < 850 && ScreenPosition.x > 700)
                         {
-                            UIPosition.x -= 200;
+                            UIPosition.x -= 2.6f * CameraZoom;
                         }
                     }
-                    if (UIPosition.y < 100)
+                    if (ScreenPosition.y < 100)
                     {
-                        UIPosition.y += 50;
+                        UIPosition.y += 0.7f * CameraZoom;
                     }
 
-                    //ワールド座標に設置する
-                    Vector3 UIPosition2 = Camera.main.ScreenToWorldPoint(UIPosition);
-                    UIPosition2.z = 0;
-
-                    MoveUIAfter.GetComponent<RectTransform>().position = UIPosition2;
+                    MoveUIAfter.GetComponent<RectTransform>().position = UIPosition;
 
                     //UIのサイズ調整
-                    float size = 0.018f * (GameObject.Find("Virtual Camera").GetComponent<CinemachineVirtualCamera>().m_Lens.OrthographicSize / 8);
+                    float size = 0.018f * CameraZoom;
                     MoveUIAfter.GetComponent<RectTransform>().localScale = new Vector2(size, size);
 
                     //移動最終決定用UIを表示

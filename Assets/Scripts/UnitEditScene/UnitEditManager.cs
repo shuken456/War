@@ -93,20 +93,20 @@ public class UnitEditManager : MonoBehaviour
                 DisplayUnitUI();
 
                 //選択語UI表示位置調整
-                Vector2 UIPosition = RectTransformUtility.WorldToScreenPoint(Camera.main, col.gameObject.transform.position);
-                
+                Vector2 UIPosition = col.gameObject.transform.position;
+
                 //出撃モードの場合は出撃ボタン、そうでない場合は編成UIを出す
                 if (Common.SortieMode)
                 {
-                    UIPosition.y -= 80;
-                    SortieButton.GetComponent<RectTransform>().position = UIPosition;
+                    UIPosition.y -= 0.8f;
+                    SortieButton.GetComponent<RectTransform>().position = RectTransformUtility.WorldToScreenPoint(Camera.main, UIPosition);
                     SortieButton.SetActive(true);
                 }
                 else
                 {
-                    UIPosition.x -= 130;
-                    UIPosition.y -= 150;
-                    SelectUI.GetComponent<RectTransform>().position = UIPosition;
+                    UIPosition.x -= 1.2f;
+                    UIPosition.y -= 1.3f;
+                    SelectUI.GetComponent<RectTransform>().position = RectTransformUtility.WorldToScreenPoint(Camera.main, UIPosition);
                     SelectUI.SetActive(true);
                 }
                 

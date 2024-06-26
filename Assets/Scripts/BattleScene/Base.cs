@@ -73,6 +73,10 @@ public class Base : MonoBehaviour
         slider = Instantiate(ControlSlider, this.transform.position + new Vector3(0, 1f, 0), Quaternion.identity).GetComponent<Slider>();
         slider.transform.SetParent(CanvasWorldSpace.transform, true);
         slider.maxValue = ControlTime;
+
+        //ˆÚ“®UI‚æ‚è‘O‚É—ˆ‚È‚¢‚æ‚¤‚É‚·‚é
+        slider.transform.SetAsFirstSibling();
+
         rangeRenderer.transform.localScale = new Vector3(2, 2) * Range; //”¼Œa‚È‚Ì‚Å“ñ”{
 
         ControlSE = this.gameObject.GetComponent<AudioSource>();
