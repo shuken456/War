@@ -248,8 +248,8 @@ public class FighterAction : MonoBehaviour
             NowTargetPlace = targetFighter.position;
         }
         //ターゲットの距離がある程度離れたら、再度追わせる
-        else if (targetFighterSave && (Mathf.Abs(transform.position.x - targetFighterSave.position.x) > 1.5f || Mathf.Abs(transform.position.y - targetFighterSave.position.y) > 1.5f))
-        {
+        else if (targetFighterSave && (Mathf.Abs(transform.position.x - targetFighterSave.position.x) > 2f || Mathf.Abs(transform.position.y - targetFighterSave.position.y) > 2f))
+        {   
             targetFighter = targetFighterSave;
             targetFighterSave = null;
         }
@@ -318,17 +318,16 @@ public class FighterAction : MonoBehaviour
             EnemyStatus = collision.gameObject.GetComponent<FighterStatus>();
             StartCoroutine(Attack());
         }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
         //味方ターゲットに接触した場合、押し続けないように一度削除
-        if (collision.gameObject.transform == targetFighter && collision.gameObject.layer == this.gameObject.layer)
+        else if (collision.gameObject.transform == targetFighter && collision.gameObject.layer == this.gameObject.layer)
         {
             targetFighterSave = targetFighter;
             targetFighter = null;
         }
+    }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
         //攻撃対象と接触した場合攻撃！
         if ((collision.gameObject.tag == EnemyTag || collision.gameObject.tag == EnemyBaseTag) && MyStatus.Type != 2 && !AtkNow && EnemyStatus == null)
         {

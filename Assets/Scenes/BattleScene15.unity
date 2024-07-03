@@ -2414,11 +2414,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8093472747238223506, guid: bf81e86659af0ea4ab8dc6ec3043ef89, type: 3}
       propertyPath: MaxHp
-      value: 300
+      value: 350
       objectReference: {fileID: 0}
     - target: {fileID: 8093472747238223506, guid: bf81e86659af0ea4ab8dc6ec3043ef89, type: 3}
       propertyPath: NowHp
-      value: 300
+      value: 350
       objectReference: {fileID: 0}
     - target: {fileID: 8093472747238223506, guid: bf81e86659af0ea4ab8dc6ec3043ef89, type: 3}
       propertyPath: AtkPower
@@ -2426,7 +2426,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8093472747238223506, guid: bf81e86659af0ea4ab8dc6ec3043ef89, type: 3}
       propertyPath: AtkSpeed
-      value: 15
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8093472747238223506, guid: bf81e86659af0ea4ab8dc6ec3043ef89, type: 3}
       propertyPath: MoveSpeed
